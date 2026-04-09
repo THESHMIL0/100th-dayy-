@@ -83,10 +83,9 @@
             overflow-x: hidden;
         }
 
-        /* --- NEW: Polka Dot Scrapbook Background for inner pages --- */
         .page-inner-bg {
             background-image: radial-gradient(#ffb3c6 1.5px, transparent 1.5px);
-            background-size: 20px 20px; /* Cute subtle dots */
+            background-size: 20px 20px; 
         }
 
         #p1, #p3, #p4, #p5, #p7 { justify-content: center; }
@@ -118,19 +117,16 @@
             color: #d81159;
             line-height: 1.3;
             font-size: 1.4rem; 
-            z-index: 2; /* Keeps text above background details */
+            z-index: 2; 
         }
         h2 { font-size: 1.6rem; color: #d62828; margin-top: 0; margin-bottom: 10px; text-shadow: 1px 1px 2px rgba(255,255,255,0.8); }
         h3 { font-size: 1.4rem; color: #d62828; margin-top: 0; text-shadow: 1px 1px 2px rgba(255,255,255,0.8); }
 
-        /* --- NEW: Floating Corner Decorations --- */
+        /* --- Floating Corner Decorations --- */
         .decor {
-            position: absolute;
-            font-size: 1.8rem;
-            opacity: 0.8;
-            pointer-events: none; /* So they don't block clicks */
-            animation: floatDecor 3s infinite ease-in-out alternate;
-            z-index: 0;
+            position: absolute; font-size: 1.8rem; opacity: 0.8;
+            pointer-events: none; 
+            animation: floatDecor 3s infinite ease-in-out alternate; z-index: 0;
         }
         .decor-tl { top: 15px; left: 15px; }
         .decor-tr { top: 15px; right: 15px; animation-delay: 1s; }
@@ -143,13 +139,22 @@
 
         /* --- 4. Special Page Content Styling --- */
 
-        /* PAGE 1: The Cover */
+        /* PAGE 1: UPGRADED COVER */
         .page-cover {
-            background: linear-gradient(135deg, #ffb3c6, #ff8fab);
+            background: linear-gradient(135deg, #ff9aae, #ff7ea5); /* Richer pink */
             border-radius: 5px 20px 20px 5px; 
+            border-left: 12px solid #d81159; /* Book Spine! */
+            box-shadow: inset 4px 0 8px rgba(0,0,0,0.1), 5px 5px 15px rgba(0,0,0,0.15);
+        }
+        .cover-names {
+            font-size: 1.8rem; color: white; text-shadow: 1px 1px 3px rgba(0,0,0,0.2); margin-bottom: 5px;
+        }
+        .cover-title {
+            font-size: 2.8rem; color: white; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); margin-top: 0;
+            margin-bottom: 20px; padding-bottom: 10px; border-bottom: 2px dashed rgba(255,255,255,0.6); width: 80%;
         }
         #countdown {
-            font-size: 1.1rem; margin: 15px 0; font-weight: bold;
+            font-size: 1.1rem; margin: 10px 0 15px 0; font-weight: bold;
             background: rgba(255, 255, 255, 0.6); padding: 10px;
             border-radius: 10px; border: 1px solid rgba(214, 40, 40, 0.1);
         }
@@ -169,29 +174,19 @@
 
         /* PAGE 3 & 4: Photos */
         .photo-container {
-            position: relative;
-            display: flex;
-            justify-content: center;
-            margin-bottom: 20px;
+            position: relative; display: flex; justify-content: center; margin-bottom: 20px;
         }
         .photo-frame {
             position: relative; width: 200px; height: 200px; border-radius: 50%; 
             border: 8px solid white; box-shadow: 0 8px 15px rgba(0,0,0,0.2);
-            overflow: hidden; 
-            animation: floatPhoto 4s infinite ease-in-out alternate;
+            overflow: hidden; animation: floatPhoto 4s infinite ease-in-out alternate;
         }
         .photo-img { width: 100%; height: 100%; object-fit: cover; }
         
-        /* NEW: Washi Tape! */
         .washi-tape {
-            position: absolute;
-            top: -5px;
-            width: 90px;
-            height: 25px;
-            background-color: rgba(255, 179, 198, 0.9);
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            z-index: 10;
-            animation: floatPhoto 4s infinite ease-in-out alternate;
+            position: absolute; top: -5px; width: 90px; height: 25px;
+            background-color: rgba(255, 179, 198, 0.9); box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            z-index: 10; animation: floatPhoto 4s infinite ease-in-out alternate;
         }
         #p3 .washi-tape { transform: rotate(-5deg); left: 30%; }
         #p4 .washi-tape { transform: rotate(6deg); left: 35%; background-color: rgba(255, 143, 171, 0.9); }
@@ -199,8 +194,7 @@
         .flirty-line {
             font-size: 1rem; color: #4a1c1c; background: #ffd6e0;
             padding: 10px; border-radius: 10px; font-weight: bold;
-            border: 2px dashed #ff8fab; /* Added cute stitched border */
-            z-index: 2;
+            border: 2px dashed #ff8fab; z-index: 2;
         }
         #p4 .photo-frame, #p4 .washi-tape { animation-delay: 2s; }
         @keyframes floatPhoto {
@@ -211,8 +205,7 @@
         /* PAGE 5: LOVE METER */
         .meter-container {
             width: 80%; height: 30px; background: #fff; border-radius: 15px;
-            border: 3px dashed #ffb3c6; /* Changed to dashed for cuteness */
-            margin: 20px 0; overflow: hidden; position: relative;
+            border: 3px dashed #ffb3c6; margin: 20px 0; overflow: hidden; position: relative;
         }
         .meter-fill {
             height: 100%; width: 0%;
@@ -231,12 +224,8 @@
         /* PAGE 6: REASONS I LOVE YOU */
         .reasons-list { list-style: none; padding: 0; text-align: left; margin-bottom: 20px; width: 100%; z-index: 2;}
         .reasons-list li { 
-            margin: 8px 0; font-size: 1.5rem; 
-            opacity: 0; 
-            transform: translateX(-20px);
-            background: rgba(255, 255, 255, 0.6); /* Adds a soft highlight behind text */
-            padding: 5px 10px;
-            border-radius: 10px;
+            margin: 8px 0; font-size: 1.5rem; opacity: 0; transform: translateX(-20px);
+            background: rgba(255, 255, 255, 0.6); padding: 5px 10px; border-radius: 10px;
         }
         .page.active .reasons-list li { animation: slideInText 0.6s forwards; }
         @keyframes slideInText { to { opacity: 1; transform: translateX(0); } }
@@ -272,10 +261,12 @@
     <div class="book" id="bookContainer">
         
         <div class="page page-cover active" id="p1">
-            <h1 class="letter-font" style="font-size: 2.2rem; color: white; text-shadow: 2px 2px 4px rgba(0,0,0,0.2); margin-top: 0;">Our 100th Day</h1>
+            <div style="font-size: 2.5rem; margin-bottom: 5px; animation: gentlePulse 2s infinite alternate;">💖</div>
+            <h2 class="letter-font cover-names">Theshu & Ayuuu</h2>
+            <h1 class="letter-font cover-title">Our 100th Day</h1>
             <div id="countdown">Calculating...</div>
             <div id="lock-icon">🔒</div>
-            <p id="early-message">It's not the time yet! Wait for the day cutie! 🐾</p>
+            <p id="early-message">It's not the time yet! Wait for the day, Ayuuu cutie! 🐾</p>
         </div>
 
         <div class="page page-inner-bg page-letter" id="p2">
@@ -355,7 +346,7 @@
                 <h2 style="font-family: 'Quicksand', sans-serif;">Alhamdulillah.</h2>
                 <p>I am eternally thankful to God for bringing us both together. You are a blessing I never saw coming, and I will cherish you every single day.</p>
                 <p>Love always,</p>
-                <p>- Me 💝</p>
+                <p>- Theshu 💝</p>
             </div>
         </div>
 
