@@ -66,7 +66,7 @@
             overflow: hidden;
         }
 
-        /* --- STACKING ORDER FIX (This keeps the cover on top!) --- */
+        /* --- STACKING ORDER FIX --- */
         #p1 { z-index: 6; }
         #p2 { z-index: 5; }
         #p3 { z-index: 4; }
@@ -77,7 +77,7 @@
         /* Helper class to simulate a 'flipped' page */
         .page.flipped {
             transform: rotateY(-180deg);
-            z-index: 0 !important; /* Forces the flipped page to the back */
+            z-index: 0 !important; 
         }
 
         /* Shadow texture for realism */
@@ -89,14 +89,12 @@
             pointer-events: none;
         }
 
-        /* Cursive font style for letters */
         .letter-font {
             font-family: 'Pacifico', cursive;
             color: #d81159;
             line-height: 1.6;
         }
 
-        /* Formatting for headings */
         h2, h3 { color: #d62828; margin-top: 0; }
 
         /* --- 4. Special Page Content Styling --- */
@@ -109,7 +107,6 @@
             cursor: pointer;
         }
 
-        /* Countdown display styling */
         #countdown {
             font-size: 1.1rem;
             margin: 15px 0;
@@ -120,10 +117,8 @@
             border: 1px solid rgba(214, 40, 40, 0.1);
         }
 
-        /* Lock icon styling */
         #lock-icon { font-size: 3.5rem; margin-bottom: 15px; }
 
-        /* Error message when clicking locked book */
         #early-message {
             opacity: 0;
             color: white;
@@ -158,7 +153,6 @@
             object-fit: cover;
         }
 
-        /* Dark Cute Flirty Line Styling */
         .flirty-line {
             font-size: 1rem;
             color: #4a1c1c;
@@ -168,7 +162,6 @@
             font-weight: bold;
         }
 
-        /* Different animation speeds for each photo */
         #p4 .photo-frame { animation-delay: 2s; }
 
         @keyframes floatPhoto {
@@ -176,98 +169,95 @@
             to { transform: translateY(-15px) rotate(2deg); }
         }
 
-        /* --- 5. PAGE 5: The Cake & Cutting Animation --- */
+        /* --- 5. PAGE 5: REBUILT BUG-PROOF CAKE --- */
         .cake-container {
             position: relative;
-            width: 150px;
+            width: 180px;
             height: 180px;
             margin-bottom: 20px;
             cursor: pointer;
         }
 
-        /* Realistic(ish) CSS Cake Drawing */
-        .cake {
+        /* The flex container holding both halves */
+        .cake-halves {
             position: absolute;
             bottom: 0;
-            width: 150px;
-            height: 130px;
-            background: #fdf2e9; 
-            border-radius: 10px 10px 5px 5px;
-            border-bottom: 5px solid #d35400; 
-            transition: transform 0.6s ease-out; 
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            width: 160px;
+            height: 120px;
+        }
+
+        /* Base styling for each half */
+        .cake-half {
+            width: 50%;
+            height: 100%;
+            position: relative;
+            background: #fdf2e9;
+            border-bottom: 6px solid #d35400;
+            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Left Half Specifics */
+        .left-half {
+            border-radius: 15px 0 0 5px;
+            border-right: 1px solid #f0e0d0; /* Inner cake texture line */
+        }
+
+        /* Right Half Specifics */
+        .right-half {
+            border-radius: 0 15px 5px 0;
         }
 
         /* Frosting Layers */
-        .cake::before, .cake::after {
-            content: '';
-            position: absolute;
-            width: 100%;
-            background: #ffb3c6; 
-            border-radius: 10px;
+        .frost-top {
+            position: absolute; top: 0; left: 0; width: 100%; height: 40px; background: #ff8fab;
+        }
+        .left-half .frost-top { border-radius: 15px 0 0 0; }
+        .right-half .frost-top { border-radius: 0 15px 0 0; }
+
+        .frost-mid {
+            position: absolute; top: 60px; left: 0; width: 100%; height: 18px; background: #ffb3c6;
         }
 
-        .cake::before { 
-            height: 25px;
-            bottom: 40px;
-            box-shadow: inset 0 -5px 5px rgba(255,255,255,0.4);
-        }
-
-        .cake::after { 
-            height: 25px;
-            top: -10px;
-            border-radius: 10px 10px 0 0;
-            background: #ff8fab;
-            box-shadow: 0 5px 5px rgba(0,0,0,0.1);
-        }
-
-        /* Cake Topping */
-        .topping {
-            position: absolute;
-            top: -10px;
-            width: 100%;
-            height: 30px;
-            background: #ff8fab;
-            border-radius: 10px 10px 0 0;
-        }
+        /* Drips */
         .drip {
-            position: absolute;
-            top: 15px;
-            width: 10px;
-            height: 25px;
-            background: #ff8fab;
-            border-radius: 0 0 5px 5px;
+            position: absolute; top: 35px; width: 12px; height: 25px; background: #ff8fab; border-radius: 10px;
         }
-        .drip1 { left: 20px; }
-        .drip2 { left: 70px; height: 35px; }
-        .drip3 { left: 120px; }
+        .left-half .drip1 { left: 15px; height: 35px; }
+        .left-half .drip2 { left: 45px; height: 20px; }
+        .right-half .drip3 { left: 10px; height: 30px; }
+        .right-half .drip4 { left: 40px; height: 20px; }
 
         /* The Animated Knife */
         .knife {
             position: absolute;
             top: -20px;
             left: 50%;
-            width: 5px;
+            width: 6px;
             height: 160px;
             background: #bdc3c7; 
-            border-radius: 2px;
+            border-radius: 3px;
             transform: translateX(-50%) translateY(-200px);
-            transition: transform 0.8s ease-in;
+            transition: transform 0.6s ease-in;
             z-index: 5;
         }
         .knife::after { 
             content: '';
             position: absolute;
             top: -30px;
-            left: -5px;
-            width: 15px;
-            height: 40px;
+            left: -6px;
+            width: 18px;
+            height: 45px;
             background: #c0392b;
             border-radius: 5px;
         }
 
-        /* Classes to trigger animations via JS */
-        .knife-anim { transform: translateX(-50%) translateY(0); }
-        .cake-slice-anim { transform: translateX(-15px); }
+        /* Classes to trigger realistic animations via JS */
+        .knife-anim { transform: translateX(-50%) translateY(10px); }
+        .cake-slice-anim .right-half { transform: translateX(25px) rotate(8deg); transform-origin: bottom right; }
+        .cake-slice-anim .left-half { transform: translateX(-15px) rotate(-4deg); transform-origin: bottom left; }
 
         /* Text overlaying the cake initially */
         .cake-instruction {
@@ -320,14 +310,14 @@
 
         <div class="page page-photo" id="p3">
             <div class="photo-frame">
-                <img src="photo_marks.jpg" alt="Our marks photo" class="photo-img">
+                <img src="1.jpg" alt="Our marks photo" class="photo-img">
             </div>
             <div class="flirty-line">I want to paint you entirely in red marks. Don't worry, they only show how much I belong to you. 💋</div>
         </div>
 
         <div class="page page-photo" id="p4">
             <div class="photo-frame">
-                <img src="photo_formal.jpg" alt="Our dressed up photo" class="photo-img">
+                <img src="2.jpg" alt="Our dressed up photo" class="photo-img">
             </div>
             <div class="flirty-line">My favourite accessory is you. I might have to possessive-ly lock you away if other people keep looking. 🔐</div>
         </div>
@@ -337,13 +327,22 @@
             <div class="cake-container" id="cakeContainer">
                 <p class="cake-instruction" id="cakeText">Tap the cake to cut!</p>
                 <div class="knife" id="knife"></div>
-                <div class="cake" id="cake">
-                    <div class="topping">
+                
+                <div class="cake-halves" id="cake">
+                    <div class="cake-half left-half">
+                        <div class="frost-top"></div>
+                        <div class="frost-mid"></div>
                         <div class="drip drip1"></div>
                         <div class="drip drip2"></div>
+                    </div>
+                    <div class="cake-half right-half">
+                        <div class="frost-top"></div>
+                        <div class="frost-mid"></div>
                         <div class="drip drip3"></div>
+                        <div class="drip drip4"></div>
                     </div>
                 </div>
+
             </div>
             <p class="animate-text" style="color: #d62828; font-weight: bold; margin-top: 10px;">Happy 100 Days! Here's to us.</p>
         </div>
@@ -455,7 +454,7 @@
             setTimeout(() => {
                 cake.classList.add('cake-slice-anim'); 
                 cakeIsCut = true;
-            }, 800); 
+            }, 600); // Tighter timing for a more satisfying slice!
         }
     };
 
