@@ -183,13 +183,13 @@
 
 <script>
     // --- TESTING MODE ---
-    // Keep this as "" to lock the book. 
+    // Keep this as "Ayu" to lock the book. 
     // Change it to anything else (like "") to unlock the book for testing!
     const lockKeyword = "Ayu"; 
     // --------------------
 
-    // 1. Set the meeting date and calculate 100 days later
-    const meetingDate = new Date('2026-08-14T00:00:00');
+    // 1. Set the REAL meeting date (Jan 18, 2026) to hit the 100th day on April 28, 2026!
+    const meetingDate = new Date('2026-01-18T00:00:00');
     const targetDate = new Date(meetingDate.getTime() + (100 * 24 * 60 * 60 * 1000));
 
     // 2. Grab HTML elements to control them with code
@@ -245,5 +245,4 @@
 </script>
 
 </body>
-  </html>
-    
+</html>
