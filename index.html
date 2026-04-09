@@ -6,9 +6,9 @@
     <title>Our 100th Day - The Story 💝</title>
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Comic+Sans+MS&display=swap" rel="stylesheet">
     <style>
-        /* --- 1. Basic Cute Theme Setup (Retained) --- */
+        /* --- 1. Basic Cute Theme Setup --- */
         body {
-            background-color: #ffe6ea; /* Soft pink background */
+            background-color: #ffe6ea; 
             font-family: 'Comic Sans MS', 'Arial Rounded MT Bold', sans-serif;
             display: flex;
             justify-content: center;
@@ -17,10 +17,10 @@
             margin: 0;
             overflow: hidden;
             color: #5a3a40;
-            perspective: 2000px; /* Required for the 3D flip effect */
+            perspective: 2000px; 
         }
 
-        /* --- 2. Site Opening Animation (Retained) --- */
+        /* --- 2. Site Opening Animation --- */
         .website-container {
             animation: siteOpenFade 1.5s ease-in-out;
             display: flex;
@@ -60,23 +60,24 @@
             text-align: center;
             padding: 25px;
             box-sizing: border-box;
-            backface-visibility: hidden; /* Hide back when turning */
-            transform-origin: left center; /* Flip around left edge */
+            backface-visibility: hidden; 
+            transform-origin: left center; 
             transition: transform 1.2s cubic-bezier(0.645, 0.045, 0.355, 1);
-            z-index: 1;
             overflow: hidden;
         }
 
-        /* Helper class for front pages */
-        .page.front {
-            z-index: 2;
-            transform: rotateY(0deg);
-        }
+        /* --- STACKING ORDER FIX (This keeps the cover on top!) --- */
+        #p1 { z-index: 6; }
+        #p2 { z-index: 5; }
+        #p3 { z-index: 4; }
+        #p4 { z-index: 3; }
+        #p5 { z-index: 2; }
+        #p6 { z-index: 1; }
 
         /* Helper class to simulate a 'flipped' page */
         .page.flipped {
             transform: rotateY(-180deg);
-            z-index: 0;
+            z-index: 0 !important; /* Forces the flipped page to the back */
         }
 
         /* Shadow texture for realism */
@@ -100,10 +101,10 @@
 
         /* --- 4. Special Page Content Styling --- */
 
-        /* PAGE 1: The Cover (Lock Screen) - Specific adjustments */
+        /* PAGE 1: The Cover */
         .page-cover {
             background: linear-gradient(135deg, #ffb3c6, #ff8fab);
-            border-radius: 5px 20px 20px 5px; /* Subtle book edge */
+            border-radius: 5px 20px 20px 5px; 
             box-shadow: 5px 5px 15px rgba(0,0,0,0.15);
             cursor: pointer;
         }
@@ -138,12 +139,12 @@
         /* PAGE 2: Letter styling */
         .page-letter p { font-size: 1rem; margin-bottom: 10px; }
 
-        /* PAGE 3 & 4: Photo styling (retaining 'floating' animation) */
+        /* PAGE 3 & 4: Photo styling */
         .photo-frame {
             position: relative;
             width: 220px;
             height: 220px;
-            border-radius: 50%; /* Making photos circular for a cuter look */
+            border-radius: 50%; 
             border: 8px solid white;
             box-shadow: 0 8px 15px rgba(0,0,0,0.2);
             overflow: hidden;
@@ -190,10 +191,10 @@
             bottom: 0;
             width: 150px;
             height: 130px;
-            background: #fdf2e9; /* Cake batter color */
+            background: #fdf2e9; 
             border-radius: 10px 10px 5px 5px;
-            border-bottom: 5px solid #d35400; /* Plate shadow */
-            transition: transform 0.6s ease-out; /* Smooth slice separation */
+            border-bottom: 5px solid #d35400; 
+            transition: transform 0.6s ease-out; 
         }
 
         /* Frosting Layers */
@@ -201,17 +202,17 @@
             content: '';
             position: absolute;
             width: 100%;
-            background: #ffb3c6; /* Pink Frosting */
+            background: #ffb3c6; 
             border-radius: 10px;
         }
 
-        .cake::before { /* Bottom Frosting */
+        .cake::before { 
             height: 25px;
             bottom: 40px;
             box-shadow: inset 0 -5px 5px rgba(255,255,255,0.4);
         }
 
-        .cake::after { /* Top Frosting */
+        .cake::after { 
             height: 25px;
             top: -10px;
             border-radius: 10px 10px 0 0;
@@ -219,7 +220,7 @@
             box-shadow: 0 5px 5px rgba(0,0,0,0.1);
         }
 
-        /* Cake Topping (Realistic Drip) */
+        /* Cake Topping */
         .topping {
             position: absolute;
             top: -10px;
@@ -247,13 +248,13 @@
             left: 50%;
             width: 5px;
             height: 160px;
-            background: #bdc3c7; /* Silver blade */
+            background: #bdc3c7; 
             border-radius: 2px;
             transform: translateX(-50%) translateY(-200px);
             transition: transform 0.8s ease-in;
             z-index: 5;
         }
-        .knife::after { /* Red Knife Handle */
+        .knife::after { 
             content: '';
             position: absolute;
             top: -30px;
@@ -278,6 +279,7 @@
             width: 100%;
             background: rgba(255,255,255,0.8);
             padding: 5px 0;
+            z-index: 10;
         }
 
         /* --- 6. PAGE 6: The Final Thank God Letter --- */
@@ -301,14 +303,14 @@
 <div class="website-container">
     <div class="book" id="bookContainer">
         
-        <div class="page front page-cover" id="p1">
+        <div class="page page-cover" id="p1">
             <h1>Our 100th Day</h1>
             <div id="countdown">Calculating...</div>
             <div id="lock-icon">🔒</div>
             <p id="early-message">It's not the time yet! Wait for the day cutie! 🐾</p>
         </div>
 
-        <div class="page front page-letter" id="p2">
+        <div class="page page-letter" id="p2">
             <h2>To My Favorite Person...</h2>
             <div class="letter-font">
                 <p>Can you believe it's already been 100 days? It feels like we just met yesterday, but at the same time, I can't imagine my life without you anymore.</p>
@@ -316,21 +318,21 @@
             </div>
         </div>
 
-        <div class="page front page-photo" id="p3">
+        <div class="page page-photo" id="p3">
             <div class="photo-frame">
                 <img src="photo_marks.jpg" alt="Our marks photo" class="photo-img">
             </div>
             <div class="flirty-line">I want to paint you entirely in red marks. Don't worry, they only show how much I belong to you. 💋</div>
         </div>
 
-        <div class="page front page-photo" id="p4">
+        <div class="page page-photo" id="p4">
             <div class="photo-frame">
                 <img src="photo_formal.jpg" alt="Our dressed up photo" class="photo-img">
             </div>
             <div class="flirty-line">My favourite accessory is you. I might have to possessive-ly lock you away if other people keep looking. 🔐</div>
         </div>
 
-        <div class="page front page-cake" id="p5">
+        <div class="page page-cake" id="p5">
             <h3>Let's Celebrate! 🎂</h3>
             <div class="cake-container" id="cakeContainer">
                 <p class="cake-instruction" id="cakeText">Tap the cake to cut!</p>
@@ -343,10 +345,10 @@
                     </div>
                 </div>
             </div>
-            <p class="animate-text">Happy 100 Days! Here's to us.</p>
+            <p class="animate-text" style="color: #d62828; font-weight: bold; margin-top: 10px;">Happy 100 Days! Here's to us.</p>
         </div>
 
-        <div class="page front page-final" id="p6">
+        <div class="page page-final" id="p6">
             <div class="letter-font">
                 <h2>Alhamdulillah.</h2>
                 <p>I am eternally thankful to God for bringing us both together. You are a blessing I never saw coming, and I will cherish you every single day.</p>
@@ -357,32 +359,28 @@
 
     </div>
     
-    <div class="nav-hint" id="navHint" style="display: none;">Tap book edges to turn pages!</div>
+    <div class="nav-hint" id="navHint" style="display: none;">Tap right edge to turn next ➔<br>Tap left edge to go back 🠔</div>
 </div>
 
 <script>
-    // --- TESTING MODE (Retained) ---
-    // Change "Ayu" to "" to unlock the book instantly for testing!
-    const lockKeyword = "Ayu"; 
+    // --- TESTING MODE ---
+    const lockKeyword = ""; // Set to "Ayu" to lock, empty "" to unlock for testing!
     // --------------------------------
 
-    // --- 1. COUNTDOWN & LOCK LOGIC (Retained for April 28, 2026) ---
-    const meetingDate = new Date('2026-01-18T00:00:00'); // Calculates 100th day as April 28, 2026
+    // --- COUNTDOWN LOGIC ---
+    const meetingDate = new Date('2026-01-18T00:00:00'); 
     const targetDate = new Date(meetingDate.getTime() + (100 * 24 * 60 * 60 * 1000));
 
     const countdownEl = document.getElementById('countdown');
     const lockIcon = document.getElementById('lock-icon');
     const earlyMessage = document.getElementById('early-message');
-    const cover = document.getElementById('p1');
     const navHint = document.getElementById('navHint');
     let isUnlocked = false;
 
-    // Logic to update the timer every second
     function updateTimer() {
         const now = new Date().getTime();
         const distance = targetDate.getTime() - now;
 
-        // UNLOCK CONDITION
         if (distance <= 0 || lockKeyword !== "Ayu") {
             isUnlocked = true;
             if (lockKeyword !== "Ayu") {
@@ -390,9 +388,8 @@
             } else {
                 countdownEl.innerHTML = "It's time! 🎉";
             }
-            lockIcon.innerHTML = "🔓 <br> <span style='font-size: 1rem;'>Click to open!</span>";
+            lockIcon.innerHTML = "🔓 <br> <span style='font-size: 1rem;'>Tap to open!</span>";
         } else {
-            // LOCKED CONDITION: Calculate time left
             const days = Math.floor(distance / (1000 * 60 * 60 * 24));
             const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
@@ -404,72 +401,64 @@
     updateTimer();
     setInterval(updateTimer, 1000);
 
-    // --- 2. MULTI-PAGE NAVIGATION LOGIC ---
+    // --- MULTI-PAGE NAVIGATION LOGIC ---
     let currentPage = 1;
     const totalPages = 6;
     const bookContainer = document.getElementById('bookContainer');
 
-    // Handle turning pages sequentially on click
     bookContainer.onclick = function(e) {
-        // If the book is locked, don't allow page turning, just show the error message.
+        // If locked, show error message
         if (!isUnlocked) {
             earlyMessage.style.opacity = 1;
             setTimeout(() => { earlyMessage.style.opacity = 0; }, 3000);
             return;
         }
 
-        // --- Navigating backwards (Tap Left side) ---
-        // If they click on the far left 20% of the book, turn back a page.
+        // Tap Left side to go back
         const rect = bookContainer.getBoundingClientRect();
         const clickX = e.clientX - rect.left;
-        if (currentPage > 1 && clickX < (rect.width * 0.2)) {
-            // Un-flip the *previous* page to go back
-            document.getElementById('p' + (currentPage - 1)).classList.remove('flipped');
+        
+        if (currentPage > 1 && clickX < (rect.width * 0.3)) {
             currentPage--;
-            checkCakeState(); // Reset cake if we turn back
+            document.getElementById('p' + currentPage).classList.remove('flipped');
+            checkCakeState(); 
             return;
         }
 
-        // --- Navigating forwards (Tap Right side) ---
-        // If we haven't reached the final page, flip the current page to the left.
-        if (currentPage < totalPages) {
-            // Don't turn the page if they are trying to click the 'Cut Cake' button inside Page 5.
-            if (currentPage === 5 && e.target.id === 'cakeContainer') return; 
+        // Tap Right side to go forward
+        if (currentPage < totalPages && clickX >= (rect.width * 0.3)) {
+            // Don't flip page if clicking the cake container
+            if (currentPage === 5 && (e.target.closest('#cakeContainer'))) return; 
 
             document.getElementById('p' + currentPage).classList.add('flipped');
             currentPage++;
             
-            // Show the generic navigation hint after the cover is turned.
             if (currentPage === 2) { navHint.style.display = 'block'; }
-            // Hide the hint on the very last page.
             if (currentPage === totalPages) { navHint.style.display = 'none'; }
         }
     };
 
-    // --- 3. CAKE CUTTING ANIMATION LOGIC (ON PAGE 5) ---
+    // --- CAKE CUTTING ANIMATION ---
     const cakeContainer = document.getElementById('cakeContainer');
     const knife = document.getElementById('knife');
     const cake = document.getElementById('cake');
     const cakeText = document.getElementById('cakeText');
     let cakeIsCut = false;
 
-    // Trigger animation when the cake container is tapped
     cakeContainer.onclick = function(e) {
-        e.stopPropagation(); // Stop the book page-turning click from firing!
+        e.stopPropagation(); // Prevents page turning
 
         if (!cakeIsCut) {
-            // Animation sequence: Knife drops, cake splits.
-            cakeText.style.display = 'none'; // Hide instruction
-            knife.classList.add('knife-anim'); // Bring knife down
+            cakeText.style.display = 'none'; 
+            knife.classList.add('knife-anim'); 
 
             setTimeout(() => {
-                cake.classList.add('cake-slice-anim'); // Split the cake slices apart realistic-ally
+                cake.classList.add('cake-slice-anim'); 
                 cakeIsCut = true;
-            }, 800); // Trigger after the knife drops.
+            }, 800); 
         }
     };
 
-    // Resets the cake cutting animation if they turn back from the thank god page.
     function checkCakeState() {
         if (currentPage === 5 && cakeIsCut) {
             cake.classList.remove('cake-slice-anim');
