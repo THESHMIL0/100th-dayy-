@@ -68,7 +68,7 @@
             background: #fff0f3; border-radius: 10px; box-shadow: inset 0 0 15px rgba(0,0,0,0.05);
             display: flex; flex-direction: column; justify-content: flex-start; 
             align-items: center; text-align: center; padding: 25px 15px; 
-            overflow: hidden !important; /* Forces everything inside */
+            overflow: hidden !important; 
             
             backface-visibility: hidden; -webkit-backface-visibility: hidden; 
             transform-origin: left center; -webkit-transform-origin: left center;
@@ -82,13 +82,13 @@
         .page-inner-bg {
             background-image: radial-gradient(#ffb3c6 1.5px, transparent 1px); background-size: 20px 20px; 
         }
-        #p1, #p3, #p4, #p5, #p8, #p9, #p10, #p11, #p12, #p13, #p14 { justify-content: center; }
+        #p1, #p3, #p4, #p5, #p8, #p9, #p10, #p11, #p12, #p13, #p14, #p15, #p16 { justify-content: center; }
 
-        /* --- STACKING ORDER (14 Pages) --- */
-        #p1 { z-index: 14; } #p2 { z-index: 13; } #p3 { z-index: 12; } #p4 { z-index: 11; }
-        #p5 { z-index: 10; } #p6 { z-index: 9; } #p7 { z-index: 8; } #p8 { z-index: 7; } 
-        #p9 { z-index: 6; } #p10 { z-index: 5; } #p11 { z-index: 4; } #p12 { z-index: 3; }
-        #p13 { z-index: 2; } #p14 { z-index: 1; }
+        /* --- STACKING ORDER (16 Pages!) --- */
+        #p1 { z-index: 16; } #p2 { z-index: 15; } #p3 { z-index: 14; } #p4 { z-index: 13; }
+        #p5 { z-index: 12; } #p6 { z-index: 11; } #p7 { z-index: 10; } #p8 { z-index: 9; } 
+        #p9 { z-index: 8; } #p10 { z-index: 7; } #p11 { z-index: 6; } #p12 { z-index: 5; }
+        #p13 { z-index: 4; } #p14 { z-index: 3; } #p15 { z-index: 2; } #p16 { z-index: 1; }
 
         .page.flipped { 
             transform: rotateY(-180deg) translate3d(0,0,0); 
@@ -135,7 +135,7 @@
         }
         .cover-names { font-size: 1.5rem; color: #d81159; margin-bottom: 2px; }
         .cover-title { font-size: 2.1rem; color: #d62828; margin: 0; padding-bottom: 5px; border-bottom: 2px dashed #ffb3c6; width: 100%; }
-        .cover-hints { font-size: 0.8rem; color: #5a3a40; font-weight: bold; margin-top: 6px; text-align: left; width: 90%; }
+        .cover-hints { font-size: 0.75rem; color: #5a3a40; font-weight: bold; margin-top: 6px; text-align: left; width: 90%; }
         .hint-item { margin: 2px 0; display: flex; align-items: center; opacity: 0.9; }
         .hint-item span { width: 18px; margin-right: 5px; text-align: center; }
         
@@ -147,8 +147,8 @@
         @keyframes gentlePulse { from { transform: scale3d(1, 1, 1); opacity: 0.8; } to { transform: scale3d(1.08, 1.08, 1); opacity: 1; } }
         #early-message { opacity: 0; color: white; font-weight: bold; transition: opacity 0.4s; background: rgba(216, 17, 89, 0.9); padding: 8px; border-radius: 8px; font-size: 0.85rem; margin-top: 5px; z-index: 2; }
 
-        /* --- PHOTOS (Scaled to 170px to perfectly fit text on mobile) --- */
-        .photo-container { position: relative; display: flex; justify-content: center; margin-bottom: 10px; }
+        /* --- PHOTOS --- */
+        .photo-container { position: relative; display: flex; justify-content: center; margin-bottom: 15px; }
         .photo-frame { position: relative; width: 170px; height: 170px; border-radius: 50%; border: 8px solid white; box-shadow: 0 8px 15px rgba(0,0,0,0.2); overflow: hidden; animation: floatPhoto 4s infinite ease-in-out alternate; }
         .photo-img { width: 100%; height: 100%; object-fit: cover; }
         .washi-tape { position: absolute; top: -5px; width: 80px; height: 22px; background-color: rgba(255, 179, 198, 0.9); box-shadow: 0 2px 4px rgba(0,0,0,0.1); z-index: 10; animation: floatPhoto 4s infinite ease-in-out alternate; }
@@ -189,59 +189,24 @@
         .bday-timer { font-size: 0.95rem; font-weight: bold; color: #d81159; background: #ffe6ea; padding: 6px; border-radius: 8px;}
 
         /* --- PAGE 9 - KERALA TO GOA MAP --- */
-        .map-wrapper {
-            position: relative; width: 200px; height: 200px; background: #e0f7fa; /* Scaled to 200px */
-            border-radius: 50%; border: 6px solid white; box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-            margin: 10px 0; overflow: hidden; z-index: 2;
-        }
+        .map-wrapper { position: relative; width: 200px; height: 200px; background: #e0f7fa; border-radius: 50%; border: 6px solid white; box-shadow: 0 8px 20px rgba(0,0,0,0.15); margin: 10px 0; overflow: hidden; z-index: 2; }
         .map-wrapper::before { content: '🌊'; position: absolute; top: 20px; left: 30px; font-size: 1.5rem; opacity: 0.3; }
         .map-wrapper::after { content: '🌊'; position: absolute; bottom: 30px; right: 20px; font-size: 1.5rem; opacity: 0.3; }
-        
-        .map-pin {
-            position: absolute; font-size: 1.3rem; font-weight: bold; color: #d62828;
-            text-shadow: 1px 1px 2px white; display: flex; flex-direction: column; align-items: center; z-index: 5;
-        }
-        .pin-kerala { bottom: 20px; left: 40px; }
-        .pin-goa { top: 30px; right: 40px; }
-        
-        .flight-arc {
-            position: absolute; top: 50px; left: 60px; width: 80px; height: 100px;
-            border-top: 3px dashed #d81159; border-right: 3px dashed #d81159;
-            border-radius: 0 100% 0 0; opacity: 0.6; z-index: 3;
-        }
-        
+        .map-pin { position: absolute; font-size: 1.3rem; font-weight: bold; color: #d62828; text-shadow: 1px 1px 2px white; display: flex; flex-direction: column; align-items: center; z-index: 5; }
+        .pin-kerala { bottom: 20px; left: 40px; } .pin-goa { top: 30px; right: 40px; }
+        .flight-arc { position: absolute; top: 50px; left: 60px; width: 80px; height: 100px; border-top: 3px dashed #d81159; border-right: 3px dashed #d81159; border-radius: 0 100% 0 0; opacity: 0.6; z-index: 3; }
         .airplane { position: absolute; font-size: 1.2rem; z-index: 6; bottom: 45px; left: 45px; }
         .page.active .airplane { animation: flyPlane 4s ease-in-out infinite; }
-        
-        @keyframes flyPlane {
-            0% { transform: translate3d(0, 0, 0) rotate(45deg); opacity: 0; }
-            10% { opacity: 1; }
-            50% { transform: translate3d(40px, -45px, 0) rotate(60deg); }
-            90% { opacity: 1; }
-            100% { transform: translate3d(90px, -110px, 0) rotate(70deg); opacity: 0; }
-        }
-
-        /* NEW FILLER: Boarding Pass */
-        .boarding-pass {
-            background: white; border: 2px dashed #ffb3c6; width: 95%; padding: 8px 12px;
-            border-radius: 10px; font-size: 0.8rem; text-align: left; display: flex;
-            justify-content: space-between; z-index: 2; margin-top: 5px; color: #5a3a40;
-        }
+        @keyframes flyPlane { 0% { transform: translate3d(0, 0, 0) rotate(45deg); opacity: 0; } 10% { opacity: 1; } 50% { transform: translate3d(40px, -45px, 0) rotate(60deg); } 90% { opacity: 1; } 100% { transform: translate3d(90px, -110px, 0) rotate(70deg); opacity: 0; } }
+        .boarding-pass { background: white; border: 2px dashed #ffb3c6; width: 95%; padding: 8px 12px; border-radius: 10px; font-size: 0.8rem; text-align: left; display: flex; justify-content: space-between; z-index: 2; margin-top: 5px; color: #5a3a40; }
 
         /* --- PAGE 11: SCRATCH OFF TICKET --- */
-        .scratch-wrapper {
-            position: relative; width: 230px; height: 130px; margin: 15px auto;
-            border-radius: 15px; box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-            overflow: hidden; border: 3px dashed #d81159; z-index: 2;
-        }
-        .scratch-secret {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: #fff; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 15px; box-sizing: border-box; font-size: 1.1rem; color: #d81159; text-align: center;
-        }
+        .scratch-wrapper { position: relative; width: 230px; height: 130px; margin: 15px auto; border-radius: 15px; box-shadow: 0 8px 20px rgba(0,0,0,0.15); overflow: hidden; border: 3px dashed #d81159; z-index: 2; }
+        .scratch-secret { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: #fff; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 15px; box-sizing: border-box; font-size: 1.1rem; color: #d81159; text-align: center; }
         #scratchCanvas { position: absolute; top: 0; left: 0; z-index: 5; cursor: pointer; }
 
-        /* --- CAKE --- */
-        .cake-container { position: relative; width: 160px; height: 160px; margin: 10px 0; cursor: pointer; z-index: 2;} /* Scaled down slightly */
+        /* --- PAGE 12: CAKE --- */
+        .cake-container { position: relative; width: 160px; height: 160px; margin: 10px 0; cursor: pointer; z-index: 2;}
         .cake-plate { position: absolute; bottom: 0px; left: 50%; transform: translateX(-50%); width: 150px; height: 20px; background: linear-gradient(0deg, #bdbdbd 0%, #ffffff 50%, #e0e0e0 100%); border-radius: 50%; border: 2px solid #a1a1a1; border-bottom: 3px solid #a1a1a1; z-index: 0; box-shadow: 0 10px 10px rgba(0,0,0,0.1); }
         .cake-plate::before { content: ''; position: absolute; top: 2px; left: 50%; transform: translateX(-50%); width: 120px; height: 8px; background: rgba(255,255,255,0.3); border-radius: 50%; }
         .cake-halves { position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); display: flex; width: 130px; height: 90px; z-index: 1;}
@@ -286,6 +251,41 @@
         .t5 { animation-delay: 0.8s; font-size: 2.1rem; }
         @keyframes swayTulip { 0% { transform: rotate(-15deg); } 100% { transform: rotate(15deg); } }
 
+        /* --- NEW: PAGE 14 - SCANNER --- */
+        .scanner-container {
+            position: relative; width: 120px; height: 160px; border: 3px solid #ffb3c6;
+            border-radius: 25px; margin: 15px auto; display: flex; justify-content: center;
+            align-items: center; background: rgba(255,255,255,0.7); overflow: hidden;
+            cursor: pointer; box-shadow: inset 0 0 15px rgba(216,17,89,0.1);
+            -webkit-user-select: none; user-select: none; /* Stops text selection on hold */
+        }
+        .finger-icon { font-size: 5rem; opacity: 0.3; transition: opacity 0.3s; pointer-events: none;}
+        .scan-line {
+            position: absolute; top: 0; left: 0; width: 100%; height: 4px;
+            background: #d81159; box-shadow: 0 0 15px #d81159; opacity: 0; pointer-events: none;
+        }
+        .scanning .scan-line { animation: scanAnim 1.2s ease-in-out infinite alternate; opacity: 1; }
+        .scanning .finger-icon { opacity: 0.8; }
+        @keyframes scanAnim { from { top: 5%; } to { top: 95%; } }
+        
+        .secret-promise {
+            opacity: 0; transition: opacity 1s; font-size: 1.15rem; color: #d62828; 
+            font-weight: bold; background: white; padding: 10px; border-radius: 10px; 
+            border: 2px dashed #ffb3c6; margin-top: 10px; pointer-events: none;
+        }
+        .scanned-success .secret-promise { opacity: 1; }
+        .scanned-success .scanner-container { border-color: #81c784; box-shadow: inset 0 0 15px rgba(129,199,132,0.3); }
+
+        /* --- NEW: PAGE 15 - TIME CAPSULE --- */
+        .capsule-wrapper {
+            background: rgba(255,255,255,0.9); border: 3px solid #d81159; padding: 20px 10px;
+            border-radius: 15px; width: 95%; z-index: 2; position: relative; margin-top: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        .capsule-lock { font-size: 3.5rem; margin-bottom: 10px; }
+        .capsule-timer { font-size: 1.3rem; font-weight: bold; color: #d81159; background: #ffe6ea; padding: 10px; border-radius: 10px; border: 1px dashed #ffb3c6;}
+        .capsule-content { display: none; font-size: 1.2rem; color: #d62828; font-weight: bold;}
+
         .nav-hint { margin-top: 10px; font-size: 0.8rem; color: #888; background: white; padding: 5px 10px; border-radius: 15px; font-family: 'Quicksand', sans-serif; z-index: 10;}
     </style>
 </head>
@@ -314,8 +314,8 @@
                         <p style="margin-bottom: 3px; font-size: 0.9rem; color:#d62828;">Spilling the tea... ☕</p>
                         <div class="hint-item"><span>📸</span> Core Memories inside</div>
                         <div class="hint-item"><span>❤️</span> The Love Meter</div>
-                        <div class="hint-item"><span>✈️</span> Kerala to Goa Map!</div>
-                        <div class="hint-item"><span class="pulse-text">🎂</span> A Birthday Surprise</div>
+                        <div class="hint-item"><span>👆</span> Thumbprint Scanner</div>
+                        <div class="hint-item"><span class="pulse-text">🔒</span> The Time Capsule</div>
                     </div>
                 </div>
 
@@ -536,7 +536,46 @@
             </div>
         </div>
 
-        <div class="page page-inner-bg page-final" id="p14">
+        <div class="page page-inner-bg page-scanner" id="p14" style="justify-content: center;">
+            <span class="decor decor-tl">✨</span>
+            <span class="decor decor-br">🔐</span>
+            <h3>A Pinky Promise... 🥺</h3>
+            <p class="letter-font" style="font-size: 1.15rem; margin-bottom: 10px;">Hold your thumb here to verify your identity. 👆</p>
+
+            <div class="scanner-container" id="scannerBox">
+                <div class="finger-icon" id="fingerIcon">👆</div>
+                <div class="scan-line"></div>
+            </div>
+            
+            <div id="promiseBox" class="secret-promise">
+                <span style="font-size:1.5rem;">🦋</span><br>
+                <strong>Identity Confirmed: Soulmate!</strong><br>
+                I promise to always be your safe space, your biggest fan, and yours forever. 🥺💍
+            </div>
+            <div id="scanText" class="flirty-line" style="margin-top: 15px;">Scanning for Ayuuu... ⏳</div>
+        </div>
+
+        <div class="page page-inner-bg page-capsule" id="p15" style="justify-content: center;">
+            <span class="decor decor-tr">⏳</span>
+            <span class="decor decor-bl">📦</span>
+            <h3>Our Time Capsule 🔒</h3>
+            <p class="letter-font" style="font-size: 1.2rem;">This page is permanently locked until our 1-Year Anniversary! 🙈</p>
+            
+            <div class="capsule-wrapper">
+                <div class="capsule-lock" id="capsuleIcon">🔐</div>
+                <div id="capsuleLocked">
+                    <p style="margin-bottom: 5px; font-weight: bold;">Unlocks in exactly:</p>
+                    <div class="capsule-timer" id="capsuleTimer">Calculating... ⏳</div>
+                </div>
+                <div class="capsule-content letter-font" id="capsuleUnlocked">
+                    🎉 <strong>HAPPY 1 YEAR!</strong> 🎉<br><br>
+                    We made it! 365 days of loving you. I am so incredibly proud of us. Here is to a lifetime more. I love you, Ayuuu! 🥺💍💖
+                </div>
+            </div>
+            <div class="status-badge" style="margin-top: 15px;">No cheating allowed! 😤</div>
+        </div>
+
+        <div class="page page-inner-bg page-final" id="p16">
             <span class="decor decor-tl">🦋</span>
             <span class="decor decor-br">✨</span>
             <div class="letter-font">
@@ -558,7 +597,7 @@
 
 <script>
     // --- TESTING MODE ---
-    const lockKeyword = "Ayu"; // Set to "Ayu" to lock, empty "" to unlock!
+    const lockKeyword = ""; // Set to "Ayu" to lock, empty "" to unlock!
     // --------------------------------
 
     // --- AUDIO LOGIC ---
@@ -627,6 +666,42 @@
     canvas.addEventListener('touchmove', scratch, {passive: false});
     window.addEventListener('touchend', endScratch);
 
+    // --- THUMBPRINT SCANNER LOGIC ---
+    const scannerBox = document.getElementById('scannerBox');
+    const fingerIcon = document.getElementById('fingerIcon');
+    const promiseBox = document.getElementById('promiseBox');
+    const scanText = document.getElementById('scanText');
+    let scanTimer;
+    let isScanned = false;
+
+    function startScan(e) {
+        if (isScanned) return;
+        if (e.touches) e.preventDefault(); // Stop mobile zooming
+        
+        scannerBox.classList.add('scanning');
+        scanText.innerText = "Hold still... 🔍";
+        
+        scanTimer = setTimeout(() => {
+            isScanned = true;
+            scannerBox.classList.remove('scanning');
+            scannerBox.parentElement.classList.add('scanned-success');
+            fingerIcon.innerText = "✅";
+            scanText.innerText = "Access Granted! 🔓";
+        }, 2500); // Hold for 2.5 seconds
+    }
+
+    function stopScan() {
+        if (isScanned) return;
+        clearTimeout(scanTimer);
+        scannerBox.classList.remove('scanning');
+        scanText.innerText = "Scan failed. Try again! 👆";
+    }
+
+    scannerBox.addEventListener('mousedown', startScan);
+    scannerBox.addEventListener('touchstart', startScan, {passive: false});
+    scannerBox.addEventListener('mouseup', stopScan);
+    scannerBox.addEventListener('mouseleave', stopScan);
+    scannerBox.addEventListener('touchend', stopScan);
 
     // --- BACKGROUND FALLING HEARTS ---
     function createHeart() {
@@ -644,6 +719,7 @@
     // --- DATE SETTINGS & TIMERS ---
     const meetingDate = new Date('2026-01-18T00:00:00'); 
     const targetDate = new Date(meetingDate.getTime() + (100 * 24 * 60 * 60 * 1000));
+    const anniversaryDate = new Date('2027-01-18T00:00:00'); // 1 Year Anniversary!
     
     function getNextBday(m, d) {
         let now = new Date();
@@ -674,6 +750,7 @@
     function updateTimer() {
         const now = new Date().getTime();
         
+        // 1. Cover 100th Day Timer
         const distance = targetDate.getTime() - now;
         if (distance <= 0 || lockKeyword !== "Ayu") {
             isUnlocked = true;
@@ -688,18 +765,34 @@
             countdownEl.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
         }
 
+        // 2. Timeline Live Counters
         const daysTogether = Math.floor((now - meetingDate.getTime()) / (1000 * 60 * 60 * 24));
         document.getElementById('days-together-counter').innerText = Math.max(0, daysTogether);
 
+        // 3. Birthday Countdowns
         document.getElementById('theshu-timer').innerText = formatBday(theshuBday, now);
         document.getElementById('ayuuu-timer').innerText = formatBday(ayuuuBday, now);
+
+        // 4. Time Capsule Countdown
+        const capsuleDist = anniversaryDate.getTime() - now;
+        if (capsuleDist <= 0) {
+            document.getElementById('capsuleIcon').innerText = "🔓";
+            document.getElementById('capsuleLocked').style.display = "none";
+            document.getElementById('capsuleUnlocked').style.display = "block";
+        } else {
+            const cd = Math.floor(capsuleDist / (1000 * 60 * 60 * 24));
+            const ch = Math.floor((capsuleDist % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const cm = Math.floor((capsuleDist % (1000 * 60 * 60)) / (1000 * 60));
+            const cs = Math.floor((capsuleDist % (1000 * 60)) / 1000);
+            document.getElementById('capsuleTimer').innerText = `${cd}d ${ch}h ${cm}m ${cs}s`;
+        }
     }
     updateTimer();
     setInterval(updateTimer, 1000);
 
     // --- MULTI-PAGE NAVIGATION LOGIC ---
     let currentPage = 1;
-    const totalPages = 14; 
+    const totalPages = 16; // Now 16 Pages!!!
     const bookContainer = document.getElementById('bookContainer');
 
     function updateActivePage() {
@@ -728,9 +821,11 @@
         }
 
         if (currentPage < totalPages && clickX >= (rect.width * 0.3)) {
+            // Interactive block protections
             if (currentPage === 5 && (e.target.id === 'loveBtn')) return; 
             if (currentPage === 11 && (e.target.id === 'scratchCanvas')) return; 
             if (currentPage === 12 && (e.target.closest('#cakeContainer'))) return; 
+            if (currentPage === 14 && (e.target.closest('#scannerBox'))) return; 
 
             document.getElementById('p' + currentPage).classList.add('flipped');
             currentPage++;
