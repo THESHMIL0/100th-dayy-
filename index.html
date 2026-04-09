@@ -25,9 +25,9 @@
             100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
         }
 
-        /* --- 2. Site Opening Animation --- */
+        /* --- 2. Site Opening & Floating Animation --- */
         .website-container {
-            animation: siteOpenBounce 1.5s cubic-bezier(0.28, 0.84, 0.42, 1);
+            animation: siteOpenBounce 1.5s cubic-bezier(0.28, 0.84, 0.42, 1), magicalFloat 4s ease-in-out infinite 1.5s;
             display: flex; flex-direction: column; align-items: center; z-index: 10; 
         }
         @keyframes siteOpenBounce {
@@ -35,11 +35,15 @@
             60% { opacity: 1; transform: scale(1.05) translateY(-10px); }
             100% { transform: scale(1) translateY(0); }
         }
+        @keyframes magicalFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
 
         /* --- 3. The 3D Flip Book Structure --- */
         .book {
             position: relative; width: 320px; height: 480px; transition: transform 0.5s;
-            transform-style: preserve-3d; box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            transform-style: preserve-3d; box-shadow: 0 15px 35px rgba(0,0,0,0.25);
         }
 
         .page {
@@ -48,7 +52,7 @@
             display: flex; flex-direction: column; justify-content: flex-start; 
             align-items: center; text-align: center; padding: 35px 20px; 
             box-sizing: border-box; backface-visibility: hidden; 
-            transform-origin: left center; transition: transform 1.2s cubic-bezier(0.645, 0.045, 0.355, 1);
+            transform-origin: left center; transition: transform 1.2s cubic-bezier(0.4, 0.0, 0.2, 1);
             overflow-y: auto; overflow-x: hidden;
         }
 
@@ -57,10 +61,9 @@
         }
 
         #p1 { padding: 15px; } 
-        /* Center content on specific pages */
         #p3, #p4, #p5, #p10, #p11 { justify-content: center; }
 
-        /* --- STACKING ORDER (11 Pages Now!) --- */
+        /* --- STACKING ORDER (11 Pages) --- */
         #p1 { z-index: 11; } #p2 { z-index: 10; } #p3 { z-index: 9; } #p4 { z-index: 8; }
         #p5 { z-index: 7; } #p6 { z-index: 6; } #p7 { z-index: 5; } #p8 { z-index: 4; } 
         #p9 { z-index: 3; } #p10 { z-index: 2; } #p11 { z-index: 1; }
@@ -117,8 +120,8 @@
             font-size: 1.1rem; margin: 10px 0; font-weight: bold; color: #5a3a40; background: rgba(255, 255, 255, 0.7); padding: 10px; border-radius: 10px; border: 1px solid rgba(214, 40, 40, 0.1); z-index: 2;
         }
         #lock-icon { font-size: 3rem; margin-bottom: 5px; z-index: 2; }
-        .pulse-text { animation: gentlePulse 2s infinite alternate; }
-        @keyframes gentlePulse { from { transform: scale(1); opacity: 0.8; } to { transform: scale(1.05); opacity: 1; } }
+        .pulse-text { animation: gentlePulse 1.5s infinite alternate ease-in-out; }
+        @keyframes gentlePulse { from { transform: scale(1); opacity: 0.8; } to { transform: scale(1.08); opacity: 1; } }
         #early-message {
             opacity: 0; color: white; font-weight: bold; transition: opacity 0.4s; background: rgba(216, 17, 89, 0.9);
             padding: 8px; border-radius: 8px; font-size: 0.85rem; margin-top: 5px; z-index: 2;
@@ -149,46 +152,82 @@
         /* --- LISTS (REASONS & FUTURE) --- */
         .cute-list { list-style: none; padding: 0; text-align: left; margin-bottom: 20px; width: 100%; z-index: 2;}
         .cute-list li { margin: 8px 0; font-size: 1.5rem; opacity: 0; background: rgba(255, 255, 255, 0.6); padding: 5px 10px; border-radius: 10px; }
-        
         .reasons-list li { transform: translateX(-20px); }
-        .future-list li { 
-            font-size: 1.3rem; transform: translateY(20px); background: white; border: 2px dashed #ffb3c6; text-align: center; font-weight: bold;
-        }
+        .future-list li { font-size: 1.3rem; transform: translateY(20px); background: white; border: 2px dashed #ffb3c6; text-align: center; font-weight: bold; }
         .page.active .reasons-list li { animation: slideInText 0.6s forwards; }
         .page.active .future-list li { animation: slideUpFade 0.6s forwards; }
         @keyframes slideInText { to { opacity: 1; transform: translateX(0); } }
         @keyframes slideUpFade { to { opacity: 1; transform: translateY(0); } }
 
-        /* --- NEW PAGES: TIMELINE & BIRTHDAYS --- */
-        .timeline-box {
-            background: rgba(255,255,255,0.8); border: 2px dashed #ffb3c6; padding: 15px; border-radius: 15px; width: 90%; margin-top: 10px; z-index: 2;
-        }
+        /* --- TIMELINE & BIRTHDAYS --- */
+        .timeline-box { background: rgba(255,255,255,0.8); border: 2px dashed #ffb3c6; padding: 15px; border-radius: 15px; width: 90%; margin-top: 10px; z-index: 2; }
         .timeline-box p { margin: 8px 0; font-size: 1.1rem; color: #5a3a40; line-height: 1.4; }
         .timeline-box strong { color: #d81159; }
 
-        .bday-card {
-            background: rgba(255,255,255,0.9); border: 2px dashed #ffb3c6; padding: 15px; border-radius: 15px; width: 85%; margin: 10px 0; box-shadow: 0 4px 8px rgba(0,0,0,0.05); z-index: 2;
-        }
+        .bday-card { background: rgba(255,255,255,0.9); border: 2px dashed #ffb3c6; padding: 15px; border-radius: 15px; width: 85%; margin: 10px 0; box-shadow: 0 4px 8px rgba(0,0,0,0.05); z-index: 2; }
         .bday-card h4 { margin: 0 0 10px 0; color: #d62828; font-size: 1.3rem; }
         .bday-timer { font-size: 1rem; font-weight: bold; color: #d81159; background: #ffe6ea; padding: 8px; border-radius: 8px;}
 
-        /* --- CAKE --- */
-        .cake-container { position: relative; width: 160px; height: 160px; margin-bottom: 20px; cursor: pointer; z-index: 2;}
-        .cake-halves { position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); display: flex; width: 140px; height: 100px; }
-        .cake-half { width: 50%; height: 100%; position: relative; background: #fdf2e9; border-bottom: 6px solid #d35400; transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1); }
-        .left-half { border-radius: 15px 0 0 5px; border-right: 1px solid #f0e0d0; } .right-half { border-radius: 0 15px 5px 0; }
-        .frost-top { position: absolute; top: 0; left: 0; width: 100%; height: 35px; background: #ff8fab; }
+        /* --- UPGRADED CAKE (Sprinkles, Candles, Plate) --- */
+        .cake-container { position: relative; width: 180px; height: 180px; margin-bottom: 20px; cursor: pointer; z-index: 2;}
+        
+        .cake-plate {
+            position: absolute; bottom: 0px; left: 50%; transform: translateX(-50%);
+            width: 170px; height: 25px; background: #e0e0e0; border-radius: 50%;
+            border-bottom: 4px solid #c0c0c0; z-index: 0; box-shadow: 0 10px 10px rgba(0,0,0,0.1);
+        }
+
+        .cake-halves { position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); display: flex; width: 140px; height: 100px; z-index: 1;}
+        .cake-half { width: 50%; height: 100%; position: relative; background: #fdf2e9; border-bottom: 6px solid #d35400; transition: transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1); }
+        .left-half { border-radius: 15px 0 0 5px; border-right: 1px solid #f0e0d0; } 
+        .right-half { border-radius: 0 15px 5px 0; }
+        
+        .frost-top { 
+            position: absolute; top: 0; left: 0; width: 100%; height: 35px; background: #ff8fab; 
+            /* SPRINKLES! */
+            background-image: 
+                radial-gradient(circle, #fff 1.5px, transparent 2px),
+                radial-gradient(circle, #ffeb3b 1.5px, transparent 2px),
+                radial-gradient(circle, #00bcd4 1.5px, transparent 2px);
+            background-size: 15px 15px, 20px 15px, 15px 20px;
+            background-position: 0 0, 10px 5px, 5px 10px;
+        }
         .left-half .frost-top { border-radius: 15px 0 0 0; } .right-half .frost-top { border-radius: 0 15px 0 0; }
         .frost-mid { position: absolute; top: 50px; left: 0; width: 100%; height: 15px; background: #ffb3c6; }
+        
+        /* Drips */
         .drip { position: absolute; top: 30px; width: 10px; height: 20px; background: #ff8fab; border-radius: 10px; }
         .left-half .drip1 { left: 15px; height: 30px; } .left-half .drip2 { left: 40px; height: 15px; }
         .right-half .drip3 { left: 10px; height: 25px; } .right-half .drip4 { left: 35px; height: 15px; }
-        .knife { position: absolute; top: -30px; left: 50%; width: 5px; height: 140px; background: #bdc3c7; border-radius: 3px; transform: translateX(-50%) translateY(-200px); transition: transform 0.6s ease-in; z-index: 5; }
-        .knife::after { content: ''; position: absolute; top: -25px; left: -5px; width: 15px; height: 35px; background: #c0392b; border-radius: 5px; }
+
+        /* Birthday Candle & Flame */
+        .candle {
+            position: absolute; top: -30px; right: -4px; width: 8px; height: 35px;
+            background: repeating-linear-gradient(45deg, #fff, #fff 4px, #ff8fab 4px, #ff8fab 8px);
+            border-radius: 4px; z-index: 4;
+        }
+        .flame {
+            position: absolute; top: -14px; left: 50%; transform: translateX(-50%); width: 10px; height: 16px;
+            background: #ffcc00; border-radius: 50% 50% 20% 20%;
+            box-shadow: 0 0 10px #ffcc00, 0 0 20px #ff9900; animation: flicker 0.1s infinite alternate; transition: opacity 0.2s;
+        }
+        @keyframes flicker { from { transform: translateX(-50%) scale(1); opacity: 0.8; } to { transform: translateX(-50%) scale(1.1); opacity: 1; } }
+
+        /* The Sharper Knife */
+        .knife { position: absolute; top: -30px; left: 50%; width: 4px; height: 150px; background: linear-gradient(90deg, #bdc3c7, #ecf0f1, #bdc3c7); border-radius: 2px; transform: translateX(-50%) translateY(-200px); transition: transform 0.5s cubic-bezier(0.5, 0, 0.5, 1); z-index: 5; }
+        .knife::after { content: ''; position: absolute; top: -25px; left: -6px; width: 16px; height: 40px; background: #c0392b; border-radius: 5px; box-shadow: inset -2px 0 5px rgba(0,0,0,0.2); }
         .knife-anim { transform: translateX(-50%) translateY(20px); }
-        .cake-slice-anim .right-half { transform: translateX(20px) rotate(8deg); transform-origin: bottom right; }
-        .cake-slice-anim .left-half { transform: translateX(-15px) rotate(-4deg); transform-origin: bottom left; }
-        .cake-instruction { font-size: 0.9rem; color: #d81159; font-weight: bold; position: absolute; top: 30px; width: 100%; background: rgba(255,255,255,0.8); padding: 5px 0; z-index: 10; }
+        
+        /* Cake Slide Animations */
+        .cake-slice-anim .right-half { transform: translateX(25px) rotate(6deg); transform-origin: bottom right; }
+        .cake-slice-anim .left-half { transform: translateX(-15px) rotate(-3deg); transform-origin: bottom left; }
+        .cake-slice-anim .flame { opacity: 0; } /* Blow out the candle! */
+        
+        .cake-instruction { font-size: 0.9rem; color: #d81159; font-weight: bold; position: absolute; top: 10px; width: 100%; background: rgba(255,255,255,0.8); padding: 5px 0; z-index: 10; border-radius: 10px;}
+
+        /* Confetti Animation */
+        .confetti-piece { position: absolute; width: 8px; height: 8px; border-radius: 50%; animation: popConfetti 1s ease-out forwards; z-index: 10; }
+        @keyframes popConfetti { 0% { transform: translate(0,0) scale(1); opacity: 1; } 100% { transform: translate(var(--tx), var(--ty)) scale(0); opacity: 0; } }
 
         .nav-hint { margin-top: 15px; font-size: 0.8rem; color: #888; background: white; padding: 5px 10px; border-radius: 15px; font-family: 'Quicksand', sans-serif; z-index: 10;}
     </style>
@@ -205,7 +244,7 @@
                 <span class="decor decor-br" style="color: white; font-size: 1.2rem;">✨</span>
 
                 <div class="cover-label">
-                    <div style="font-size: 2.5rem; margin: 0 0 5px 0; animation: gentlePulse 2s infinite alternate; position: relative; z-index: 2;">💖</div>
+                    <div class="pulse-text" style="font-size: 2.5rem; margin: 0 0 5px 0; position: relative; z-index: 2;">💖</div>
                     <h2 class="letter-font cover-names">Theshu 🧸 & Ayuuu 🦋</h2>
                     <h1 class="letter-font cover-title">Our 100th Day 🎉</h1>
                 </div>
@@ -246,7 +285,7 @@
 
         <div class="page page-inner-bg page-meter" id="p5">
             <span class="decor decor-tr">💖</span>
-            <h3>How much do I love you? <span style="animation: gentlePulse 1s infinite alternate; display: inline-block;">🥺💓</span></h3>
+            <h3>How much do I love you? <span class="pulse-text" style="display: inline-block;">🥺💓</span></h3>
             <div class="meter-container">
                 <div class="meter-fill" id="meterFill"></div>
             </div>
@@ -312,12 +351,20 @@
             <span class="decor decor-tr">🎊</span>
             <span class="decor decor-bl">🎈</span>
             <h3>Let's Celebrate! 🎂🎉</h3>
+            
             <div class="cake-container" id="cakeContainer">
                 <p class="cake-instruction pulse-text" id="cakeText">Tap the cake to cut! 🔪🍰</p>
                 <div class="knife" id="knife"></div>
+                <div class="cake-plate"></div>
+                
                 <div class="cake-halves" id="cake">
-                    <div class="cake-half left-half"><div class="frost-top"></div><div class="frost-mid"></div><div class="drip drip1"></div><div class="drip drip2"></div></div>
-                    <div class="cake-half right-half"><div class="frost-top"></div><div class="frost-mid"></div><div class="drip drip3"></div><div class="drip drip4"></div></div>
+                    <div class="cake-half left-half">
+                        <div class="candle"><div class="flame" id="flame"></div></div>
+                        <div class="frost-top"></div><div class="frost-mid"></div><div class="drip drip1"></div><div class="drip drip2"></div>
+                    </div>
+                    <div class="cake-half right-half">
+                        <div class="frost-top"></div><div class="frost-mid"></div><div class="drip drip3"></div><div class="drip drip4"></div>
+                    </div>
                 </div>
             </div>
             <p class="letter-font" style="color: #d62828; font-weight: bold; margin-top: 10px; font-size: 1.8rem;">Happy 100 Days! 🥂💖</p>
@@ -361,19 +408,15 @@
     const meetingDate = new Date('2026-01-18T00:00:00'); 
     const targetDate = new Date(meetingDate.getTime() + (100 * 24 * 60 * 60 * 1000));
     
-    // Birthday Calculator Helper
     function getNextBday(m, d) {
         let now = new Date();
-        // Reset to midnight for fair comparison
         let today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
         let bday = new Date(now.getFullYear(), m - 1, d);
-        if (today.getTime() > bday.getTime()) {
-            bday.setFullYear(now.getFullYear() + 1);
-        }
+        if (today.getTime() > bday.getTime()) { bday.setFullYear(now.getFullYear() + 1); }
         return bday;
     }
-    const theshuBday = getNextBday(3, 14); // March 14
-    const ayuuuBday = getNextBday(9, 22);  // Sept 22
+    const theshuBday = getNextBday(3, 14); 
+    const ayuuuBday = getNextBday(9, 22);  
 
     const countdownEl = document.getElementById('countdown');
     const lockIcon = document.getElementById('lock-icon');
@@ -383,7 +426,6 @@
 
     function formatBday(targetDate, now) {
         const dist = targetDate.getTime() - now;
-        // If it's exactly the day (within 24 hours behind)
         if (dist <= 0 && dist > -86400000) { return "IT'S TODAY! 🎉🎂"; }
         const d = Math.floor(dist / (1000 * 60 * 60 * 24));
         const h = Math.floor((dist % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
@@ -395,7 +437,6 @@
     function updateTimer() {
         const now = new Date().getTime();
         
-        // 1. Cover 100th Day Logic
         const distance = targetDate.getTime() - now;
         if (distance <= 0 || lockKeyword !== "Ayu") {
             isUnlocked = true;
@@ -410,11 +451,9 @@
             countdownEl.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
         }
 
-        // 2. Live Days Together Counter (Page 8)
         const daysTogether = Math.floor((now - meetingDate.getTime()) / (1000 * 60 * 60 * 24));
         document.getElementById('days-together-counter').innerText = Math.max(0, daysTogether);
 
-        // 3. Birthday Countdowns (Page 9)
         document.getElementById('theshu-timer').innerText = formatBday(theshuBday, now);
         document.getElementById('ayuuu-timer').innerText = formatBday(ayuuuBday, now);
     }
@@ -423,7 +462,7 @@
 
     // --- MULTI-PAGE NAVIGATION LOGIC ---
     let currentPage = 1;
-    const totalPages = 11; // 11 Pages now!
+    const totalPages = 11; 
     const bookContainer = document.getElementById('bookContainer');
 
     function updateActivePage() {
@@ -443,7 +482,6 @@
         const rect = bookContainer.getBoundingClientRect();
         const clickX = e.clientX - rect.left;
         
-        // Go Back
         if (currentPage > 1 && clickX < (rect.width * 0.3)) {
             currentPage--;
             document.getElementById('p' + currentPage).classList.remove('flipped');
@@ -452,9 +490,7 @@
             return;
         }
 
-        // Go Forward
         if (currentPage < totalPages && clickX >= (rect.width * 0.3)) {
-            // Interactive protection (Cake is on page 10 now!)
             if (currentPage === 5 && (e.target.id === 'loveBtn')) return; 
             if (currentPage === 10 && (e.target.closest('#cakeContainer'))) return; 
 
@@ -488,26 +524,52 @@
         }
     };
 
-    // --- CAKE CUTTING ANIMATION ---
+    // --- CAKE CUTTING & CONFETTI LOGIC ---
     const cakeContainer = document.getElementById('cakeContainer');
     const knife = document.getElementById('knife');
     const cake = document.getElementById('cake');
     const cakeText = document.getElementById('cakeText');
     let cakeIsCut = false;
 
+    // Shoots tiny confetti pieces out from the center
+    function shootConfetti() {
+        const colors = ['#ff8fab', '#d81159', '#ffcc00', '#00bcd4', '#ffffff'];
+        for(let i=0; i<30; i++) {
+            let conf = document.createElement('div');
+            conf.classList.add('confetti-piece');
+            conf.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+            conf.style.left = '50%';
+            conf.style.top = '50%';
+            
+            // Random explosion physics
+            let angle = Math.random() * Math.PI * 2;
+            let velocity = 50 + Math.random() * 80;
+            let tx = Math.cos(angle) * velocity;
+            let ty = Math.sin(angle) * velocity - 30; // Push them slightly upward
+            
+            conf.style.setProperty('--tx', `${tx}px`);
+            conf.style.setProperty('--ty', `${ty}px`);
+            
+            cakeContainer.appendChild(conf);
+            // Clean up confetti
+            setTimeout(() => conf.remove(), 1000);
+        }
+    }
+
     cakeContainer.onclick = function(e) {
         e.stopPropagation(); 
         if (!cakeIsCut) {
             cakeText.style.display = 'none'; 
             knife.classList.add('knife-anim'); 
+            
             setTimeout(() => {
                 cake.classList.add('cake-slice-anim'); 
+                shootConfetti(); // Trigger the pop!
                 cakeIsCut = true;
-            }, 600); 
+            }, 500); 
         }
     };
 
-    // Reset interactions
     function checkInteractiveStates() {
         if (currentPage === 10 && cakeIsCut) {
             cake.classList.remove('cake-slice-anim');
