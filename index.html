@@ -4,12 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Our 100th Day - The Story 💝</title>
-    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Comic+Sans+MS&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
+    
     <style>
         /* --- 1. Basic Cute Theme Setup --- */
         body {
             background-color: #ffe6ea; 
-            font-family: 'Comic Sans MS', 'Arial Rounded MT Bold', sans-serif;
+            font-family: 'Quicksand', sans-serif; /* New, softer round font */
             display: flex;
             justify-content: center;
             align-items: center;
@@ -28,10 +29,9 @@
             color: #ffb3c6;
             opacity: 0.7;
             animation: fall linear forwards;
-            z-index: 0; /* Stays behind the book */
-            pointer-events: none; /* So they don't block clicks */
+            z-index: 0; 
+            pointer-events: none; 
         }
-
         @keyframes fall {
             0% { transform: translateY(0) rotate(0deg); opacity: 0.8; }
             100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
@@ -39,16 +39,17 @@
 
         /* --- 2. Site Opening Animation --- */
         .website-container {
-            animation: siteOpenFade 1.5s ease-in-out;
+            animation: siteOpenBounce 1.5s cubic-bezier(0.28, 0.84, 0.42, 1);
             display: flex;
             flex-direction: column;
             align-items: center;
-            z-index: 10; /* Keeps book above hearts */
+            z-index: 10; 
         }
-
-        @keyframes siteOpenFade {
-            0% { opacity: 0; transform: scale(0.9) translateY(20px); }
-            100% { opacity: 1; transform: scale(1) translateY(0); }
+        /* Upgraded entrance animation to a cute bounce */
+        @keyframes siteOpenBounce {
+            0% { opacity: 0; transform: scale(0.5) translateY(50px); }
+            60% { opacity: 1; transform: scale(1.05) translateY(-10px); }
+            100% { transform: scale(1) translateY(0); }
         }
 
         /* --- 3. The 3D Flip Book Structure --- */
@@ -58,16 +59,14 @@
             height: 480px;
             transition: transform 0.5s;
             transform-style: preserve-3d;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
         }
 
-        /* Basic Page Styling */
         .page {
             position: absolute;
             width: 100%;
             height: 100%;
-            top: 0;
-            left: 0;
+            top: 0; left: 0;
             background: #fff0f3;
             border-radius: 10px;
             box-shadow: inset 0 0 15px rgba(0,0,0,0.05);
@@ -84,14 +83,15 @@
             overflow: hidden;
         }
 
-        /* --- STACKING ORDER (Updated for 7 pages) --- */
-        #p1 { z-index: 7; }
-        #p2 { z-index: 6; }
-        #p3 { z-index: 5; }
-        #p4 { z-index: 4; }
-        #p5 { z-index: 3; }
-        #p6 { z-index: 2; }
-        #p7 { z-index: 1; }
+        /* --- STACKING ORDER (Updated for 8 pages) --- */
+        #p1 { z-index: 8; }
+        #p2 { z-index: 7; }
+        #p3 { z-index: 6; }
+        #p4 { z-index: 5; }
+        #p5 { z-index: 4; }
+        #p6 { z-index: 3; } /* New Reasons Page */
+        #p7 { z-index: 2; } /* Cake Page */
+        #p8 { z-index: 1; } /* Final Page */
 
         .page.flipped {
             transform: rotateY(-180deg);
@@ -99,19 +99,18 @@
         }
 
         .page::after {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
             background: linear-gradient(90deg, rgba(0,0,0,0.05) 0%, rgba(255,255,255,0) 10%, rgba(255,255,255,0) 90%, rgba(0,0,0,0.05) 100%);
             pointer-events: none;
         }
 
+        /* New Handwritten Font */
         .letter-font {
-            font-family: 'Pacifico', cursive;
+            font-family: 'Caveat', cursive;
             color: #d81159;
-            line-height: 1.6;
+            line-height: 1.4;
+            font-size: 1.6rem; /* Made slightly bigger for readability */
         }
-
         h2, h3 { color: #d62828; margin-top: 0; }
 
         /* --- 4. Special Page Content Styling --- */
@@ -120,72 +119,51 @@
         .page-cover {
             background: linear-gradient(135deg, #ffb3c6, #ff8fab);
             border-radius: 5px 20px 20px 5px; 
-            box-shadow: 5px 5px 15px rgba(0,0,0,0.15);
-            cursor: pointer;
         }
-
         #countdown {
-            font-size: 1.1rem;
-            margin: 15px 0;
-            font-weight: bold;
-            background: rgba(255, 255, 255, 0.6);
-            padding: 10px;
-            border-radius: 10px;
-            border: 1px solid rgba(214, 40, 40, 0.1);
+            font-size: 1.2rem; margin: 15px 0; font-weight: bold;
+            background: rgba(255, 255, 255, 0.6); padding: 10px;
+            border-radius: 10px; border: 1px solid rgba(214, 40, 40, 0.1);
         }
-
-        #lock-icon { font-size: 3.5rem; margin-bottom: 15px; }
+        #lock-icon { font-size: 3.5rem; margin-bottom: 10px; }
+        
+        .pulse-text { animation: gentlePulse 2s infinite alternate; }
+        @keyframes gentlePulse {
+            from { transform: scale(1); opacity: 0.8; }
+            to { transform: scale(1.05); opacity: 1; }
+        }
 
         #early-message {
-            opacity: 0;
-            color: white;
-            font-weight: bold;
-            transition: opacity 0.4s;
-            background: rgba(216, 17, 89, 0.9);
-            padding: 10px;
-            border-radius: 8px;
-            font-size: 0.9rem;
-            margin-top: 10px;
+            opacity: 0; color: white; font-weight: bold;
+            transition: opacity 0.4s; background: rgba(216, 17, 89, 0.9);
+            padding: 10px; border-radius: 8px; font-size: 0.9rem; margin-top: 10px;
         }
 
-        /* PAGE 3 & 4: Photo styling */
+        /* PAGE 3 & 4: Photos */
         .photo-frame {
-            position: relative;
-            width: 220px;
-            height: 220px;
-            border-radius: 50%; 
-            border: 8px solid white;
-            box-shadow: 0 8px 15px rgba(0,0,0,0.2);
-            overflow: hidden;
-            margin-bottom: 20px;
+            position: relative; width: 220px; height: 220px; border-radius: 50%; 
+            border: 8px solid white; box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+            overflow: hidden; margin-bottom: 20px;
             animation: floatPhoto 4s infinite ease-in-out alternate;
         }
         .photo-img { width: 100%; height: 100%; object-fit: cover; }
         .flirty-line {
-            font-size: 1rem; color: #4a1c1c; background: #ffd6e0;
+            font-size: 1.1rem; color: #4a1c1c; background: #ffd6e0;
             padding: 10px; border-radius: 10px; font-weight: bold;
         }
         #p4 .photo-frame { animation-delay: 2s; }
-
         @keyframes floatPhoto {
             from { transform: translateY(0px) rotate(0deg); }
             to { transform: translateY(-15px) rotate(2deg); }
         }
 
-        /* --- NEW: PAGE 5 LOVE METER --- */
+        /* PAGE 5: LOVE METER */
         .meter-container {
-            width: 80%;
-            height: 30px;
-            background: #fff;
-            border-radius: 15px;
-            border: 3px solid #ffb3c6;
-            margin: 20px 0;
-            overflow: hidden;
-            position: relative;
+            width: 80%; height: 30px; background: #fff; border-radius: 15px;
+            border: 3px solid #ffb3c6; margin: 20px 0; overflow: hidden; position: relative;
         }
         .meter-fill {
-            height: 100%;
-            width: 0%;
+            height: 100%; width: 0%;
             background: linear-gradient(90deg, #ff8fab, #d81159);
             transition: width 0.3s ease-out;
         }
@@ -193,13 +171,27 @@
             background: #d81159; color: white; border: none;
             padding: 10px 20px; font-size: 1rem; border-radius: 20px;
             font-family: inherit; font-weight: bold; cursor: pointer;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            transition: transform 0.1s;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: transform 0.1s;
         }
         .cute-btn:active { transform: scale(0.95); }
         .meter-msg { font-size: 1.1rem; font-weight: bold; color: #d62828; margin-top: 15px; min-height: 25px;}
 
-        /* --- PAGE 6: REBUILT BUG-PROOF CAKE --- */
+        /* NEW PAGE 6: TRIGGERED ANIMATIONS */
+        .reasons-list { list-style: none; padding: 0; text-align: left; margin-bottom: 20px; }
+        .reasons-list li { 
+            margin: 10px 0; font-size: 1.8rem; 
+            opacity: 0; /* Hidden by default */
+            transform: translateX(-20px);
+        }
+        /* This magic CSS only animates when the page has the "active" class added by JS! */
+        .page.active .reasons-list li {
+            animation: slideInText 0.6s forwards;
+        }
+        @keyframes slideInText {
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        /* PAGE 7: CAKE */
         .cake-container { position: relative; width: 180px; height: 180px; margin-bottom: 20px; cursor: pointer; }
         .cake-halves { position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); display: flex; width: 160px; height: 120px; }
         .cake-half { width: 50%; height: 100%; position: relative; background: #fdf2e9; border-bottom: 6px solid #d35400; transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1); }
@@ -214,7 +206,6 @@
         .left-half .drip2 { left: 45px; height: 20px; }
         .right-half .drip3 { left: 10px; height: 30px; }
         .right-half .drip4 { left: 40px; height: 20px; }
-        
         .knife { position: absolute; top: -20px; left: 50%; width: 6px; height: 160px; background: #bdc3c7; border-radius: 3px; transform: translateX(-50%) translateY(-200px); transition: transform 0.6s ease-in; z-index: 5; }
         .knife::after { content: ''; position: absolute; top: -30px; left: -6px; width: 18px; height: 45px; background: #c0392b; border-radius: 5px; }
         .knife-anim { transform: translateX(-50%) translateY(10px); }
@@ -222,9 +213,7 @@
         .cake-slice-anim .left-half { transform: translateX(-15px) rotate(-4deg); transform-origin: bottom left; }
         .cake-instruction { font-size: 0.9rem; color: #d81159; font-weight: bold; position: absolute; top: 50px; width: 100%; background: rgba(255,255,255,0.8); padding: 5px 0; z-index: 10; }
 
-        /* Navigation hints styling */
-        .nav-hint { margin-top: 15px; font-size: 0.8rem; color: #888; background: white; padding: 5px 10px; border-radius: 15px; }
-
+        .nav-hint { margin-top: 15px; font-size: 0.8rem; color: #888; background: white; padding: 5px 10px; border-radius: 15px; font-family: 'Quicksand', sans-serif;}
     </style>
 </head>
 <body>
@@ -232,8 +221,8 @@
 <div class="website-container">
     <div class="book" id="bookContainer">
         
-        <div class="page page-cover" id="p1">
-            <h1>Our 100th Day</h1>
+        <div class="page page-cover active" id="p1">
+            <h1 class="letter-font" style="font-size: 2.5rem; color: white; text-shadow: 2px 2px 4px rgba(0,0,0,0.2);">Our 100th Day</h1>
             <div id="countdown">Calculating...</div>
             <div id="lock-icon">🔒</div>
             <p id="early-message">It's not the time yet! Wait for the day cutie! 🐾</p>
@@ -270,26 +259,33 @@
             <p class="meter-msg" id="meterMsg"></p>
         </div>
 
-        <div class="page page-cake" id="p6">
-            <h3>Let's Celebrate! 🎂</h3>
-            <div class="cake-container" id="cakeContainer">
-                <p class="cake-instruction" id="cakeText">Tap the cake to cut!</p>
-                <div class="knife" id="knife"></div>
-                <div class="cake-halves" id="cake">
-                    <div class="cake-half left-half">
-                        <div class="frost-top"></div><div class="frost-mid"></div><div class="drip drip1"></div><div class="drip drip2"></div>
-                    </div>
-                    <div class="cake-half right-half">
-                        <div class="frost-top"></div><div class="frost-mid"></div><div class="drip drip3"></div><div class="drip drip4"></div>
-                    </div>
-                </div>
-            </div>
-            <p class="animate-text" style="color: #d62828; font-weight: bold; margin-top: 10px;">Happy 100 Days! Here's to us.</p>
+        <div class="page page-reasons" id="p6">
+            <h3>I Love...</h3>
+            <ul class="reasons-list letter-font">
+                <li style="animation-delay: 0.2s">✨ Your beautiful smile</li>
+                <li style="animation-delay: 1.0s">🥺 How you make me laugh</li>
+                <li style="animation-delay: 1.8s">💖 Your gorgeous eyes</li>
+                <li style="animation-delay: 2.6s">🐾 The way you look at me</li>
+            </ul>
+            <div class="flirty-line" style="margin-top: 10px;">And a million other things... 😏</div>
         </div>
 
-        <div class="page page-final" id="p7">
+        <div class="page page-cake" id="p7">
+            <h3>Let's Celebrate! 🎂</h3>
+            <div class="cake-container" id="cakeContainer">
+                <p class="cake-instruction pulse-text" id="cakeText">Tap the cake to cut!</p>
+                <div class="knife" id="knife"></div>
+                <div class="cake-halves" id="cake">
+                    <div class="cake-half left-half"><div class="frost-top"></div><div class="frost-mid"></div><div class="drip drip1"></div><div class="drip drip2"></div></div>
+                    <div class="cake-half right-half"><div class="frost-top"></div><div class="frost-mid"></div><div class="drip drip3"></div><div class="drip drip4"></div></div>
+                </div>
+            </div>
+            <p class="letter-font" style="color: #d62828; font-weight: bold; margin-top: 10px; font-size: 2rem;">Happy 100 Days!</p>
+        </div>
+
+        <div class="page page-final" id="p8">
             <div class="letter-font">
-                <h2>Alhamdulillah.</h2>
+                <h2 style="font-family: 'Quicksand', sans-serif;">Alhamdulillah.</h2>
                 <p>I am eternally thankful to God for bringing us both together. You are a blessing I never saw coming, and I will cherish you every single day.</p>
                 <p>Love always,</p>
                 <p>- Me 💝</p>
@@ -298,40 +294,30 @@
 
     </div>
     
-    <div class="nav-hint" id="navHint" style="display: none;">Tap right edge to turn next ➔<br>Tap left edge to go back 🠔</div>
+    <div class="nav-hint" id="navHint" style="display: none;">Tap right edge ➔ next<br>Tap left edge 🠔 back</div>
 </div>
 
 <script>
     // --- TESTING MODE ---
-    const lockKeyword = ""; // Set to "Ayu" to lock, empty "" to unlock for testing!
+    const lockKeyword = ""; // Set to "Ayu" to lock, empty "" to unlock!
     // --------------------------------
 
-    // --- BACKGROUND FALLING HEARTS LOGIC ---
+    // --- BACKGROUND FALLING HEARTS ---
     function createHeart() {
         const heart = document.createElement('div');
         heart.classList.add('falling-heart');
         heart.innerHTML = '❤';
-        
-        // Randomize position and animation duration for a natural look
         heart.style.left = Math.random() * 100 + 'vw';
-        heart.style.animationDuration = (Math.random() * 3 + 4) + 's'; // Between 4s and 7s
-        heart.style.fontSize = (Math.random() * 1 + 1) + 'rem'; // Different sizes
-
+        heart.style.animationDuration = (Math.random() * 3 + 4) + 's'; 
+        heart.style.fontSize = (Math.random() * 1 + 1) + 'rem'; 
         document.body.appendChild(heart);
-
-        // Remove the heart from the code after it falls so it doesn't lag the phone
-        setTimeout(() => {
-            heart.remove();
-        }, 7000); 
+        setTimeout(() => { heart.remove(); }, 7000); 
     }
-    // Create a new heart every 800 milliseconds
     setInterval(createHeart, 800);
-
 
     // --- COUNTDOWN LOGIC ---
     const meetingDate = new Date('2026-01-18T00:00:00'); 
     const targetDate = new Date(meetingDate.getTime() + (100 * 24 * 60 * 60 * 1000));
-
     const countdownEl = document.getElementById('countdown');
     const lockIcon = document.getElementById('lock-icon');
     const earlyMessage = document.getElementById('early-message');
@@ -345,11 +331,12 @@
         if (distance <= 0 || lockKeyword !== "Ayu") {
             isUnlocked = true;
             if (lockKeyword !== "Ayu") {
-                countdownEl.innerHTML = "Testing Mode Unlocked! 🛠️";
+                countdownEl.innerHTML = "Testing Mode 🛠️";
             } else {
                 countdownEl.innerHTML = "It's time! 🎉";
             }
-            lockIcon.innerHTML = "🔓 <br> <span style='font-size: 1rem;'>Tap to open!</span>";
+            // Added pulse-text animation class to make the click instruction bounce!
+            lockIcon.innerHTML = "🔓 <br> <span class='pulse-text' style='font-size: 1rem; display:inline-block; margin-top:5px;'>Tap to open!</span>";
         } else {
             const days = Math.floor(distance / (1000 * 60 * 60 * 24));
             const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
@@ -358,14 +345,22 @@
             countdownEl.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
         }
     }
-
     updateTimer();
     setInterval(updateTimer, 1000);
 
     // --- MULTI-PAGE NAVIGATION LOGIC ---
     let currentPage = 1;
-    const totalPages = 7; // Updated to 7!
+    const totalPages = 8; // Now 8 pages!
     const bookContainer = document.getElementById('bookContainer');
+
+    function updateActivePage() {
+        // Remove 'active' class from all pages
+        for(let i=1; i<=totalPages; i++) {
+            document.getElementById('p'+i).classList.remove('active');
+        }
+        // Add 'active' class to the current page to trigger CSS animations!
+        document.getElementById('p'+currentPage).classList.add('active');
+    }
 
     bookContainer.onclick = function(e) {
         if (!isUnlocked) {
@@ -381,45 +376,46 @@
         if (currentPage > 1 && clickX < (rect.width * 0.3)) {
             currentPage--;
             document.getElementById('p' + currentPage).classList.remove('flipped');
+            updateActivePage();
             checkInteractiveStates(); 
             return;
         }
 
         // Go Forward
         if (currentPage < totalPages && clickX >= (rect.width * 0.3)) {
-            // Protect our interactive elements from causing a page turn!
+            // Protect our interactive elements! (IDs shifted because of new page 6)
             if (currentPage === 5 && (e.target.id === 'loveBtn')) return; 
-            if (currentPage === 6 && (e.target.closest('#cakeContainer'))) return; 
+            if (currentPage === 7 && (e.target.closest('#cakeContainer'))) return; 
 
             document.getElementById('p' + currentPage).classList.add('flipped');
             currentPage++;
+            updateActivePage();
             
             if (currentPage === 2) { navHint.style.display = 'block'; }
             if (currentPage === totalPages) { navHint.style.display = 'none'; }
         }
     };
 
-    // --- NEW: LOVE METER LOGIC ---
+    // --- LOVE METER LOGIC ---
     const loveBtn = document.getElementById('loveBtn');
     const meterFill = document.getElementById('meterFill');
     const meterMsg = document.getElementById('meterMsg');
     let loveScore = 0;
 
     loveBtn.onclick = function(e) {
-        e.stopPropagation(); // Stops the page from turning
+        e.stopPropagation(); 
         if (loveScore < 100) {
-            loveScore += 25; // Fills 25% each tap
+            loveScore += 25; 
             meterFill.style.width = loveScore + '%';
             
             if (loveScore >= 100) {
                 meterMsg.innerHTML = "Warning: Love Overload!! 💖💥";
-                loveBtn.style.display = 'none'; // Hide button when full
+                loveBtn.style.display = 'none'; 
             } else {
                 meterMsg.innerHTML = "More! Keep tapping! 🐾";
             }
         }
     };
-
 
     // --- CAKE CUTTING ANIMATION ---
     const cakeContainer = document.getElementById('cakeContainer');
@@ -430,11 +426,9 @@
 
     cakeContainer.onclick = function(e) {
         e.stopPropagation(); 
-
         if (!cakeIsCut) {
             cakeText.style.display = 'none'; 
             knife.classList.add('knife-anim'); 
-
             setTimeout(() => {
                 cake.classList.add('cake-slice-anim'); 
                 cakeIsCut = true;
@@ -442,9 +436,9 @@
         }
     };
 
-    // Reset interactions if user flips back
+    // Reset interactions
     function checkInteractiveStates() {
-        if (currentPage === 6 && cakeIsCut) {
+        if (currentPage === 7 && cakeIsCut) {
             cake.classList.remove('cake-slice-anim');
             knife.classList.remove('knife-anim');
             cakeText.style.display = 'block';
@@ -457,7 +451,6 @@
             loveBtn.style.display = 'inline-block';
         }
     }
-
 </script>
 
 </body>
