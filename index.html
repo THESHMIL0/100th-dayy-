@@ -8,13 +8,14 @@
     
     <style>
         /* --- 1. Basic Cute Theme Setup --- */
-        * { -webkit-tap-highlight-color: transparent; } /* Stops blue flashes on mobile taps */
+        * { -webkit-tap-highlight-color: transparent; }
         
         body {
             background-color: #ffe6ea; font-family: 'Quicksand', sans-serif; 
             display: flex; justify-content: center; align-items: center;
             height: 100vh; margin: 0; overflow: hidden; color: #5a3a40; 
             -webkit-font-smoothing: antialiased;
+            perspective: 2500px; -webkit-perspective: 2500px;
         }
 
         /* --- Music Toggle Button --- */
@@ -59,9 +60,7 @@
         /* --- THE ANTI-GLITCH BOOK PHYSICS --- */
         .book {
             position: relative; width: 320px; height: 480px; 
-            perspective: 2500px; -webkit-perspective: 2500px; /* Forces stable 3D */
             box-shadow: 0 15px 45px rgba(0,0,0,0.25);
-            /* preserve-3d REMOVED to stop z-fighting! */
         }
 
         .page {
@@ -71,12 +70,11 @@
             align-items: center; text-align: center; padding: 25px 15px; 
             box-sizing: border-box; overflow: hidden !important; 
             
-            /* GLITCH FIXES */
             backface-visibility: hidden; -webkit-backface-visibility: hidden; 
             transform-origin: left center; -webkit-transform-origin: left center;
             transform: translate3d(0,0,0); -webkit-transform: translate3d(0,0,0);
+            will-change: transform; /* Helps prevent initial mobile rendering flash */
             
-            /* Instantly snap z-index to top when flipping back */
             transition: transform 1s ease-in-out, z-index 0s;
             -webkit-transition: -webkit-transform 1s ease-in-out, z-index 0s;
         }
@@ -95,8 +93,6 @@
             transform: rotateY(-180deg) translate3d(0,0,0); 
             -webkit-transform: rotateY(-180deg) translate3d(0,0,0); 
             z-index: 0 !important; 
-            
-            /* GLITCH FIX: Wait exactly 0.45s before dropping the page behind the others! */
             transition: transform 1s ease-in-out, z-index 0s 0.45s;
             -webkit-transition: -webkit-transform 1s ease-in-out, z-index 0s 0.45s;
         }
@@ -141,6 +137,7 @@
         .cover-hints { font-size: 0.8rem; color: #5a3a40; font-weight: bold; margin-top: 6px; text-align: left; width: 90%; }
         .hint-item { margin: 2px 0; display: flex; align-items: center; opacity: 0.9; }
         .hint-item span { width: 18px; margin-right: 5px; text-align: center; }
+        .hint-pop { animation: gentlePulse 2s infinite alternate ease-in-out; display: inline-block; }
         
         .bookmark { position: absolute; top: -15px; right: 20px; width: 20px; height: 60px; background: #d81159; box-shadow: 2px 2px 5px rgba(0,0,0,0.2); z-index: 0; }
         .bookmark::after { content: ''; position: absolute; bottom: -10px; left: 0; border-left: 10px solid #d81159; border-right: 10px solid #d81159; border-bottom: 10px solid transparent; }
@@ -158,6 +155,7 @@
         #p3 .washi-tape { transform: rotate(-5deg); left: 30%; }
         #p4 .washi-tape { transform: rotate(6deg); left: 35%; background-color: rgba(255, 143, 171, 0.9); }
         .flirty-line { font-size: 0.9rem; color: #4a1c1c; background: #ffd6e0; padding: 10px; border-radius: 10px; font-weight: bold; border: 2px dashed #ff8fab; z-index: 2; width: 95%; margin-top: 0; }
+        .photo-tag { margin-top: 10px; font-size: 0.85rem; color: #888; background: white; padding: 4px 12px; border-radius: 12px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); z-index: 2; }
         #p4 .photo-frame, #p4 .washi-tape { animation-delay: 2s; }
         @keyframes floatPhoto { from { transform: translate3d(0, 0, 0) rotate(0deg); } to { transform: translate3d(0, -12px, 0) rotate(2deg); } }
 
@@ -280,7 +278,11 @@
                 <p>Can you believe it's already been 100 days? 🕰️ It feels like we just met yesterday, but at the same time, I can't imagine my life without you anymore 🫂.</p>
                 <p>Thank you for all the smiles 😊, the laughter 😂, and the warmth you've brought into my days ☀️. Every moment with you is special ✨. I love you so much! ❤️</p>
             </div>
-            <div class="letter-font" style="margin-top: 15px; font-weight: bold; background: rgba(255,255,255,0.7); padding: 5px 10px; border-radius: 10px; border: 2px dashed #ffb3c6;">
+            
+            <div class="letter-font" style="margin-top: 10px; font-weight: bold; background: rgba(255,255,255,0.7); padding: 5px 10px; border-radius: 10px; border: 2px dashed #ffb3c6;">
+                P.P.S. You owe me a kiss for every word in this letter. 😘💌
+            </div>
+            <div class="letter-font" style="margin-top: 5px; font-weight: bold; background: rgba(255,255,255,0.7); padding: 5px 10px; border-radius: 10px; border: 2px dashed #ffb3c6;">
                 P.S. I look at your pictures every single day. 📸🙈
             </div>
         </div>
@@ -292,6 +294,7 @@
                 <div class="photo-frame"><img src="1.jpg" alt="Our marks photo" class="photo-img"></div>
             </div>
             <div class="flirty-line">I want to paint you entirely in red marks 💄. Don't worry, they only show how much I belong to you 💋.</div>
+            <div class="photo-tag">📍 Location: My heart</div>
         </div>
 
         <div class="page page-inner-bg page-photo" id="p4">
@@ -301,6 +304,7 @@
                 <div class="photo-frame"><img src="2.jpg" alt="Our dressed up photo" class="photo-img"></div>
             </div>
             <div class="flirty-line">My favourite accessory is you 🤵🏽‍♂️👗. I might have to possessive-ly lock you away if other people keep looking 🔐😠.</div>
+            <div class="photo-tag">🚨 Warning: Extremely gorgeous!</div>
         </div>
 
         <div class="page page-inner-bg page-meter" id="p5">
@@ -315,6 +319,9 @@
                 <p>💬 Late Night Chats: Countless</p>
                 <p>🦋 Butterflies: Every time you text</p>
                 <p>🥺 Missing You Level: 10000%</p>
+            </div>
+            <div style="margin-top: 10px; font-size: 0.9rem; color: #d81159; font-weight: bold; font-family: 'Caveat', cursive;">
+                *System Error: Love capacity exceeded! 💥*
             </div>
         </div>
 
@@ -331,6 +338,7 @@
                 <li style="animation-delay: 4.2s">✨ Everything about you 💍</li>
             </ul>
             <div class="flirty-line" style="margin-top: 5px;">And a million other things... 😏🫶</div>
+            <div class="status-badge" style="margin-top: 5px;">Verdict: 100% Stuck with me 🤭🔒</div>
         </div>
 
         <div class="page page-inner-bg page-future" id="p7">
@@ -344,6 +352,9 @@
                 <li style="animation-delay: 1.9s">🫂 Endless cuddling & hugs 🥰</li>
                 <li style="animation-delay: 2.7s">🍜 Eating all our fav foods 🍕</li>
             </ul>
+            <div class="letter-font" style="margin-top: 10px; font-weight: bold; background: rgba(255,255,255,0.7); padding: 5px 10px; border-radius: 10px; border: 2px dashed #ffb3c6; font-size: 1.1rem;">
+                P.S. I'm paying for the first date! 💳<br>(No arguments allowed 😤)
+            </div>
         </div>
 
         <div class="page page-inner-bg page-timeline" id="p8">
@@ -370,6 +381,9 @@
             <div class="bday-card">
                 <h4>Ayuuu's Day 👑👧🏻<br><span style="font-size: 0.8rem; font-weight:normal;">(September 22)</span></h4>
                 <div class="bday-timer" id="ayuuu-timer">Calculating... ⏳</div>
+            </div>
+            <div style="margin-top: 10px; font-size: 0.9rem; color: #d81159; font-weight: bold; font-family: 'Caveat', cursive;">
+                *Expect lots of kisses on these days! 🎁💋*
             </div>
         </div>
 
@@ -473,7 +487,6 @@
     const ctx = canvas.getContext('2d');
     let isDrawing = false;
 
-    // Fill with Silver
     ctx.fillStyle = '#c0c0c0';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     ctx.font = 'bold 22px Quicksand';
