@@ -41,7 +41,7 @@
             100% { transform: translate(var(--x-end), 110vh) rotate(360deg); opacity: 0; }
         }
 
-        /* --- Site Opening Animation --- */
+        /* --- Site Opening & Floating Animation --- */
         .website-container {
             animation: siteOpenBounce 1.5s cubic-bezier(0.28, 0.84, 0.42, 1), magicalFloat 5s ease-in-out infinite 1.5s;
             display: flex; flex-direction: column; align-items: center; z-index: 10; 
@@ -56,7 +56,7 @@
             50% { transform: translate(0, -10px); }
         }
 
-        /* --- THE SMART RENDERING BOOK PHYSICS (GLITCH FREE) --- */
+        /* --- THE ULTIMATE ANTI-GLITCH BOOK PHYSICS --- */
         .book {
             position: relative; width: 320px; height: 480px; 
             box-shadow: 0 15px 45px rgba(0,0,0,0.25);
@@ -72,20 +72,20 @@
             backface-visibility: hidden; -webkit-backface-visibility: hidden; 
             transform-origin: left center; -webkit-transform-origin: left center;
             
-            /* Simple, robust transition. Z-index is handled safely by JS */
+            opacity: 1;
             transform: rotateY(0deg); -webkit-transform: rotateY(0deg);
-            transition: transform 0.7s cubic-bezier(0.4, 0.0, 0.2, 1);
-            -webkit-transition: -webkit-transform 0.7s cubic-bezier(0.4, 0.0, 0.2, 1);
-            
-            /* Hide all pages by default to prevent rendering bugs */
-            visibility: hidden;
+            transition: transform 1s cubic-bezier(0.645, 0.045, 0.355, 1), z-index 0s, opacity 0s;
+            -webkit-transition: -webkit-transform 1s cubic-bezier(0.645, 0.045, 0.355, 1), z-index 0s, opacity 0s;
         }
 
         .page.flipped { 
             transform: rotateY(-180deg); -webkit-transform: rotateY(-180deg); 
+            opacity: 0; 
+            z-index: 0 !important; 
+            transition: transform 1s cubic-bezier(0.645, 0.045, 0.355, 1), z-index 0s 0.4s, opacity 0s 0.4s;
+            -webkit-transition: -webkit-transform 1s cubic-bezier(0.645, 0.045, 0.355, 1), z-index 0s 0.4s, opacity 0s 0.4s;
         }
 
-        /* --- ELEGANT DIAGONAL STRIPES --- */
         .page-inner-bg {
             background-color: #fff0f3;
             background-image: repeating-linear-gradient(
@@ -111,6 +111,12 @@
         .notebook-content p { font-family: 'Caveat', cursive; font-size: 1.25rem; line-height: 2.2rem; margin: 0; color: #5a3a40; font-weight: bold; }
 
         #p1, #p3, #p4, #p5, #p8, #p9, #p10, #p11, #p12, #p13, #p14, #p15, #p16 { justify-content: center; }
+
+        /* --- STACKING ORDER (16 Pages) --- */
+        #p1 { z-index: 16; } #p2 { z-index: 15; } #p3 { z-index: 14; } #p4 { z-index: 13; }
+        #p5 { z-index: 12; } #p6 { z-index: 11; } #p7 { z-index: 10; } #p8 { z-index: 9; } 
+        #p9 { z-index: 8; } #p10 { z-index: 7; } #p11 { z-index: 6; } #p12 { z-index: 5; }
+        #p13 { z-index: 4; } #p14 { z-index: 3; } #p15 { z-index: 2; } #p16 { z-index: 1; }
         
         .page::after {
             content: ''; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
@@ -171,7 +177,7 @@
         @keyframes floatPhoto { from { transform: translate(0, 0) rotate(0deg); } to { transform: translate(0, -10px) rotate(2deg); } }
 
         /* --- LOVE METER --- */
-        .meter-container { width: 85%; height: 25px; background: #fff; border-radius: 15px; border: 3px dashed #ffb3c6; margin: 10px 0; overflow: hidden; position: relative; }
+        .meter-container { width: 85%; height: 25px; background: #fff; border-radius: 15px; border: 3px dashed #ffb3c6; margin: 15px 0; overflow: hidden; position: relative; }
         .meter-fill { height: 100%; width: 0%; background: linear-gradient(90deg, #ff8fab, #d81159); transition: width 0.3s ease-out; }
         .cute-btn { background: #d81159; color: white; border: none; padding: 8px 16px; font-size: 0.9rem; border-radius: 20px; font-family: inherit; font-weight: bold; cursor: pointer; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: transform 0.1s; margin: 5px 0; }
         .cute-btn:active { transform: scale(0.95); }
@@ -180,19 +186,14 @@
         .stats-box p { margin: 4px 0; font-size: 0.85rem; color: #5a3a40; font-weight: bold;}
 
         /* --- LISTS --- */
-        .cute-list { list-style: none; padding: 0; text-align: left; margin: 0 0 5px 0; width: 100%; z-index: 2; }
-        .cute-list li { margin: 2px 0; font-size: 1.05rem; opacity: 0; background: rgba(255, 255, 255, 0.7); padding: 3px 10px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.03);}
+        .cute-list { list-style: none; padding: 0; text-align: left; margin: 0 0 10px 0; width: 100%; z-index: 2; }
+        .cute-list li { margin: 3px 0; font-size: 1.15rem; opacity: 0; background: rgba(255, 255, 255, 0.6); padding: 4px 10px; border-radius: 8px; }
         .reasons-list li { transform: translate(-20px, 0); }
         .future-list li { transform: translate(0, 20px); background: white; border: 2px dashed #ffb3c6; text-align: center; font-weight: bold; margin: 6px 0; font-size: 1.15rem; }
         .page.active .reasons-list li { animation: slideInText 0.6s forwards; }
         .page.active .future-list li { animation: slideUpFade 0.6s forwards; }
         @keyframes slideInText { to { opacity: 1; transform: translate(0, 0); } }
         @keyframes slideUpFade { to { opacity: 1; transform: translate(0, 0); } }
-
-        /* --- NEW: ROUTINE CHECKLIST (For Page 6) --- */
-        .routine-box { background: white; border: 2px dashed #ff8fab; border-radius: 12px; width: 95%; padding: 8px; margin-top: 8px; text-align: left; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
-        .routine-box h4 { margin: 0 0 5px 0; color: #d81159; font-family: 'Caveat', cursive; font-size: 1.3rem; }
-        .routine-box p { margin: 2px 0; font-size: 0.85rem; font-weight: bold; color: #5a3a40; }
 
         /* --- TIMELINE & BIRTHDAYS --- */
         .timeline-box { background: rgba(255,255,255,0.8); border: 2px dashed #ffb3c6; padding: 10px; border-radius: 15px; width: 95%; z-index: 2; margin-top: 5px;}
@@ -275,10 +276,10 @@
         .t5 { animation-delay: 0.8s; font-size: 2.1rem; }
         @keyframes swayTulip { 0% { transform: rotate(-15deg); } 100% { transform: rotate(15deg); } }
 
-        /* --- PAGE 14 - SCANNER --- */
+        /* --- PAGE 14 - FIXED SCANNER PROMISE --- */
         .scanner-container {
             position: relative; width: 120px; height: 160px; border: 3px solid #ffb3c6;
-            border-radius: 25px; margin: 15px auto; display: flex; justify-content: center;
+            border-radius: 25px; margin: 10px auto; display: flex; justify-content: center;
             align-items: center; background: rgba(255,255,255,0.7); overflow: hidden;
             cursor: pointer; box-shadow: inset 0 0 15px rgba(216,17,89,0.1);
             -webkit-user-select: none; user-select: none; 
@@ -292,13 +293,17 @@
         .scanning .finger-icon { opacity: 0.8; }
         @keyframes scanAnim { from { top: 5%; } to { top: 95%; } }
         
+        /* NEW: Hidden Promise Box that expands dynamically */
         .secret-promise {
-            opacity: 0; transition: opacity 1s; font-size: 1.15rem; color: #d62828; 
-            font-weight: bold; background: white; padding: 10px; border-radius: 10px; 
-            border: 2px dashed #ffb3c6; margin-top: 10px; pointer-events: none;
+            opacity: 0; max-height: 0; overflow: hidden; margin-top: 0; padding-top: 0; padding-bottom: 0;
+            transition: all 0.8s ease; font-size: 1.15rem; color: #d62828; font-weight: bold; 
+            background: white; border-radius: 10px; border: 2px dashed transparent; pointer-events: none;
         }
-        .scanned-success .secret-promise { opacity: 1; }
+        .scanned-success .secret-promise { 
+            opacity: 1; max-height: 200px; margin-top: 10px; padding: 10px; border-color: #ffb3c6; 
+        }
         .scanned-success .scanner-container { border-color: #81c784; box-shadow: inset 0 0 15px rgba(129,199,132,0.3); }
+        .scanned-success #scanText { display: none; } /* Hides waiting text upon success */
 
         /* --- PAGE 15 - TIME CAPSULE --- */
         .capsule-wrapper {
@@ -315,7 +320,7 @@
 </head>
 <body>
 
-<audio id="bgMusic" loop>
+<audio id="bgMusic" loop preload="auto">
     <source src="3.mp3" type="audio/mpeg">
 </audio>
 
@@ -338,8 +343,8 @@
                         <p style="margin-bottom: 3px; font-size: 0.85rem; color:#d62828;">Spilling the tea... ☕</p>
                         <div class="hint-item"><span>📸</span> Core Memories inside</div>
                         <div class="hint-item"><span>❤️</span> The Love Meter</div>
-                        <div class="hint-item"><span>✈️</span> Kerala to Goa Map!</div>
-                        <div class="hint-item"><span class="pulse-text">🎂</span> A Birthday Surprise</div>
+                        <div class="hint-item"><span>👆</span> Thumbprint Scanner</div>
+                        <div class="hint-item"><span class="pulse-text">🔒</span> The Time Capsule</div>
                     </div>
                 </div>
 
@@ -390,17 +395,17 @@
         <div class="page page-inner-bg page-meter" id="p5">
             <span class="decor decor-tr">💖</span>
             <h3 class="pop-item delay-1">How much do I love you? <span class="pulse-text" style="display: inline-block;">🥺💓</span></h3>
-            <div class="meter-container pop-item delay-2">
+            <div class="meter-container pop-item delay-2" style="margin: 15px 0;">
                 <div class="meter-fill" id="meterFill"></div>
             </div>
             <button class="cute-btn pop-item delay-3" id="loveBtn">Tap to measure! 👆</button>
             <p class="meter-msg pop-item delay-3" id="meterMsg"></p>
-            <div class="stats-box letter-font pop-item delay-4">
+            <div class="stats-box letter-font pop-item delay-4" style="margin-top: 10px;">
                 <p>💬 Late Night Chats: Countless</p>
                 <p>🦋 Butterflies: Every time you text</p>
                 <p>🥺 Missing You Level: 10000%</p>
             </div>
-            <div class="pop-item delay-4" style="margin-top: 5px; font-size: 0.9rem; color: #d81159; font-weight: bold; font-family: 'Caveat', cursive;">
+            <div class="pop-item delay-4" style="margin-top: 10px; font-size: 0.95rem; color: #d81159; font-weight: bold; font-family: 'Caveat', cursive;">
                 *System Error: Love capacity exceeded! 💥*
             </div>
         </div>
@@ -410,23 +415,14 @@
             <span class="decor decor-br">🌷</span>
             <h3 class="pop-item delay-1">I Love... 💭💖</h3>
             <ul class="cute-list reasons-list letter-font">
-                <li>✨ Your beautiful smile 😊</li>
-                <li>🥺 How you make me laugh 😂</li>
-                <li>💖 Your gorgeous eyes 👀</li>
-                <li>🐾 The way you look at me 🥰</li>
-                <li>🎶 Your cute voice notes 🥺</li>
-                <li>🧸 Your virtual cuddles 🫂</li>
-                <li>🌙 Our 3 AM conversations 📞</li>
-                <li>📸 The way you send me updates</li>
-                <li>💖 Just being entirely YOU. 💍</li>
+                <li style="animation-delay: 0.2s">✨ Your beautiful smile 😊</li>
+                <li style="animation-delay: 0.4s">🥺 How you make me laugh 😂</li>
+                <li style="animation-delay: 0.6s">💖 Your gorgeous eyes 👀</li>
+                <li style="animation-delay: 0.8s">🐾 The way you look at me 🥰</li>
+                <li style="animation-delay: 1.0s">🎶 Your cute voice notes 🥺</li>
+                <li style="animation-delay: 1.2s">✨ Everything about you 💍</li>
             </ul>
-            
-            <div class="routine-box pop-item delay-4">
-                <h4>My Daily Routine:</h4>
-                <p>✅ Wake up missing you.</p>
-                <p>✅ Check my phone for your text.</p>
-                <p>✅ Smile like an absolute idiot. 🥰</p>
-            </div>
+            <div class="status-badge pop-item delay-4" style="margin-top: 5px;">Verdict: 100% Stuck with me 🤭🔒</div>
         </div>
 
         <div class="page page-inner-bg page-future" id="p7">
@@ -602,12 +598,12 @@
                 <div class="scan-line"></div>
             </div>
             
-            <div id="promiseBox" class="secret-promise pop-item delay-4">
+            <div id="promiseBox" class="secret-promise">
                 <span style="font-size:1.5rem;">🦋</span><br>
                 <strong>Identity Confirmed: Soulmate!</strong><br>
                 I promise to always be your safe space, your biggest fan, and yours forever. 🥺💍
             </div>
-            <div id="scanText" class="flirty-line pop-item delay-4" style="margin-top: 15px;">Scanning for Ayuuu... ⏳</div>
+            <div id="scanText" class="flirty-line pop-item delay-4" style="margin-top: 15px;">Waiting for fingerprint... ⏳</div>
         </div>
 
         <div class="page page-inner-bg page-capsule" id="p15" style="justify-content: center;">
@@ -647,7 +643,7 @@
 
     </div>
     
-    <div class="nav-hint pop-item delay-4" id="navHint" style="display: none;">Tap right edge ➔ next<br>Tap left edge 🠔 back</div>
+    <div class="nav-hint pop-item delay-4" id="navHint" style="display: none; font-size: 0.75rem;">Tap edges 🠔 🠖 back/next</div>
 </div>
 
 <script>
@@ -655,20 +651,26 @@
     const lockKeyword = ""; // Set to "Ayu" to lock, empty "" to unlock!
     // --------------------------------
 
-    // --- AUDIO LOGIC ---
+    // --- BULLETPROOF AUDIO LOGIC ---
     const bgMusic = document.getElementById('bgMusic');
     const musicToggle = document.getElementById('musicToggle');
     let isMusicPlaying = false;
 
-    document.body.addEventListener('touchstart', function playAudioOnFirstClick() {
+    const unlockAudio = () => {
         if (!isMusicPlaying) {
             bgMusic.play().then(() => {
                 isMusicPlaying = true;
                 musicToggle.classList.add('playing');
-            }).catch(err => console.log("Audio play failed:", err));
-            document.body.removeEventListener('touchstart', playAudioOnFirstClick);
+            }).catch(err => console.log("Audio waiting for stronger interaction"));
         }
-    }, { once: true });
+        // Remove after successful unlock
+        document.removeEventListener('click', unlockAudio);
+        document.removeEventListener('touchstart', unlockAudio);
+    };
+
+    // Attach to multiple robust events
+    document.addEventListener('click', unlockAudio);
+    document.addEventListener('touchstart', unlockAudio, { passive: true });
 
     musicToggle.onclick = function(e) {
         e.stopPropagation(); 
@@ -689,10 +691,10 @@
 
     ctx.fillStyle = '#c0c0c0';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
-    ctx.font = 'bold 20px Quicksand';
+    ctx.font = 'bold 18px Quicksand';
     ctx.fillStyle = '#95a5a6';
     ctx.textAlign = 'center';
-    ctx.fillText('Scratch Here! 🪙', canvas.width/2, canvas.height/2 + 6);
+    ctx.fillText('Scratch Here! 🪙', canvas.width/2, canvas.height/2 + 5);
 
     function getMousePos(e) {
         const rect = canvas.getBoundingClientRect();
@@ -710,7 +712,7 @@
         const pos = getMousePos(e);
         ctx.globalCompositeOperation = 'destination-out';
         ctx.beginPath();
-        ctx.arc(pos.x, pos.y, 20, 0, Math.PI * 2);
+        ctx.arc(pos.x, pos.y, 18, 0, Math.PI * 2);
         ctx.fill();
     }
 
@@ -734,22 +736,22 @@
         if (e.touches) e.preventDefault(); 
         
         scannerBox.classList.add('scanning');
-        scanText.innerText = "Hold still... 🔍";
+        scanText.innerText = "Scanning... Hold still! 🔍";
         
         scanTimer = setTimeout(() => {
             isScanned = true;
             scannerBox.classList.remove('scanning');
             scannerBox.parentElement.classList.add('scanned-success');
             fingerIcon.innerText = "✅";
-            scanText.innerText = "Access Granted! 🔓";
-        }, 2500); 
+            // Promise box now handles its own display via CSS!
+        }, 2000); 
     }
 
     function stopScan() {
         if (isScanned) return;
         clearTimeout(scanTimer);
         scannerBox.classList.remove('scanning');
-        scanText.innerText = "Scan failed. Try again! 👆";
+        scanText.innerText = "Scan failed. Keep holding! 👆";
     }
 
     scannerBox.addEventListener('mousedown', startScan);
@@ -757,24 +759,6 @@
     scannerBox.addEventListener('mouseup', stopScan);
     scannerBox.addEventListener('mouseleave', stopScan);
     scannerBox.addEventListener('touchend', stopScan);
-
-
-    // --- BACKGROUND FALLING HEARTS ---
-    function createHeart() {
-        const heart = document.createElement('div');
-        heart.classList.add('falling-heart');
-        heart.innerHTML = '❤';
-        heart.style.left = Math.random() * 100 + 'vw';
-        
-        const drift = (Math.random() - 0.5) * 30; 
-        heart.style.setProperty('--x-end', drift + 'vw');
-        
-        heart.style.animationDuration = (Math.random() * 3 + 4) + 's'; 
-        heart.style.fontSize = (Math.random() * 1 + 1) + 'rem'; 
-        document.body.appendChild(heart);
-        setTimeout(() => { heart.remove(); }, 7000); 
-    }
-    setInterval(createHeart, 800);
 
     // --- DATE SETTINGS & TIMERS ---
     const meetingDate = new Date('2026-01-18T00:00:00'); 
@@ -799,12 +783,9 @@
 
     function formatBday(targetDate, now) {
         const dist = targetDate.getTime() - now;
-        if (dist <= 0 && dist > -86400000) { return "IT'S TODAY! 🎉🎂"; }
+        if (dist <= 0 && dist > -86400000) { return "TODAY! 🎉"; }
         const d = Math.floor(dist / (1000 * 60 * 60 * 24));
-        const h = Math.floor((dist % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const m = Math.floor((dist % (1000 * 60 * 60)) / (1000 * 60));
-        const s = Math.floor((dist % (1000 * 60)) / 1000);
-        return `${d}d ${h}h ${m}m ${s}s`;
+        return `${d}d left`;
     }
 
     function updateTimer() {
@@ -813,15 +794,14 @@
         const distance = targetDate.getTime() - now;
         if (distance <= 0 || lockKeyword !== "Ayu") {
             isUnlocked = true;
-            if (lockKeyword !== "Ayu") { countdownEl.innerHTML = "Testing Mode 🛠️"; } 
-            else { countdownEl.innerHTML = "It's time! 🎉"; }
-            lockIcon.innerHTML = "🔓 <br> <span class='pulse-text' style='font-size: 1rem; display:inline-block; margin-top:5px;'>Tap to open! 🗝️</span>";
+            if (lockKeyword !== "Ayu") { countdownEl.innerHTML = "🛠️"; } 
+            else { countdownEl.innerHTML = "Time! 🎉"; }
+            lockIcon.innerHTML = "🔓<br><span class='pulse-text' style='font-size: 0.8rem;'>Tap!</span>";
         } else {
             const days = Math.floor(distance / (1000 * 60 * 60 * 24));
             const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-            countdownEl.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+            countdownEl.innerHTML = `${days}d ${hours}h ${minutes}m`;
         }
 
         const daysTogether = Math.floor((now - meetingDate.getTime()) / (1000 * 60 * 60 * 24));
@@ -855,29 +835,24 @@
         for(let i=1; i<=totalPages; i++) {
             let p = document.getElementById('p'+i);
             
-            // Current Page (Visible, Active)
             if (i === currentPage) {
                 p.style.visibility = 'visible';
                 p.classList.add('active');
                 p.classList.remove('flipped');
                 p.style.zIndex = 10;
             } 
-            // Next Page (Needs to be visible so you see it underneath when flipping)
             else if (i === currentPage + 1) {
                 p.style.visibility = 'visible';
                 p.classList.remove('active');
                 p.classList.remove('flipped');
                 p.style.zIndex = 9;
             }
-            // Previous Flipped Pages
             else if (i < currentPage) {
                 p.classList.remove('active');
                 p.classList.add('flipped');
                 p.style.zIndex = i; 
-                // Wait for the flip animation to finish before turning it invisible!
-                setTimeout(() => { if(currentPage !== i) p.style.visibility = 'hidden'; }, 600);
+                setTimeout(() => { if(currentPage !== i) p.style.visibility = 'hidden'; }, 700);
             } 
-            // Pages far into the future (Keep invisible to save phone memory)
             else {
                 p.classList.remove('active');
                 p.classList.remove('flipped');
@@ -885,15 +860,8 @@
                 p.style.zIndex = 1;
             }
         }
-
-        // Stagger list items for Page 6
-        if(currentPage === 6) {
-            const items = document.getElementById('p6').querySelectorAll('.reasons-list li');
-            items.forEach((li, index) => { li.style.animationDelay = (0.2 + (index * 0.15)) + 's'; });
-        }
     }
 
-    // Initialize the smart renderer
     setTimeout(updateActivePage, 100);
 
     bookContainer.onclick = function(e) {
@@ -906,9 +874,7 @@
         const rect = bookContainer.getBoundingClientRect();
         const clickX = e.clientX - rect.left;
         
-        // Go Back
         if (currentPage > 1 && clickX < (rect.width * 0.3)) {
-            // Instantly make the previous page visible before we start the flip-back animation
             document.getElementById('p' + (currentPage - 1)).style.visibility = 'visible';
             currentPage--;
             updateActivePage();
@@ -916,14 +882,12 @@
             return;
         }
 
-        // Go Forward
         if (currentPage < totalPages && clickX >= (rect.width * 0.3)) {
             if (currentPage === 5 && (e.target.id === 'loveBtn')) return; 
             if (currentPage === 11 && (e.target.id === 'scratchCanvas')) return; 
             if (currentPage === 12 && (e.target.closest('#cakeContainer'))) return; 
             if (currentPage === 14 && (e.target.closest('#scannerBox'))) return; 
 
-            // Instantly make the next page visible so it's ready underneath
             document.getElementById('p' + (currentPage + 1)).style.visibility = 'visible';
             currentPage++;
             updateActivePage();
@@ -954,7 +918,7 @@
         }
     };
 
-    // --- CAKE CUTTING & SHAPE CONFETTI LOGIC ---
+    // --- CAKE CUTTING LOGIC ---
     const cakeContainer = document.getElementById('cakeContainer');
     const knife = document.getElementById('knife');
     const cake = document.getElementById('cake');
