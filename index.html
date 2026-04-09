@@ -15,7 +15,7 @@
             height: 100vh; margin: 0; overflow: hidden; color: #5a3a40; perspective: 2500px; 
         }
 
-        /* --- NEW: Floating Music Toggle Button --- */
+        /* --- Music Toggle Button --- */
         .music-toggle {
             position: absolute; top: 20px; right: 20px; font-size: 1.5rem;
             background: rgba(255, 255, 255, 0.8); border: 2px dashed #ffb3c6;
@@ -23,7 +23,7 @@
             display: flex; justify-content: center; align-items: center;
             cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.15);
             z-index: 100; animation: spinRecord 4s linear infinite;
-            animation-play-state: paused; /* Starts paused until music plays */
+            animation-play-state: paused; 
         }
         .music-toggle.playing { animation-play-state: running; }
         @keyframes spinRecord { 100% { transform: rotate(360deg); } }
@@ -73,12 +73,12 @@
             background-image: radial-gradient(#ffb3c6 1.5px, transparent 1px); background-size: 20px 20px; 
         }
 
-        #p1, #p3, #p4, #p5, #p8, #p9, #p10, #p11 { justify-content: center; }
+        #p1, #p3, #p4, #p5, #p8, #p9, #p10, #p11, #p12 { justify-content: center; }
 
-        /* Stacking Order */
-        #p1 { z-index: 11; } #p2 { z-index: 10; } #p3 { z-index: 9; } #p4 { z-index: 8; }
-        #p5 { z-index: 7; } #p6 { z-index: 6; } #p7 { z-index: 5; } #p8 { z-index: 4; } 
-        #p9 { z-index: 3; } #p10 { z-index: 2; } #p11 { z-index: 1; }
+        /* --- STACKING ORDER (12 Pages) --- */
+        #p1 { z-index: 12; } #p2 { z-index: 11; } #p3 { z-index: 10; } #p4 { z-index: 9; }
+        #p5 { z-index: 8; } #p6 { z-index: 7; } #p7 { z-index: 6; } #p8 { z-index: 5; } 
+        #p9 { z-index: 4; } #p10 { z-index: 3; } #p11 { z-index: 2; } #p12 { z-index: 1; }
 
         .page.flipped { transform: rotateY(-180deg); z-index: 0 !important; }
         
@@ -122,6 +122,7 @@
         .cover-hints { font-size: 0.8rem; color: #5a3a40; font-weight: bold; margin-top: 6px; text-align: left; width: 90%; }
         .hint-item { margin: 2px 0; display: flex; align-items: center; opacity: 0.9; }
         .hint-item span { width: 18px; margin-right: 5px; text-align: center; }
+        .hint-pop { animation: gentlePulse 2s infinite alternate ease-in-out; display: inline-block; }
         
         .bookmark { position: absolute; top: -15px; right: 20px; width: 20px; height: 60px; background: #d81159; box-shadow: 2px 2px 5px rgba(0,0,0,0.2); z-index: 0; }
         .bookmark::after { content: ''; position: absolute; bottom: -10px; left: 0; border-left: 10px solid #d81159; border-right: 10px solid #d81159; border-bottom: 10px solid transparent; }
@@ -170,6 +171,22 @@
         .bday-card { background: rgba(255,255,255,0.9); border: 2px dashed #ffb3c6; padding: 10px; border-radius: 12px; width: 90%; margin: 8px 0; z-index: 2; }
         .bday-card h4 { margin: 0 0 8px 0; color: #d62828; font-size: 1.2rem; }
         .bday-timer { font-size: 1rem; font-weight: bold; color: #d81159; background: #ffe6ea; padding: 6px; border-radius: 8px;}
+
+        /* --- NEW: PAGE 10 - SCRATCH OFF TICKET --- */
+        .scratch-wrapper {
+            position: relative; width: 240px; height: 140px; margin: 15px auto;
+            border-radius: 15px; box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            overflow: hidden; border: 3px dashed #d81159; z-index: 2;
+        }
+        .scratch-secret {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: #fff; display: flex; flex-direction: column;
+            justify-content: center; align-items: center; padding: 15px;
+            box-sizing: border-box; font-size: 1.1rem; color: #d81159; text-align: center;
+        }
+        #scratchCanvas {
+            position: absolute; top: 0; left: 0; z-index: 5; cursor: pointer;
+        }
 
         /* --- CAKE --- */
         .cake-container { position: relative; width: 180px; height: 180px; margin-bottom: 20px; cursor: pointer; z-index: 2;}
@@ -340,7 +357,23 @@
             </div>
         </div>
 
-        <div class="page page-inner-bg page-cake" id="p10">
+        <div class="page page-inner-bg page-scratch" id="p10">
+            <span class="decor decor-tl">🪙</span>
+            <span class="decor decor-br">✨</span>
+            <h3>I have a secret... 🤫</h3>
+            <p class="letter-font" style="margin-bottom: 10px; font-size: 1.2rem;">Rub the silver box to reveal your surprise! 🪙👆</p>
+            
+            <div class="scratch-wrapper">
+                <div class="scratch-secret letter-font">
+                    🎉 <strong>TICKET UNLOCKED!</strong> 🎉<br>
+                    Good for ONE FREE endless cuddling session when we finally meet! 🫂💕
+                </div>
+                <canvas id="scratchCanvas" width="240" height="140"></canvas>
+            </div>
+            <div class="flirty-line" style="margin-top: 15px;">No refunds or exchanges. Valid forever. 😏</div>
+        </div>
+
+        <div class="page page-inner-bg page-cake" id="p11">
             <span class="decor decor-tr">🎊</span>
             <span class="decor decor-bl">🎈</span>
             <h3>Let's Celebrate! 🎂🎉</h3>
@@ -367,7 +400,7 @@
             <p class="letter-font" style="color: #d62828; font-weight: bold; margin-top: 10px; font-size: 1.8rem;">Happy 100 Days! 🥂💖</p>
         </div>
 
-        <div class="page page-inner-bg page-final" id="p11">
+        <div class="page page-inner-bg page-final" id="p12">
             <span class="decor decor-tl">🦋</span>
             <span class="decor decor-br">✨</span>
             <div class="letter-font">
@@ -392,26 +425,23 @@
     const lockKeyword = ""; // Set to "Ayu" to lock, empty "" to unlock!
     // --------------------------------
 
-    // --- AUDIO LOGIC (Play on first click) ---
+    // --- AUDIO LOGIC ---
     const bgMusic = document.getElementById('bgMusic');
     const musicToggle = document.getElementById('musicToggle');
     let isMusicPlaying = false;
 
-    // Listen for the very first click anywhere to bypass browser autoplay rules
     document.body.addEventListener('click', function playAudioOnFirstClick() {
         if (!isMusicPlaying) {
             bgMusic.play().then(() => {
                 isMusicPlaying = true;
                 musicToggle.classList.add('playing');
             }).catch(err => console.log("Audio play failed:", err));
-            // Remove listener so it doesn't trigger on every single click
             document.body.removeEventListener('click', playAudioOnFirstClick);
         }
     }, { once: true });
 
-    // Allow user to manually pause/play
     musicToggle.onclick = function(e) {
-        e.stopPropagation(); // Prevents the book from turning the page!
+        e.stopPropagation(); 
         if (isMusicPlaying) {
             bgMusic.pause();
             musicToggle.classList.remove('playing');
@@ -421,6 +451,48 @@
         }
         isMusicPlaying = !isMusicPlaying;
     };
+
+    // --- SCRATCH OFF TICKET LOGIC ---
+    const canvas = document.getElementById('scratchCanvas');
+    const ctx = canvas.getContext('2d');
+    let isDrawing = false;
+
+    // Fill with Silver
+    ctx.fillStyle = '#c0c0c0';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    // Add nice text on top
+    ctx.font = 'bold 22px Quicksand';
+    ctx.fillStyle = '#95a5a6';
+    ctx.textAlign = 'center';
+    ctx.fillText('Scratch Here! 🪙', canvas.width/2, canvas.height/2 + 8);
+
+    function getMousePos(e) {
+        const rect = canvas.getBoundingClientRect();
+        const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+        const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+        return { x: clientX - rect.left, y: clientY - rect.top };
+    }
+
+    function startScratch(e) { isDrawing = true; scratch(e); }
+    function endScratch() { isDrawing = false; }
+    
+    function scratch(e) {
+        if (!isDrawing) return;
+        // Don't prevent default on mouse, but do on touch to stop scrolling
+        if(e.touches) { e.preventDefault(); } 
+        const pos = getMousePos(e);
+        ctx.globalCompositeOperation = 'destination-out';
+        ctx.beginPath();
+        ctx.arc(pos.x, pos.y, 20, 0, Math.PI * 2);
+        ctx.fill();
+    }
+
+    canvas.addEventListener('mousedown', startScratch);
+    canvas.addEventListener('mousemove', scratch);
+    window.addEventListener('mouseup', endScratch);
+    canvas.addEventListener('touchstart', startScratch, {passive: false});
+    canvas.addEventListener('touchmove', scratch, {passive: false});
+    window.addEventListener('touchend', endScratch);
 
 
     // --- BACKGROUND FALLING HEARTS ---
@@ -494,7 +566,7 @@
 
     // --- MULTI-PAGE NAVIGATION LOGIC ---
     let currentPage = 1;
-    const totalPages = 11; 
+    const totalPages = 12; // 12 Pages Now!
     const bookContainer = document.getElementById('bookContainer');
 
     function updateActivePage() {
@@ -523,8 +595,10 @@
         }
 
         if (currentPage < totalPages && clickX >= (rect.width * 0.3)) {
+            // Interactive protections
             if (currentPage === 5 && (e.target.id === 'loveBtn')) return; 
-            if (currentPage === 10 && (e.target.closest('#cakeContainer'))) return; 
+            if (currentPage === 10 && (e.target.id === 'scratchCanvas')) return; 
+            if (currentPage === 11 && (e.target.closest('#cakeContainer'))) return; 
 
             document.getElementById('p' + currentPage).classList.add('flipped');
             currentPage++;
@@ -605,7 +679,7 @@
     };
 
     function checkInteractiveStates() {
-        if (currentPage === 10 && cakeIsCut) {
+        if (currentPage === 11 && cakeIsCut) {
             cake.classList.remove('cake-slice-anim');
             knife.classList.remove('knife-anim');
             cakeText.style.display = 'block';
@@ -617,6 +691,7 @@
             meterMsg.innerHTML = '';
             loveBtn.style.display = 'inline-block';
         }
+        // We do NOT reset the scratch ticket so she can keep her revealed prize!
     }
 </script>
 
