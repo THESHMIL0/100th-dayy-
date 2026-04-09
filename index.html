@@ -2,17 +2,19 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Our 100th Day - The Story 💝</title>
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
     
     <style>
         /* --- 1. Basic Cute Theme Setup --- */
+        * { -webkit-tap-highlight-color: transparent; } /* Stops blue flashes on mobile taps */
+        
         body {
-            background-color: #ffe6ea; 
-            font-family: 'Quicksand', sans-serif; 
+            background-color: #ffe6ea; font-family: 'Quicksand', sans-serif; 
             display: flex; justify-content: center; align-items: center;
-            height: 100vh; margin: 0; overflow: hidden; color: #5a3a40; perspective: 2500px; 
+            height: 100vh; margin: 0; overflow: hidden; color: #5a3a40; 
+            -webkit-font-smoothing: antialiased;
         }
 
         /* --- Music Toggle Button --- */
@@ -32,6 +34,7 @@
         .falling-heart {
             position: absolute; top: -10vh; font-size: 1.5rem; color: #ffb3c6;
             opacity: 0.7; animation: fall linear forwards; z-index: 0; pointer-events: none; 
+            will-change: transform;
         }
         @keyframes fall {
             0% { transform: translate3d(0, 0, 0) rotate(0deg); opacity: 0.8; }
@@ -53,11 +56,12 @@
             50% { transform: translate3d(0, -10px, 0); }
         }
 
-        /* --- The 3D Flip Book Structure --- */
+        /* --- THE ANTI-GLITCH BOOK PHYSICS --- */
         .book {
-            position: relative; width: 320px; height: 480px; transition: transform 0.6s ease;
-            transform-style: preserve-3d; -webkit-transform-style: preserve-3d; /* MOBILE FIX */
+            position: relative; width: 320px; height: 480px; 
+            perspective: 2500px; -webkit-perspective: 2500px; /* Forces stable 3D */
             box-shadow: 0 15px 45px rgba(0,0,0,0.25);
+            /* preserve-3d REMOVED to stop z-fighting! */
         }
 
         .page {
@@ -65,37 +69,36 @@
             background: #fff0f3; border-radius: 10px; box-shadow: inset 0 0 15px rgba(0,0,0,0.05);
             display: flex; flex-direction: column; justify-content: flex-start; 
             align-items: center; text-align: center; padding: 25px 15px; 
-            box-sizing: border-box; 
+            box-sizing: border-box; overflow: hidden !important; 
             
-            /* --- MOBILE GLITCH FIXES --- */
-            backface-visibility: hidden; 
-            -webkit-backface-visibility: hidden; 
-            transform: translate3d(0,0,0); 
-            -webkit-transform: translate3d(0,0,0);
-            transform-origin: left center; 
-            -webkit-transform-origin: left center;
-            /* --------------------------- */
+            /* GLITCH FIXES */
+            backface-visibility: hidden; -webkit-backface-visibility: hidden; 
+            transform-origin: left center; -webkit-transform-origin: left center;
+            transform: translate3d(0,0,0); -webkit-transform: translate3d(0,0,0);
             
-            transition: transform 1.2s cubic-bezier(0.645, 0.045, 0.355, 1);
-            overflow: hidden !important; 
+            /* Instantly snap z-index to top when flipping back */
+            transition: transform 1s ease-in-out, z-index 0s;
+            -webkit-transition: -webkit-transform 1s ease-in-out, z-index 0s;
         }
 
         .page-inner-bg {
             background-image: radial-gradient(#ffb3c6 1.5px, transparent 1px); background-size: 20px 20px; 
         }
-
         #p1, #p3, #p4, #p5, #p8, #p9, #p10, #p11, #p12 { justify-content: center; }
 
-        /* --- STACKING ORDER (12 Pages) --- */
+        /* Stacking Order */
         #p1 { z-index: 12; } #p2 { z-index: 11; } #p3 { z-index: 10; } #p4 { z-index: 9; }
         #p5 { z-index: 8; } #p6 { z-index: 7; } #p7 { z-index: 6; } #p8 { z-index: 5; } 
         #p9 { z-index: 4; } #p10 { z-index: 3; } #p11 { z-index: 2; } #p12 { z-index: 1; }
 
-        /* MOBILE GLITCH FIX FOR FLIPPED PAGE */
         .page.flipped { 
             transform: rotateY(-180deg) translate3d(0,0,0); 
             -webkit-transform: rotateY(-180deg) translate3d(0,0,0); 
             z-index: 0 !important; 
+            
+            /* GLITCH FIX: Wait exactly 0.45s before dropping the page behind the others! */
+            transition: transform 1s ease-in-out, z-index 0s 0.45s;
+            -webkit-transition: -webkit-transform 1s ease-in-out, z-index 0s 0.45s;
         }
         
         .page::after {
@@ -138,7 +141,6 @@
         .cover-hints { font-size: 0.8rem; color: #5a3a40; font-weight: bold; margin-top: 6px; text-align: left; width: 90%; }
         .hint-item { margin: 2px 0; display: flex; align-items: center; opacity: 0.9; }
         .hint-item span { width: 18px; margin-right: 5px; text-align: center; }
-        .hint-pop { animation: gentlePulse 2s infinite alternate ease-in-out; display: inline-block; }
         
         .bookmark { position: absolute; top: -15px; right: 20px; width: 20px; height: 60px; background: #d81159; box-shadow: 2px 2px 5px rgba(0,0,0,0.2); z-index: 0; }
         .bookmark::after { content: ''; position: absolute; bottom: -10px; left: 0; border-left: 10px solid #d81159; border-right: 10px solid #d81159; border-bottom: 10px solid transparent; }
@@ -200,9 +202,7 @@
             justify-content: center; align-items: center; padding: 15px;
             box-sizing: border-box; font-size: 1.1rem; color: #d81159; text-align: center;
         }
-        #scratchCanvas {
-            position: absolute; top: 0; left: 0; z-index: 5; cursor: pointer;
-        }
+        #scratchCanvas { position: absolute; top: 0; left: 0; z-index: 5; cursor: pointer; }
 
         /* --- CAKE --- */
         .cake-container { position: relative; width: 180px; height: 180px; margin-bottom: 20px; cursor: pointer; z-index: 2;}
@@ -476,7 +476,6 @@
     // Fill with Silver
     ctx.fillStyle = '#c0c0c0';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
-    // Add nice text on top
     ctx.font = 'bold 22px Quicksand';
     ctx.fillStyle = '#95a5a6';
     ctx.textAlign = 'center';
