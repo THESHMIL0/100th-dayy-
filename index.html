@@ -11,14 +11,8 @@
         body {
             background-color: #ffe6ea; 
             font-family: 'Quicksand', sans-serif; 
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            overflow: hidden;
-            color: #5a3a40;
-            perspective: 2000px; 
+            display: flex; justify-content: center; align-items: center;
+            height: 100vh; margin: 0; overflow: hidden; color: #5a3a40; perspective: 2000px; 
         }
 
         /* --- Falling Background Hearts --- */
@@ -63,12 +57,13 @@
         }
 
         #p1 { padding: 15px; } 
-        #p3, #p4, #p5, #p7, #p8 { justify-content: center; }
+        /* Center content on specific pages */
+        #p3, #p4, #p5, #p10, #p11 { justify-content: center; }
 
-        /* --- STACKING ORDER (Updated for 9 Pages) --- */
-        #p1 { z-index: 9; } #p2 { z-index: 8; } #p3 { z-index: 7; } #p4 { z-index: 6; }
-        #p5 { z-index: 5; } #p6 { z-index: 4; } #p7 { z-index: 3; } #p8 { z-index: 2; } 
-        #p9 { z-index: 1; }
+        /* --- STACKING ORDER (11 Pages Now!) --- */
+        #p1 { z-index: 11; } #p2 { z-index: 10; } #p3 { z-index: 9; } #p4 { z-index: 8; }
+        #p5 { z-index: 7; } #p6 { z-index: 6; } #p7 { z-index: 5; } #p8 { z-index: 4; } 
+        #p9 { z-index: 3; } #p10 { z-index: 2; } #p11 { z-index: 1; }
 
         .page.flipped { transform: rotateY(-180deg); z-index: 0 !important; }
         .page::after {
@@ -88,54 +83,42 @@
         .decor-bl { bottom: 15px; left: 15px; animation-delay: 1.5s; } .decor-br { bottom: 15px; right: 15px; animation-delay: 0.5s; }
         @keyframes floatDecor { from { transform: translateY(0px) rotate(-5deg); } to { transform: translateY(-8px) rotate(5deg); } }
 
-        /* --- PAGE 1: UPGRADED COVER --- */
+        /* --- PAGE 1: COVER --- */
         .page-cover {
             background: linear-gradient(135deg, #ff9aae, #ff7ea5); 
-            border-radius: 5px 20px 20px 5px; 
-            border-left: 12px solid #d81159; 
+            border-radius: 5px 20px 20px 5px; border-left: 12px solid #d81159; 
             box-shadow: inset 4px 0 8px rgba(0,0,0,0.1), 5px 5px 15px rgba(0,0,0,0.15);
         }
-        
         .cover-inner-border {
             width: 100%; height: 100%; border: 2px dashed rgba(255,255,255,0.5); border-radius: 10px;
             display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative;
         }
-
         .cover-label {
-            background: #fff; padding: 20px; border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1); border: 2px dashed #ffb3c6;
+            background: #fff; padding: 20px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); border: 2px dashed #ffb3c6;
             margin-bottom: 15px; position: relative; width: 85%; z-index: 2;
         }
-        
         .cover-label::before { 
             content: ''; position: absolute; top: -12px; left: 50%; transform: translateX(-50%) rotate(-3deg);
             width: 80px; height: 25px; background-color: rgba(255, 179, 198, 0.9); box-shadow: 0 2px 4px rgba(0,0,0,0.1); z-index: 3;
         }
-
         .cover-names { font-size: 1.8rem; color: #d81159; margin-bottom: 5px; text-shadow: none; }
         .cover-title {
-            font-size: 2.5rem; color: #d62828; margin-top: 0; margin-bottom: 10px;
+            font-size: 2.3rem; color: #d62828; margin-top: 0; margin-bottom: 10px;
             padding-bottom: 10px; border-bottom: 2px dashed #ffb3c6; width: 100%; text-shadow: none;
         }
-
         .bookmark {
-            position: absolute; top: -15px; right: 25px; width: 20px; height: 60px;
-            background: #d81159; box-shadow: 2px 2px 5px rgba(0,0,0,0.2); z-index: 0;
+            position: absolute; top: -15px; right: 25px; width: 20px; height: 60px; background: #d81159; box-shadow: 2px 2px 5px rgba(0,0,0,0.2); z-index: 0;
         }
         .bookmark::after {
             content: ''; position: absolute; bottom: -10px; left: 0;
             border-left: 10px solid #d81159; border-right: 10px solid #d81159; border-bottom: 10px solid transparent;
         }
-
         #countdown {
-            font-size: 1.1rem; margin: 10px 0; font-weight: bold; color: #5a3a40;
-            background: rgba(255, 255, 255, 0.7); padding: 10px; border-radius: 10px; border: 1px solid rgba(214, 40, 40, 0.1); z-index: 2;
+            font-size: 1.1rem; margin: 10px 0; font-weight: bold; color: #5a3a40; background: rgba(255, 255, 255, 0.7); padding: 10px; border-radius: 10px; border: 1px solid rgba(214, 40, 40, 0.1); z-index: 2;
         }
         #lock-icon { font-size: 3rem; margin-bottom: 5px; z-index: 2; }
-        
         .pulse-text { animation: gentlePulse 2s infinite alternate; }
         @keyframes gentlePulse { from { transform: scale(1); opacity: 0.8; } to { transform: scale(1.05); opacity: 1; } }
-
         #early-message {
             opacity: 0; color: white; font-weight: bold; transition: opacity 0.4s; background: rgba(216, 17, 89, 0.9);
             padding: 8px; border-radius: 8px; font-size: 0.85rem; margin-top: 5px; z-index: 2;
@@ -144,8 +127,7 @@
         /* --- PHOTOS & Washi Tape --- */
         .photo-container { position: relative; display: flex; justify-content: center; margin-bottom: 20px; }
         .photo-frame {
-            position: relative; width: 200px; height: 200px; border-radius: 50%; 
-            border: 8px solid white; box-shadow: 0 8px 15px rgba(0,0,0,0.2); overflow: hidden; animation: floatPhoto 4s infinite ease-in-out alternate;
+            position: relative; width: 200px; height: 200px; border-radius: 50%; border: 8px solid white; box-shadow: 0 8px 15px rgba(0,0,0,0.2); overflow: hidden; animation: floatPhoto 4s infinite ease-in-out alternate;
         }
         .photo-img { width: 100%; height: 100%; object-fit: cover; }
         .washi-tape {
@@ -164,22 +146,31 @@
         .cute-btn:active { transform: scale(0.95); }
         .meter-msg { font-size: 1rem; font-weight: bold; color: #d62828; margin-top: 15px; min-height: 25px;}
 
-        /* --- REASONS & FUTURE LIST ANIMATIONS --- */
-        .reasons-list, .future-list { list-style: none; padding: 0; text-align: left; margin-bottom: 20px; width: 100%; z-index: 2;}
-        .reasons-list li { margin: 8px 0; font-size: 1.5rem; opacity: 0; transform: translateX(-20px); background: rgba(255, 255, 255, 0.6); padding: 5px 10px; border-radius: 10px; }
+        /* --- LISTS (REASONS & FUTURE) --- */
+        .cute-list { list-style: none; padding: 0; text-align: left; margin-bottom: 20px; width: 100%; z-index: 2;}
+        .cute-list li { margin: 8px 0; font-size: 1.5rem; opacity: 0; background: rgba(255, 255, 255, 0.6); padding: 5px 10px; border-radius: 10px; }
         
-        /* New styling for the future goals */
+        .reasons-list li { transform: translateX(-20px); }
         .future-list li { 
-            margin: 10px 0; font-size: 1.3rem; opacity: 0; transform: translateY(20px); 
-            background: white; border: 2px dashed #ffb3c6; padding: 10px; border-radius: 10px; text-align: center; font-weight: bold;
+            font-size: 1.3rem; transform: translateY(20px); background: white; border: 2px dashed #ffb3c6; text-align: center; font-weight: bold;
         }
-
-        /* Trigger animations when page is active */
         .page.active .reasons-list li { animation: slideInText 0.6s forwards; }
         .page.active .future-list li { animation: slideUpFade 0.6s forwards; }
-        
         @keyframes slideInText { to { opacity: 1; transform: translateX(0); } }
         @keyframes slideUpFade { to { opacity: 1; transform: translateY(0); } }
+
+        /* --- NEW PAGES: TIMELINE & BIRTHDAYS --- */
+        .timeline-box {
+            background: rgba(255,255,255,0.8); border: 2px dashed #ffb3c6; padding: 15px; border-radius: 15px; width: 90%; margin-top: 10px; z-index: 2;
+        }
+        .timeline-box p { margin: 8px 0; font-size: 1.1rem; color: #5a3a40; line-height: 1.4; }
+        .timeline-box strong { color: #d81159; }
+
+        .bday-card {
+            background: rgba(255,255,255,0.9); border: 2px dashed #ffb3c6; padding: 15px; border-radius: 15px; width: 85%; margin: 10px 0; box-shadow: 0 4px 8px rgba(0,0,0,0.05); z-index: 2;
+        }
+        .bday-card h4 { margin: 0 0 10px 0; color: #d62828; font-size: 1.3rem; }
+        .bday-timer { font-size: 1rem; font-weight: bold; color: #d81159; background: #ffe6ea; padding: 8px; border-radius: 8px;}
 
         /* --- CAKE --- */
         .cake-container { position: relative; width: 160px; height: 160px; margin-bottom: 20px; cursor: pointer; z-index: 2;}
@@ -210,29 +201,28 @@
         <div class="page page-cover active" id="p1">
             <div class="cover-inner-border">
                 <div class="bookmark"></div>
-                
                 <span class="decor decor-tl" style="color: white; font-size: 1.5rem;">✨</span>
                 <span class="decor decor-br" style="color: white; font-size: 1.2rem;">✨</span>
 
                 <div class="cover-label">
                     <div style="font-size: 2.5rem; margin: 0 0 5px 0; animation: gentlePulse 2s infinite alternate; position: relative; z-index: 2;">💖</div>
-                    <h2 class="letter-font cover-names">Theshu & Ayuuu</h2>
-                    <h1 class="letter-font cover-title">Our 100th Day</h1>
+                    <h2 class="letter-font cover-names">Theshu 🧸 & Ayuuu 🦋</h2>
+                    <h1 class="letter-font cover-title">Our 100th Day 🎉</h1>
                 </div>
 
-                <div id="countdown">Calculating...</div>
+                <div id="countdown">Calculating... ⏳</div>
                 <div id="lock-icon">🔒</div>
-                <p id="early-message">It's not the time yet! Wait for the day, Ayuuu cutie! 🐾</p>
+                <p id="early-message">It's not the time yet! Wait for the day, Ayuuu cutie! 🐾🙈</p>
             </div>
         </div>
 
         <div class="page page-inner-bg page-letter" id="p2">
-            <span class="decor decor-tl">🎀</span>
+            <span class="decor decor-tl">💌</span>
             <span class="decor decor-br">🌸</span>
-            <h2>To My Favorite Person...</h2>
+            <h2>To My Favorite Person... 🥺</h2>
             <div class="letter-font">
-                <p>Can you believe it's already been 100 days? It feels like we just met yesterday, but at the same time, I can't imagine my life without you anymore.</p>
-                <p>Thank you for all the smiles, the laughter, and the warmth you've brought into my days. Every moment with you is special. I love you!</p>
+                <p>Can you believe it's already been 100 days? 🕰️ It feels like we just met yesterday, but at the same time, I can't imagine my life without you anymore 🫂.</p>
+                <p>Thank you for all the smiles 😊, the laughter 😂, and the warmth you've brought into my days ☀️. Every moment with you is special ✨. I love you so much! ❤️</p>
             </div>
         </div>
 
@@ -240,27 +230,23 @@
             <span class="decor decor-tr">💕</span>
             <div class="photo-container">
                 <div class="washi-tape"></div>
-                <div class="photo-frame">
-                    <img src="1.jpg" alt="Our marks photo" class="photo-img">
-                </div>
+                <div class="photo-frame"><img src="1.jpg" alt="Our marks photo" class="photo-img"></div>
             </div>
-            <div class="flirty-line">I want to paint you entirely in red marks. Don't worry, they only show how much I belong to you. 💋</div>
+            <div class="flirty-line">I want to paint you entirely in red marks 💄. Don't worry, they only show how much I belong to you 💋.</div>
         </div>
 
         <div class="page page-inner-bg page-photo" id="p4">
             <span class="decor decor-bl">✨</span>
             <div class="photo-container">
                 <div class="washi-tape"></div>
-                <div class="photo-frame">
-                    <img src="2.jpg" alt="Our dressed up photo" class="photo-img">
-                </div>
+                <div class="photo-frame"><img src="2.jpg" alt="Our dressed up photo" class="photo-img"></div>
             </div>
-            <div class="flirty-line">My favourite accessory is you. I might have to possessive-ly lock you away if other people keep looking. 🔐</div>
+            <div class="flirty-line">My favourite accessory is you 🤵🏽‍♂️👗. I might have to possessive-ly lock you away if other people keep looking 🔐😠.</div>
         </div>
 
         <div class="page page-inner-bg page-meter" id="p5">
             <span class="decor decor-tr">💖</span>
-            <h3>How much do I love you? <span style="animation: gentlePulse 1s infinite alternate; display: inline-block;">💓</span></h3>
+            <h3>How much do I love you? <span style="animation: gentlePulse 1s infinite alternate; display: inline-block;">🥺💓</span></h3>
             <div class="meter-container">
                 <div class="meter-fill" id="meterFill"></div>
             </div>
@@ -271,50 +257,78 @@
         <div class="page page-inner-bg page-reasons" id="p6">
             <span class="decor decor-tl">✨</span>
             <span class="decor decor-br">🌷</span>
-            <h3>I Love...</h3>
-            <ul class="reasons-list letter-font">
-                <li style="animation-delay: 0.2s">✨ Your beautiful smile</li>
-                <li style="animation-delay: 1.0s">🥺 How you make me laugh</li>
-                <li style="animation-delay: 1.8s">💖 Your gorgeous eyes</li>
-                <li style="animation-delay: 2.6s">🐾 The way you look at me</li>
+            <h3>I Love... 💭💖</h3>
+            <ul class="cute-list reasons-list letter-font">
+                <li style="animation-delay: 0.2s">✨ Your beautiful smile 😊</li>
+                <li style="animation-delay: 1.0s">🥺 How you make me laugh 😂</li>
+                <li style="animation-delay: 1.8s">💖 Your gorgeous eyes 👀</li>
+                <li style="animation-delay: 2.6s">🐾 The way you look at me 🥰</li>
             </ul>
-            <div class="flirty-line" style="margin-top: 10px;">And a million other things... 😏</div>
+            <div class="flirty-line" style="margin-top: 10px;">And a million other things... 😏🫶</div>
         </div>
 
         <div class="page page-inner-bg page-future" id="p7">
             <span class="decor decor-tl">✈️</span>
             <span class="decor decor-br">☁️</span>
-            <h3>When We Finally Meet...</h3>
-            <p class="letter-font" style="font-size: 1.2rem; color: #5a3a40; margin-top: 0; padding: 0 10px;">Distance means so little when someone means so much. 🥺</p>
-            <ul class="future-list letter-font">
-                <li style="animation-delay: 0.3s">🛍️ Going shopping together</li>
-                <li style="animation-delay: 1.1s">🎬 Late night movie dates</li>
-                <li style="animation-delay: 1.9s">🫂 Endless cuddling & hugs</li>
-                <li style="animation-delay: 2.7s">🍜 Eating all our favorite foods</li>
+            <h3>When We Finally Meet... 🥺🫂</h3>
+            <p class="letter-font" style="font-size: 1.2rem; color: #5a3a40; margin-top: 0; padding: 0 10px;">Distance means so little when someone means so much. 🌍❤️</p>
+            <ul class="cute-list future-list letter-font">
+                <li style="animation-delay: 0.3s">🛍️ Going shopping together 👗</li>
+                <li style="animation-delay: 1.1s">🎬 Late night movie dates 🍿</li>
+                <li style="animation-delay: 1.9s">🫂 Endless cuddling & hugs 🥰</li>
+                <li style="animation-delay: 2.7s">🍜 Eating all our fav foods 🍕</li>
             </ul>
         </div>
 
-        <div class="page page-inner-bg page-cake" id="p8">
+        <div class="page page-inner-bg page-timeline" id="p8">
+            <span class="decor decor-tl">⏳</span>
+            <span class="decor decor-br">💖</span>
+            <h3>Our Timeline 🗓️✨</h3>
+            <div class="timeline-box">
+                <p><strong>First Met:</strong><br>Jan 18, 2026 🥺💬</p>
+                <p><strong>Together For:</strong><br><span id="days-together-counter" style="font-weight:bold; color:#d62828;">...</span> Days & counting! 🥰</p>
+                <p><strong>100th Day:</strong><br>Apr 28, 2026 🎉💝</p>
+                <p><strong>Forever:</strong><br>Loading... ∞ 💍🤍</p>
+            </div>
+        </div>
+
+        <div class="page page-inner-bg page-birthdays" id="p9">
+            <span class="decor decor-tr">🎈</span>
+            <span class="decor decor-bl">🎁</span>
+            <h3>Birthday Countdowns! 🎂🥳</h3>
+            
+            <div class="bday-card">
+                <h4>Theshu's Day 👑👦🏻<br><span style="font-size: 0.9rem; font-weight:normal;">(March 14)</span></h4>
+                <div class="bday-timer" id="theshu-timer">Calculating... ⏳</div>
+            </div>
+
+            <div class="bday-card">
+                <h4>Ayuuu's Day 👑👧🏻<br><span style="font-size: 0.9rem; font-weight:normal;">(September 22)</span></h4>
+                <div class="bday-timer" id="ayuuu-timer">Calculating... ⏳</div>
+            </div>
+        </div>
+
+        <div class="page page-inner-bg page-cake" id="p10">
             <span class="decor decor-tr">🎊</span>
             <span class="decor decor-bl">🎈</span>
-            <h3>Let's Celebrate! 🎂</h3>
+            <h3>Let's Celebrate! 🎂🎉</h3>
             <div class="cake-container" id="cakeContainer">
-                <p class="cake-instruction pulse-text" id="cakeText">Tap the cake to cut!</p>
+                <p class="cake-instruction pulse-text" id="cakeText">Tap the cake to cut! 🔪🍰</p>
                 <div class="knife" id="knife"></div>
                 <div class="cake-halves" id="cake">
                     <div class="cake-half left-half"><div class="frost-top"></div><div class="frost-mid"></div><div class="drip drip1"></div><div class="drip drip2"></div></div>
                     <div class="cake-half right-half"><div class="frost-top"></div><div class="frost-mid"></div><div class="drip drip3"></div><div class="drip drip4"></div></div>
                 </div>
             </div>
-            <p class="letter-font" style="color: #d62828; font-weight: bold; margin-top: 10px; font-size: 1.8rem;">Happy 100 Days!</p>
+            <p class="letter-font" style="color: #d62828; font-weight: bold; margin-top: 10px; font-size: 1.8rem;">Happy 100 Days! 🥂💖</p>
         </div>
 
-        <div class="page page-inner-bg page-final" id="p9">
+        <div class="page page-inner-bg page-final" id="p11">
             <span class="decor decor-tl">🦋</span>
             <span class="decor decor-br">✨</span>
             <div class="letter-font">
-                <h2 style="font-family: 'Quicksand', sans-serif;">Alhamdulillah.</h2>
-                <p>I am eternally thankful to God for bringing us both together. You are a blessing I never saw coming, and I will cherish you every single day.</p>
+                <h2 style="font-family: 'Quicksand', sans-serif; font-size: 1.5rem;">Alhamdulillah & Amen ✨🙏</h2>
+                <p>I am eternally thankful to Allah 🕋 and to God ✝️ for guiding our hearts to each other 🤲. You are a beautifully answered prayer 🕊️, and I will cherish you every single day 🌅.</p>
                 <p>Love always,</p>
                 <p>- Theshu 💝</p>
             </div>
@@ -343,27 +357,51 @@
     }
     setInterval(createHeart, 800);
 
-    // --- COUNTDOWN LOGIC ---
+    // --- DATE SETTINGS & TIMERS ---
     const meetingDate = new Date('2026-01-18T00:00:00'); 
     const targetDate = new Date(meetingDate.getTime() + (100 * 24 * 60 * 60 * 1000));
+    
+    // Birthday Calculator Helper
+    function getNextBday(m, d) {
+        let now = new Date();
+        // Reset to midnight for fair comparison
+        let today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+        let bday = new Date(now.getFullYear(), m - 1, d);
+        if (today.getTime() > bday.getTime()) {
+            bday.setFullYear(now.getFullYear() + 1);
+        }
+        return bday;
+    }
+    const theshuBday = getNextBday(3, 14); // March 14
+    const ayuuuBday = getNextBday(9, 22);  // Sept 22
+
     const countdownEl = document.getElementById('countdown');
     const lockIcon = document.getElementById('lock-icon');
     const earlyMessage = document.getElementById('early-message');
     const navHint = document.getElementById('navHint');
     let isUnlocked = false;
 
+    function formatBday(targetDate, now) {
+        const dist = targetDate.getTime() - now;
+        // If it's exactly the day (within 24 hours behind)
+        if (dist <= 0 && dist > -86400000) { return "IT'S TODAY! 🎉🎂"; }
+        const d = Math.floor(dist / (1000 * 60 * 60 * 24));
+        const h = Math.floor((dist % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const m = Math.floor((dist % (1000 * 60 * 60)) / (1000 * 60));
+        const s = Math.floor((dist % (1000 * 60)) / 1000);
+        return `${d}d ${h}h ${m}m ${s}s`;
+    }
+
     function updateTimer() {
         const now = new Date().getTime();
+        
+        // 1. Cover 100th Day Logic
         const distance = targetDate.getTime() - now;
-
         if (distance <= 0 || lockKeyword !== "Ayu") {
             isUnlocked = true;
-            if (lockKeyword !== "Ayu") {
-                countdownEl.innerHTML = "Testing Mode 🛠️";
-            } else {
-                countdownEl.innerHTML = "It's time! 🎉";
-            }
-            lockIcon.innerHTML = "🔓 <br> <span class='pulse-text' style='font-size: 1rem; display:inline-block; margin-top:5px;'>Tap to open!</span>";
+            if (lockKeyword !== "Ayu") { countdownEl.innerHTML = "Testing Mode 🛠️"; } 
+            else { countdownEl.innerHTML = "It's time! 🎉"; }
+            lockIcon.innerHTML = "🔓 <br> <span class='pulse-text' style='font-size: 1rem; display:inline-block; margin-top:5px;'>Tap to open! 🗝️</span>";
         } else {
             const days = Math.floor(distance / (1000 * 60 * 60 * 24));
             const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
@@ -371,13 +409,21 @@
             const seconds = Math.floor((distance % (1000 * 60)) / 1000);
             countdownEl.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
         }
+
+        // 2. Live Days Together Counter (Page 8)
+        const daysTogether = Math.floor((now - meetingDate.getTime()) / (1000 * 60 * 60 * 24));
+        document.getElementById('days-together-counter').innerText = Math.max(0, daysTogether);
+
+        // 3. Birthday Countdowns (Page 9)
+        document.getElementById('theshu-timer').innerText = formatBday(theshuBday, now);
+        document.getElementById('ayuuu-timer').innerText = formatBday(ayuuuBday, now);
     }
     updateTimer();
     setInterval(updateTimer, 1000);
 
     // --- MULTI-PAGE NAVIGATION LOGIC ---
     let currentPage = 1;
-    const totalPages = 9; // Updated to 9 pages!
+    const totalPages = 11; // 11 Pages now!
     const bookContainer = document.getElementById('bookContainer');
 
     function updateActivePage() {
@@ -408,9 +454,9 @@
 
         // Go Forward
         if (currentPage < totalPages && clickX >= (rect.width * 0.3)) {
-            // Interactive elements boundaries (Cake is now on page 8)
+            // Interactive protection (Cake is on page 10 now!)
             if (currentPage === 5 && (e.target.id === 'loveBtn')) return; 
-            if (currentPage === 8 && (e.target.closest('#cakeContainer'))) return; 
+            if (currentPage === 10 && (e.target.closest('#cakeContainer'))) return; 
 
             document.getElementById('p' + currentPage).classList.add('flipped');
             currentPage++;
@@ -437,7 +483,7 @@
                 meterMsg.innerHTML = "Warning: Love Overload!! 💖💥";
                 loveBtn.style.display = 'none'; 
             } else {
-                meterMsg.innerHTML = "More! Keep tapping! 🐾";
+                meterMsg.innerHTML = "More! Keep tapping! 🐾🥰";
             }
         }
     };
@@ -463,7 +509,7 @@
 
     // Reset interactions
     function checkInteractiveStates() {
-        if (currentPage === 8 && cakeIsCut) {
+        if (currentPage === 10 && cakeIsCut) {
             cake.classList.remove('cake-slice-anim');
             knife.classList.remove('knife-anim');
             cakeText.style.display = 'block';
