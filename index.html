@@ -1,7 +1,874 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8"><!DOCTYPE html>
+<html lang="en">
+<head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Our 100th Day - The Story 💝</title>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- 1. Basic Cute Theme Setup (Optimized for Mobile Fit) --- */
+        * { -webkit-tap-highlight-color: transparent; box-sizing: border-box; }
+        
+        body {
+            background-color: #ffe6ea; font-family: 'Quicksand', sans-serif; 
+            display: flex; justify-content: center; align-items: center;
+            height: 100vh; margin: 0; overflow: hidden; color: #5a3a40; 
+            -webkit-font-smoothing: antialiased;
+            perspective: 3000px; -webkit-perspective: 3000px;
+        }
+
+        /* --- 2. Floating Background Elements (Enhanced) --- */
+        .falling-heart {
+            position: absolute; top: -10vh; font-size: 1.5rem; color: #ffb3c6;
+            opacity: 0.7; animation: fall linear forwards; z-index: 0; pointer-events: none; 
+            will-change: transform;
+        }
+        @keyframes fall {
+            0% { transform: translate3d(0, 0, 0) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.8; }
+            100% { transform: translate3d(var(--x-end), 110vh, 0) rotate(360deg); opacity: 0; }
+        }
+
+        /* --- Music Toggle Button --- */
+        .music-toggle {
+            position: absolute; top: 20px; right: 20px; font-size: 1.3rem;
+            background: rgba(255, 255, 255, 0.9); border: 2px dashed #ffb3c6;
+            border-radius: 50%; width: 40px; height: 40px;
+            display: flex; justify-content: center; align-items: center;
+            cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            z-index: 100; animation: spinRecord 4s linear infinite;
+            animation-play-state: paused; opacity: 0.7; transition: opacity 0.3s;
+        }
+        .music-toggle:active { transform: scale(0.9); }
+        .music-toggle.playing { animation-play-state: running; opacity: 1; border-style: solid; }
+        @keyframes spinRecord { 100% { transform: rotate(360deg); } }
+
+        /* --- THE MAGIC BOOK CONTAINER --- */
+        .website-container {
+            display: flex; flex-direction: column; align-items: center; z-index: 10; 
+            will-change: transform;
+        }
+
+        /* --- THE ANTI-GLITCH BOOK PHYSICS (Max Animation Edits) --- */
+        .book {
+            position: relative; width: 320px; height: 480px; 
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            /* NEW: Opening animation - Flies in and bounces */
+            transform: translate3d(0, 100vh, 0) rotateX(10deg);
+            animation: bookFlyIn 1.8s cubic-bezier(0.22, 1.61, 0.36, 1) forwards;
+        }
+
+        @keyframes bookFlyIn {
+            100% { transform: translate3d(0, 0, 0) rotateX(0deg); }
+        }
+
+        .page {
+            position: absolute; width: 100%; height: 100%; top: 0; left: 0;
+            background: #fff0f3; border-radius: 5px 12px 12px 5px; 
+            overflow: hidden !important; /* Forces everything inside */
+            
+            backface-visibility: hidden; -webkit-backface-visibility: hidden; 
+            transform-origin: left center; -webkit-transform-origin: left center;
+            
+            /* Initial stacking & position */
+            transform: translate3d(0,0,0) rotateY(0deg);
+            z-index: 2;
+            
+            transition: transform 1.2s cubic-bezier(0.645, 0.045, 0.355, 1);
+            will-change: transform;
+        }
+
+        /* NEW: Soft Magical Page Shadow Layer */
+        .page::after {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(90deg, rgba(216, 17, 89, 0.03) 0%, rgba(255,255,255,0) 10%, rgba(255,255,255,0) 90%, rgba(216, 17, 89, 0.03) 100%);
+            pointer-events: none;
+        }
+
+        /* NEW: Magical Inner Gradient Background */
+        .page-inner-bg {
+            background: linear-gradient(-45deg, #fff0f3, #ffe6ea, #fff0f3, #ffd6e0);
+            background-size: 400% 400%;
+            animation: dreamyGradient 15s ease infinite;
+        }
+        @keyframes dreamyGradient { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+
+        /* --- Correct 3D Stacking Order --- */
+        #p1 { z-index: 14; } #p2 { z-index: 13; } #p3 { z-index: 12; } #p4 { z-index: 11; }
+        #p5 { z-index: 10; } #p6 { z-index: 9; } #p7 { z-index: 8; } #p8 { z-index: 7; } 
+        #p9 { z-index: 6; } #p10 { z-index: 5; } #p11 { z-index: 4; } #p12 { z-index: 3; }
+        #p13 { z-index: 2; } #p14 { z-index: 1; }
+
+        /* The Turning Page Animation */
+        .page.flipped { 
+            transform: rotateY(-178deg) translate3d(0,0,0); /* -178 to prevent pixel glitching */
+            z-index: 1 !important; /* Sends to back *after* the turn */
+        }
+        
+        /* NEW: Darkening shadow during the turn */
+        .page.flipped::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.1); z-index: 10;
+            animation: flipShadow 1.2s ease forwards;
+        }
+        @keyframes flipShadow { 0%, 100% { opacity: 0; } 50% { opacity: 1; } }
+
+        /* --- MAX ANIMATION CONTENT PHYSICS! --- */
+        
+        /* 1. Global Pop-In Animation (Bouncy) */
+        .pop-item {
+            opacity: 0; transform: translate3d(0, 30px, 0) scale(0.8); will-change: transform, opacity;
+        }
+        .page.active .pop-item {
+            animation: bouncyPopIn 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        }
+        @keyframes bouncyPopIn { 100% { opacity: 1; transform: translate3d(0, 0, 0) scale(1); } }
+
+        /* 2. Photo Assembly Animation (P3, P4) */
+        .page-photo .photo-frame { transform: rotate3d(1, 0, 0, 90deg); opacity: 0; }
+        .page.active.page-photo .photo-frame { animation: frameAssemble 1s 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) forwards; }
+        @keyframes frameAssemble { 100% { transform: rotate3d(1, 0, 0, 0deg) rotate(-3deg); opacity: 1; } }
+
+        /* 3. Reasons List Assembly (P6) */
+        .reasons-list li { opacity: 0; transform: translate3d(-30px, 0, 0); }
+        .page.active .reasons-list li { animation: reasonAssemble 0.5s forwards; }
+        @keyframes reasonAssemble { 100% { opacity: 1; transform: translate3d(0, 0, 0); } }
+
+        /* 4. Future List Assembly (P7) */
+        .future-list li { opacity: 0; transform: translate3d(0, 30px, 0); }
+        .page.active .future-list li { animation: reasonAssemble 0.5s forwards; }
+
+        /* 5. Map Path Drawing Animation (P9) */
+        .map-wrapper svg path { stroke-dasharray: 1000; stroke-dashoffset: 1000; opacity: 0; }
+        .page.active .map-wrapper svg path { animation: drawPath 2s 1s ease forwards; }
+        @keyframes drawPath { 100% { stroke-dashoffset: 0; opacity: 1; } }
+
+        /* 6. Floating Drifting Background Embellishments (Inside Pages) */
+        .floating-bg-decor {
+            position: absolute; font-size: 1.2rem; opacity: 0.15; z-index: 1; pointer-events: none;
+            animation: driftDecor 10s infinite ease-in-out;
+        }
+        @keyframes driftDecor { 0%, 100% { transform: translate3d(0,0,0); } 50% { transform: translate3d(20px, 15px, 0); } }
+
+        /* Standard Stagger Delays (Updated) */
+        .delay-1 { animation-delay: 0.15s !important; }
+        .delay-2 { animation-delay: 0.3s !important; }
+        .delay-3 { animation-delay: 0.45s !important; }
+        .delay-4 { animation-delay: 0.6s !important; }
+
+        /* --- FONTS & DECOR --- */
+        .letter-font { font-family: 'Caveat', cursive; color: #d81159; line-height: 1.2; font-size: 1.3rem; z-index: 2; position: relative;}
+        h2 { font-size: 1.4rem; color: #d62828; margin: 0 0 5px 0; text-shadow: 1px 1px 2px rgba(255,255,255,0.8); }
+        h3 { font-size: 1.2rem; color: #d62828; margin: 0 0 3px 0; text-shadow: 1px 1px 2px rgba(255,255,255,0.8); }
+        p { margin: 3px 0; } 
+
+        .decor { position: absolute; font-size: 1.6rem; opacity: 0.6; pointer-events: none; animation: floatDecor 3s infinite ease-in-out alternate; z-index: 0; }
+        @keyframes floatDecor { from { transform: translate3d(0, 0, 0) rotate(-5deg); } to { transform: translate3d(0, -6px, 0) rotate(5deg); } }
+
+        /* --- PAGE 1: COVER --- */
+        .page-cover {
+            background: linear-gradient(135deg, #ff9aae, #ff7ea5); 
+            border-radius: 5px 12px 12px 5px; border-left: 12px solid #d81159; 
+            box-shadow: inset 4px 0 8px rgba(0,0,0,0.1); padding: 10px !important;
+            animation: coverGlow 2s 2s infinite alternate ease-in-out;
+        }
+        @keyframes coverGlow { to { box-shadow: inset 4px 0 8px rgba(0,0,0,0.1), 0 0 30px rgba(216, 17, 89, 0.4); } }
+        .cover-inner-border { width: 100%; height: 100%; border: 2px dashed rgba(255,255,255,0.4); border-radius: 8px; display: flex; flex-direction: column; align-items: center; justify-content: space-around; position: relative; padding: 5px; }
+        .cover-label { background: #fff; padding: 8px 12px; border-radius: 12px; border: 2px dashed #ffb3c6; position: relative; width: 95%; z-index: 2; }
+        .cover-title { font-size: 2rem; color: #d62828; margin: 0; padding-bottom: 3px; border-bottom: 2px dashed #ffb3c6; width: 100%; text-shadow: none;}
+        #countdown { font-size: 0.95rem; font-weight: bold; color: #5a3a40; background: rgba(255, 255, 255, 0.7); padding: 6px 10px; border-radius: 10px; border: 1px solid rgba(214, 40, 40, 0.1); z-index: 2; }
+        #lock-icon { font-size: 2.3rem; z-index: 2; }
+
+        /* --- PHOTOS --- */
+        .photo-container { position: relative; display: flex; justify-content: center; margin-bottom: 10px; width: 100%; }
+        .photo-frame { position: relative; width: 160px; height: 160px; border-radius: 50%; border: 7px solid white; box-shadow: 0 8px 15px rgba(0,0,0,0.15); overflow: hidden; transform: rotate(-3deg); transition: transform 0.5s ease; }
+        .photo-frame:active { transform: rotate(0deg) scale(1.1); z-index: 10;}
+        .photo-img { width: 100%; height: 100%; object-fit: cover; }
+        .washi-tape { position: absolute; top: -5px; width: 70px; height: 20px; background-color: rgba(255, 179, 198, 0.9); box-shadow: 0 2px 4px rgba(0,0,0,0.05); z-index: 10; border-radius: 3px; }
+        #p3 .washi-tape { transform: rotate(-5deg); left: 35%; }
+        #p4 .washi-tape { transform: rotate(6deg); left: 38%; background-color: rgba(255, 143, 171, 0.9); }
+        .flirty-line { font-size: 0.85rem; color: #4a1c1c; background: rgba(255, 214, 224, 0.9); padding: 8px 12px; border-radius: 10px; font-weight: bold; border: 2px dashed #ff8fab; z-index: 2; width: 98%; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
+
+        /* --- LOVE METER --- */
+        .meter-container { width: 90%; height: 20px; background: #fff; border-radius: 15px; border: 3px dashed #ffb3c6; margin: 8px 0; overflow: hidden; position: relative; }
+        .meter-fill { height: 100%; width: 0%; background: linear-gradient(90deg, #ff8fab, #d81159); transition: width 0.3s ease-out; }
+        .cute-btn { background: #d81159; color: white; border: none; padding: 7px 15px; font-size: 0.85rem; border-radius: 20px; font-family: inherit; font-weight: bold; cursor: pointer; box-shadow: 0 0 15px rgba(216, 17, 89, 0.3); transition: transform 0.1s; margin: 3px 0; animation: gentlePulse 1.5s infinite alternate ease-in-out; }
+        .cute-btn:active { transform: scale(0.95); }
+        .meter-msg { font-size: 0.85rem; font-weight: bold; color: #d62828; min-height: 18px; margin: 3px 0;}
+        .stats-box { background: rgba(255,255,255,0.85); border: 2px dashed #ffb3c6; padding: 8px; border-radius: 12px; width: 98%; margin-top: 3px; z-index: 2; text-align: left;}
+        .stats-box p { margin: 2px 0; font-size: 0.8rem; color: #5a3a40; font-weight: bold;}
+
+        /* --- LISTS --- */
+        .cute-list { list-style: none; padding: 0; text-align: left; margin: 0; width: 100%; z-index: 2; }
+        .cute-list li { margin: 3px 0; font-size: 1.05rem; background: rgba(255, 255, 255, 0.7); padding: 4px 10px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.03);}
+
+        /* --- TIMELINE & BIRTHDAYS --- */
+        .timeline-box { background: rgba(255,255,255,0.85); border: 2px dashed #ffb3c6; padding: 8px; border-radius: 12px; width: 98%; z-index: 2; margin-top: 3px; box-shadow: 0 2px 8px rgba(0,0,0,0.03);}
+        .timeline-box p { margin: 4px 0; font-size: 0.9rem; color: #5a3a40; line-height: 1.3; }
+        .timeline-box strong { color: #d81159; }
+        .status-badge { background: #ffe6ea; border: 2px dashed #ff8fab; padding: 4px 10px; border-radius: 20px; font-weight: bold; color: #d81159; font-size: 0.8rem; margin-top: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.03);}
+
+        .bday-card { background: rgba(255,255,255,0.9); border: 2px dashed #ffb3c6; padding: 8px; border-radius: 12px; width: 95%; margin: 6px 0; z-index: 2; box-shadow: 0 2px 8px rgba(0,0,0,0.03); }
+        .bday-card h4 { margin: 0 0 3px 0; color: #d62828; font-size: 1.05rem; }
+        .bday-timer { font-size: 0.9rem; font-weight: bold; color: #d81159; background: #ffe6ea; padding: 5px; border-radius: 7px;}
+
+        /* --- PAGE 9 - KERALA TO GOA MAP --- */
+        .map-wrapper { position: relative; width: 190px; height: 190px; background: #e0f7fa; border-radius: 50%; border: 6px solid white; box-shadow: 0 8px 20px rgba(0,0,0,0.1); margin: 8px 0; overflow: hidden; z-index: 2; }
+        .map-pin { position: absolute; font-size: 1.2rem; display: flex; flex-direction: column; align-items: center; z-index: 5; opacity: 0; transform: translate3d(0, -20px, 0); }
+        .page.active .map-pin { animation: bdayPinDrop 0.8s 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) forwards; }
+        @keyframes bdayPinDrop { 100% { opacity: 1; transform: translate3d(0, 0, 0); } }
+        .pin-kerala { bottom: 20px; left: 40px; } .pin-goa { top: 30px; right: 40px; }
+        
+        /* Max Animation: Replaced dashed border with SVG path for true drawing effect */
+        .map-wrapper svg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 3; pointer-events: none;}
+        .airplane { position: absolute; font-size: 1.2rem; z-index: 6; opacity: 0; }
+        .page.active .airplane { animation: flyPlaneMagical 4s 2s infinite ease-in-out; }
+        @keyframes flyPlaneMagical {
+            0% { transform: translate3d(55px, 140px, 0) rotate(20deg); opacity: 0; }
+            5% { opacity: 1; }
+            95% { opacity: 1; }
+            100% { transform: translate3d(130px, 45px, 0) rotate(50deg); opacity: 0; }
+        }
+        .boarding-pass { background: white; border: 2px dashed #ffb3c6; width: 98%; padding: 6px 10px; border-radius: 10px; font-size: 0.75rem; text-align: left; display: flex; justify-content: space-between; z-index: 2; margin-top: 3px; color: #5a3a40; box-shadow: 0 2px 8px rgba(0,0,0,0.03);}
+
+        /* --- PAGE 11: SCRATCH OFF TICKET --- */
+        .scratch-wrapper { position: relative; width: 230px; height: 120px; margin: 10px auto; border-radius: 15px; box-shadow: 0 8px 15px rgba(0,0,0,0.1); overflow: hidden; border: 3px dashed #d81159; z-index: 2; }
+        .scratch-secret { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: #fff; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 15px; box-sizing: border-box; font-size: 1rem; color: #d81159; text-align: center; }
+        #scratchCanvas { position: absolute; top: 0; left: 0; z-index: 5; cursor: pointer; }
+
+        /* --- PAGE 12: CAKE --- */
+        .cake-container { position: relative; width: 150px; height: 150px; margin: 8px 0; cursor: pointer; z-index: 2;}
+        .cake-plate { position: absolute; bottom: 0px; left: 50%; transform: translateX(-50%); width: 140px; height: 18px; background: linear-gradient(0deg, #bdbdbd 0%, #ffffff 50%, #e0e0e0 100%); border-radius: 50%; border: 2px solid #a1a1a1; border-bottom: 3px solid #a1a1a1; z-index: 0; box-shadow: 0 8px 8px rgba(0,0,0,0.1); }
+        .cake-halves { position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); display: flex; width: 120px; height: 80px; z-index: 1;}
+        .cake-half { width: 50%; height: 100%; position: relative; background: #fdf2e9; border-bottom: 4px solid #d35400; transition: transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1); }
+        .left-half { border-radius: 10px 0 0 4px; border-right: 1px solid #f0e0d0; } .right-half { border-radius: 0 10px 4px 0; }
+        .frost-top { position: absolute; top: 0; left: 0; width: 100%; height: 25px; background: #ff8fab; background-image: radial-gradient(circle, #fff 1px, transparent 1.5px), radial-gradient(circle, #ffeb3b 1px, transparent 1.5px), radial-gradient(circle, #ff007f 1px, transparent 1.5px), radial-gradient(circle, #00bcd4 1px, transparent 1.5px); background-size: 8px 8px, 12px 12px, 10px 15px, 15px 10px; background-position: 0 0, 4px 2px, 2px 6px, 6px 2px; }
+        .frost-mid { position: absolute; top: 35px; left: 0; width: 100%; height: 10px; background: #ffb3c6; }
+        .cake-number { position: absolute; top: 40px; font-family: 'Caveat', cursive; font-size: 1.7rem; color: #d81159; font-weight: bold; text-shadow: 2px 2px 0px rgba(255,255,255,0.7); z-index: 5; }
+        .candle { position: absolute; top: -20px; right: -2px; width: 5px; height: 25px; background: repeating-linear-gradient(45deg, #fff, #fff 3px, #ff8fab 3px, #ff8fab 6px); border-radius: 3px; z-index: 4; }
+        .flame { position: absolute; top: -10px; left: 50%; transform: translateX(-50%); width: 7px; height: 12px; background: #ffcc00; border-radius: 50% 50% 20% 20%; box-shadow: 0 0 10px #ffcc00, 0 0 20px #ff9900; animation: flicker 0.1s infinite alternate; }
+        @keyframes flicker { 0% { opacity: 0.8; transform: translate3d(-50%, 0, 0) scale(1); } 100% { opacity: 1; transform: translate3d(-50%, -1px, 0) scale(1.05); } }
+        .knife { position: absolute; top: -30px; left: 50%; width: 3px; height: 120px; background: linear-gradient(90deg, #bdc3c7, #ecf0f1, #bdc3c7); border-radius: 2px; transform: translateX(-50%) translateY(-200px); transition: transform 0.5s cubic-bezier(0.5, 0, 0.5, 1); z-index: 5; }
+        .knife::after { content: ''; position: absolute; top: -15px; left: -3px; width: 10px; height: 30px; background: #c0392b; border-radius: 3px; }
+        .knife-anim { transform: translate3d(-50%, 20px, 0); }
+        .cake-slice-anim .right-half { transform: translate3d(15px, 0, 0) rotate(5deg); transform-origin: bottom right; }
+        .cake-slice-anim .left-half { transform: translate3d(-8px, 0, 0) rotate(-3deg); transform-origin: bottom left; }
+        .cake-slice-anim .flame { opacity: 0; } 
+        .pop-item-cake { opacity: 0; transform: translate3d(0, 30px, 0) scale(0.8); will-change: transform, opacity; }
+        .page.active .pop-item-cake { animation: bouncyPopIn 0.8s 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards; }
+        
+        .nav-hint { margin-top: 8px; font-size: 0.8rem; color: #888; background: white; padding: 4px 10px; border-radius: 15px; z-index: 10; box-shadow: 0 2px 5px rgba(0,0,0,0.03);}
+    </style>
+</head>
+<body>
+
+<audio id="bgMusic" loop>
+    <source src="3.mp3" type="audio/mpeg">
+</audio>
+
+<div id="musicToggle" class="music-toggle">🎵</div>
+
+<div class="website-container">
+    <div class="book" id="bookContainer">
+        
+        <div class="page page-cover active" id="p1">
+            <div class="cover-inner-border">
+                <div class="bookmark"></div>
+                <span class="decor decor-tl" style="color: white;">✨</span>
+                <span class="decor decor-br" style="color: white;">✨</span>
+
+                <div class="cover-label pop-item delay-1">
+                    <div class="pulse-text" style="font-size: 2.1rem; margin-bottom: 3px;">💖</div>
+                    <h2 class="letter-font cover-names">Theshu 🧸 & Ayuuu 🦋</h2>
+                    <h1 class="letter-font cover-title">Our 100th Day 🎉</h1>
+                    <div class="cover-hints">
+                        <p style="margin-bottom: 3px; font-size: 0.85rem; color:#d62828;">Spilling the tea... ☕</p>
+                        <div class="hint-item"><span>📸</span> Core Memories inside</div>
+                        <div class="hint-item"><span>❤️</span> The Love Meter</div>
+                        <div class="hint-item"><span>✈️</span> Kerala to Goa Map!</div>
+                        <div class="hint-item"><span class="pulse-text">🎂</span> A Birthday Surprise</div>
+                    </div>
+                </div>
+
+                <div id="countdown" class="pop-item delay-2">⏳</div>
+                <div id="lock-icon" class="pop-item delay-3">🔒</div>
+                <p id="early-message">It's not the time yet! Wait, cutie! 🐾🙈</p>
+            </div>
+        </div>
+
+        <div class="page dreamyGradient page-letter" id="p2">
+            <span class="decor decor-tl">💌</span>
+            <span class="decor decor-br">🌸</span>
+            <div class="floating-bg-decor" style="top:20%; left:10%;">💖</div>
+            <div class="floating-bg-decor" style="bottom:25%; right:15%; animation-delay:1s;">✨</div>
+
+            <h2 class="pop-item delay-1">To My Favorite... 🥺</h2>
+            <div class="letter-font pop-item delay-2" style="font-size: 1.25rem; padding: 0 5px;">
+                <p>Can you believe it's been 100 days? 🕰️ It feels like yesterday, yet I can't imagine life without you 🫂.</p>
+                <p>Thank you for all the smiles 😊 and warmth ☀️. Every moment with you is special ✨. Love you so much! ❤️</p>
+            </div>
+            
+            <div class="letter-font pop-item delay-3" style="margin-top: 10px; font-weight: bold; background: rgba(255,255,255,0.7); padding: 5px 10px; border-radius: 10px; border: 2px dashed #ffb3c6; font-size: 1.1rem; box-shadow: 0 4px 10px rgba(0,0,0,0.03);">
+                P.P.S. You owe me a kiss for every word here. 😘💌
+            </div>
+            <div class="letter-font pop-item delay-4" style="margin-top: 5px; font-weight: bold; background: rgba(255,255,255,0.7); padding: 5px 10px; border-radius: 10px; border: 2px dashed #ffb3c6; font-size: 1.1rem; box-shadow: 0 4px 10px rgba(0,0,0,0.03);">
+                P.S. I look at your pictures daily. 📸🙈
+            </div>
+        </div>
+
+        <div class="page page-inner-bg page-photo" id="p3">
+            <span class="decor decor-tr">💕</span>
+            <div class="floating-bg-decor" style="top:50%; right:10%;">✨</div>
+            <div class="photo-container">
+                <div class="washi-tape"></div>
+                <div class="photo-frame"><img src="1.jpg" alt="Photo 1" class="photo-img"></div>
+            </div>
+            <div class="flirty-line pop-item delay-1">I want to paint you in red marks 💄. They only show how much I belong to you 💋.</div>
+            <div class="photo-tag pop-item delay-2">📍 Location: My heart</div>
+        </div>
+
+        <div class="page page-inner-bg page-photo" id="p4">
+            <span class="decor decor-bl">✨</span>
+            <div class="floating-bg-decor" style="top:20%; left:10%;">💖</div>
+            <div class="photo-container">
+                <div class="washi-tape"></div>
+                <div class="photo-frame"><img src="2.jpg" alt="Photo 2" class="photo-img"></div>
+            </div>
+            <div class="flirty-line pop-item delay-1">My favourite accessory is you 🤵🏽‍♂️👗. Other people keep looking...🔐😠.</div>
+            <div class="photo-tag pop-item delay-2">🚨 Warning: Too gorgeous!</div>
+        </div>
+
+        <div class="page page-inner-bg page-meter" id="p5">
+            <span class="decor decor-tr">💖</span>
+            <div class="floating-bg-decor" style="bottom:10%; left:10%; font-size:2rem;">💓</div>
+            <h3 class="pop-item delay-1">How much do I love you? <span class="pulse-text" style="display: inline-block;">🥺💓</span></h3>
+            <div class="meter-container pop-item delay-2">
+                <div class="meter-fill" id="meterFill"></div>
+            </div>
+            <button class="cute-btn pop-item delay-3" id="loveBtn">Tap to measure! 👆</button>
+            <p class="meter-msg pop-item delay-3" id="meterMsg"></p>
+            <div class="stats-box letter-font pop-item delay-4">
+                <p>💬 Late Night Chats: Countless</p>
+                <p>🦋 Butterflies: Every text</p>
+                <p>🥺 Missing You: 10000%</p>
+            </div>
+            <div class="pop-item delay-4" style="margin-top: 5px; font-size: 0.85rem; color: #d81159; font-weight: bold; font-family: 'Caveat', cursive;">
+                *System Error: Love overload! 💥*
+            </div>
+        </div>
+
+        <div class="page page-inner-bg page-reasons" id="p6">
+            <span class="decor decor-tl">✨</span>
+            <span class="decor decor-br">🌷</span>
+            <div class="floating-bg-decor" style="top:30%; right:10%;">⭐</div>
+            <h3 class="pop-item delay-1">I Love... 💭💖</h3>
+            <ul class="cute-list reasons-list letter-font">
+                <li style="animation-delay: 0.2s">✨ Your beautiful smile 😊</li>
+                <li style="animation-delay: 0.5s">🥺 How you make me laugh 😂</li>
+                <li style="animation-delay: 0.8s">💖 Your gorgeous eyes 👀</li>
+                <li style="animation-delay: 1.1s">🐾 The way you look at me 🥰</li>
+                <li style="animation-delay: 1.4s">🎶 Your cute voice notes 🥺</li>
+                <li style="animation-delay: 1.7s">✨ Everything about you 💍</li>
+            </ul>
+            <div class="status-badge pop-item delay-4" style="margin-top: 5px;">Verdict: Stuck with me 🤭🔒</div>
+        </div>
+
+        <div class="page page-inner-bg page-future" id="p7">
+            <span class="decor decor-tl">✈️</span>
+            <span class="decor decor-br">☁️</span>
+            <div class="floating-bg-decor" style="bottom:10%; right:10%; font-size:2rem;">🌍</div>
+            <h3 class="pop-item delay-1">Finally Meet... 🥺🫂</h3>
+            <ul class="cute-list future-list letter-font">
+                <li style="animation-delay: 0.3s">🛍️ Shopping together 👗</li>
+                <li style="animation-delay: 0.6s">🎬 Late movie dates 🍿</li>
+                <li style="animation-delay: 0.9s">🫂 Endless cuddling 🥰</li>
+                <li style="animation-delay: 1.2s">🍜 Eating all fav foods 🍕</li>
+            </ul>
+            <div class="status-badge pop-item delay-4" style="margin-top: 5px;">Progress: [██████▒▒] 80% 🔋</div>
+            <div class="letter-font pop-item delay-4" style="margin-top: 8px; font-weight: bold; background: rgba(255,255,255,0.7); padding: 5px 10px; border-radius: 10px; border: 2px dashed #ffb3c6; font-size: 1.05rem;">
+                P.S. I'm paying! 💳<br>(No arguments! 😤)
+            </div>
+        </div>
+
+        <div class="page page-inner-bg page-timeline" id="p8">
+            <span class="decor decor-tl">⏳</span>
+            <span class="decor decor-br">💖</span>
+            <div class="floating-bg-decor" style="top:20%; left:10%;">✨</div>
+            <h3 class="pop-item delay-1">Our Timeline 🗓️✨</h3>
+            <div class="timeline-box pop-item delay-2">
+                <p><strong>First Met:</strong> Jan 18, 2026 🥺</p>
+                <p><strong>Together For:</strong> <span id="days-together-counter" style="color:#d62828;">..</span> Days!🥰</p>
+                <p><strong>100th Day:</strong> Apr 28, 2026 🎉</p>
+                <p><strong>Forever:</strong> Loading... ∞ 💍🤍</p>
+            </div>
+            <div class="status-badge pop-item delay-3">Status: Thinking of you... 💭❤️</div>
+        </div>
+
+        <div class="page page-inner-bg page-map" id="p9">
+            <span class="decor decor-tl">🌤️</span>
+            <span class="decor decor-br">☁️</span>
+            <h3 class="pop-item delay-1">Distance 🌍</h3>
+            <p class="letter-font pop-item delay-1" style="font-size: 1.1rem; margin-bottom:0;">It means nothing. 🥺✈️</p>
+            
+            <div class="map-wrapper">
+                <div class="map-pin pin-kerala">🌴<span style="font-size: 0.65rem;">Kerala</span></div>
+                <svg viewBox="0 0 190 190">
+                    <path d="M55,140 C70,100 110,80 130,45" fill="none" stroke="#d81159" stroke-width="3" stroke-dasharray="8 6" id="mapPath"/>
+                </svg>
+                <div class="airplane">✈️</div>
+                <div class="map-pin pin-goa">🏖️<span style="font-size: 0.65rem;">Goa</span></div>
+            </div>
+            
+            <div class="boarding-pass pop-item delay-4">
+                <div><strong>From:</strong> Kerala<br><strong>To:</strong> Goa</div>
+                <div style="text-align: right;"><strong>Class:</strong> Love<br><strong>Seat:</strong> Next to you</div>
+            </div>
+        </div>
+
+        <div class="page page-inner-bg page-birthdays" id="p10">
+            <span class="decor decor-tr">🎈</span>
+            <span class="decor decor-bl">🎁</span>
+            <div class="floating-bg-decor" style="bottom:15%; right:10%;">✨</div>
+            <h3 class="pop-item delay-1">Countdowns! 🎂🥳</h3>
+            <div class="bday-card pop-item delay-2">
+                <h4>Theshu👑👦🏻 <span style="font-size: 0.8rem; font-weight:normal;">(Mar 14)</span></h4>
+                <div class="bday-timer" id="theshu-timer">..d ..h</div>
+            </div>
+            <div class="bday-card pop-item delay-3">
+                <h4>Ayuuu👑👧🏻 <span style="font-size: 0.8rem; font-weight:normal;">(Sep 22)</span></h4>
+                <div class="bday-timer" id="ayuuu-timer">..d ..h</div>
+            </div>
+            <div class="pop-item delay-4 letter-font" style="margin-top: 5px; color:#d62828;">*Expect lots of kisses!💋</div>
+        </div>
+
+        <div class="page page-inner-bg page-scratch" id="p11">
+            <span class="decor decor-tl">🪙</span>
+            <span class="decor decor-br">✨</span>
+            <div class="floating-bg-decor" style="bottom:20%; left:10%;">💖</div>
+            <h3 class="pop-item delay-1">A secret... 🤫</h3>
+            <p class="letter-font pop-item delay-2" style="margin-bottom: 5px; font-size: 1.1rem;">Rub the silver box! 🪙👆</p>
+            
+            <div class="scratch-wrapper pop-item delay-3">
+                <div class="scratch-secret letter-font">
+                    🎉 <strong>UNLOCKED!</strong> 🎉<br>
+                    ONE FREE cuddling session when we meet!🫂💕
+                </div>
+                <canvas id="scratchCanvas" width="230" height="120"></canvas>
+            </div>
+            <div class="flirty-line pop-item delay-4" style="margin-top: 8px;">No refunds. Valid forever. 😏</div>
+        </div>
+
+        <div class="page page-inner-bg page-cake" id="p12">
+            <span class="decor decor-tr">🎊</span>
+            <span class="decor decor-bl">🎈</span>
+            <h3 class="pop-item delay-1">Celebrate! 🎂🎉</h3>
+            <p class="letter-font pop-item delay-2" style="font-size: 1.1rem; margin:0;">Make a wish... 🌠</p>
+            
+            <div class="cake-container" id="cakeContainer">
+                <p class="cake-instruction pulse-text" id="cakeText">Tap to cut! 🔪</p>
+                <div class="knife" id="knife"></div>
+                <div class="cake-plate"></div>
+                <div class="cake-halves" id="cake">
+                    <div class="cake-half left-half">
+                        <div class="candle"><div class="flame" id="flame"></div></div>
+                        <div class="frost-top"></div><div class="frost-mid"></div>
+                        <div class="cake-number">1</div>
+                    </div>
+                    <div class="cake-half right-half">
+                        <div class="frost-top"></div><div class="frost-mid"></div>
+                        <div class="cake-number">00</div>
+                    </div>
+                </div>
+            </div>
+            
+            <p class="letter-font pop-item-cake" style="color: #d62828; font-weight: bold; margin: 0; font-size: 1.6rem;">Happy 100 Days! 🥂</p>
+            <div class="pop-item-cake" style="background: rgba(255,255,255,0.7); border-radius: 10px; padding: 5px; margin-top: 3px; font-size: 0.8rem; border: 1px dashed #ff8fab; font-weight:bold; box-shadow: 0 4px 10px rgba(0,0,0,0.03);">
+                I smile at my screen daily. Can't wait for a million more. 🥰
+            </div>
+        </div>
+
+        <div class="page page-inner-bg page-flowers" id="p13">
+            <span class="decor decor-tl">☀️</span>
+            <span class="decor decor-br">🦋</span>
+            <div class="floating-bg-decor" style="top:25%; left:15%;">✨</div>
+            <h3 class="pop-item delay-1">For You... 🥺💝</h3>
+            <div class="letter-font pop-item delay-2" style="background: rgba(255,255,255,0.7); border-radius: 10px; padding: 5px; margin: 3px 0; border: 2px dashed #ffb3c6; font-size: 1.1rem; box-shadow: 0 4px 10px rgba(0,0,0,0.03);">
+                You're my favorite flower. ✨ Watch our love grow.🌱
+            </div>
+            <div class="tulip-garden">
+                <span class="tulip t1">🌷</span><span class="tulip t2">🌷</span>
+                <span class="tulip t3">🌷</span><span class="tulip t4">🌷</span><span class="tulip t5">🌷</span>
+            </div>
+            <div class="status-badge pop-item delay-4" style="margin-top: 5px; font-family: 'Caveat', cursive; font-size: 1.3rem;">
+                The prettiest flower. 🥺🌷
+            </div>
+        </div>
+
+        <div class="page page-inner-bg page-final" id="p14">
+            <span class="decor decor-tl">🦋</span>
+            <span class="decor decor-br">✨</span>
+            <div class="floating-bg-decor" style="top:50%; left:10%; font-size:2rem;">🤲</div>
+            <div class="letter-font pop-item delay-1">
+                <h2 style="font-family: 'Quicksand', sans-serif; font-size: 1.4rem; margin-bottom: 5px;">Alhamdulillah ✨🙏</h2>
+                <p>Thank you Allah/God for guiding our hearts 🤲.</p>
+                <p>You are an answered prayer 🕊️. Cherish you daily 🌅.</p>
+                <p>Love always,</p>
+                <p>- Theshu 💝</p>
+            </div>
+            <div class="pop-item delay-3" style="font-family: 'Quicksand', sans-serif; font-size: 0.75rem; color: #888; position: absolute; bottom: 10px;">Made with ❤️</div>
+        </div>
+
+    </div>
+    
+    <div class="nav-hint pop-item delay-4" id="navHint" style="display: none; font-size:0.75rem;">Tap edges 🠔 🠖 back/next</div>
+</div>
+
+<script>
+    // --- TESTING MODE ---
+    const lockKeyword = ""; // Set to "Ayu" to lock, empty "" to unlock!
+    // --------------------------------
+
+    // --- AUDIO LOGIC ---
+    const bgMusic = document.getElementById('bgMusic');
+    const musicToggle = document.getElementById('musicToggle');
+    let isMusicPlaying = false;
+
+    // Start audio on very first interaction (browser requirement)
+    document.body.addEventListener('touchstart', function playAudioOnFirstClick() {
+        if (!isMusicPlaying) {
+            bgMusic.play().then(() => {
+                isMusicPlaying = true;
+                musicToggle.classList.add('playing');
+            }).catch(err => console.log("Audio play failed:", err));
+            document.body.removeEventListener('touchstart', playAudioOnFirstClick);
+        }
+    }, { once: true });
+
+    musicToggle.onclick = function(e) {
+        e.stopPropagation(); 
+        if (isMusicPlaying) {
+            bgMusic.pause();
+            musicToggle.classList.remove('playing');
+        } else {
+            bgMusic.play();
+            musicToggle.classList.add('playing');
+        }
+        isMusicPlaying = !isMusicPlaying;
+    };
+
+    // --- SCRATCH OFF TICKET LOGIC ---
+    const canvas = document.getElementById('scratchCanvas');
+    const ctx = canvas.getContext('2d');
+    let isDrawing = false;
+
+    ctx.fillStyle = '#c0c0c0';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.font = 'bold 18px Quicksand';
+    ctx.fillStyle = '#95a5a6';
+    ctx.textAlign = 'center';
+    ctx.fillText('Scratch Here! 🪙', canvas.width/2, canvas.height/2 + 5);
+
+    function getMousePos(e) {
+        const rect = canvas.getBoundingClientRect();
+        const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+        const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+        return { x: clientX - rect.left, y: clientY - rect.top };
+    }
+
+    function startScratch(e) { isDrawing = true; scratch(e); }
+    function endScratch() { isDrawing = false; }
+    
+    function scratch(e) {
+        if (!isDrawing) return;
+        if(e.touches) { e.preventDefault(); } 
+        const pos = getMousePos(e);
+        ctx.globalCompositeOperation = 'destination-out';
+        ctx.beginPath();
+        ctx.arc(pos.x, pos.y, 18, 0, Math.PI * 2); // Slightly smaller arc for canvas size
+        ctx.fill();
+    }
+
+    canvas.addEventListener('mousedown', startScratch);
+    canvas.addEventListener('mousemove', scratch);
+    window.addEventListener('mouseup', endScratch);
+    canvas.addEventListener('touchstart', startScratch, {passive: false});
+    canvas.addEventListener('touchmove', scratch, {passive: false});
+    window.addEventListener('touchend', endScratch);
+
+    // --- MAX ANIMATION: GLOBAL BACKGROUND HEART PHYSICS ---
+    function createHeart() {
+        const heart = document.createElement('div');
+        heart.classList.add('falling-heart');
+        heart.innerHTML = ['❤','💖','✨','🌸'][Math.floor(Math.random()*4)];
+        heart.style.left = Math.random() * 100 + 'vw';
+        
+        // Random horizontal drift
+        const drift = (Math.random() - 0.5) * 30; // +/- 15vw drift
+        heart.style.setProperty('--x-end', drift + 'vw');
+        
+        heart.style.animationDuration = (Math.random() * 3 + 5) + 's'; // Slightly slower
+        heart.style.fontSize = (Math.random() * 1 + 0.8) + 'rem'; 
+        document.body.appendChild(heart);
+        
+        // Optimize: remove elements after animation completes
+        heart.addEventListener('animationend', () => heart.remove());
+    }
+    setInterval(createHeart, 600); // Create hearts frequently
+
+    // NEW ANIMATION: Interactive Tap Hearts
+    document.addEventListener('touchstart', (e) => {
+        if(e.target.closest('button') || e.target.closest('canvas')) return; // Don't block interactions
+        
+        const touch = e.touches[0];
+        for(let i=0; i<3; i++) { // Spawn 3 small hearts
+            const tapHeart = document.createElement('div');
+            tapHeart.innerHTML = '💖';
+            tapHeart.style.position = 'absolute';
+            tapHeart.style.left = touch.clientX + 'px';
+            tapHeart.style.top = touch.clientY + 'px';
+            tapHeart.style.fontSize = '1rem';
+            tapHeart.style.pointerEvents = 'none';
+            tapHeart.style.zIndex = '1000';
+            tapHeart.style.transition = 'all 0.8s ease-out';
+            
+            // Random scatter direction
+            const tx = (Math.random() - 0.5) * 100;
+            const ty = (Math.random() - 0.5) * 100;
+            
+            document.body.appendChild(tapHeart);
+            
+            // Trigger animation in next frame
+            requestAnimationFrame(() => {
+                tapHeart.style.transform = `translate(${tx}px, ${ty}px) scale(0)`;
+                tapHeart.style.opacity = '0';
+            });
+            
+            setTimeout(() => tapHeart.remove(), 800);
+        }
+    });
+
+    // --- DATE SETTINGS & TIMERS ---
+    const meetingDate = new Date('2026-01-18T00:00:00'); 
+    const targetDate = new Date(meetingDate.getTime() + (100 * 24 * 60 * 60 * 1000));
+    
+    function getNextBday(m, d) {
+        let now = new Date();
+        let today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+        let bday = new Date(now.getFullYear(), m - 1, d);
+        if (today.getTime() > bday.getTime()) { bday.setFullYear(now.getFullYear() + 1); }
+        return bday;
+    }
+    const theshuBday = getNextBday(3, 14); 
+    const ayuuuBday = getNextBday(9, 22);  
+
+    const countdownEl = document.getElementById('countdown');
+    const lockIcon = document.getElementById('lock-icon');
+    const earlyMessage = document.getElementById('early-message');
+    const navHint = document.getElementById('navHint');
+    let isUnlocked = false;
+
+    function formatBday(targetDate, now) {
+        const dist = targetDate.getTime() - now;
+        if (dist <= 0 && dist > -86400000) { return "TODAY! 🎉"; }
+        const d = Math.floor(dist / (1000 * 60 * 60 * 24));
+        return `${d}d left`; // Shorter for mobile space
+    }
+
+    function updateTimer() {
+        const now = new Date().getTime();
+        
+        const distance = targetDate.getTime() - now;
+        if (distance <= 0 || lockKeyword !== "Ayu") {
+            isUnlocked = true;
+            if (lockKeyword !== "Ayu") { countdownEl.innerHTML = "🛠️"; } 
+            else { countdownEl.innerHTML = "Time! 🎉"; }
+            lockIcon.innerHTML = "🔓<br><span class='pulse-text' style='font-size: 0.8rem;'>Tap!</span>";
+        } else {
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            countdownEl.innerHTML = `${days}d ${hours}h ${minutes}m`;
+        }
+
+        const daysTogether = Math.floor((now - meetingDate.getTime()) / (1000 * 60 * 60 * 24));
+        document.getElementById('days-together-counter').innerText = Math.max(0, daysTogether);
+
+        document.getElementById('theshu-timer').innerText = formatBday(theshuBday, now);
+        document.getElementById('ayuuu-timer').innerText = formatBday(ayuuuBday, now);
+    }
+    updateTimer();
+    setInterval(updateTimer, 1000);
+
+    // --- MULTI-PAGE NAVIGATION LOGIC ---
+    let currentPage = 1;
+    const totalPages = 14; 
+    const bookContainer = document.getElementById('bookContainer');
+
+    function updateActivePage() {
+        // Apply active class to trigger staggered pop-in animations
+        for(let i=1; i<=totalPages; i++) {
+            document.getElementById('p'+i).classList.remove('active');
+        }
+        const activePg = document.getElementById('p'+currentPage);
+        activePg.classList.add('active');
+        
+        // Special logic: Stagger Reason List items (P6) manually
+        if(currentPage === 6) {
+            const items = activePg.querySelectorAll('.reasons-list li');
+            items.forEach((li, index) => {
+                li.style.animationDelay = (0.2 + (index * 0.15)) + 's';
+            });
+        }
+    }
+
+    // Trigger initial staggered load for title page
+    setTimeout(updateActivePage, 100); 
+
+    bookContainer.onclick = function(e) {
+        if (!isUnlocked) {
+            earlyMessage.style.opacity = 1;
+            setTimeout(() => { earlyMessage.style.opacity = 0; }, 3000);
+            return;
+        }
+
+        const rect = bookContainer.getBoundingClientRect();
+        const clickX = e.clientX - rect.left;
+        
+        // Navigate Back
+        if (currentPage > 1 && clickX < (rect.width * 0.3)) {
+            const currentPgEl = document.getElementById('p' + currentPage);
+            currentPgEl.classList.remove('active'); // Turn off animations
+            
+            currentPage--;
+            const prevPgEl = document.getElementById('p' + currentPage);
+            prevPgEl.classList.remove('flipped'); // Animate visual turn back
+            
+            // Delay re-activating animations until page is visible
+            setTimeout(updateActivePage, 100);
+            checkInteractiveStates(); 
+            return;
+        }
+
+        // Navigate Next
+        if (currentPage < totalPages && clickX >= (rect.width * 0.3)) {
+            // Block nav if interacting with specifics
+            if (currentPage === 5 && (e.target.id === 'loveBtn')) return; 
+            if (currentPage === 11 && (e.target.id === 'scratchCanvas')) return; 
+            if (currentPage === 12 && (e.target.closest('#cakeContainer'))) return; 
+
+            const currentPgEl = document.getElementById('p' + currentPage);
+            currentPgEl.classList.remove('active'); // Turn off animations
+            currentPgEl.classList.add('flipped'); // Animate visual turn next
+            
+            currentPage++;
+            // Delay re-activating animations until page is visible
+            setTimeout(updateActivePage, 100);
+            
+            if (currentPage === 2) { navHint.style.display = 'block'; }
+            if (currentPage === totalPages) { navHint.style.display = 'none'; }
+        }
+    };
+
+    // --- LOVE METER LOGIC ---
+    const loveBtn = document.getElementById('loveBtn');
+    const meterFill = document.getElementById('meterFill');
+    const meterMsg = document.getElementById('meterMsg');
+    let loveScore = 0;
+
+    loveBtn.onclick = function(e) {
+        e.stopPropagation(); 
+        if (loveScore < 100) {
+            loveScore += 25; 
+            meterFill.style.width = loveScore + '%';
+            
+            // Add extra bouncy shake on fill
+            meterFill.parentElement.style.animation = 'none';
+            meterFill.parentElement.offsetHeight; // Trigger reflow
+            meterFill.parentElement.style.animation = 'gentleShake 0.3s';
+
+            if (loveScore >= 100) {
+                meterMsg.innerHTML = "LOVE OVERLOAD!! 💖💥";
+                loveBtn.style.display = 'none'; 
+            } else {
+                meterMsg.innerHTML = "Keep tapping! 🥰";
+            }
+        }
+    };
+
+    // --- CAKE CUTTING & confetti LOGIC ---
+    const cakeContainer = document.getElementById('cakeContainer');
+    const knife = document.getElementById('knife');
+    const cake = document.getElementById('cake');
+    const cakeText = document.getElementById('cakeText');
+    let cakeIsCut = false;
+
+    function shootConfetti() {
+        const colors = ['#ff8fab', '#d81159', '#ffcc00', '#00bcd4', '#ffffff'];
+        const shapes = ['❤️', '✨', '🍬'];
+        for(let i=0; i<35; i++) {
+            let conf = document.createElement('div');
+            conf.classList.add('confetti-piece');
+            conf.innerHTML = shapes[Math.floor(Math.random() * shapes.length)];
+            conf.style.color = colors[Math.floor(Math.random() * colors.length)];
+            conf.style.fontSize = (0.6 + Math.random() * 0.6) + 'rem';
+            conf.style.left = '50%';
+            conf.style.top = '50%';
+            
+            let angle = Math.random() * Math.PI * 2;
+            let velocity = 60 + Math.random() * 120;
+            let tx = Math.cos(angle) * velocity;
+            let ty = Math.sin(angle) * velocity - 40; // biased upwards
+            let tr = 180 + Math.random() * 360; 
+            
+            conf.style.setProperty('--tx', `${tx}px`);
+            conf.style.setProperty('--ty', `${ty}px`);
+            conf.style.setProperty('--tr', `${tr}deg`);
+            
+            cakeContainer.appendChild(conf);
+            setTimeout(() => conf.remove(), 1000);
+        }
+    }
+
+    cakeContainer.onclick = function(e) {
+        e.stopPropagation(); 
+        if (!cakeIsCut) {
+            cakeText.style.display = 'none'; 
+            knife.classList.add('knife-anim'); 
+            
+            // Vibrate phone on cut (if supported)
+            if(navigator.vibrate) navigator.vibrate(100);
+
+            setTimeout(() => {
+                cake.classList.add('cake-slice-anim'); 
+                shootConfetti(); 
+                cakeIsCut = true;
+            }, 500); 
+        }
+    };
+
+    // Reset interactive states when navigating away/back
+    function checkInteractiveStates() {
+        if (currentPage === 12 && cakeIsCut) {
+            cake.classList.remove('cake-slice-anim');
+            knife.classList.remove('knife-anim');
+            cakeText.style.display = 'block';
+            cakeIsCut = false;
+        }
+        if (currentPage === 5) {
+            loveScore = 0;
+            meterFill.style.width = '0%';
+            meterMsg.innerHTML = '';
+            loveBtn.style.display = 'inline-block';
+        }
+    }
+</script>
+
+</body>
+</html>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Our 100th Day - The Story 💝</title>
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
