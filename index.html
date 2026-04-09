@@ -86,8 +86,43 @@
             -webkit-transition: -webkit-transform 1s cubic-bezier(0.645, 0.045, 0.355, 1), z-index 0s 0.4s, opacity 0s 0.4s;
         }
 
+        /* --- NEW: ELEGANT DIAGONAL STRIPES (Replaces Boring Dots) --- */
         .page-inner-bg {
-            background-image: radial-gradient(#ffb3c6 1.5px, transparent 1px); background-size: 20px 20px; 
+            background-color: #fff0f3;
+            background-image: repeating-linear-gradient(
+                -45deg,
+                transparent,
+                transparent 10px,
+                rgba(255, 179, 198, 0.25) 10px,
+                rgba(255, 179, 198, 0.25) 20px
+            );
+        }
+
+        /* --- NEW: RULED NOTEBOOK PAPER (For Page 2) --- */
+        .notebook-paper {
+            background-color: #fdfbfb !important;
+            background-image: 
+                linear-gradient(90deg, transparent 40px, rgba(255, 143, 171, 0.8) 40px, rgba(255, 143, 171, 0.8) 42px, transparent 42px), /* Red Margin */
+                linear-gradient(rgba(255, 179, 198, 0.5) 2px, transparent 2px) !important; /* Horizontal Lines */
+            background-size: 100% 100%, 100% 2.2rem !important;
+            background-position: 0 0, 0 2.2rem !important;
+            padding: 0 !important;
+        }
+        .notebook-content {
+            padding-left: 55px; /* Push text past the red margin line */
+            padding-right: 15px;
+            padding-top: 3.8rem; /* Push text down below tape */
+            text-align: left;
+            width: 100%;
+            height: 100%;
+        }
+        .notebook-content h2 {
+            font-family: 'Caveat', cursive; font-size: 1.8rem; line-height: 2.2rem; 
+            margin: 0; color: #d62828; text-shadow: none;
+        }
+        .notebook-content p {
+            font-family: 'Caveat', cursive; font-size: 1.25rem; line-height: 2.2rem; 
+            margin: 0; color: #5a3a40; font-weight: bold;
         }
 
         #p1, #p3, #p4, #p5, #p8, #p9, #p10, #p11, #p12, #p13, #p14, #p15, #p16 { justify-content: center; }
@@ -132,24 +167,14 @@
             border-left: 6px solid #d81159; 
             box-shadow: inset 4px 0 8px rgba(0,0,0,0.1), 5px 5px 15px rgba(0,0,0,0.15); padding: 10px !important;
         }
-        .cover-inner-border {
-            width: 100%; height: 100%; border: 2px dashed rgba(255,255,255,0.5); border-radius: 10px;
-            display: flex; flex-direction: column; align-items: center; justify-content: space-around; position: relative;
-        }
-        .cover-label {
-            background: #fff; padding: 10px 15px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); border: 2px dashed #ffb3c6;
-            position: relative; width: 90%; z-index: 2;
-        }
-        .cover-label::before { 
-            content: ''; position: absolute; top: -10px; left: 50%; transform: translateX(-50%) rotate(-3deg);
-            width: 70px; height: 20px; background-color: rgba(255, 179, 198, 0.9); box-shadow: 0 2px 4px rgba(0,0,0,0.1); z-index: 3;
-        }
+        .cover-inner-border { width: 100%; height: 100%; border: 2px dashed rgba(255,255,255,0.5); border-radius: 10px; display: flex; flex-direction: column; align-items: center; justify-content: space-around; position: relative; }
+        .cover-label { background: #fff; padding: 10px 15px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); border: 2px dashed #ffb3c6; position: relative; width: 90%; z-index: 2; }
+        .cover-label::before { content: ''; position: absolute; top: -10px; left: 50%; transform: translateX(-50%) rotate(-3deg); width: 70px; height: 20px; background-color: rgba(255, 179, 198, 0.9); box-shadow: 0 2px 4px rgba(0,0,0,0.1); z-index: 3; }
         .cover-names { font-size: 1.5rem; color: #d81159; margin-bottom: 2px; }
         .cover-title { font-size: 2.1rem; color: #d62828; margin: 0; padding-bottom: 5px; border-bottom: 2px dashed #ffb3c6; width: 100%; }
         .cover-hints { font-size: 0.75rem; color: #5a3a40; font-weight: bold; margin-top: 6px; text-align: left; width: 90%; }
         .hint-item { margin: 2px 0; display: flex; align-items: center; opacity: 0.9; }
         .hint-item span { width: 18px; margin-right: 5px; text-align: center; }
-        
         .bookmark { position: absolute; top: -15px; right: 20px; width: 20px; height: 60px; background: #d81159; box-shadow: 2px 2px 5px rgba(0,0,0,0.2); z-index: 0; }
         .bookmark::after { content: ''; position: absolute; bottom: -10px; left: 0; border-left: 10px solid #d81159; border-right: 10px solid #d81159; border-bottom: 10px solid transparent; }
         #countdown { font-size: 1rem; font-weight: bold; color: #5a3a40; background: rgba(255, 255, 255, 0.7); padding: 8px; border-radius: 10px; border: 1px solid rgba(214, 40, 40, 0.1); z-index: 2; }
@@ -181,7 +206,7 @@
 
         /* --- LISTS --- */
         .cute-list { list-style: none; padding: 0; text-align: left; margin: 0 0 10px 0; width: 100%; z-index: 2; }
-        .cute-list li { margin: 2px 0; font-size: 1.1rem; opacity: 0; background: rgba(255, 255, 255, 0.6); padding: 4px 10px; border-radius: 8px; }
+        .cute-list li { margin: 3px 0; font-size: 1.15rem; opacity: 0; background: rgba(255, 255, 255, 0.6); padding: 4px 10px; border-radius: 8px; }
         .reasons-list li { transform: translate(-20px, 0); }
         .future-list li { transform: translate(0, 20px); background: white; border: 2px dashed #ffb3c6; text-align: center; font-weight: bold; margin: 6px 0; font-size: 1.15rem; }
         .page.active .reasons-list li { animation: slideInText 0.6s forwards; }
@@ -327,19 +352,21 @@
             </div>
         </div>
 
-        <div class="page page-inner-bg page-letter" id="p2">
-            <span class="decor decor-tl">💌</span>
-            <span class="decor decor-br">🌸</span>
-            <h2 class="pop-item delay-1">To My Favorite Person... 🥺</h2>
-            <div class="letter-font pop-item delay-2">
-                <p>Can you believe it's already been 100 days? 🕰️ It feels like we just met yesterday, but at the same time, I can't imagine my life without you anymore 🫂.</p>
-                <p>Thank you for all the smiles 😊, the laughter 😂, and the warmth you've brought into my days ☀️. Every moment with you is special ✨. I love you so much! ❤️</p>
-            </div>
-            <div class="letter-font pop-item delay-3" style="margin-top: 10px; font-weight: bold; background: rgba(255,255,255,0.7); padding: 5px 10px; border-radius: 10px; border: 2px dashed #ffb3c6; font-size: 1.15rem;">
-                P.P.S. You owe me a kiss for every word in this letter. 😘💌
-            </div>
-            <div class="letter-font pop-item delay-4" style="margin-top: 5px; font-weight: bold; background: rgba(255,255,255,0.7); padding: 5px 10px; border-radius: 10px; border: 2px dashed #ffb3c6; font-size: 1.15rem;">
-                P.S. I look at your pictures every single day. 📸🙈
+        <div class="page notebook-paper" id="p2">
+            <div class="washi-tape pop-item" style="top: 15px; left: 50%; transform: translateX(-50%) rotate(-2deg); width: 110px; z-index: 10;"></div>
+            <span class="decor decor-tr pop-item delay-2" style="font-size: 1.8rem; top: 15px; right: 15px; z-index: 10;">🌸</span>
+            
+            <div class="notebook-content pop-item delay-1">
+                <h2>To My Favorite... 🥺</h2>
+                <p>Can you believe it's</p>
+                <p>already been 100 days?</p>
+                <p>It feels like yesterday,</p>
+                <p>yet I can't imagine</p>
+                <p>life without you 🫂.</p>
+                <p>Thanks for the smiles,</p>
+                <p>laughter, & warmth ☀️.</p>
+                <p style="color: #d81159; margin-top: 2.2rem;">P.S. You owe me a kiss</p>
+                <p style="color: #d81159;">for every word here. 😘</p>
             </div>
         </div>
 
@@ -384,22 +411,16 @@
         <div class="page page-inner-bg page-reasons" id="p6">
             <span class="decor decor-tl">✨</span>
             <span class="decor decor-br">🌷</span>
-            <div class="floating-bg-decor" style="top:30%; right:10%;">⭐</div>
             <h3 class="pop-item delay-1">I Love... 💭💖</h3>
             <ul class="cute-list reasons-list letter-font">
-                <li style="animation-delay: 0.15s">✨ Your beautiful smile 😊</li>
-                <li style="animation-delay: 0.3s">🥺 How you make me laugh 😂</li>
-                <li style="animation-delay: 0.45s">💖 Your gorgeous eyes 👀</li>
-                <li style="animation-delay: 0.6s">🐾 The way you look at me 🥰</li>
-                <li style="animation-delay: 0.75s">🎶 Your cute voice notes 🥺</li>
-                <li style="animation-delay: 0.9s">🧸 Your virtual cuddles 🫂</li>
-                <li style="animation-delay: 1.05s">🌙 Our 3 AM conversations 📞</li>
+                <li style="animation-delay: 0.2s">✨ Your beautiful smile 😊</li>
+                <li style="animation-delay: 0.4s">🥺 How you make me laugh 😂</li>
+                <li style="animation-delay: 0.6s">💖 Your gorgeous eyes 👀</li>
+                <li style="animation-delay: 0.8s">🐾 The way you look at me 🥰</li>
+                <li style="animation-delay: 1.0s">🎶 Your cute voice notes 🥺</li>
                 <li style="animation-delay: 1.2s">✨ Everything about you 💍</li>
             </ul>
-            <div class="letter-font pop-item delay-4" style="background: rgba(255,255,255,0.7); border-radius: 10px; padding: 5px 10px; margin: 3px 0; border: 1px dashed #ff8fab; font-size: 1.05rem; font-weight:bold; box-shadow: 0 4px 10px rgba(0,0,0,0.03);">
-                Honestly, I could fill 1000 pages... 😏💕
-            </div>
-            <div class="status-badge pop-item delay-4" style="margin-top: 3px;">Verdict: 100% Stuck with me 🤭🔒</div>
+            <div class="status-badge pop-item delay-4" style="margin-top: 5px;">Verdict: 100% Stuck with me 🤭🔒</div>
         </div>
 
         <div class="page page-inner-bg page-future" id="p7">
@@ -807,16 +828,7 @@
         for(let i=1; i<=totalPages; i++) {
             document.getElementById('p'+i).classList.remove('active');
         }
-        const activePg = document.getElementById('p'+currentPage);
-        activePg.classList.add('active');
-
-        // Dynamic staggering for Page 6 list items
-        if(currentPage === 6) {
-            const items = activePg.querySelectorAll('.reasons-list li');
-            items.forEach((li, index) => {
-                li.style.animationDelay = (0.15 + (index * 0.15)) + 's';
-            });
-        }
+        document.getElementById('p'+currentPage).classList.add('active');
     }
 
     bookContainer.onclick = function(e) {
