@@ -79,16 +79,26 @@
             -webkit-transition: -webkit-transform 1s ease-in-out, z-index 0s;
         }
 
+        /* --- NEW: MAGICAL ANIMATED PASTEL BACKGROUND --- */
         .page-inner-bg {
-            background-image: radial-gradient(#ffb3c6 1.5px, transparent 1px); background-size: 20px 20px; 
+            background: linear-gradient(-45deg, #fff0f3, #ffd6e0, #ffe6ea, #fff0f3);
+            background-size: 400% 400%;
+            animation: dreamyGradient 10s ease infinite;
+            box-shadow: inset 0 0 20px rgba(216, 17, 89, 0.08); /* Soft inner shadow */
         }
-        #p1, #p3, #p4, #p5, #p8, #p9, #p10, #p11, #p12, #p13, #p14, #p15, #p16 { justify-content: center; }
+        @keyframes dreamyGradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
 
-        /* --- STACKING ORDER (16 Pages!) --- */
-        #p1 { z-index: 16; } #p2 { z-index: 15; } #p3 { z-index: 14; } #p4 { z-index: 13; }
-        #p5 { z-index: 12; } #p6 { z-index: 11; } #p7 { z-index: 10; } #p8 { z-index: 9; } 
-        #p9 { z-index: 8; } #p10 { z-index: 7; } #p11 { z-index: 6; } #p12 { z-index: 5; }
-        #p13 { z-index: 4; } #p14 { z-index: 3; } #p15 { z-index: 2; } #p16 { z-index: 1; }
+        #p1, #p3, #p4, #p5, #p8, #p9, #p10, #p11, #p12, #p13, #p14 { justify-content: center; }
+
+        /* --- STACKING ORDER (14 Pages) --- */
+        #p1 { z-index: 14; } #p2 { z-index: 13; } #p3 { z-index: 12; } #p4 { z-index: 11; }
+        #p5 { z-index: 10; } #p6 { z-index: 9; } #p7 { z-index: 8; } #p8 { z-index: 7; } 
+        #p9 { z-index: 6; } #p10 { z-index: 5; } #p11 { z-index: 4; } #p12 { z-index: 3; }
+        #p13 { z-index: 2; } #p14 { z-index: 1; }
 
         .page.flipped { 
             transform: rotateY(-180deg) translate3d(0,0,0); 
@@ -104,12 +114,27 @@
             pointer-events: none;
         }
 
-        /* --- FONTS --- */
+        /* --- FONTS & TYPOGRAPHY --- */
         .letter-font { font-family: 'Caveat', cursive; color: #d81159; line-height: 1.2; font-size: 1.3rem; z-index: 2; }
         h2 { font-size: 1.5rem; color: #d62828; margin: 0 0 5px 0; text-shadow: 1px 1px 2px rgba(255,255,255,0.8); }
         h3 { font-size: 1.3rem; color: #d62828; margin: 0 0 5px 0; text-shadow: 1px 1px 2px rgba(255,255,255,0.8); }
         p { margin: 4px 0; } 
 
+        /* --- NEW: POP-IN ENTRANCE ANIMATIONS! --- */
+        .pop-item { opacity: 0; transform: translate3d(0, 20px, 0) scale(0.9); will-change: transform, opacity; }
+        .page.active .pop-item { animation: popBounce 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) forwards; }
+        
+        @keyframes popBounce {
+            100% { opacity: 1; transform: translate3d(0, 0, 0) scale(1); }
+        }
+        
+        /* Stagger delays so they pop in one after another */
+        .delay-1 { animation-delay: 0.1s !important; }
+        .delay-2 { animation-delay: 0.25s !important; }
+        .delay-3 { animation-delay: 0.4s !important; }
+        .delay-4 { animation-delay: 0.55s !important; }
+
+        /* Floating Decorations */
         .decor { position: absolute; font-size: 1.6rem; opacity: 0.8; pointer-events: none; animation: floatDecor 3s infinite ease-in-out alternate; z-index: 0; }
         .decor-tl { top: 10px; left: 10px; } .decor-tr { top: 10px; right: 10px; animation-delay: 1s; }
         .decor-bl { bottom: 10px; left: 10px; animation-delay: 1.5s; } .decor-br { bottom: 10px; right: 10px; animation-delay: 0.5s; }
@@ -135,7 +160,7 @@
         }
         .cover-names { font-size: 1.5rem; color: #d81159; margin-bottom: 2px; }
         .cover-title { font-size: 2.1rem; color: #d62828; margin: 0; padding-bottom: 5px; border-bottom: 2px dashed #ffb3c6; width: 100%; }
-        .cover-hints { font-size: 0.75rem; color: #5a3a40; font-weight: bold; margin-top: 6px; text-align: left; width: 90%; }
+        .cover-hints { font-size: 0.8rem; color: #5a3a40; font-weight: bold; margin-top: 6px; text-align: left; width: 90%; }
         .hint-item { margin: 2px 0; display: flex; align-items: center; opacity: 0.9; }
         .hint-item span { width: 18px; margin-right: 5px; text-align: center; }
         
@@ -149,28 +174,39 @@
 
         /* --- PHOTOS --- */
         .photo-container { position: relative; display: flex; justify-content: center; margin-bottom: 15px; }
-        .photo-frame { position: relative; width: 170px; height: 170px; border-radius: 50%; border: 8px solid white; box-shadow: 0 8px 15px rgba(0,0,0,0.2); overflow: hidden; animation: floatPhoto 4s infinite ease-in-out alternate; }
+        
+        /* NEW: Improved Wiggling Polaroid Animation */
+        .photo-frame { position: relative; width: 170px; height: 170px; border-radius: 50%; border: 8px solid white; box-shadow: 0 8px 15px rgba(0,0,0,0.2); overflow: hidden; animation: wigglePhoto 4s infinite ease-in-out alternate; }
         .photo-img { width: 100%; height: 100%; object-fit: cover; }
-        .washi-tape { position: absolute; top: -5px; width: 80px; height: 22px; background-color: rgba(255, 179, 198, 0.9); box-shadow: 0 2px 4px rgba(0,0,0,0.1); z-index: 10; animation: floatPhoto 4s infinite ease-in-out alternate; }
+        .washi-tape { position: absolute; top: -5px; width: 80px; height: 22px; background-color: rgba(255, 179, 198, 0.9); box-shadow: 0 2px 4px rgba(0,0,0,0.1); z-index: 10; animation: wigglePhoto 4s infinite ease-in-out alternate; }
         #p3 .washi-tape { transform: rotate(-5deg); left: 30%; }
         #p4 .washi-tape { transform: rotate(6deg); left: 35%; background-color: rgba(255, 143, 171, 0.9); }
-        .flirty-line { font-size: 0.85rem; color: #4a1c1c; background: #ffd6e0; padding: 8px; border-radius: 10px; font-weight: bold; border: 2px dashed #ff8fab; z-index: 2; width: 95%; margin-top: 0; }
+        
+        @keyframes wigglePhoto { 
+            0% { transform: rotate(-3deg) translate3d(0, 0, 0); } 
+            100% { transform: rotate(3deg) translate3d(0, -5px, 0); } 
+        }
+
+        .flirty-line { font-size: 0.85rem; color: #4a1c1c; background: rgba(255, 214, 224, 0.9); padding: 10px; border-radius: 10px; font-weight: bold; border: 2px dashed #ff8fab; z-index: 2; width: 95%; margin-top: 0; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
         .photo-tag { margin-top: 6px; font-size: 0.8rem; color: #888; background: white; padding: 4px 12px; border-radius: 12px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); z-index: 2; }
         #p4 .photo-frame, #p4 .washi-tape { animation-delay: 2s; }
-        @keyframes floatPhoto { from { transform: translate3d(0, 0, 0) rotate(0deg); } to { transform: translate3d(0, -10px, 0) rotate(2deg); } }
-
+        
         /* --- LOVE METER --- */
         .meter-container { width: 85%; height: 25px; background: #fff; border-radius: 15px; border: 3px dashed #ffb3c6; margin: 10px 0; overflow: hidden; position: relative; }
         .meter-fill { height: 100%; width: 0%; background: linear-gradient(90deg, #ff8fab, #d81159); transition: width 0.3s ease-out; }
-        .cute-btn { background: #d81159; color: white; border: none; padding: 8px 16px; font-size: 0.9rem; border-radius: 20px; font-family: inherit; font-weight: bold; cursor: pointer; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: transform 0.1s; margin: 5px 0; }
+        
+        /* NEW: Glowing Button */
+        .cute-btn { background: #d81159; color: white; border: none; padding: 8px 16px; font-size: 0.9rem; border-radius: 20px; font-family: inherit; font-weight: bold; cursor: pointer; box-shadow: 0 0 15px rgba(216, 17, 89, 0.4); transition: transform 0.1s, box-shadow 0.3s; margin: 5px 0; animation: pulseGlow 2s infinite alternate;}
         .cute-btn:active { transform: scale(0.95); }
+        @keyframes pulseGlow { to { box-shadow: 0 0 25px rgba(216, 17, 89, 0.7); } }
+
         .meter-msg { font-size: 0.9rem; font-weight: bold; color: #d62828; min-height: 20px; margin: 5px 0;}
         .stats-box { background: rgba(255,255,255,0.8); border: 2px dashed #ffb3c6; padding: 10px; border-radius: 15px; width: 95%; margin-top: 5px; z-index: 2; text-align: left;}
         .stats-box p { margin: 4px 0; font-size: 0.85rem; color: #5a3a40; font-weight: bold;}
 
         /* --- LISTS --- */
         .cute-list { list-style: none; padding: 0; text-align: left; margin: 0 0 10px 0; width: 100%; z-index: 2; }
-        .cute-list li { margin: 3px 0; font-size: 1.1rem; opacity: 0; background: rgba(255, 255, 255, 0.6); padding: 4px 10px; border-radius: 8px; }
+        .cute-list li { margin: 3px 0; font-size: 1.1rem; opacity: 0; background: rgba(255, 255, 255, 0.7); padding: 4px 10px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05);}
         .reasons-list li { transform: translateX(-20px); }
         .future-list li { transform: translateY(20px); background: white; border: 2px dashed #ffb3c6; text-align: center; font-weight: bold; }
         .page.active .reasons-list li { animation: slideInText 0.6s forwards; }
@@ -179,12 +215,12 @@
         @keyframes slideUpFade { to { opacity: 1; transform: translate3d(0, 0, 0); } }
 
         /* --- TIMELINE & BIRTHDAYS --- */
-        .timeline-box { background: rgba(255,255,255,0.8); border: 2px dashed #ffb3c6; padding: 10px; border-radius: 15px; width: 95%; z-index: 2; margin-top: 5px;}
+        .timeline-box { background: rgba(255,255,255,0.85); border: 2px dashed #ffb3c6; padding: 10px; border-radius: 15px; width: 95%; z-index: 2; margin-top: 5px; box-shadow: 0 4px 10px rgba(0,0,0,0.05);}
         .timeline-box p { margin: 6px 0; font-size: 0.95rem; color: #5a3a40; line-height: 1.3; }
         .timeline-box strong { color: #d81159; }
-        .status-badge { background: #ffe6ea; border: 2px dashed #ff8fab; padding: 5px 10px; border-radius: 20px; font-weight: bold; color: #d81159; font-size: 0.85rem; margin-top: 10px;}
+        .status-badge { background: #ffe6ea; border: 2px dashed #ff8fab; padding: 5px 10px; border-radius: 20px; font-weight: bold; color: #d81159; font-size: 0.85rem; margin-top: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.05);}
 
-        .bday-card { background: rgba(255,255,255,0.9); border: 2px dashed #ffb3c6; padding: 10px; border-radius: 12px; width: 90%; margin: 8px 0; z-index: 2; }
+        .bday-card { background: rgba(255,255,255,0.9); border: 2px dashed #ffb3c6; padding: 10px; border-radius: 12px; width: 90%; margin: 8px 0; z-index: 2; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
         .bday-card h4 { margin: 0 0 5px 0; color: #d62828; font-size: 1.1rem; }
         .bday-timer { font-size: 0.95rem; font-weight: bold; color: #d81159; background: #ffe6ea; padding: 6px; border-radius: 8px;}
 
@@ -198,7 +234,7 @@
         .airplane { position: absolute; font-size: 1.2rem; z-index: 6; bottom: 45px; left: 45px; }
         .page.active .airplane { animation: flyPlane 4s ease-in-out infinite; }
         @keyframes flyPlane { 0% { transform: translate3d(0, 0, 0) rotate(45deg); opacity: 0; } 10% { opacity: 1; } 50% { transform: translate3d(40px, -45px, 0) rotate(60deg); } 90% { opacity: 1; } 100% { transform: translate3d(90px, -110px, 0) rotate(70deg); opacity: 0; } }
-        .boarding-pass { background: white; border: 2px dashed #ffb3c6; width: 95%; padding: 8px 12px; border-radius: 10px; font-size: 0.8rem; text-align: left; display: flex; justify-content: space-between; z-index: 2; margin-top: 5px; color: #5a3a40; }
+        .boarding-pass { background: white; border: 2px dashed #ffb3c6; width: 95%; padding: 8px 12px; border-radius: 10px; font-size: 0.8rem; text-align: left; display: flex; justify-content: space-between; z-index: 2; margin-top: 5px; color: #5a3a40; box-shadow: 0 4px 10px rgba(0,0,0,0.05);}
 
         /* --- PAGE 11: SCRATCH OFF TICKET --- */
         .scratch-wrapper { position: relative; width: 230px; height: 130px; margin: 15px auto; border-radius: 15px; box-shadow: 0 8px 20px rgba(0,0,0,0.15); overflow: hidden; border: 3px dashed #d81159; z-index: 2; }
@@ -235,58 +271,14 @@
         @keyframes popConfetti { 0% { transform: translate3d(0, 0, 0) scale3d(1, 1, 1) rotate(0deg); opacity: 1; } 100% { transform: translate3d(var(--tx), var(--ty), 0) scale3d(0.2, 0.2, 1) rotate(var(--tr)); opacity: 0; } }
 
         /* --- PAGE 13 - TULIP GARDEN --- */
-        .tulip-garden {
-            position: relative; width: 100%; height: 130px; display: flex; 
-            justify-content: center; align-items: flex-end; margin-top: 10px; z-index: 2;
-            border-bottom: 4px solid #81c784; 
-        }
-        .tulip {
-            display: inline-block; font-size: 2.5rem; margin: 0 2px;
-            transform-origin: bottom center; animation: swayTulip 3s ease-in-out infinite alternate;
-        }
-        .t1 { animation-delay: 0s; font-size: 2.3rem; }
-        .t2 { animation-delay: 0.5s; font-size: 2.8rem; }
-        .t3 { animation-delay: 1.2s; font-size: 3.3rem; z-index: 5;} 
-        .t4 { animation-delay: 0.3s; font-size: 2.6rem; }
+        .tulip-garden { position: relative; width: 100%; height: 130px; display: flex; justify-content: center; align-items: flex-end; margin-top: 10px; z-index: 2; border-bottom: 4px solid #81c784; }
+        .tulip { display: inline-block; font-size: 2.5rem; margin: 0 2px; transform-origin: bottom center; animation: swayTulip 3s ease-in-out infinite alternate; }
+        .t1 { animation-delay: 0s; font-size: 2.3rem; } .t2 { animation-delay: 0.5s; font-size: 2.8rem; }
+        .t3 { animation-delay: 1.2s; font-size: 3.3rem; z-index: 5;} .t4 { animation-delay: 0.3s; font-size: 2.6rem; }
         .t5 { animation-delay: 0.8s; font-size: 2.1rem; }
         @keyframes swayTulip { 0% { transform: rotate(-15deg); } 100% { transform: rotate(15deg); } }
 
-        /* --- NEW: PAGE 14 - SCANNER --- */
-        .scanner-container {
-            position: relative; width: 120px; height: 160px; border: 3px solid #ffb3c6;
-            border-radius: 25px; margin: 15px auto; display: flex; justify-content: center;
-            align-items: center; background: rgba(255,255,255,0.7); overflow: hidden;
-            cursor: pointer; box-shadow: inset 0 0 15px rgba(216,17,89,0.1);
-            -webkit-user-select: none; user-select: none; /* Stops text selection on hold */
-        }
-        .finger-icon { font-size: 5rem; opacity: 0.3; transition: opacity 0.3s; pointer-events: none;}
-        .scan-line {
-            position: absolute; top: 0; left: 0; width: 100%; height: 4px;
-            background: #d81159; box-shadow: 0 0 15px #d81159; opacity: 0; pointer-events: none;
-        }
-        .scanning .scan-line { animation: scanAnim 1.2s ease-in-out infinite alternate; opacity: 1; }
-        .scanning .finger-icon { opacity: 0.8; }
-        @keyframes scanAnim { from { top: 5%; } to { top: 95%; } }
-        
-        .secret-promise {
-            opacity: 0; transition: opacity 1s; font-size: 1.15rem; color: #d62828; 
-            font-weight: bold; background: white; padding: 10px; border-radius: 10px; 
-            border: 2px dashed #ffb3c6; margin-top: 10px; pointer-events: none;
-        }
-        .scanned-success .secret-promise { opacity: 1; }
-        .scanned-success .scanner-container { border-color: #81c784; box-shadow: inset 0 0 15px rgba(129,199,132,0.3); }
-
-        /* --- NEW: PAGE 15 - TIME CAPSULE --- */
-        .capsule-wrapper {
-            background: rgba(255,255,255,0.9); border: 3px solid #d81159; padding: 20px 10px;
-            border-radius: 15px; width: 95%; z-index: 2; position: relative; margin-top: 15px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-        }
-        .capsule-lock { font-size: 3.5rem; margin-bottom: 10px; }
-        .capsule-timer { font-size: 1.3rem; font-weight: bold; color: #d81159; background: #ffe6ea; padding: 10px; border-radius: 10px; border: 1px dashed #ffb3c6;}
-        .capsule-content { display: none; font-size: 1.2rem; color: #d62828; font-weight: bold;}
-
-        .nav-hint { margin-top: 10px; font-size: 0.8rem; color: #888; background: white; padding: 5px 10px; border-radius: 15px; font-family: 'Quicksand', sans-serif; z-index: 10;}
+        .nav-hint { margin-top: 10px; font-size: 0.8rem; color: #888; background: white; padding: 5px 10px; border-radius: 15px; font-family: 'Quicksand', sans-serif; z-index: 10; box-shadow: 0 4px 10px rgba(0,0,0,0.05);}
     </style>
 </head>
 <body>
@@ -295,7 +287,7 @@
     <source src="3.mp3" type="audio/mpeg">
 </audio>
 
-<div id="musicToggle" class="music-toggle">🎵</div>
+<div id="musicToggle" class="music-toggle pop-item delay-4">🎵</div>
 
 <div class="website-container">
     <div class="book" id="bookContainer">
@@ -306,7 +298,7 @@
                 <span class="decor decor-tl" style="color: white; font-size: 1.5rem;">✨</span>
                 <span class="decor decor-br" style="color: white; font-size: 1.2rem;">✨</span>
 
-                <div class="cover-label">
+                <div class="cover-label pop-item delay-1">
                     <div class="pulse-text" style="font-size: 2.3rem; margin: 0 0 2px 0; position: relative; z-index: 2;">💖</div>
                     <h2 class="letter-font cover-names">Theshu 🧸 & Ayuuu 🦋</h2>
                     <h1 class="letter-font cover-title">Our 100th Day 🎉</h1>
@@ -314,13 +306,13 @@
                         <p style="margin-bottom: 3px; font-size: 0.9rem; color:#d62828;">Spilling the tea... ☕</p>
                         <div class="hint-item"><span>📸</span> Core Memories inside</div>
                         <div class="hint-item"><span>❤️</span> The Love Meter</div>
-                        <div class="hint-item"><span>👆</span> Thumbprint Scanner</div>
-                        <div class="hint-item"><span class="pulse-text">🔒</span> The Time Capsule</div>
+                        <div class="hint-item"><span>✈️</span> Kerala to Goa Map!</div>
+                        <div class="hint-item"><span class="pulse-text">🎂</span> A Birthday Surprise</div>
                     </div>
                 </div>
 
-                <div id="countdown">Calculating... ⏳</div>
-                <div id="lock-icon">🔒</div>
+                <div id="countdown" class="pop-item delay-2">Calculating... ⏳</div>
+                <div id="lock-icon" class="pop-item delay-3">🔒</div>
                 <p id="early-message">It's not the time yet! Wait for the day, Ayuuu cutie! 🐾🙈</p>
             </div>
         </div>
@@ -328,54 +320,54 @@
         <div class="page page-inner-bg page-letter" id="p2">
             <span class="decor decor-tl">💌</span>
             <span class="decor decor-br">🌸</span>
-            <h2>To My Favorite Person... 🥺</h2>
-            <div class="letter-font">
+            <h2 class="pop-item delay-1">To My Favorite Person... 🥺</h2>
+            <div class="letter-font pop-item delay-2">
                 <p>Can you believe it's already been 100 days? 🕰️ It feels like we just met yesterday, but at the same time, I can't imagine my life without you anymore 🫂.</p>
                 <p>Thank you for all the smiles 😊, the laughter 😂, and the warmth you've brought into my days ☀️. Every moment with you is special ✨. I love you so much! ❤️</p>
             </div>
             
-            <div class="letter-font" style="margin-top: 10px; font-weight: bold; background: rgba(255,255,255,0.7); padding: 5px 10px; border-radius: 10px; border: 2px dashed #ffb3c6; font-size: 1.15rem;">
+            <div class="letter-font pop-item delay-3" style="margin-top: 10px; font-weight: bold; background: rgba(255,255,255,0.7); padding: 5px 10px; border-radius: 10px; border: 2px dashed #ffb3c6; font-size: 1.15rem; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
                 P.P.S. You owe me a kiss for every word in this letter. 😘💌
             </div>
-            <div class="letter-font" style="margin-top: 5px; font-weight: bold; background: rgba(255,255,255,0.7); padding: 5px 10px; border-radius: 10px; border: 2px dashed #ffb3c6; font-size: 1.15rem;">
+            <div class="letter-font pop-item delay-4" style="margin-top: 5px; font-weight: bold; background: rgba(255,255,255,0.7); padding: 5px 10px; border-radius: 10px; border: 2px dashed #ffb3c6; font-size: 1.15rem; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
                 P.S. I look at your pictures every single day. 📸🙈
             </div>
         </div>
 
         <div class="page page-inner-bg page-photo" id="p3">
             <span class="decor decor-tr">💕</span>
-            <div class="photo-container">
+            <div class="photo-container pop-item delay-1">
                 <div class="washi-tape"></div>
                 <div class="photo-frame"><img src="1.jpg" alt="Our marks photo" class="photo-img"></div>
             </div>
-            <div class="flirty-line">I want to paint you entirely in red marks 💄. Don't worry, they only show how much I belong to you 💋.</div>
-            <div class="photo-tag">📍 Location: My heart</div>
+            <div class="flirty-line pop-item delay-2">I want to paint you entirely in red marks 💄. Don't worry, they only show how much I belong to you 💋.</div>
+            <div class="photo-tag pop-item delay-3">📍 Location: My heart</div>
         </div>
 
         <div class="page page-inner-bg page-photo" id="p4">
             <span class="decor decor-bl">✨</span>
-            <div class="photo-container">
+            <div class="photo-container pop-item delay-1">
                 <div class="washi-tape"></div>
                 <div class="photo-frame"><img src="2.jpg" alt="Our dressed up photo" class="photo-img"></div>
             </div>
-            <div class="flirty-line">My favourite accessory is you 🤵🏽‍♂️👗. I might have to possessive-ly lock you away if other people keep looking 🔐😠.</div>
-            <div class="photo-tag">🚨 Warning: Extremely gorgeous!</div>
+            <div class="flirty-line pop-item delay-2">My favourite accessory is you 🤵🏽‍♂️👗. I might have to possessive-ly lock you away if other people keep looking 🔐😠.</div>
+            <div class="photo-tag pop-item delay-3">🚨 Warning: Extremely gorgeous!</div>
         </div>
 
         <div class="page page-inner-bg page-meter" id="p5">
             <span class="decor decor-tr">💖</span>
-            <h3>How much do I love you? <span class="pulse-text" style="display: inline-block;">🥺💓</span></h3>
-            <div class="meter-container">
+            <h3 class="pop-item delay-1">How much do I love you? <span class="pulse-text" style="display: inline-block;">🥺💓</span></h3>
+            <div class="meter-container pop-item delay-2">
                 <div class="meter-fill" id="meterFill"></div>
             </div>
-            <button class="cute-btn" id="loveBtn">Tap to measure! 👆</button>
-            <p class="meter-msg" id="meterMsg"></p>
-            <div class="stats-box letter-font">
+            <button class="cute-btn pop-item delay-3" id="loveBtn">Tap to measure! 👆</button>
+            <p class="meter-msg pop-item delay-3" id="meterMsg"></p>
+            <div class="stats-box letter-font pop-item delay-4">
                 <p>💬 Late Night Chats: Countless</p>
                 <p>🦋 Butterflies: Every time you text</p>
                 <p>🥺 Missing You Level: 10000%</p>
             </div>
-            <div style="margin-top: 5px; font-size: 0.9rem; color: #d81159; font-weight: bold; font-family: 'Caveat', cursive;">
+            <div class="pop-item delay-4" style="margin-top: 5px; font-size: 0.9rem; color: #d81159; font-weight: bold; font-family: 'Caveat', cursive;">
                 *System Error: Love capacity exceeded! 💥*
             </div>
         </div>
@@ -383,31 +375,31 @@
         <div class="page page-inner-bg page-reasons" id="p6">
             <span class="decor decor-tl">✨</span>
             <span class="decor decor-br">🌷</span>
-            <h3>I Love... 💭💖</h3>
+            <h3 class="pop-item delay-1">I Love... 💭💖</h3>
             <ul class="cute-list reasons-list letter-font">
                 <li style="animation-delay: 0.2s">✨ Your beautiful smile 😊</li>
-                <li style="animation-delay: 1.0s">🥺 How you make me laugh 😂</li>
-                <li style="animation-delay: 1.8s">💖 Your gorgeous eyes 👀</li>
-                <li style="animation-delay: 2.6s">🐾 The way you look at me 🥰</li>
-                <li style="animation-delay: 3.4s">🎶 Your cute voice notes 🥺</li>
-                <li style="animation-delay: 4.2s">✨ Everything about you 💍</li>
+                <li style="animation-delay: 0.6s">🥺 How you make me laugh 😂</li>
+                <li style="animation-delay: 1.0s">💖 Your gorgeous eyes 👀</li>
+                <li style="animation-delay: 1.4s">🐾 The way you look at me 🥰</li>
+                <li style="animation-delay: 1.8s">🎶 Your cute voice notes 🥺</li>
+                <li style="animation-delay: 2.2s">✨ Everything about you 💍</li>
             </ul>
-            <div class="status-badge" style="margin-top: 5px;">Verdict: 100% Stuck with me 🤭🔒</div>
+            <div class="status-badge pop-item delay-3" style="margin-top: 5px;">Verdict: 100% Stuck with me 🤭🔒</div>
         </div>
 
         <div class="page page-inner-bg page-future" id="p7">
             <span class="decor decor-tl">✈️</span>
             <span class="decor decor-br">☁️</span>
-            <h3>When We Finally Meet... 🥺🫂</h3>
-            <p class="letter-font" style="font-size: 1.15rem; color: #5a3a40; margin:0 0 8px 0; padding: 0 10px;">Distance means so little when someone means so much. 🌍❤️</p>
+            <h3 class="pop-item delay-1">When We Finally Meet... 🥺🫂</h3>
+            <p class="letter-font pop-item delay-1" style="font-size: 1.15rem; color: #5a3a40; margin:0 0 8px 0; padding: 0 10px;">Distance means so little when someone means so much. 🌍❤️</p>
             <ul class="cute-list future-list letter-font">
                 <li style="animation-delay: 0.3s">🛍️ Going shopping together 👗</li>
-                <li style="animation-delay: 1.1s">🎬 Late night movie dates 🍿</li>
-                <li style="animation-delay: 1.9s">🫂 Endless cuddling & hugs 🥰</li>
-                <li style="animation-delay: 2.7s">🍜 Eating all our fav foods 🍕</li>
+                <li style="animation-delay: 0.7s">🎬 Late night movie dates 🍿</li>
+                <li style="animation-delay: 1.1s">🫂 Endless cuddling & hugs 🥰</li>
+                <li style="animation-delay: 1.5s">🍜 Eating all our fav foods 🍕</li>
             </ul>
-            <div class="status-badge" style="margin-top: 5px;">Meeting in progress: [██████▒▒] 80% 🔋</div>
-            <div class="letter-font" style="margin-top: 8px; font-weight: bold; background: rgba(255,255,255,0.7); padding: 5px 10px; border-radius: 10px; border: 2px dashed #ffb3c6; font-size: 1.1rem;">
+            <div class="status-badge pop-item delay-3" style="margin-top: 5px;">Meeting in progress: [██████▒▒] 80% 🔋</div>
+            <div class="letter-font pop-item delay-4" style="margin-top: 8px; font-weight: bold; background: rgba(255,255,255,0.7); padding: 5px 10px; border-radius: 10px; border: 2px dashed #ffb3c6; font-size: 1.1rem;">
                 P.S. I'm paying for the first date! 💳<br>(No arguments allowed 😤)
             </div>
         </div>
@@ -415,48 +407,48 @@
         <div class="page page-inner-bg page-timeline" id="p8">
             <span class="decor decor-tl">⏳</span>
             <span class="decor decor-br">💖</span>
-            <h3>Our Timeline 🗓️✨</h3>
-            <div class="timeline-box">
+            <h3 class="pop-item delay-1">Our Timeline 🗓️✨</h3>
+            <div class="timeline-box pop-item delay-2">
                 <p><strong>First Met:</strong><br>Jan 18, 2026 🥺💬</p>
                 <p><strong>Together For:</strong><br><span id="days-together-counter" style="font-weight:bold; color:#d62828;">...</span> Days & counting! 🥰</p>
                 <p><strong>100th Day:</strong><br>Apr 28, 2026 🎉💝</p>
                 <p><strong>Forever:</strong><br>Loading... ∞ 💍🤍</p>
             </div>
-            <div class="status-badge">Current Status: Thinking of you... 💭❤️</div>
+            <div class="status-badge pop-item delay-3">Current Status: Thinking of you... 💭❤️</div>
         </div>
 
         <div class="page page-inner-bg page-map" id="p9">
             <span class="decor decor-tl">🌤️</span>
             <span class="decor decor-br">☁️</span>
-            <h3>Closing the Distance 🌍</h3>
-            <p class="letter-font" style="font-size: 1.15rem; color: #5a3a40; margin:0; padding: 0 10px;">Distance means nothing when you mean everything. 🥺✈️</p>
+            <h3 class="pop-item delay-1">Closing the Distance 🌍</h3>
+            <p class="letter-font pop-item delay-1" style="font-size: 1.15rem; color: #5a3a40; margin:0; padding: 0 10px;">Distance means nothing when you mean everything. 🥺✈️</p>
             
-            <div class="map-wrapper">
+            <div class="map-wrapper pop-item delay-2">
                 <div class="map-pin pin-kerala">🌴<span style="font-size: 0.7rem; color: #5a3a40;">Kerala</span></div>
                 <div class="flight-arc"></div>
                 <div class="airplane">✈️</div>
                 <div class="map-pin pin-goa">🏖️<span style="font-size: 0.7rem; color: #5a3a40;">Goa</span></div>
             </div>
             
-            <div class="boarding-pass">
+            <div class="boarding-pass pop-item delay-3">
                 <div><strong>From:</strong> Kerala 🌴<br><strong>To:</strong> Goa 🏖️</div>
-                <div style="text-align: right;"><strong>Class:</strong> First Class Romance 💖<br><strong>Seat:</strong> Next to you 🥰</div>
+                <div style="text-align: right;"><strong>Class:</strong> First Class 💖<br><strong>Seat:</strong> Next to you</div>
             </div>
         </div>
 
         <div class="page page-inner-bg page-birthdays" id="p10">
             <span class="decor decor-tr">🎈</span>
             <span class="decor decor-bl">🎁</span>
-            <h3>Birthday Countdowns! 🎂🥳</h3>
-            <div class="bday-card">
+            <h3 class="pop-item delay-1">Birthday Countdowns! 🎂🥳</h3>
+            <div class="bday-card pop-item delay-2">
                 <h4>Theshu's Day 👑👦🏻<br><span style="font-size: 0.8rem; font-weight:normal;">(March 14)</span></h4>
                 <div class="bday-timer" id="theshu-timer">Calculating... ⏳</div>
             </div>
-            <div class="bday-card">
+            <div class="bday-card pop-item delay-3">
                 <h4>Ayuuu's Day 👑👧🏻<br><span style="font-size: 0.8rem; font-weight:normal;">(September 22)</span></h4>
                 <div class="bday-timer" id="ayuuu-timer">Calculating... ⏳</div>
             </div>
-            <div style="margin-top: 5px; font-size: 0.9rem; color: #d81159; font-weight: bold; font-family: 'Caveat', cursive;">
+            <div class="pop-item delay-4" style="margin-top: 5px; font-size: 0.9rem; color: #d81159; font-weight: bold; font-family: 'Caveat', cursive;">
                 *Expect lots of kisses on these days! 🎁💋*
             </div>
         </div>
@@ -464,28 +456,28 @@
         <div class="page page-inner-bg page-scratch" id="p11">
             <span class="decor decor-tl">🪙</span>
             <span class="decor decor-br">✨</span>
-            <h3>I have a secret... 🤫</h3>
-            <p class="letter-font" style="margin-bottom: 10px; font-size: 1.2rem;">Rub the silver box to reveal your surprise! 🪙👆</p>
+            <h3 class="pop-item delay-1">I have a secret... 🤫</h3>
+            <p class="letter-font pop-item delay-2" style="margin-bottom: 10px; font-size: 1.2rem;">Rub the silver box to reveal your surprise! 🪙👆</p>
             
-            <div class="scratch-wrapper">
+            <div class="scratch-wrapper pop-item delay-3">
                 <div class="scratch-secret letter-font">
                     🎉 <strong>TICKET UNLOCKED!</strong> 🎉<br>
                     Good for ONE FREE endless cuddling session when we finally meet! 🫂💕
                 </div>
                 <canvas id="scratchCanvas" width="230" height="130"></canvas>
             </div>
-            <div class="flirty-line" style="margin-top: 10px;">No refunds or exchanges. Valid forever. 😏</div>
-            <div style="margin-top: 5px; font-size: 0.75rem; color: #888; font-weight: bold;">Scratch gently! ✨</div>
+            <div class="flirty-line pop-item delay-4" style="margin-top: 10px;">No refunds or exchanges. Valid forever. 😏</div>
+            <div class="pop-item delay-4" style="margin-top: 5px; font-size: 0.75rem; color: #888; font-weight: bold;">Scratch gently! ✨</div>
         </div>
 
         <div class="page page-inner-bg page-cake" id="p12">
             <span class="decor decor-tr">🎊</span>
             <span class="decor decor-bl">🎈</span>
-            <h3>Let's Celebrate! 🎂🎉</h3>
+            <h3 class="pop-item delay-1">Let's Celebrate! 🎂🎉</h3>
             
-            <p class="letter-font" style="font-size: 1.2rem; margin: 0 0 5px 0;">Close your eyes & make a wish... 🌠</p>
+            <p class="letter-font pop-item delay-2" style="font-size: 1.2rem; margin: 0 0 5px 0;">Close your eyes & make a wish... 🌠</p>
             
-            <div class="cake-container" id="cakeContainer">
+            <div class="cake-container pop-item delay-3" id="cakeContainer">
                 <p class="cake-instruction pulse-text" id="cakeText">Tap the cake to cut! 🔪🍰</p>
                 <div class="knife" id="knife"></div>
                 <div class="cake-plate"></div>
@@ -505,9 +497,9 @@
                 </div>
             </div>
             
-            <p class="letter-font" style="color: #d62828; font-weight: bold; margin: 0; font-size: 1.6rem;">Happy 100 Days! 🥂💖</p>
+            <p class="letter-font pop-item delay-4" style="color: #d62828; font-weight: bold; margin: 0; font-size: 1.6rem;">Happy 100 Days! 🥂💖</p>
             
-            <div style="background: rgba(255,255,255,0.7); border-radius: 10px; padding: 6px; margin-top: 5px; font-size: 0.85rem; border: 1px dashed #ff8fab; color: #5a3a40; font-weight: bold;">
+            <div class="pop-item delay-4" style="background: rgba(255,255,255,0.7); border-radius: 10px; padding: 6px; margin-top: 5px; font-size: 0.85rem; border: 1px dashed #ff8fab; color: #5a3a40; font-weight: bold; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
                 Here is to 100 days of smiling at my screen like an idiot. I can't wait for a million more. 🥰
             </div>
         </div>
@@ -515,15 +507,15 @@
         <div class="page page-inner-bg page-flowers" id="p13">
             <span class="decor decor-tl">☀️</span>
             <span class="decor decor-br">🦋</span>
-            <h3>For You... 🥺💝</h3>
+            <h3 class="pop-item delay-1">For You... 🥺💝</h3>
             
-            <div class="letter-font" style="background: rgba(255,255,255,0.7); border-radius: 10px; padding: 8px; margin: 5px 0; border: 2px dashed #ffb3c6; font-size: 1.15rem;">
+            <div class="letter-font pop-item delay-2" style="background: rgba(255,255,255,0.7); border-radius: 10px; padding: 8px; margin: 5px 0; border: 2px dashed #ffb3c6; font-size: 1.15rem; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
                 Did you know? You're my favorite flower. ✨ Let's watch our love grow just like these. 🌱
             </div>
 
-            <p class="letter-font" style="font-size: 1.2rem; color: #5a3a40; margin: 5px 0 0 0; padding: 0 5px;">I couldn't bring you real flowers yet, so I planted these just for you! 🥺</p>
+            <p class="letter-font pop-item delay-3" style="font-size: 1.2rem; color: #5a3a40; margin: 5px 0 0 0; padding: 0 5px;">I couldn't bring you real flowers yet, so I planted these just for you! 🥺</p>
             
-            <div class="tulip-garden">
+            <div class="tulip-garden pop-item delay-4">
                 <span class="tulip t1">🌷</span>
                 <span class="tulip t2">🌷</span>
                 <span class="tulip t3">🌷</span>
@@ -531,68 +523,29 @@
                 <span class="tulip t5">🌷</span>
             </div>
             
-            <div class="status-badge" style="margin-top: 5px; font-family: 'Caveat', cursive; font-size: 1.3rem;">
+            <div class="status-badge pop-item delay-4" style="margin-top: 5px; font-family: 'Caveat', cursive; font-size: 1.3rem;">
                 The prettiest flower in my life. 🥺🌷
             </div>
         </div>
 
-        <div class="page page-inner-bg page-scanner" id="p14" style="justify-content: center;">
-            <span class="decor decor-tl">✨</span>
-            <span class="decor decor-br">🔐</span>
-            <h3>A Pinky Promise... 🥺</h3>
-            <p class="letter-font" style="font-size: 1.15rem; margin-bottom: 10px;">Hold your thumb here to verify your identity. 👆</p>
-
-            <div class="scanner-container" id="scannerBox">
-                <div class="finger-icon" id="fingerIcon">👆</div>
-                <div class="scan-line"></div>
-            </div>
-            
-            <div id="promiseBox" class="secret-promise">
-                <span style="font-size:1.5rem;">🦋</span><br>
-                <strong>Identity Confirmed: Soulmate!</strong><br>
-                I promise to always be your safe space, your biggest fan, and yours forever. 🥺💍
-            </div>
-            <div id="scanText" class="flirty-line" style="margin-top: 15px;">Scanning for Ayuuu... ⏳</div>
-        </div>
-
-        <div class="page page-inner-bg page-capsule" id="p15" style="justify-content: center;">
-            <span class="decor decor-tr">⏳</span>
-            <span class="decor decor-bl">📦</span>
-            <h3>Our Time Capsule 🔒</h3>
-            <p class="letter-font" style="font-size: 1.2rem;">This page is permanently locked until our 1-Year Anniversary! 🙈</p>
-            
-            <div class="capsule-wrapper">
-                <div class="capsule-lock" id="capsuleIcon">🔐</div>
-                <div id="capsuleLocked">
-                    <p style="margin-bottom: 5px; font-weight: bold;">Unlocks in exactly:</p>
-                    <div class="capsule-timer" id="capsuleTimer">Calculating... ⏳</div>
-                </div>
-                <div class="capsule-content letter-font" id="capsuleUnlocked">
-                    🎉 <strong>HAPPY 1 YEAR!</strong> 🎉<br><br>
-                    We made it! 365 days of loving you. I am so incredibly proud of us. Here is to a lifetime more. I love you, Ayuuu! 🥺💍💖
-                </div>
-            </div>
-            <div class="status-badge" style="margin-top: 15px;">No cheating allowed! 😤</div>
-        </div>
-
-        <div class="page page-inner-bg page-final" id="p16">
+        <div class="page page-inner-bg page-final" id="p14">
             <span class="decor decor-tl">🦋</span>
             <span class="decor decor-br">✨</span>
-            <div class="letter-font">
+            <div class="letter-font pop-item delay-1">
                 <h2 style="font-family: 'Quicksand', sans-serif; font-size: 1.5rem; margin-bottom: 8px;">Alhamdulillah & Amen ✨🙏</h2>
                 <p>I am eternally thankful to Allah 🕋 and to God ✝️ for guiding our hearts to each other 🤲.</p>
                 <p>You are a beautifully answered prayer 🕊️, and I will cherish you every single day 🌅.</p>
                 <p>Love always,</p>
                 <p>- Theshu 💝</p>
             </div>
-            <div style="font-family: 'Quicksand', sans-serif; font-size: 0.8rem; color: #888; position: absolute; bottom: 15px;">
+            <div class="pop-item delay-3" style="font-family: 'Quicksand', sans-serif; font-size: 0.8rem; color: #888; position: absolute; bottom: 15px;">
                 Made with ❤️ just for you.
             </div>
         </div>
 
     </div>
     
-    <div class="nav-hint" id="navHint" style="display: none;">Tap right edge ➔ next<br>Tap left edge 🠔 back</div>
+    <div class="nav-hint pop-item delay-4" id="navHint" style="display: none;">Tap right edge ➔ next<br>Tap left edge 🠔 back</div>
 </div>
 
 <script>
@@ -666,43 +619,6 @@
     canvas.addEventListener('touchmove', scratch, {passive: false});
     window.addEventListener('touchend', endScratch);
 
-    // --- THUMBPRINT SCANNER LOGIC ---
-    const scannerBox = document.getElementById('scannerBox');
-    const fingerIcon = document.getElementById('fingerIcon');
-    const promiseBox = document.getElementById('promiseBox');
-    const scanText = document.getElementById('scanText');
-    let scanTimer;
-    let isScanned = false;
-
-    function startScan(e) {
-        if (isScanned) return;
-        if (e.touches) e.preventDefault(); // Stop mobile zooming
-        
-        scannerBox.classList.add('scanning');
-        scanText.innerText = "Hold still... 🔍";
-        
-        scanTimer = setTimeout(() => {
-            isScanned = true;
-            scannerBox.classList.remove('scanning');
-            scannerBox.parentElement.classList.add('scanned-success');
-            fingerIcon.innerText = "✅";
-            scanText.innerText = "Access Granted! 🔓";
-        }, 2500); // Hold for 2.5 seconds
-    }
-
-    function stopScan() {
-        if (isScanned) return;
-        clearTimeout(scanTimer);
-        scannerBox.classList.remove('scanning');
-        scanText.innerText = "Scan failed. Try again! 👆";
-    }
-
-    scannerBox.addEventListener('mousedown', startScan);
-    scannerBox.addEventListener('touchstart', startScan, {passive: false});
-    scannerBox.addEventListener('mouseup', stopScan);
-    scannerBox.addEventListener('mouseleave', stopScan);
-    scannerBox.addEventListener('touchend', stopScan);
-
     // --- BACKGROUND FALLING HEARTS ---
     function createHeart() {
         const heart = document.createElement('div');
@@ -719,7 +635,6 @@
     // --- DATE SETTINGS & TIMERS ---
     const meetingDate = new Date('2026-01-18T00:00:00'); 
     const targetDate = new Date(meetingDate.getTime() + (100 * 24 * 60 * 60 * 1000));
-    const anniversaryDate = new Date('2027-01-18T00:00:00'); // 1 Year Anniversary!
     
     function getNextBday(m, d) {
         let now = new Date();
@@ -750,7 +665,6 @@
     function updateTimer() {
         const now = new Date().getTime();
         
-        // 1. Cover 100th Day Timer
         const distance = targetDate.getTime() - now;
         if (distance <= 0 || lockKeyword !== "Ayu") {
             isUnlocked = true;
@@ -765,34 +679,18 @@
             countdownEl.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
         }
 
-        // 2. Timeline Live Counters
         const daysTogether = Math.floor((now - meetingDate.getTime()) / (1000 * 60 * 60 * 24));
         document.getElementById('days-together-counter').innerText = Math.max(0, daysTogether);
 
-        // 3. Birthday Countdowns
         document.getElementById('theshu-timer').innerText = formatBday(theshuBday, now);
         document.getElementById('ayuuu-timer').innerText = formatBday(ayuuuBday, now);
-
-        // 4. Time Capsule Countdown
-        const capsuleDist = anniversaryDate.getTime() - now;
-        if (capsuleDist <= 0) {
-            document.getElementById('capsuleIcon').innerText = "🔓";
-            document.getElementById('capsuleLocked').style.display = "none";
-            document.getElementById('capsuleUnlocked').style.display = "block";
-        } else {
-            const cd = Math.floor(capsuleDist / (1000 * 60 * 60 * 24));
-            const ch = Math.floor((capsuleDist % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const cm = Math.floor((capsuleDist % (1000 * 60 * 60)) / (1000 * 60));
-            const cs = Math.floor((capsuleDist % (1000 * 60)) / 1000);
-            document.getElementById('capsuleTimer').innerText = `${cd}d ${ch}h ${cm}m ${cs}s`;
-        }
     }
     updateTimer();
     setInterval(updateTimer, 1000);
 
     // --- MULTI-PAGE NAVIGATION LOGIC ---
     let currentPage = 1;
-    const totalPages = 16; // Now 16 Pages!!!
+    const totalPages = 14; 
     const bookContainer = document.getElementById('bookContainer');
 
     function updateActivePage() {
@@ -821,11 +719,9 @@
         }
 
         if (currentPage < totalPages && clickX >= (rect.width * 0.3)) {
-            // Interactive block protections
             if (currentPage === 5 && (e.target.id === 'loveBtn')) return; 
             if (currentPage === 11 && (e.target.id === 'scratchCanvas')) return; 
             if (currentPage === 12 && (e.target.closest('#cakeContainer'))) return; 
-            if (currentPage === 14 && (e.target.closest('#scannerBox'))) return; 
 
             document.getElementById('p' + currentPage).classList.add('flipped');
             currentPage++;
