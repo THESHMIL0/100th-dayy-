@@ -41,7 +41,7 @@
             100% { transform: translate(var(--x-end), 110vh) rotate(360deg); opacity: 0; }
         }
 
-        /* --- Site Opening & Floating Animation --- */
+        /* --- Site Opening Animation --- */
         .website-container {
             animation: siteOpenBounce 1.5s cubic-bezier(0.28, 0.84, 0.42, 1), magicalFloat 5s ease-in-out infinite 1.5s;
             display: flex; flex-direction: column; align-items: center; z-index: 10; 
@@ -56,7 +56,7 @@
             50% { transform: translate(0, -10px); }
         }
 
-        /* --- THE ULTIMATE ANTI-GLITCH BOOK PHYSICS --- */
+        /* --- THE SMART RENDERING BOOK PHYSICS (GLITCH FREE) --- */
         .book {
             position: relative; width: 320px; height: 480px; 
             box-shadow: 0 15px 45px rgba(0,0,0,0.25);
@@ -72,20 +72,18 @@
             backface-visibility: hidden; -webkit-backface-visibility: hidden; 
             transform-origin: left center; -webkit-transform-origin: left center;
             
-            opacity: 1;
             transform: rotateY(0deg); -webkit-transform: rotateY(0deg);
-            transition: transform 1s cubic-bezier(0.645, 0.045, 0.355, 1), z-index 0s, opacity 0s;
-            -webkit-transition: -webkit-transform 1s cubic-bezier(0.645, 0.045, 0.355, 1), z-index 0s, opacity 0s;
+            transition: transform 0.7s cubic-bezier(0.4, 0.0, 0.2, 1);
+            -webkit-transition: -webkit-transform 0.7s cubic-bezier(0.4, 0.0, 0.2, 1);
+            
+            visibility: hidden;
         }
 
         .page.flipped { 
             transform: rotateY(-180deg); -webkit-transform: rotateY(-180deg); 
-            opacity: 0; 
-            z-index: 0 !important; 
-            transition: transform 1s cubic-bezier(0.645, 0.045, 0.355, 1), z-index 0s 0.4s, opacity 0s 0.4s;
-            -webkit-transition: -webkit-transform 1s cubic-bezier(0.645, 0.045, 0.355, 1), z-index 0s 0.4s, opacity 0s 0.4s;
         }
 
+        /* --- ELEGANT DIAGONAL STRIPES --- */
         .page-inner-bg {
             background-color: #fff0f3;
             background-image: repeating-linear-gradient(
@@ -111,12 +109,6 @@
         .notebook-content p { font-family: 'Caveat', cursive; font-size: 1.25rem; line-height: 2.2rem; margin: 0; color: #5a3a40; font-weight: bold; }
 
         #p1, #p3, #p4, #p5, #p8, #p9, #p10, #p11, #p12, #p13, #p14, #p15, #p16 { justify-content: center; }
-
-        /* --- STACKING ORDER (16 Pages) --- */
-        #p1 { z-index: 16; } #p2 { z-index: 15; } #p3 { z-index: 14; } #p4 { z-index: 13; }
-        #p5 { z-index: 12; } #p6 { z-index: 11; } #p7 { z-index: 10; } #p8 { z-index: 9; } 
-        #p9 { z-index: 8; } #p10 { z-index: 7; } #p11 { z-index: 6; } #p12 { z-index: 5; }
-        #p13 { z-index: 4; } #p14 { z-index: 3; } #p15 { z-index: 2; } #p16 { z-index: 1; }
         
         .page::after {
             content: ''; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
@@ -177,7 +169,7 @@
         @keyframes floatPhoto { from { transform: translate(0, 0) rotate(0deg); } to { transform: translate(0, -10px) rotate(2deg); } }
 
         /* --- LOVE METER --- */
-        .meter-container { width: 85%; height: 25px; background: #fff; border-radius: 15px; border: 3px dashed #ffb3c6; margin: 15px 0; overflow: hidden; position: relative; }
+        .meter-container { width: 85%; height: 25px; background: #fff; border-radius: 15px; border: 3px dashed #ffb3c6; margin: 10px 0; overflow: hidden; position: relative; }
         .meter-fill { height: 100%; width: 0%; background: linear-gradient(90deg, #ff8fab, #d81159); transition: width 0.3s ease-out; }
         .cute-btn { background: #d81159; color: white; border: none; padding: 8px 16px; font-size: 0.9rem; border-radius: 20px; font-family: inherit; font-weight: bold; cursor: pointer; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: transform 0.1s; margin: 5px 0; }
         .cute-btn:active { transform: scale(0.95); }
@@ -187,13 +179,17 @@
 
         /* --- LISTS --- */
         .cute-list { list-style: none; padding: 0; text-align: left; margin: 0 0 10px 0; width: 100%; z-index: 2; }
-        .cute-list li { margin: 3px 0; font-size: 1.15rem; opacity: 0; background: rgba(255, 255, 255, 0.6); padding: 4px 10px; border-radius: 8px; }
+        .cute-list li { margin: 2px 0; font-size: 1.1rem; opacity: 0; background: rgba(255, 255, 255, 0.6); padding: 3px 10px; border-radius: 8px; }
         .reasons-list li { transform: translate(-20px, 0); }
         .future-list li { transform: translate(0, 20px); background: white; border: 2px dashed #ffb3c6; text-align: center; font-weight: bold; margin: 6px 0; font-size: 1.15rem; }
         .page.active .reasons-list li { animation: slideInText 0.6s forwards; }
         .page.active .future-list li { animation: slideUpFade 0.6s forwards; }
         @keyframes slideInText { to { opacity: 1; transform: translate(0, 0); } }
         @keyframes slideUpFade { to { opacity: 1; transform: translate(0, 0); } }
+
+        .routine-box { background: white; border: 2px dashed #ff8fab; border-radius: 12px; width: 95%; padding: 8px; margin-top: 8px; text-align: left; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
+        .routine-box h4 { margin: 0 0 5px 0; color: #d81159; font-family: 'Caveat', cursive; font-size: 1.3rem; }
+        .routine-box p { margin: 2px 0; font-size: 0.85rem; font-weight: bold; color: #5a3a40; }
 
         /* --- TIMELINE & BIRTHDAYS --- */
         .timeline-box { background: rgba(255,255,255,0.8); border: 2px dashed #ffb3c6; padding: 10px; border-radius: 15px; width: 95%; z-index: 2; margin-top: 5px;}
@@ -224,7 +220,7 @@
         .scratch-secret { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: #fff; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 15px; box-sizing: border-box; font-size: 1.1rem; color: #d81159; text-align: center; }
         #scratchCanvas { position: absolute; top: 0; left: 0; z-index: 5; cursor: pointer; }
 
-        /* --- PAGE 12: PREMIUM TWO-TIER CAKE --- */
+        /* --- PAGE 12: CAKE --- */
         .cake-container { position: relative; width: 180px; height: 180px; margin: 10px 0; cursor: pointer; z-index: 2;}
         .cake-aura { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 220px; height: 220px; background: radial-gradient(circle, rgba(255, 179, 198, 0.6) 0%, rgba(255,255,255,0) 70%); z-index: -1; animation: coverGlow 3s infinite alternate; pointer-events: none;}
         .cake-stand { position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); z-index: 0; display: flex; flex-direction: column; align-items: center; }
@@ -268,18 +264,28 @@
         .confetti-piece { position: absolute; width: 8px; height: 8px; animation: popConfetti 1s ease-out forwards; z-index: 10; opacity: 0;}
         @keyframes popConfetti { 0% { transform: translate(0, 0) scale(1) rotate(0deg); opacity: 1; } 100% { transform: translate(var(--tx), var(--ty)) scale(0.2) rotate(var(--tr)); opacity: 0; } }
 
-        /* --- PAGE 13 - TULIP GARDEN --- */
-        .tulip-garden { position: relative; width: 100%; height: 130px; display: flex; justify-content: center; align-items: flex-end; margin-top: 10px; z-index: 2; border-bottom: 4px solid #81c784; }
-        .tulip { display: inline-block; font-size: 2.5rem; margin: 0 2px; transform-origin: bottom center; animation: swayTulip 3s ease-in-out infinite alternate; }
-        .t1 { animation-delay: 0s; font-size: 2.3rem; } .t2 { animation-delay: 0.5s; font-size: 2.8rem; }
-        .t3 { animation-delay: 1.2s; font-size: 3.3rem; z-index: 5;} .t4 { animation-delay: 0.3s; font-size: 2.6rem; }
-        .t5 { animation-delay: 0.8s; font-size: 2.1rem; }
-        @keyframes swayTulip { 0% { transform: rotate(-15deg); } 100% { transform: rotate(15deg); } }
+        /* --- UPGRADED PAGE 13 - TULIP GARDEN --- */
+        .tulip-planter-container { position: relative; width: 100%; display: flex; flex-direction: column; align-items: center; margin-top: 10px; }
+        .tulip-garden-new { position: relative; width: 220px; height: 100px; display: flex; justify-content: space-around; align-items: flex-end; z-index: 1; margin-bottom: -15px; }
+        .tulip { font-size: 2.2rem; transform-origin: bottom center; animation: swayTulip 3s ease-in-out infinite alternate; display: inline-block; filter: drop-shadow(0 4px 4px rgba(0,0,0,0.1)); }
+        .t1 { animation-delay: 0.1s; font-size: 2rem; }
+        .t2 { animation-delay: 0.6s; font-size: 2.5rem; z-index: 2; }
+        .t3 { animation-delay: 1.3s; font-size: 3rem; z-index: 3; }
+        .t4 { animation-delay: 0.4s; font-size: 3.5rem; z-index: 4; } /* Center */
+        .t5 { animation-delay: 0.9s; font-size: 3rem; z-index: 3; }
+        .t6 { animation-delay: 0.2s; font-size: 2.5rem; z-index: 2; }
+        .t7 { animation-delay: 0.7s; font-size: 2rem; }
+        @keyframes swayTulip { 0% { transform: rotate(-12deg); } 100% { transform: rotate(12deg); } }
 
-        /* --- PAGE 14 - FIXED SCANNER PROMISE --- */
+        .planter-box { position: relative; z-index: 5; display: flex; flex-direction: column; align-items: center; filter: drop-shadow(0 8px 15px rgba(0,0,0,0.15)); }
+        .planter-lip { width: 240px; height: 15px; background: linear-gradient(90deg, #d81159, #ff4081, #d81159); border-radius: 8px; border: 2px solid #b00d49; border-bottom: none; }
+        .planter-body { width: 210px; height: 45px; background: linear-gradient(135deg, #ff8fab, #ffb3c6); border-radius: 0 0 15px 15px; border: 2px solid #b00d49; border-top: none; display: flex; justify-content: center; align-items: center; color: white; font-family: 'Caveat', cursive; font-size: 1.4rem; font-weight: bold; text-shadow: 1px 1px 2px rgba(0,0,0,0.2); }
+
+
+        /* --- PAGE 14 - SCANNER --- */
         .scanner-container {
             position: relative; width: 120px; height: 160px; border: 3px solid #ffb3c6;
-            border-radius: 25px; margin: 10px auto; display: flex; justify-content: center;
+            border-radius: 25px; margin: 15px auto; display: flex; justify-content: center;
             align-items: center; background: rgba(255,255,255,0.7); overflow: hidden;
             cursor: pointer; box-shadow: inset 0 0 15px rgba(216,17,89,0.1);
             -webkit-user-select: none; user-select: none; 
@@ -293,7 +299,6 @@
         .scanning .finger-icon { opacity: 0.8; }
         @keyframes scanAnim { from { top: 5%; } to { top: 95%; } }
         
-        /* NEW: Hidden Promise Box that expands dynamically */
         .secret-promise {
             opacity: 0; max-height: 0; overflow: hidden; margin-top: 0; padding-top: 0; padding-bottom: 0;
             transition: all 0.8s ease; font-size: 1.15rem; color: #d62828; font-weight: bold; 
@@ -303,7 +308,7 @@
             opacity: 1; max-height: 200px; margin-top: 10px; padding: 10px; border-color: #ffb3c6; 
         }
         .scanned-success .scanner-container { border-color: #81c784; box-shadow: inset 0 0 15px rgba(129,199,132,0.3); }
-        .scanned-success #scanText { display: none; } /* Hides waiting text upon success */
+        .scanned-success #scanText { display: none; } 
 
         /* --- PAGE 15 - TIME CAPSULE --- */
         .capsule-wrapper {
@@ -422,7 +427,13 @@
                 <li style="animation-delay: 1.0s">🎶 Your cute voice notes 🥺</li>
                 <li style="animation-delay: 1.2s">✨ Everything about you 💍</li>
             </ul>
-            <div class="status-badge pop-item delay-4" style="margin-top: 5px;">Verdict: 100% Stuck with me 🤭🔒</div>
+            
+            <div class="routine-box pop-item delay-4">
+                <h4>My Daily Routine:</h4>
+                <p>✅ Wake up missing you.</p>
+                <p>✅ Check my phone for your text.</p>
+                <p>✅ Smile like an absolute idiot. 🥰</p>
+            </div>
         </div>
 
         <div class="page page-inner-bg page-future" id="p7">
@@ -463,7 +474,9 @@
             
             <div class="map-wrapper pop-item delay-2">
                 <div class="map-pin pin-kerala">🌴<span style="font-size: 0.7rem; color: #5a3a40;">Kerala</span></div>
-                <div class="flight-arc"></div>
+                <svg viewBox="0 0 190 190">
+                    <path d="M55,140 C70,100 110,80 130,45" fill="none" stroke="#d81159" stroke-width="3" stroke-dasharray="8 6" id="mapPath"/>
+                </svg>
                 <div class="airplane">✈️</div>
                 <div class="map-pin pin-goa">🏖️<span style="font-size: 0.7rem; color: #5a3a40;">Goa</span></div>
             </div>
@@ -568,22 +581,32 @@
             <span class="decor decor-br">🦋</span>
             <h3 class="pop-item delay-1">For You... 🥺💝</h3>
             
-            <div class="letter-font pop-item delay-2" style="background: rgba(255,255,255,0.7); border-radius: 10px; padding: 8px; margin: 5px 0; border: 2px dashed #ffb3c6; font-size: 1.15rem;">
-                Did you know? You're my favorite flower. ✨ Let's watch our love grow just like these. 🌱
+            <div class="letter-font pop-item delay-2" style="background: rgba(255,255,255,0.7); border-radius: 10px; padding: 6px; margin: 5px 0; border: 2px dashed #ffb3c6; font-size: 1.1rem;">
+                I remember you told me your absolute favorite flowers are Tulips... 🌷
             </div>
 
-            <p class="letter-font pop-item delay-3" style="font-size: 1.2rem; color: #5a3a40; margin: 5px 0 0 0; padding: 0 5px;">I couldn't bring you real flowers yet, so I planted these just for you! 🥺</p>
+            <p class="letter-font pop-item delay-3" style="font-size: 1.1rem; color: #5a3a40; margin: 5px 0 0 0; padding: 0 5px; line-height:1.1;">
+                I couldn't bring you a real bouquet today, so I built you a garden that will never, ever wilt! ✨
+            </p>
             
-            <div class="tulip-garden pop-item delay-4">
-                <span class="tulip t1">🌷</span>
-                <span class="tulip t2">🌷</span>
-                <span class="tulip t3">🌷</span>
-                <span class="tulip t4">🌷</span>
-                <span class="tulip t5">🌷</span>
+            <div class="tulip-planter-container pop-item delay-4">
+                <div class="tulip-garden-new">
+                    <span class="tulip t1">🌷</span>
+                    <span class="tulip t2">🌷</span>
+                    <span class="tulip t3">🌷</span>
+                    <span class="tulip t4">🌷</span>
+                    <span class="tulip t5">🌷</span>
+                    <span class="tulip t6">🌷</span>
+                    <span class="tulip t7">🌷</span>
+                </div>
+                <div class="planter-box">
+                    <div class="planter-lip"></div>
+                    <div class="planter-body">Ayuuu's Garden</div>
+                </div>
             </div>
             
-            <div class="status-badge pop-item delay-4" style="margin-top: 5px; font-family: 'Caveat', cursive; font-size: 1.3rem;">
-                The prettiest flower in my life. 🥺🌷
+            <div class="status-badge pop-item delay-4" style="margin-top: 10px; font-family: 'Caveat', cursive; font-size: 1.3rem;">
+                You are the prettiest flower in my life. 🥺
             </div>
         </div>
 
@@ -603,7 +626,7 @@
                 <strong>Identity Confirmed: Soulmate!</strong><br>
                 I promise to always be your safe space, your biggest fan, and yours forever. 🥺💍
             </div>
-            <div id="scanText" class="flirty-line pop-item delay-4" style="margin-top: 15px;">Waiting for fingerprint... ⏳</div>
+            <div id="scanText" class="flirty-line pop-item delay-4" style="margin-top: 15px;">Scanning for Ayuuu... ⏳</div>
         </div>
 
         <div class="page page-inner-bg page-capsule" id="p15" style="justify-content: center;">
@@ -663,12 +686,10 @@
                 musicToggle.classList.add('playing');
             }).catch(err => console.log("Audio waiting for stronger interaction"));
         }
-        // Remove after successful unlock
         document.removeEventListener('click', unlockAudio);
         document.removeEventListener('touchstart', unlockAudio);
     };
 
-    // Attach to multiple robust events
     document.addEventListener('click', unlockAudio);
     document.addEventListener('touchstart', unlockAudio, { passive: true });
 
@@ -743,7 +764,6 @@
             scannerBox.classList.remove('scanning');
             scannerBox.parentElement.classList.add('scanned-success');
             fingerIcon.innerText = "✅";
-            // Promise box now handles its own display via CSS!
         }, 2000); 
     }
 
@@ -909,8 +929,12 @@
             loveScore += 25; 
             meterFill.style.width = loveScore + '%';
             
+            meterFill.parentElement.style.animation = 'none';
+            meterFill.parentElement.offsetHeight; 
+            meterFill.parentElement.style.animation = 'gentleShake 0.3s';
+
             if (loveScore >= 100) {
-                meterMsg.innerHTML = "Warning: Love Overload!! 💖💥";
+                meterMsg.innerHTML = "LOVE OVERLOAD!! 💖💥";
                 loveBtn.style.display = 'none'; 
             } else {
                 meterMsg.innerHTML = "More! Keep tapping! 🐾🥰";
