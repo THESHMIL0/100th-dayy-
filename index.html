@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Our 100th Day 💝</title>
+    <title>Our 100th Day - The Story 💝</title>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Comic+Sans+MS&display=swap" rel="stylesheet">
     <style>
-        /* 1. Basic Cute Theme Setup */
+        /* --- 1. Basic Cute Theme Setup (Retained) --- */
         body {
             background-color: #ffe6ea; /* Soft pink background */
             font-family: 'Comic Sans MS', 'Arial Rounded MT Bold', sans-serif;
@@ -16,232 +17,468 @@
             margin: 0;
             overflow: hidden;
             color: #5a3a40;
+            perspective: 2000px; /* Required for the 3D flip effect */
         }
 
-        /* 2. Site Opening Animation */
+        /* --- 2. Site Opening Animation (Retained) --- */
         .website-container {
-            animation: siteOpenFade 2s ease-in-out;
+            animation: siteOpenFade 1.5s ease-in-out;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         @keyframes siteOpenFade {
-            0% { opacity: 0; transform: scale(0.9); }
-            100% { opacity: 1; transform: scale(1); }
+            0% { opacity: 0; transform: scale(0.9) translateY(20px); }
+            100% { opacity: 1; transform: scale(1) translateY(0); }
         }
 
-        /* 3. The Book Structure */
+        /* --- 3. The 3D Flip Book Structure --- */
         .book {
             position: relative;
-            width: 350px;
-            height: 500px;
-            perspective: 1500px; /* Required for the 3D flip effect */
+            width: 320px;
+            height: 480px;
+            transition: transform 0.5s;
+            transform-style: preserve-3d;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
         }
 
-        /* 4. The Cover (Lock Screen) */
-        .cover {
+        /* Basic Page Styling */
+        .page {
             position: absolute;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, #ffb3c6, #ff8fab);
-            border-radius: 10px 25px 25px 10px;
-            box-shadow: 5px 5px 15px rgba(0,0,0,0.2);
-            transform-origin: left; /* Makes it open from the left spine */
-            transition: transform 1.5s ease-in-out; /* Smooth flipping animation */
+            top: 0;
+            left: 0;
+            background: #fff0f3;
+            border-radius: 10px;
+            box-shadow: inset 0 0 15px rgba(0,0,0,0.05);
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            z-index: 2;
-            padding: 20px;
+            padding: 25px;
             box-sizing: border-box;
+            backface-visibility: hidden; /* Hide back when turning */
+            transform-origin: left center; /* Flip around left edge */
+            transition: transform 1.2s cubic-bezier(0.645, 0.045, 0.355, 1);
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        /* Helper class for front pages */
+        .page.front {
+            z-index: 2;
+            transform: rotateY(0deg);
+        }
+
+        /* Helper class to simulate a 'flipped' page */
+        .page.flipped {
+            transform: rotateY(-180deg);
+            z-index: 0;
+        }
+
+        /* Shadow texture for realism */
+        .page::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(90deg, rgba(0,0,0,0.05) 0%, rgba(255,255,255,0) 10%, rgba(255,255,255,0) 90%, rgba(0,0,0,0.05) 100%);
+            pointer-events: none;
+        }
+
+        /* Cursive font style for letters */
+        .letter-font {
+            font-family: 'Pacifico', cursive;
+            color: #d81159;
+            line-height: 1.6;
+        }
+
+        /* Formatting for headings */
+        h2, h3 { color: #d62828; margin-top: 0; }
+
+        /* --- 4. Special Page Content Styling --- */
+
+        /* PAGE 1: The Cover (Lock Screen) - Specific adjustments */
+        .page-cover {
+            background: linear-gradient(135deg, #ffb3c6, #ff8fab);
+            border-radius: 5px 20px 20px 5px; /* Subtle book edge */
+            box-shadow: 5px 5px 15px rgba(0,0,0,0.15);
             cursor: pointer;
         }
 
-        /* This class is added by JavaScript when the book is unlocked */
-        .cover.open {
-            transform: rotateY(-130deg); /* Flips the cover open */
+        /* Countdown display styling */
+        #countdown {
+            font-size: 1.1rem;
+            margin: 15px 0;
+            font-weight: bold;
+            background: rgba(255, 255, 255, 0.6);
+            padding: 10px;
+            border-radius: 10px;
+            border: 1px solid rgba(214, 40, 40, 0.1);
         }
 
-        /* 5. Inside Content */
-        .inside {
-            position: absolute;
+        /* Lock icon styling */
+        #lock-icon { font-size: 3.5rem; margin-bottom: 15px; }
+
+        /* Error message when clicking locked book */
+        #early-message {
+            opacity: 0;
+            color: white;
+            font-weight: bold;
+            transition: opacity 0.4s;
+            background: rgba(216, 17, 89, 0.9);
+            padding: 10px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            margin-top: 10px;
+        }
+
+        /* PAGE 2: Letter styling */
+        .page-letter p { font-size: 1rem; margin-bottom: 10px; }
+
+        /* PAGE 3 & 4: Photo styling (retaining 'floating' animation) */
+        .photo-frame {
+            position: relative;
+            width: 220px;
+            height: 220px;
+            border-radius: 50%; /* Making photos circular for a cuter look */
+            border: 8px solid white;
+            box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+            overflow: hidden;
+            margin-bottom: 20px;
+            animation: floatPhoto 4s infinite ease-in-out alternate;
+        }
+
+        .photo-img {
             width: 100%;
             height: 100%;
-            background: #fff0f3;
-            border-radius: 10px 25px 25px 10px;
-            box-shadow: inset 2px 0 10px rgba(0,0,0,0.1);
-            padding: 20px;
-            box-sizing: border-box;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            overflow-y: auto;
-            z-index: 1;
-        }
-
-        /* 6. Animations for text and photos */
-        .animate-text {
-            animation: pulseText 2s infinite alternate;
-        }
-
-        @keyframes pulseText {
-            from { transform: scale(1); }
-            to { transform: scale(1.05); color: #d62828; }
-        }
-
-        .photos {
-            display: flex;
-            gap: 15px;
-            margin-top: 20px;
-        }
-
-        .photo {
-            width: 130px;
-            height: 130px;
             object-fit: cover;
-            border-radius: 15px;
-            border: 4px solid white;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-            animation: floatPhoto 3s infinite ease-in-out alternate;
         }
 
-        /* Delay the second photo's animation so they float differently */
-        .photo:nth-child(2) {
-            animation-delay: 1.5s;
+        /* Dark Cute Flirty Line Styling */
+        .flirty-line {
+            font-size: 1rem;
+            color: #4a1c1c;
+            background: #ffd6e0;
+            padding: 10px;
+            border-radius: 10px;
+            font-weight: bold;
         }
+
+        /* Different animation speeds for each photo */
+        #p4 .photo-frame { animation-delay: 2s; }
 
         @keyframes floatPhoto {
-            from { transform: translateY(0px); }
-            to { transform: translateY(-10px); }
+            from { transform: translateY(0px) rotate(0deg); }
+            to { transform: translateY(-15px) rotate(2deg); }
         }
 
-        /* 7. UI Elements */
-        #countdown {
-            font-size: 1.2rem;
-            margin: 20px 0;
-            font-weight: bold;
-            background: rgba(255, 255, 255, 0.5);
-            padding: 10px;
+        /* --- 5. PAGE 5: The Cake & Cutting Animation --- */
+        .cake-container {
+            position: relative;
+            width: 150px;
+            height: 180px;
+            margin-bottom: 20px;
+            cursor: pointer;
+        }
+
+        /* Realistic(ish) CSS Cake Drawing */
+        .cake {
+            position: absolute;
+            bottom: 0;
+            width: 150px;
+            height: 130px;
+            background: #fdf2e9; /* Cake batter color */
+            border-radius: 10px 10px 5px 5px;
+            border-bottom: 5px solid #d35400; /* Plate shadow */
+            transition: transform 0.6s ease-out; /* Smooth slice separation */
+        }
+
+        /* Frosting Layers */
+        .cake::before, .cake::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            background: #ffb3c6; /* Pink Frosting */
             border-radius: 10px;
         }
 
-        #lock-icon {
-            font-size: 3rem;
-            margin-bottom: 10px;
+        .cake::before { /* Bottom Frosting */
+            height: 25px;
+            bottom: 40px;
+            box-shadow: inset 0 -5px 5px rgba(255,255,255,0.4);
         }
 
-        #early-message {
-            opacity: 0; /* Hidden by default */
+        .cake::after { /* Top Frosting */
+            height: 25px;
+            top: -10px;
+            border-radius: 10px 10px 0 0;
+            background: #ff8fab;
+            box-shadow: 0 5px 5px rgba(0,0,0,0.1);
+        }
+
+        /* Cake Topping (Realistic Drip) */
+        .topping {
+            position: absolute;
+            top: -10px;
+            width: 100%;
+            height: 30px;
+            background: #ff8fab;
+            border-radius: 10px 10px 0 0;
+        }
+        .drip {
+            position: absolute;
+            top: 15px;
+            width: 10px;
+            height: 25px;
+            background: #ff8fab;
+            border-radius: 0 0 5px 5px;
+        }
+        .drip1 { left: 20px; }
+        .drip2 { left: 70px; height: 35px; }
+        .drip3 { left: 120px; }
+
+        /* The Animated Knife */
+        .knife {
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            width: 5px;
+            height: 160px;
+            background: #bdc3c7; /* Silver blade */
+            border-radius: 2px;
+            transform: translateX(-50%) translateY(-200px);
+            transition: transform 0.8s ease-in;
+            z-index: 5;
+        }
+        .knife::after { /* Red Knife Handle */
+            content: '';
+            position: absolute;
+            top: -30px;
+            left: -5px;
+            width: 15px;
+            height: 40px;
+            background: #c0392b;
+            border-radius: 5px;
+        }
+
+        /* Classes to trigger animations via JS */
+        .knife-anim { transform: translateX(-50%) translateY(0); }
+        .cake-slice-anim { transform: translateX(-15px); }
+
+        /* Text overlaying the cake initially */
+        .cake-instruction {
+            font-size: 0.9rem;
             color: #d81159;
             font-weight: bold;
-            transition: opacity 0.3s;
-            background: white;
-            padding: 8px;
-            border-radius: 8px;
+            position: absolute;
+            top: 50px;
+            width: 100%;
+            background: rgba(255,255,255,0.8);
+            padding: 5px 0;
         }
-        
-        .end-message {
-            margin-top: auto;
-            margin-bottom: 10px;
-            font-size: 0.9rem;
+
+        /* --- 6. PAGE 6: The Final Thank God Letter --- */
+        .page-final h2 { margin-bottom: 20px; }
+        .page-final .letter-font { font-size: 1.1rem; }
+
+        /* Navigation hints styling */
+        .nav-hint {
+            margin-top: 15px;
+            font-size: 0.8rem;
             color: #888;
-            animation: fadeInEnd 4s ease-in;
+            background: white;
+            padding: 5px 10px;
+            border-radius: 15px;
         }
-        
-        @keyframes fadeInEnd {
-            0% { opacity: 0; }
-            80% { opacity: 0; }
-            100% { opacity: 1; }
-        }
+
     </style>
 </head>
 <body>
 
 <div class="website-container">
-    <div class="book">
-        <div id="cover" class="cover">
+    <div class="book" id="bookContainer">
+        
+        <div class="page front page-cover" id="p1">
             <h1>Our 100th Day</h1>
             <div id="countdown">Calculating...</div>
             <div id="lock-icon">🔒</div>
-            <p id="early-message">Not the time yet! Wait for the day cutie! 🐾</p>
+            <p id="early-message">It's not the time yet! Wait for the day cutie! 🐾</p>
         </div>
 
-        <div id="inside" class="inside">
-            <h2 class="animate-text">Happy 100 Days! 💝</h2>
-            <p>Thank you for the most amazing days. Here is to many more!</p>
-            
-            <div class="photos">
-                <img src="1.jpg" alt="Us Image 1" class="photo">
-                <img src="2.jpg" alt="Us Image 2" class="photo">
+        <div class="page front page-letter" id="p2">
+            <h2>To My Favorite Person...</h2>
+            <div class="letter-font">
+                <p>Can you believe it's already been 100 days? It feels like we just met yesterday, but at the same time, I can't imagine my life without you anymore.</p>
+                <p>Thank you for all the smiles, the laughter, and the warmth you've brought into my days. Every moment with you is special. I love you!</p>
             </div>
-            
-            <p class="end-message">I love you! 💕</p>
         </div>
+
+        <div class="page front page-photo" id="p3">
+            <div class="photo-frame">
+                <img src="photo_marks.jpg" alt="Our marks photo" class="photo-img">
+            </div>
+            <div class="flirty-line">I want to paint you entirely in red marks. Don't worry, they only show how much I belong to you. 💋</div>
+        </div>
+
+        <div class="page front page-photo" id="p4">
+            <div class="photo-frame">
+                <img src="photo_formal.jpg" alt="Our dressed up photo" class="photo-img">
+            </div>
+            <div class="flirty-line">My favourite accessory is you. I might have to possessive-ly lock you away if other people keep looking. 🔐</div>
+        </div>
+
+        <div class="page front page-cake" id="p5">
+            <h3>Let's Celebrate! 🎂</h3>
+            <div class="cake-container" id="cakeContainer">
+                <p class="cake-instruction" id="cakeText">Tap the cake to cut!</p>
+                <div class="knife" id="knife"></div>
+                <div class="cake" id="cake">
+                    <div class="topping">
+                        <div class="drip drip1"></div>
+                        <div class="drip drip2"></div>
+                        <div class="drip drip3"></div>
+                    </div>
+                </div>
+            </div>
+            <p class="animate-text">Happy 100 Days! Here's to us.</p>
+        </div>
+
+        <div class="page front page-final" id="p6">
+            <div class="letter-font">
+                <h2>Alhamdulillah.</h2>
+                <p>I am eternally thankful to God for bringing us both together. You are a blessing I never saw coming, and I will cherish you every single day.</p>
+                <p>Love always,</p>
+                <p>- Me 💝</p>
+            </div>
+        </div>
+
     </div>
+    
+    <div class="nav-hint" id="navHint" style="display: none;">Tap book edges to turn pages!</div>
 </div>
 
 <script>
-    // --- TESTING MODE ---
-    // Keep this as "" to lock the book. 
-    // Change it to anything else (like "") to unlock the book for testing!
-    const lockKeyword = ""; 
-    // --------------------
+    // --- TESTING MODE (Retained) ---
+    // Change "Ayu" to "" to unlock the book instantly for testing!
+    const lockKeyword = "Ayu"; 
+    // --------------------------------
 
-    // 1. Set the REAL meeting date (Jan 18, 2026) to hit the 100th day on April 28, 2026!
-    const meetingDate = new Date('2026-01-18T00:00:00');
+    // --- 1. COUNTDOWN & LOCK LOGIC (Retained for April 28, 2026) ---
+    const meetingDate = new Date('2026-01-18T00:00:00'); // Calculates 100th day as April 28, 2026
     const targetDate = new Date(meetingDate.getTime() + (100 * 24 * 60 * 60 * 1000));
 
-    // 2. Grab HTML elements to control them with code
     const countdownEl = document.getElementById('countdown');
     const lockIcon = document.getElementById('lock-icon');
     const earlyMessage = document.getElementById('early-message');
-    const cover = document.getElementById('cover');
+    const cover = document.getElementById('p1');
+    const navHint = document.getElementById('navHint');
+    let isUnlocked = false;
 
-    // 3. Logic to update the timer every second
+    // Logic to update the timer every second
     function updateTimer() {
         const now = new Date().getTime();
         const distance = targetDate.getTime() - now;
 
-        // UNLOCK CONDITION: If the 100th day is here OR if the lockKeyword is NOT "Ayu"
+        // UNLOCK CONDITION
         if (distance <= 0 || lockKeyword !== "Ayu") {
-            
-            // Show a special message if you are in testing mode
+            isUnlocked = true;
             if (lockKeyword !== "Ayu") {
                 countdownEl.innerHTML = "Testing Mode Unlocked! 🛠️";
             } else {
                 countdownEl.innerHTML = "It's time! 🎉";
             }
-            
             lockIcon.innerHTML = "🔓 <br> <span style='font-size: 1rem;'>Click to open!</span>";
-            
-            // Allow opening the book by clicking
-            cover.onclick = function() {
-                cover.classList.add('open');
-            };
-            
         } else {
             // LOCKED CONDITION: Calculate time left
             const days = Math.floor(distance / (1000 * 60 * 60 * 24));
             const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-            
             countdownEl.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
-            
-            // Handle clicking early (Shows the cute message temporarily)
-            cover.onclick = function() {
-                earlyMessage.style.opacity = 1;
-                setTimeout(() => {
-                    earlyMessage.style.opacity = 0;
-                }, 3000);
-            };
         }
     }
 
-    // Run the timer immediately, then update it every 1000ms (1 second)
     updateTimer();
     setInterval(updateTimer, 1000);
+
+    // --- 2. MULTI-PAGE NAVIGATION LOGIC ---
+    let currentPage = 1;
+    const totalPages = 6;
+    const bookContainer = document.getElementById('bookContainer');
+
+    // Handle turning pages sequentially on click
+    bookContainer.onclick = function(e) {
+        // If the book is locked, don't allow page turning, just show the error message.
+        if (!isUnlocked) {
+            earlyMessage.style.opacity = 1;
+            setTimeout(() => { earlyMessage.style.opacity = 0; }, 3000);
+            return;
+        }
+
+        // --- Navigating backwards (Tap Left side) ---
+        // If they click on the far left 20% of the book, turn back a page.
+        const rect = bookContainer.getBoundingClientRect();
+        const clickX = e.clientX - rect.left;
+        if (currentPage > 1 && clickX < (rect.width * 0.2)) {
+            // Un-flip the *previous* page to go back
+            document.getElementById('p' + (currentPage - 1)).classList.remove('flipped');
+            currentPage--;
+            checkCakeState(); // Reset cake if we turn back
+            return;
+        }
+
+        // --- Navigating forwards (Tap Right side) ---
+        // If we haven't reached the final page, flip the current page to the left.
+        if (currentPage < totalPages) {
+            // Don't turn the page if they are trying to click the 'Cut Cake' button inside Page 5.
+            if (currentPage === 5 && e.target.id === 'cakeContainer') return; 
+
+            document.getElementById('p' + currentPage).classList.add('flipped');
+            currentPage++;
+            
+            // Show the generic navigation hint after the cover is turned.
+            if (currentPage === 2) { navHint.style.display = 'block'; }
+            // Hide the hint on the very last page.
+            if (currentPage === totalPages) { navHint.style.display = 'none'; }
+        }
+    };
+
+    // --- 3. CAKE CUTTING ANIMATION LOGIC (ON PAGE 5) ---
+    const cakeContainer = document.getElementById('cakeContainer');
+    const knife = document.getElementById('knife');
+    const cake = document.getElementById('cake');
+    const cakeText = document.getElementById('cakeText');
+    let cakeIsCut = false;
+
+    // Trigger animation when the cake container is tapped
+    cakeContainer.onclick = function(e) {
+        e.stopPropagation(); // Stop the book page-turning click from firing!
+
+        if (!cakeIsCut) {
+            // Animation sequence: Knife drops, cake splits.
+            cakeText.style.display = 'none'; // Hide instruction
+            knife.classList.add('knife-anim'); // Bring knife down
+
+            setTimeout(() => {
+                cake.classList.add('cake-slice-anim'); // Split the cake slices apart realistic-ally
+                cakeIsCut = true;
+            }, 800); // Trigger after the knife drops.
+        }
+    };
+
+    // Resets the cake cutting animation if they turn back from the thank god page.
+    function checkCakeState() {
+        if (currentPage === 5 && cakeIsCut) {
+            cake.classList.remove('cake-slice-anim');
+            knife.classList.remove('knife-anim');
+            cakeText.style.display = 'block';
+            cakeIsCut = false;
+        }
+    }
+
 </script>
 
 </body>
