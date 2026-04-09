@@ -7,13 +7,26 @@
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
     
     <style>
-        /* --- 1. Basic Cute Theme Setup (Optimized for Fit) --- */
+        /* --- 1. Basic Cute Theme Setup --- */
         body {
             background-color: #ffe6ea; 
             font-family: 'Quicksand', sans-serif; 
             display: flex; justify-content: center; align-items: center;
             height: 100vh; margin: 0; overflow: hidden; color: #5a3a40; perspective: 2500px; 
         }
+
+        /* --- NEW: Floating Music Toggle Button --- */
+        .music-toggle {
+            position: absolute; top: 20px; right: 20px; font-size: 1.5rem;
+            background: rgba(255, 255, 255, 0.8); border: 2px dashed #ffb3c6;
+            border-radius: 50%; width: 45px; height: 45px;
+            display: flex; justify-content: center; align-items: center;
+            cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            z-index: 100; animation: spinRecord 4s linear infinite;
+            animation-play-state: paused; /* Starts paused until music plays */
+        }
+        .music-toggle.playing { animation-play-state: running; }
+        @keyframes spinRecord { 100% { transform: rotate(360deg); } }
 
         /* --- Falling Background Hearts --- */
         .falling-heart {
@@ -25,7 +38,7 @@
             100% { transform: translate3d(0, 110vh, 0) rotate(360deg); opacity: 0; }
         }
 
-        /* --- Site Opening & Floating Animation (Smooth) --- */
+        /* --- Site Opening & Floating Animation --- */
         .website-container {
             animation: siteOpenBounce 1.5s cubic-bezier(0.28, 0.84, 0.42, 1), magicalFloat 5s ease-in-out infinite 1.5s;
             display: flex; flex-direction: column; align-items: center; z-index: 10; 
@@ -53,14 +66,13 @@
             align-items: center; text-align: center; padding: 25px 15px; 
             box-sizing: border-box; backface-visibility: hidden; 
             transform-origin: left center; transition: transform 1.2s cubic-bezier(0.645, 0.045, 0.355, 1);
-            overflow: hidden !important; /* NO SCROLLING EVER */
+            overflow: hidden !important; 
         }
 
         .page-inner-bg {
             background-image: radial-gradient(#ffb3c6 1.5px, transparent 1px); background-size: 20px 20px; 
         }
 
-        /* Centering specific pages vertically */
         #p1, #p3, #p4, #p5, #p8, #p9, #p10, #p11 { justify-content: center; }
 
         /* Stacking Order */
@@ -76,13 +88,12 @@
             pointer-events: none;
         }
 
-        /* --- FONT OPTIMIZATION --- */
+        /* --- FONTS --- */
         .letter-font { font-family: 'Caveat', cursive; color: #d81159; line-height: 1.2; font-size: 1.3rem; z-index: 2; }
         h2 { font-size: 1.5rem; color: #d62828; margin: 0 0 5px 0; text-shadow: 1px 1px 2px rgba(255,255,255,0.8); }
         h3 { font-size: 1.3rem; color: #d62828; margin: 0 0 5px 0; text-shadow: 1px 1px 2px rgba(255,255,255,0.8); }
         p { margin: 4px 0; } 
 
-        /* Floating Decorations */
         .decor { position: absolute; font-size: 1.8rem; opacity: 0.8; pointer-events: none; animation: floatDecor 3s infinite ease-in-out alternate; z-index: 0; }
         .decor-tl { top: 10px; left: 10px; } .decor-tr { top: 10px; right: 10px; animation-delay: 1s; }
         .decor-bl { bottom: 10px; left: 10px; animation-delay: 1.5s; } .decor-br { bottom: 10px; right: 10px; animation-delay: 0.5s; }
@@ -107,14 +118,11 @@
             width: 70px; height: 20px; background-color: rgba(255, 179, 198, 0.9); box-shadow: 0 2px 4px rgba(0,0,0,0.1); z-index: 3;
         }
         .cover-names { font-size: 1.5rem; color: #d81159; margin-bottom: 2px; }
-        .cover-title {
-            font-size: 2.1rem; color: #d62828; margin: 0; padding-bottom: 5px; border-bottom: 2px dashed #ffb3c6; width: 100%;
-        }
+        .cover-title { font-size: 2.1rem; color: #d62828; margin: 0; padding-bottom: 5px; border-bottom: 2px dashed #ffb3c6; width: 100%; }
         .cover-hints { font-size: 0.8rem; color: #5a3a40; font-weight: bold; margin-top: 6px; text-align: left; width: 90%; }
         .hint-item { margin: 2px 0; display: flex; align-items: center; opacity: 0.9; }
         .hint-item span { width: 18px; margin-right: 5px; text-align: center; }
-        .hint-pop { animation: gentlePulse 2s infinite alternate ease-in-out; display: inline-block; }
-
+        
         .bookmark { position: absolute; top: -15px; right: 20px; width: 20px; height: 60px; background: #d81159; box-shadow: 2px 2px 5px rgba(0,0,0,0.2); z-index: 0; }
         .bookmark::after { content: ''; position: absolute; bottom: -10px; left: 0; border-left: 10px solid #d81159; border-right: 10px solid #d81159; border-bottom: 10px solid transparent; }
         #countdown { font-size: 1rem; font-weight: bold; color: #5a3a40; background: rgba(255, 255, 255, 0.7); padding: 8px; border-radius: 10px; border: 1px solid rgba(214, 40, 40, 0.1); z-index: 2; }
@@ -123,7 +131,7 @@
         @keyframes gentlePulse { from { transform: scale3d(1, 1, 1); opacity: 0.8; } to { transform: scale3d(1.08, 1.08, 1); opacity: 1; } }
         #early-message { opacity: 0; color: white; font-weight: bold; transition: opacity 0.4s; background: rgba(216, 17, 89, 0.9); padding: 8px; border-radius: 8px; font-size: 0.85rem; margin-top: 5px; z-index: 2; }
 
-        /* --- PHOTOS & Washi Tape --- */
+        /* --- PHOTOS --- */
         .photo-container { position: relative; display: flex; justify-content: center; margin-bottom: 15px; }
         .photo-frame { position: relative; width: 190px; height: 190px; border-radius: 50%; border: 8px solid white; box-shadow: 0 8px 15px rgba(0,0,0,0.2); overflow: hidden; animation: floatPhoto 4s infinite ease-in-out alternate; }
         .photo-img { width: 100%; height: 100%; object-fit: cover; }
@@ -134,17 +142,16 @@
         #p4 .photo-frame, #p4 .washi-tape { animation-delay: 2s; }
         @keyframes floatPhoto { from { transform: translate3d(0, 0, 0) rotate(0deg); } to { transform: translate3d(0, -12px, 0) rotate(2deg); } }
 
-        /* --- LOVE METER & STATS BOX --- */
+        /* --- LOVE METER --- */
         .meter-container { width: 80%; height: 25px; background: #fff; border-radius: 15px; border: 3px dashed #ffb3c6; margin: 15px 0; overflow: hidden; position: relative; }
         .meter-fill { height: 100%; width: 0%; background: linear-gradient(90deg, #ff8fab, #d81159); transition: width 0.3s ease-out; }
         .cute-btn { background: #d81159; color: white; border: none; padding: 10px 20px; font-size: 1rem; border-radius: 20px; font-family: inherit; font-weight: bold; cursor: pointer; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: transform 0.1s; margin: 5px 0; }
         .cute-btn:active { transform: scale(0.95); }
         .meter-msg { font-size: 1rem; font-weight: bold; color: #d62828; min-height: 20px; margin: 5px 0;}
-        
         .stats-box { background: rgba(255,255,255,0.8); border: 2px dashed #ffb3c6; padding: 10px; border-radius: 15px; width: 95%; margin-top: 5px; z-index: 2; text-align: left;}
         .stats-box p { margin: 4px 0; font-size: 0.9rem; color: #5a3a40; font-weight: bold;}
 
-        /* --- LISTS (REASONS & FUTURE) --- */
+        /* --- LISTS --- */
         .cute-list { list-style: none; padding: 0; text-align: left; margin: 0 0 10px 0; width: 100%; z-index: 2; }
         .cute-list li { margin: 3px 0; font-size: 1.15rem; opacity: 0; background: rgba(255, 255, 255, 0.6); padding: 4px 10px; border-radius: 8px; }
         .reasons-list li { transform: translateX(-20px); }
@@ -164,60 +171,25 @@
         .bday-card h4 { margin: 0 0 8px 0; color: #d62828; font-size: 1.2rem; }
         .bday-timer { font-size: 1rem; font-weight: bold; color: #d81159; background: #ffe6ea; padding: 6px; border-radius: 8px;}
 
-        /* --- UPGRADED CAKE --- */
+        /* --- CAKE --- */
         .cake-container { position: relative; width: 180px; height: 180px; margin-bottom: 20px; cursor: pointer; z-index: 2;}
-        
-        .cake-plate {
-            position: absolute; bottom: 0px; left: 50%; transform: translateX(-50%); width: 170px; height: 25px; 
-            background: linear-gradient(0deg, #bdbdbd 0%, #ffffff 50%, #e0e0e0 100%);
-            border-radius: 50%; border: 2px solid #a1a1a1; border-bottom: 4px solid #a1a1a1;
-            z-index: 0; box-shadow: 0 10px 10px rgba(0,0,0,0.1);
-        }
+        .cake-plate { position: absolute; bottom: 0px; left: 50%; transform: translateX(-50%); width: 170px; height: 25px; background: linear-gradient(0deg, #bdbdbd 0%, #ffffff 50%, #e0e0e0 100%); border-radius: 50%; border: 2px solid #a1a1a1; border-bottom: 4px solid #a1a1a1; z-index: 0; box-shadow: 0 10px 10px rgba(0,0,0,0.1); }
         .cake-plate::before { content: ''; position: absolute; top: 3px; left: 50%; transform: translateX(-50%); width: 140px; height: 10px; background: rgba(255,255,255,0.3); border-radius: 50%; }
-
         .cake-halves { position: absolute; bottom: 12px; left: 50%; transform: translateX(-50%); display: flex; width: 150px; height: 100px; z-index: 1;}
         .cake-half { width: 50%; height: 100%; position: relative; background: #fdf2e9; border-bottom: 6px solid #d35400; transition: transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1); }
-        .left-half { border-radius: 15px 0 0 5px; border-right: 1px solid #f0e0d0; } 
-        .right-half { border-radius: 0 15px 5px 0; }
-        
-        .frost-top { 
-            position: absolute; top: 0; left: 0; width: 100%; height: 35px; background: #ff8fab; 
-            background-image: 
-                radial-gradient(circle, #fff 1.5px, transparent 2px),
-                radial-gradient(circle, #ffeb3b 1.5px, transparent 2px),
-                radial-gradient(circle, #ff007f 1.5px, transparent 2px),
-                radial-gradient(circle, #00bcd4 1.5px, transparent 2px);
-            background-size: 10px 10px, 15px 15px, 12px 18px, 18px 12px;
-            background-position: 0 0, 5px 3px, 2px 7px, 7px 2px;
-        }
+        .left-half { border-radius: 15px 0 0 5px; border-right: 1px solid #f0e0d0; } .right-half { border-radius: 0 15px 5px 0; }
+        .frost-top { position: absolute; top: 0; left: 0; width: 100%; height: 35px; background: #ff8fab; background-image: radial-gradient(circle, #fff 1.5px, transparent 2px), radial-gradient(circle, #ffeb3b 1.5px, transparent 2px), radial-gradient(circle, #ff007f 1.5px, transparent 2px), radial-gradient(circle, #00bcd4 1.5px, transparent 2px); background-size: 10px 10px, 15px 15px, 12px 18px, 18px 12px; background-position: 0 0, 5px 3px, 2px 7px, 7px 2px; }
         .left-half .frost-top { border-radius: 15px 0 0 0; } .right-half .frost-top { border-radius: 0 15px 0 0; }
         .frost-mid { position: absolute; top: 50px; left: 0; width: 100%; height: 15px; background: #ffb3c6; }
-        
         .drip { position: absolute; top: 30px; width: 10px; height: 20px; background: #ff8fab; border-radius: 10px; }
         .left-half .drip1 { left: 15px; height: 30px; } .left-half .drip2 { left: 40px; height: 15px; }
         .right-half .drip3 { left: 10px; height: 25px; } .right-half .drip4 { left: 35px; height: 15px; }
-
-        /* The 100 on the Cake! */
-        .cake-number { 
-            position: absolute; top: 60px; font-family: 'Caveat', cursive; font-size: 2.2rem; 
-            color: #d81159; font-weight: bold; text-shadow: 2px 2px 0px rgba(255,255,255,0.7); z-index: 5; 
-        }
-        .left-half .cake-number { right: 2px; } /* Puts the '1' on the inner edge */
-        .right-half .cake-number { left: 2px; } /* Puts the '00' on the inner edge */
-
-        /* Piped Frosting Base */
-        .piped-base {
-            position: absolute; bottom: -4px; left: 0; width: 100%; height: 15px;
-            background-image: radial-gradient(circle, #ff8fab 6px, transparent 7px);
-            background-size: 14px 14px; background-position: center; z-index: 5;
-        }
-
-        /* Candle */
+        .cake-number { position: absolute; top: 60px; font-family: 'Caveat', cursive; font-size: 2.2rem; color: #d81159; font-weight: bold; text-shadow: 2px 2px 0px rgba(255,255,255,0.7); z-index: 5; }
+        .left-half .cake-number { right: 2px; } .right-half .cake-number { left: 2px; }
+        .piped-base { position: absolute; bottom: -4px; left: 0; width: 100%; height: 15px; background-image: radial-gradient(circle, #ff8fab 6px, transparent 7px); background-size: 14px 14px; background-position: center; z-index: 5; }
         .candle { position: absolute; top: -30px; right: -4px; width: 8px; height: 35px; background: repeating-linear-gradient(45deg, #fff, #fff 4px, #ff8fab 4px, #ff8fab 8px); border-radius: 4px; z-index: 4; border-bottom: 2px solid rgba(0,0,0,0.1); }
         .flame { position: absolute; top: -14px; left: 50%; transform: translateX(-50%); width: 10px; height: 16px; background: #ffcc00; border-radius: 50% 50% 20% 20%; box-shadow: 0 0 15px #ffcc00, 0 0 30px #ff9900; animation: flicker 0.1s infinite alternate; transition: opacity 0.2s; }
         @keyframes flicker { from { transform: translate3d(-50%, 0, 0) scale(1); opacity: 0.8; } to { transform: translate3d(-50%, 0, 0) scale(1.1); opacity: 1; } }
-
-        /* Knife & Animations */
         .knife { position: absolute; top: -30px; left: 50%; width: 4px; height: 150px; background: linear-gradient(90deg, #bdc3c7, #ecf0f1, #bdc3c7); border-radius: 2px; transform: translateX(-50%) translateY(-200px); transition: transform 0.5s cubic-bezier(0.5, 0, 0.5, 1); z-index: 5; }
         .knife::after { content: ''; position: absolute; top: -25px; left: -6px; width: 16px; height: 40px; background: #c0392b; border-radius: 5px; box-shadow: inset -2px 0 5px rgba(0,0,0,0.2); }
         .knife-anim { transform: translate3d(-50%, 20px, 0); }
@@ -225,8 +197,6 @@
         .cake-slice-anim .left-half { transform: translate3d(-15px, 0, 0) rotate(-3deg); transform-origin: bottom left; }
         .cake-slice-anim .flame { opacity: 0; } 
         .cake-instruction { font-size: 0.9rem; color: #d81159; font-weight: bold; position: absolute; top: 5px; width: 100%; background: rgba(255,255,255,0.8); padding: 5px 0; z-index: 10; border-radius: 10px;}
-
-        /* Confetti */
         .confetti-piece { position: absolute; width: 10px; height: 10px; animation: popConfetti 1s ease-out forwards; z-index: 10; opacity: 0;}
         @keyframes popConfetti { 0% { transform: translate3d(0, 0, 0) scale3d(1, 1, 1) rotate(0deg); opacity: 1; } 100% { transform: translate3d(var(--tx), var(--ty), 0) scale3d(0.2, 0.2, 1) rotate(var(--tr)); opacity: 0; } }
 
@@ -234,6 +204,12 @@
     </style>
 </head>
 <body>
+
+<audio id="bgMusic" loop>
+    <source src="3.mp3" type="audio/mpeg">
+</audio>
+
+<div id="musicToggle" class="music-toggle">🎵</div>
 
 <div class="website-container">
     <div class="book" id="bookContainer">
@@ -253,7 +229,7 @@
                         <div class="hint-item"><span>📸</span> Core Memories inside</div>
                         <div class="hint-item"><span>❤️</span> The Love Meter</div>
                         <div class="hint-item"><span>✈️</span> Plans for the Future</div>
-                        <div class="hint-item"><span class="hint-pop">🎂</span> A Birthday Surprise</div>
+                        <div class="hint-item"><span class="pulse-text">🎂</span> A Birthday Surprise</div>
                     </div>
                 </div>
 
@@ -302,7 +278,6 @@
             </div>
             <button class="cute-btn" id="loveBtn">Tap to measure! 👆</button>
             <p class="meter-msg" id="meterMsg"></p>
-            
             <div class="stats-box letter-font">
                 <p>💬 Late Night Chats: Countless</p>
                 <p>🦋 Butterflies: Every time you text</p>
@@ -416,6 +391,37 @@
     // --- TESTING MODE ---
     const lockKeyword = ""; // Set to "Ayu" to lock, empty "" to unlock!
     // --------------------------------
+
+    // --- AUDIO LOGIC (Play on first click) ---
+    const bgMusic = document.getElementById('bgMusic');
+    const musicToggle = document.getElementById('musicToggle');
+    let isMusicPlaying = false;
+
+    // Listen for the very first click anywhere to bypass browser autoplay rules
+    document.body.addEventListener('click', function playAudioOnFirstClick() {
+        if (!isMusicPlaying) {
+            bgMusic.play().then(() => {
+                isMusicPlaying = true;
+                musicToggle.classList.add('playing');
+            }).catch(err => console.log("Audio play failed:", err));
+            // Remove listener so it doesn't trigger on every single click
+            document.body.removeEventListener('click', playAudioOnFirstClick);
+        }
+    }, { once: true });
+
+    // Allow user to manually pause/play
+    musicToggle.onclick = function(e) {
+        e.stopPropagation(); // Prevents the book from turning the page!
+        if (isMusicPlaying) {
+            bgMusic.pause();
+            musicToggle.classList.remove('playing');
+        } else {
+            bgMusic.play();
+            musicToggle.classList.add('playing');
+        }
+        isMusicPlaying = !isMusicPlaying;
+    };
+
 
     // --- BACKGROUND FALLING HEARTS ---
     function createHeart() {
