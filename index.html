@@ -7,7 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
     
     <style>
-        /* --- 1. Basic Cute Theme Setup --- */
+        /* --- 1. Basic Cute Theme Setup (Optimized for Fit) --- */
         * { -webkit-tap-highlight-color: transparent; }
         
         body {
@@ -73,7 +73,7 @@
             backface-visibility: hidden; -webkit-backface-visibility: hidden; 
             transform-origin: left center; -webkit-transform-origin: left center;
             transform: translate3d(0,0,0); -webkit-transform: translate3d(0,0,0);
-            will-change: transform; /* Helps prevent initial mobile rendering flash */
+            will-change: transform; 
             
             transition: transform 1s ease-in-out, z-index 0s;
             -webkit-transition: -webkit-transform 1s ease-in-out, z-index 0s;
@@ -82,12 +82,13 @@
         .page-inner-bg {
             background-image: radial-gradient(#ffb3c6 1.5px, transparent 1px); background-size: 20px 20px; 
         }
-        #p1, #p3, #p4, #p5, #p8, #p9, #p10, #p11, #p12 { justify-content: center; }
+        #p1, #p3, #p4, #p5, #p8, #p9, #p10, #p11, #p12, #p13, #p14 { justify-content: center; }
 
-        /* Stacking Order */
-        #p1 { z-index: 12; } #p2 { z-index: 11; } #p3 { z-index: 10; } #p4 { z-index: 9; }
-        #p5 { z-index: 8; } #p6 { z-index: 7; } #p7 { z-index: 6; } #p8 { z-index: 5; } 
-        #p9 { z-index: 4; } #p10 { z-index: 3; } #p11 { z-index: 2; } #p12 { z-index: 1; }
+        /* --- STACKING ORDER (14 Pages!) --- */
+        #p1 { z-index: 14; } #p2 { z-index: 13; } #p3 { z-index: 12; } #p4 { z-index: 11; }
+        #p5 { z-index: 10; } #p6 { z-index: 9; } #p7 { z-index: 8; } #p8 { z-index: 7; } 
+        #p9 { z-index: 6; } #p10 { z-index: 5; } #p11 { z-index: 4; } #p12 { z-index: 3; }
+        #p13 { z-index: 2; } #p14 { z-index: 1; }
 
         .page.flipped { 
             transform: rotateY(-180deg) translate3d(0,0,0); 
@@ -137,7 +138,6 @@
         .cover-hints { font-size: 0.8rem; color: #5a3a40; font-weight: bold; margin-top: 6px; text-align: left; width: 90%; }
         .hint-item { margin: 2px 0; display: flex; align-items: center; opacity: 0.9; }
         .hint-item span { width: 18px; margin-right: 5px; text-align: center; }
-        .hint-pop { animation: gentlePulse 2s infinite alternate ease-in-out; display: inline-block; }
         
         .bookmark { position: absolute; top: -15px; right: 20px; width: 20px; height: 60px; background: #d81159; box-shadow: 2px 2px 5px rgba(0,0,0,0.2); z-index: 0; }
         .bookmark::after { content: ''; position: absolute; bottom: -10px; left: 0; border-left: 10px solid #d81159; border-right: 10px solid #d81159; border-bottom: 10px solid transparent; }
@@ -188,7 +188,46 @@
         .bday-card h4 { margin: 0 0 8px 0; color: #d62828; font-size: 1.2rem; }
         .bday-timer { font-size: 1rem; font-weight: bold; color: #d81159; background: #ffe6ea; padding: 6px; border-radius: 8px;}
 
-        /* --- PAGE 10 - SCRATCH OFF TICKET --- */
+        /* --- NEW: PAGE 9 - KERALA TO GOA MAP --- */
+        .map-wrapper {
+            position: relative; width: 260px; height: 260px; background: #e0f7fa;
+            border-radius: 50%; border: 6px solid white; box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            margin: 20px 0; overflow: hidden; z-index: 2;
+        }
+        /* Decorating the map background */
+        .map-wrapper::before { content: '🌊'; position: absolute; top: 30px; left: 40px; font-size: 2rem; opacity: 0.3; }
+        .map-wrapper::after { content: '🌊'; position: absolute; bottom: 40px; right: 30px; font-size: 2rem; opacity: 0.3; }
+        
+        .map-pin {
+            position: absolute; font-size: 1.5rem; font-weight: bold; color: #d62828;
+            text-shadow: 1px 1px 2px white; display: flex; flex-direction: column; align-items: center; z-index: 5;
+        }
+        .pin-kerala { bottom: 30px; left: 50px; }
+        .pin-goa { top: 40px; right: 50px; }
+        
+        /* The flight path curve */
+        .flight-arc {
+            position: absolute; top: 70px; left: 80px; width: 100px; height: 140px;
+            border-top: 3px dashed #d81159; border-right: 3px dashed #d81159;
+            border-radius: 0 100% 0 0; opacity: 0.6; z-index: 3;
+        }
+        
+        .airplane {
+            position: absolute; font-size: 1.5rem; z-index: 6;
+            /* Animated along the arc */
+            bottom: 60px; left: 60px;
+        }
+        .page.active .airplane { animation: flyPlane 4s ease-in-out infinite; }
+        
+        @keyframes flyPlane {
+            0% { transform: translate3d(0, 0, 0) rotate(45deg); opacity: 0; }
+            10% { opacity: 1; }
+            50% { transform: translate3d(50px, -60px, 0) rotate(60deg); }
+            90% { opacity: 1; }
+            100% { transform: translate3d(120px, -150px, 0) rotate(70deg); opacity: 0; }
+        }
+
+        /* --- PAGE 11: SCRATCH OFF TICKET --- */
         .scratch-wrapper {
             position: relative; width: 240px; height: 140px; margin: 15px auto;
             border-radius: 15px; box-shadow: 0 8px 20px rgba(0,0,0,0.15);
@@ -196,13 +235,11 @@
         }
         .scratch-secret {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: #fff; display: flex; flex-direction: column;
-            justify-content: center; align-items: center; padding: 15px;
-            box-sizing: border-box; font-size: 1.1rem; color: #d81159; text-align: center;
+            background: #fff; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 15px; box-sizing: border-box; font-size: 1.1rem; color: #d81159; text-align: center;
         }
         #scratchCanvas { position: absolute; top: 0; left: 0; z-index: 5; cursor: pointer; }
 
-        /* --- CAKE --- */
+        /* --- PAGE 12: CAKE --- */
         .cake-container { position: relative; width: 180px; height: 180px; margin-bottom: 20px; cursor: pointer; z-index: 2;}
         .cake-plate { position: absolute; bottom: 0px; left: 50%; transform: translateX(-50%); width: 170px; height: 25px; background: linear-gradient(0deg, #bdbdbd 0%, #ffffff 50%, #e0e0e0 100%); border-radius: 50%; border: 2px solid #a1a1a1; border-bottom: 4px solid #a1a1a1; z-index: 0; box-shadow: 0 10px 10px rgba(0,0,0,0.1); }
         .cake-plate::before { content: ''; position: absolute; top: 3px; left: 50%; transform: translateX(-50%); width: 140px; height: 10px; background: rgba(255,255,255,0.3); border-radius: 50%; }
@@ -230,6 +267,28 @@
         .cake-instruction { font-size: 0.9rem; color: #d81159; font-weight: bold; position: absolute; top: 5px; width: 100%; background: rgba(255,255,255,0.8); padding: 5px 0; z-index: 10; border-radius: 10px;}
         .confetti-piece { position: absolute; width: 10px; height: 10px; animation: popConfetti 1s ease-out forwards; z-index: 10; opacity: 0;}
         @keyframes popConfetti { 0% { transform: translate3d(0, 0, 0) scale3d(1, 1, 1) rotate(0deg); opacity: 1; } 100% { transform: translate3d(var(--tx), var(--ty), 0) scale3d(0.2, 0.2, 1) rotate(var(--tr)); opacity: 0; } }
+
+        /* --- NEW: PAGE 13 - TULIP GARDEN --- */
+        .tulip-garden {
+            position: relative; width: 100%; height: 150px; display: flex; 
+            justify-content: center; align-items: flex-end; margin-top: 20px; z-index: 2;
+            border-bottom: 4px solid #81c784; /* A little grass line */
+        }
+        .tulip {
+            display: inline-block; font-size: 3rem; margin: 0 2px;
+            transform-origin: bottom center; animation: swayTulip 3s ease-in-out infinite alternate;
+        }
+        /* Make them different sizes and sway at different times */
+        .t1 { animation-delay: 0s; font-size: 2.8rem; }
+        .t2 { animation-delay: 0.5s; font-size: 3.5rem; }
+        .t3 { animation-delay: 1.2s; font-size: 4rem; z-index: 5;} /* Center is biggest */
+        .t4 { animation-delay: 0.3s; font-size: 3.2rem; }
+        .t5 { animation-delay: 0.8s; font-size: 2.6rem; }
+        
+        @keyframes swayTulip {
+            0% { transform: rotate(-15deg); }
+            100% { transform: rotate(15deg); }
+        }
 
         .nav-hint { margin-top: 10px; font-size: 0.8rem; color: #888; background: white; padding: 5px 10px; border-radius: 15px; font-family: 'Quicksand', sans-serif; z-index: 10;}
     </style>
@@ -259,8 +318,8 @@
                         <p style="margin-bottom: 3px; font-size: 0.9rem; color:#d62828;">Spilling the tea... ☕</p>
                         <div class="hint-item"><span>📸</span> Core Memories inside</div>
                         <div class="hint-item"><span>❤️</span> The Love Meter</div>
-                        <div class="hint-item"><span>✈️</span> Plans for the Future</div>
-                        <div class="hint-item"><span class="pulse-text">🎂</span> A Birthday Surprise</div>
+                        <div class="hint-item"><span>✈️</span> Kerala to Goa Map!</div>
+                        <div class="hint-item"><span class="pulse-text">🌷</span> Special Surprises</div>
                     </div>
                 </div>
 
@@ -278,11 +337,7 @@
                 <p>Can you believe it's already been 100 days? 🕰️ It feels like we just met yesterday, but at the same time, I can't imagine my life without you anymore 🫂.</p>
                 <p>Thank you for all the smiles 😊, the laughter 😂, and the warmth you've brought into my days ☀️. Every moment with you is special ✨. I love you so much! ❤️</p>
             </div>
-            
-            <div class="letter-font" style="margin-top: 10px; font-weight: bold; background: rgba(255,255,255,0.7); padding: 5px 10px; border-radius: 10px; border: 2px dashed #ffb3c6;">
-                P.P.S. You owe me a kiss for every word in this letter. 😘💌
-            </div>
-            <div class="letter-font" style="margin-top: 5px; font-weight: bold; background: rgba(255,255,255,0.7); padding: 5px 10px; border-radius: 10px; border: 2px dashed #ffb3c6;">
+            <div class="letter-font" style="margin-top: 15px; font-weight: bold; background: rgba(255,255,255,0.7); padding: 5px 10px; border-radius: 10px; border: 2px dashed #ffb3c6;">
                 P.S. I look at your pictures every single day. 📸🙈
             </div>
         </div>
@@ -320,9 +375,6 @@
                 <p>🦋 Butterflies: Every time you text</p>
                 <p>🥺 Missing You Level: 10000%</p>
             </div>
-            <div style="margin-top: 10px; font-size: 0.9rem; color: #d81159; font-weight: bold; font-family: 'Caveat', cursive;">
-                *System Error: Love capacity exceeded! 💥*
-            </div>
         </div>
 
         <div class="page page-inner-bg page-reasons" id="p6">
@@ -337,7 +389,6 @@
                 <li style="animation-delay: 3.4s">🎶 Your cute voice notes 🥺</li>
                 <li style="animation-delay: 4.2s">✨ Everything about you 💍</li>
             </ul>
-            <div class="flirty-line" style="margin-top: 5px;">And a million other things... 😏🫶</div>
             <div class="status-badge" style="margin-top: 5px;">Verdict: 100% Stuck with me 🤭🔒</div>
         </div>
 
@@ -345,7 +396,6 @@
             <span class="decor decor-tl">✈️</span>
             <span class="decor decor-br">☁️</span>
             <h3>When We Finally Meet... 🥺🫂</h3>
-            <p class="letter-font" style="font-size: 1.15rem; color: #5a3a40; margin:0 0 8px 0; padding: 0 10px;">Distance means so little when someone means so much. 🌍❤️</p>
             <ul class="cute-list future-list letter-font">
                 <li style="animation-delay: 0.3s">🛍️ Going shopping together 👗</li>
                 <li style="animation-delay: 1.1s">🎬 Late night movie dates 🍿</li>
@@ -370,7 +420,25 @@
             <div class="status-badge">Current Status: Thinking of you... 💭❤️</div>
         </div>
 
-        <div class="page page-inner-bg page-birthdays" id="p9">
+        <div class="page page-inner-bg page-map" id="p9">
+            <span class="decor decor-tl">🌤️</span>
+            <span class="decor decor-br">☁️</span>
+            <h3>Closing the Distance 🌍</h3>
+            <p class="letter-font" style="font-size: 1.15rem; color: #5a3a40; margin:0 0 10px 0; padding: 0 10px;">600km is nothing when you mean everything to me. 🥺✈️</p>
+            
+            <div class="map-wrapper">
+                <div class="map-pin pin-kerala">🌴<span style="font-size: 0.8rem; color: #5a3a40;">Kerala</span></div>
+                <div class="flight-arc"></div>
+                <div class="airplane">✈️</div>
+                <div class="map-pin pin-goa">🏖️<span style="font-size: 0.8rem; color: #5a3a40;">Goa</span></div>
+            </div>
+            
+            <div class="status-badge" style="margin-top: 5px; font-family: 'Caveat', cursive; font-size: 1.3rem;">
+                I'll fly to you soon! 💕
+            </div>
+        </div>
+
+        <div class="page page-inner-bg page-birthdays" id="p10">
             <span class="decor decor-tr">🎈</span>
             <span class="decor decor-bl">🎁</span>
             <h3>Birthday Countdowns! 🎂🥳</h3>
@@ -387,7 +455,7 @@
             </div>
         </div>
 
-        <div class="page page-inner-bg page-scratch" id="p10">
+        <div class="page page-inner-bg page-scratch" id="p11">
             <span class="decor decor-tl">🪙</span>
             <span class="decor decor-br">✨</span>
             <h3>I have a secret... 🤫</h3>
@@ -403,7 +471,7 @@
             <div class="flirty-line" style="margin-top: 15px;">No refunds or exchanges. Valid forever. 😏</div>
         </div>
 
-        <div class="page page-inner-bg page-cake" id="p11">
+        <div class="page page-inner-bg page-cake" id="p12">
             <span class="decor decor-tr">🎊</span>
             <span class="decor decor-bl">🎈</span>
             <h3>Let's Celebrate! 🎂🎉</h3>
@@ -430,7 +498,26 @@
             <p class="letter-font" style="color: #d62828; font-weight: bold; margin-top: 10px; font-size: 1.8rem;">Happy 100 Days! 🥂💖</p>
         </div>
 
-        <div class="page page-inner-bg page-final" id="p12">
+        <div class="page page-inner-bg page-flowers" id="p13">
+            <span class="decor decor-tl">☀️</span>
+            <span class="decor decor-br">🦋</span>
+            <h3>For You... 🥺💝</h3>
+            <p class="letter-font" style="font-size: 1.3rem; color: #5a3a40; margin: 10px 0; padding: 0 10px;">I couldn't bring you real flowers yet, so I planted these just for you! ✨</p>
+            
+            <div class="tulip-garden">
+                <span class="tulip t1">🌷</span>
+                <span class="tulip t2">🌷</span>
+                <span class="tulip t3">🌷</span>
+                <span class="tulip t4">🌷</span>
+                <span class="tulip t5">🌷</span>
+            </div>
+            
+            <div class="status-badge" style="margin-top: 15px; font-family: 'Caveat', cursive; font-size: 1.4rem;">
+                Because you are the prettiest flower in my life. 🥺🌷
+            </div>
+        </div>
+
+        <div class="page page-inner-bg page-final" id="p14">
             <span class="decor decor-tl">🦋</span>
             <span class="decor decor-br">✨</span>
             <div class="letter-font">
@@ -452,7 +539,7 @@
 
 <script>
     // --- TESTING MODE ---
-    const lockKeyword = "Ayu"; // Set to "Ayu" to lock, empty "" to unlock!
+    const lockKeyword = ""; // Set to "Ayu" to lock, empty "" to unlock!
     // --------------------------------
 
     // --- AUDIO LOGIC ---
@@ -593,7 +680,7 @@
 
     // --- MULTI-PAGE NAVIGATION LOGIC ---
     let currentPage = 1;
-    const totalPages = 12; 
+    const totalPages = 14; // Updated to 14 Pages!
     const bookContainer = document.getElementById('bookContainer');
 
     function updateActivePage() {
@@ -622,9 +709,10 @@
         }
 
         if (currentPage < totalPages && clickX >= (rect.width * 0.3)) {
+            // Interactive protections (Cake is now 12, Scratch is 11)
             if (currentPage === 5 && (e.target.id === 'loveBtn')) return; 
-            if (currentPage === 10 && (e.target.id === 'scratchCanvas')) return; 
-            if (currentPage === 11 && (e.target.closest('#cakeContainer'))) return; 
+            if (currentPage === 11 && (e.target.id === 'scratchCanvas')) return; 
+            if (currentPage === 12 && (e.target.closest('#cakeContainer'))) return; 
 
             document.getElementById('p' + currentPage).classList.add('flipped');
             currentPage++;
@@ -705,7 +793,7 @@
     };
 
     function checkInteractiveStates() {
-        if (currentPage === 11 && cakeIsCut) {
+        if (currentPage === 12 && cakeIsCut) {
             cake.classList.remove('cake-slice-anim');
             knife.classList.remove('knife-anim');
             cakeText.style.display = 'block';
