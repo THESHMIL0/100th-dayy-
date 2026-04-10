@@ -85,7 +85,7 @@
         }
 
         /* =========================================
-           ✨ NEW: CUSTOM BACKGROUNDS FOR EVERY PAGE ✨
+           ✨ CUSTOM BACKGROUNDS FOR EVERY PAGE ✨
            ========================================= */
         .bg-stripes { background-image: repeating-linear-gradient(-45deg, transparent, transparent 10px, rgba(255, 179, 198, 0.25) 10px, rgba(255, 179, 198, 0.25) 20px); }
         .bg-polka { background-image: radial-gradient(rgba(255,255,255,0.8) 15%, transparent 16%); background-size: 20px 20px; background-color: #ffdae0; }
@@ -276,7 +276,7 @@
         .confetti-piece { position: absolute; width: 8px; height: 8px; animation: popConfetti 1s ease-out forwards; z-index: 10; opacity: 0;}
         @keyframes popConfetti { 0% { transform: translate(0, 0) scale(1) rotate(0deg); opacity: 1; } 100% { transform: translate(var(--tx), var(--ty)) scale(0.2) rotate(var(--tr)); opacity: 0; } }
 
-        /* --- PAGE 13 - TULIP GARDEN --- */
+        /* --- PAGE 13 - SIMPLE TULIP GARDEN --- */
         .tulip-garden { position: relative; width: 100%; height: 110px; display: flex; justify-content: center; align-items: flex-end; margin-top: 5px; z-index: 2; border-bottom: 4px solid #81c784; }
         .tulip { display: inline-block; margin: 0 2px; transform-origin: bottom center; animation: swayTulip 3s ease-in-out infinite alternate; filter: drop-shadow(0 2px 2px rgba(0,0,0,0.05)); }
         .t1 { animation-delay: 0s; font-size: 2.3rem; } .t2 { animation-delay: 0.5s; font-size: 2.8rem; }
@@ -338,31 +338,26 @@
         }
         #fogCanvas { position: absolute; top: 0; left: 0; z-index: 5; cursor: pointer; opacity: 0.95; }
 
-        /* --- PAGE 17: NEW GACHA MACHINE 🕹️ --- */
+        /* --- PAGE 17: GACHA MACHINE 🕹️ --- */
         .gacha-machine { position: relative; width: 160px; height: 220px; margin: 10px auto; z-index: 2; }
-        
-        /* Upgraded Glass Dome */
         .gacha-dome { 
             width: 160px; height: 140px; border: 4px solid #ff8fab; border-radius: 80px 80px 0 0; position: relative; overflow: hidden; 
             background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.4) 20%, rgba(255,179,198,0.2) 100%);
             box-shadow: inset -10px -10px 20px rgba(0,0,0,0.05), inset 10px 10px 20px rgba(255,255,255,0.8);
         }
         .gacha-base { width: 180px; height: 80px; background: #ff4081; margin-left: -10px; border-radius: 10px 10px 15px 15px; position: relative; box-shadow: inset 0 -10px 0 rgba(0,0,0,0.1); display: flex; flex-direction: column; align-items: center; }
-        
-        /* Upgraded Base Slot */
         .gacha-slot { width: 50px; height: 25px; background: #333; position: absolute; bottom: 10px; border-radius: 12px 12px 5px 5px; box-shadow: inset 0 5px 10px rgba(0,0,0,0.5); }
         
         .gacha-ball { position: absolute; width: 35px; height: 35px; border-radius: 50%; box-shadow: inset -5px -5px 10px rgba(0,0,0,0.1); }
         .gb1 { background: #ffcc00; bottom: 5px; left: 20px; } .gb2 { background: #00bcd4; bottom: 10px; left: 60px; } .gb3 { background: #d81159; bottom: 5px; right: 20px; } .gb4 { background: #81c784; bottom: 35px; left: 40px; } .gb5 { background: #ab47bc; bottom: 30px; right: 35px; }
         
         .gacha-knob { width: 30px; height: 30px; background: #fff; border-radius: 50%; margin-top: 10px; border: 3px solid #d81159; cursor: pointer; transition: transform 0.2s; box-shadow: 0 4px 6px rgba(0,0,0,0.2);}
-        .gacha-knob::before { content: ''; position: absolute; width: 34px; height: 6px; background: #d81159; top: 9px; left: -5px; border-radius: 3px;} /* Add grip to knob */
+        .gacha-knob::before { content: ''; position: absolute; width: 34px; height: 6px; background: #d81159; top: 9px; left: -5px; border-radius: 3px;}
         
         .gacha-prize-box { background: white; border: 2px dashed #ffb3c6; padding: 10px; border-radius: 10px; font-size: 0.9rem; color: #d81159; font-weight: bold; opacity: 0; transition: all 0.5s ease; min-height: 50px; display: flex; align-items: center; justify-content: center; margin-top: 10px;}
         .gacha-prize-box.show { opacity: 1; }
         .shake-anim { animation: gentleShake 0.4s 2; }
 
-        /* The Dropping Ball Animation */
         .gacha-drop-ball {
             position: absolute; width: 30px; height: 30px; background: #ffcc00; border-radius: 50%;
             top: 155px; left: 65px; z-index: 10; opacity: 0; box-shadow: inset -5px -5px 10px rgba(0,0,0,0.1);
@@ -374,7 +369,6 @@
         }
 
         /* --- PAGE 18 - TIME CAPSULE --- */
-        /* Changed text to white so it's readable on the dark starry sky! */
         #p18 h3, #p18 .letter-font { color: #fff; text-shadow: 1px 1px 4px rgba(0,0,0,0.8); }
         .capsule-wrapper { background: rgba(255,255,255,0.9); border: 3px solid #d81159; padding: 20px 10px; border-radius: 15px; width: 95%; z-index: 2; position: relative; margin-top: 15px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
         .capsule-lock { font-size: 3.5rem; margin-bottom: 10px; }
@@ -807,19 +801,19 @@
     const musicToggle = document.getElementById('musicToggle');
     let isMusicPlaying = false;
 
-    const startAudio = () => {
-        if (!isMusicPlaying) {
+    function initAudio() {
+        if(!isMusicPlaying) {
             bgMusic.play().then(() => {
                 isMusicPlaying = true;
                 musicToggle.classList.add('playing');
-            }).catch(err => console.log("Audio waiting for user gesture"));
+            }).catch(e => console.log("Audio waiting for user tap..."));
         }
-        window.removeEventListener('click', startAudio);
-        window.removeEventListener('touchstart', startAudio);
-    };
-
-    window.addEventListener('click', startAudio);
-    window.addEventListener('touchstart', startAudio, { passive: true });
+        document.body.removeEventListener('click', initAudio);
+        document.body.removeEventListener('touchstart', initAudio);
+    }
+    
+    document.body.addEventListener('click', initAudio, {once: true});
+    document.body.addEventListener('touchstart', initAudio, {once: true});
 
     musicToggle.onclick = function(e) {
         e.stopPropagation(); 
@@ -834,7 +828,7 @@
         }
     };
 
-    // --- SCRATCH OFF TICKET LOGIC ---
+    // --- SCRATCH OFF TICKET LOGIC (Page 11) ---
     const canvas = document.getElementById('scratchCanvas');
     const ctx = canvas.getContext('2d');
     let isDrawing = false;
@@ -873,7 +867,7 @@
     canvas.addEventListener('touchmove', scratch, {passive: false});
     window.addEventListener('touchend', endScratch);
 
-    // --- NEW: FOGGY WINDOW LOGIC (Page 16) ---
+    // --- FOGGY WINDOW LOGIC (Page 16) ---
     const fogCanvas = document.getElementById('fogCanvas');
     const fogCtx = fogCanvas.getContext('2d');
     let isFogDrawing = false;
@@ -905,7 +899,7 @@
     fogCanvas.addEventListener('touchmove', wipeFog, {passive: false});
     window.addEventListener('touchend', endFogWipe);
 
-    // --- NEW: GACHA MACHINE LOGIC (Page 17) ---
+    // --- GACHA MACHINE LOGIC (Page 17) ---
     const prizes = [
         "🎟️ Good for 1 Virtual Movie Date",
         "🧸 Good for 10 Virtual Hugs",
@@ -918,33 +912,34 @@
     const gachaKnob = document.getElementById('gachaKnob');
     const gachaMachine = document.getElementById('gachaMachine');
     const gachaPrize = document.getElementById('gachaPrize');
+    const dropBall = document.getElementById('dropBall');
     let isSpinning = false;
 
-    gachaKnob.onclick = (e) => {
-        e.stopPropagation();
-        if (isSpinning) return; 
-        isSpinning = true;
-        
-        gachaMachine.classList.remove('shake-anim');
-        void gachaMachine.offsetWidth; 
-        gachaMachine.classList.add('shake-anim');
-        
-        gachaPrize.classList.remove('show');
-        
-        const dropBall = document.getElementById('dropBall');
-        dropBall.style.animation = 'dropBallAnim 1s forwards';
-        
-        setTimeout(() => {
-            const rand = prizes[Math.floor(Math.random() * prizes.length)];
-            gachaPrize.innerHTML = rand;
-            gachaPrize.classList.add('show');
-            dropBall.style.animation = 'none'; 
-            isSpinning = false;
-            if(navigator.vibrate) navigator.vibrate([50, 50, 50]);
-        }, 1000);
+    if (gachaKnob) {
+        gachaKnob.onclick = (e) => {
+            e.stopPropagation();
+            if (isSpinning) return; 
+            isSpinning = true;
+            
+            gachaMachine.classList.remove('shake-anim');
+            void gachaMachine.offsetWidth; 
+            gachaMachine.classList.add('shake-anim');
+            
+            gachaPrize.classList.remove('show');
+            dropBall.style.animation = 'dropBallAnim 1s forwards';
+            
+            setTimeout(() => {
+                const rand = prizes[Math.floor(Math.random() * prizes.length)];
+                gachaPrize.innerHTML = rand;
+                gachaPrize.classList.add('show');
+                dropBall.style.animation = 'none'; 
+                isSpinning = false;
+                if(navigator.vibrate) navigator.vibrate([50, 50, 50]);
+            }, 1000);
+        };
     }
 
-    // --- THUMBPRINT SCANNER LOGIC ---
+    // --- THUMBPRINT SCANNER LOGIC (Page 14) ---
     const scannerBox = document.getElementById('scannerBox');
     const fingerIcon = document.getElementById('fingerIcon');
     const promiseBox = document.getElementById('promiseBox');
@@ -980,7 +975,7 @@
     scannerBox.addEventListener('mouseleave', stopScan);
     scannerBox.addEventListener('touchend', stopScan);
 
-    // --- RED STRING OF FATE LOGIC 🧶 ---
+    // --- RED STRING OF FATE LOGIC 🧶 (Page 15) ---
     const stringSlider = document.getElementById('stringSlider');
     const avatarLeft = document.getElementById('avatarLeft');
     const avatarRight = document.getElementById('avatarRight');
@@ -1158,7 +1153,7 @@
         }
     };
 
-    // --- LOVE METER LOGIC (FIXED 1-TAP) ---
+    // --- LOVE METER LOGIC (Page 5) ---
     const loveBtn = document.getElementById('loveBtn');
     const meterFill = document.getElementById('meterFill');
     const meterMsg = document.getElementById('meterMsg');
@@ -1185,6 +1180,57 @@
             loveBtn.style.pointerEvents = 'none'; 
             meterFill.parentElement.style.animation = 'none';
         }, 2500);
+    };
+
+    // --- REUSABLE CONFETTI FUNCTION ---
+    function shootConfetti(targetContainer, yOffset = -30) {
+        const colors = ['#ff8fab', '#d81159', '#ffcc00', '#00bcd4', '#ffffff'];
+        const shapes = ['❤️', '⭐', '🍬'];
+        for(let i=0; i<30; i++) {
+            let conf = document.createElement('div');
+            conf.classList.add('confetti-piece');
+            conf.innerHTML = shapes[Math.floor(Math.random() * shapes.length)];
+            conf.style.color = colors[Math.floor(Math.random() * colors.length)];
+            conf.style.fontSize = (0.5 + Math.random() * 0.5) + 'rem';
+            conf.style.left = '50%';
+            conf.style.top = '50%';
+            
+            let angle = Math.random() * Math.PI * 2;
+            let velocity = 50 + Math.random() * 100;
+            let tx = Math.cos(angle) * velocity;
+            let ty = Math.sin(angle) * velocity + yOffset; 
+            let tr = 180 + Math.random() * 360; 
+            
+            conf.style.setProperty('--tx', `${tx}px`);
+            conf.style.setProperty('--ty', `${ty}px`);
+            conf.style.setProperty('--tr', `${tr}deg`);
+            
+            targetContainer.appendChild(conf);
+            setTimeout(() => conf.remove(), 1000);
+        }
+    }
+
+    // --- CAKE CUTTING LOGIC (Page 12) ---
+    const cakeContainer = document.getElementById('cakeContainer');
+    const knife = document.getElementById('knife');
+    const cake = document.getElementById('cake');
+    const cakeText = document.getElementById('cakeText');
+    let cakeIsCut = false;
+
+    cakeContainer.onclick = function(e) {
+        e.stopPropagation(); 
+        if (!cakeIsCut) {
+            cakeText.style.display = 'none'; 
+            knife.classList.add('knife-anim'); 
+            
+            if(navigator.vibrate) navigator.vibrate(100);
+
+            setTimeout(() => {
+                cake.classList.add('cake-slice-anim'); 
+                shootConfetti(cakeContainer); 
+                cakeIsCut = true;
+            }, 500); 
+        }
     };
 
     function checkInteractiveStates() {
