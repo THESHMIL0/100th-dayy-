@@ -164,10 +164,18 @@
         @keyframes gentlePulse { from { transform: scale(1); opacity: 0.8; } to { transform: scale(1.08); opacity: 1; } }
         #early-message { opacity: 0; color: white; font-weight: bold; transition: opacity 0.4s; background: rgba(216, 17, 89, 0.9); padding: 8px; border-radius: 8px; font-size: 0.85rem; margin-top: 5px; z-index: 2; }
 
-        /* --- PHOTOS --- */
+        /* --- PHOTOS & IOS FIXES --- */
         .photo-container { position: relative; display: flex; justify-content: center; margin-bottom: 15px; }
-        .photo-frame { position: relative; width: 170px; height: 170px; border-radius: 50%; border: 8px solid white; box-shadow: 0 8px 15px rgba(0,0,0,0.2); overflow: hidden; animation: floatPhoto 4s infinite ease-in-out alternate; }
-        .photo-img { width: 100%; height: 100%; object-fit: cover; }
+        .photo-frame { 
+            position: relative; width: 170px; height: 170px; border-radius: 50%; border: 8px solid white; 
+            box-shadow: 0 8px 15px rgba(0,0,0,0.2); overflow: hidden; 
+            animation: floatPhoto 4s infinite ease-in-out alternate; 
+            /* THE MAGIC IOS BUG FIXES: */
+            -webkit-mask-image: -webkit-radial-gradient(white, black);
+            -webkit-backface-visibility: hidden;
+            transform: translate3d(0,0,0);
+        }
+        .photo-img { width: 100%; height: 100%; object-fit: cover; display: block; }
         .washi-tape { position: absolute; top: -5px; width: 80px; height: 22px; background-color: rgba(255, 179, 198, 0.9); box-shadow: 0 2px 4px rgba(0,0,0,0.1); z-index: 10; animation: floatPhoto 4s infinite ease-in-out alternate; }
         #p3 .washi-tape { transform: rotate(-5deg); left: 30%; } #p4 .washi-tape { transform: rotate(6deg); left: 35%; background-color: rgba(255, 143, 171, 0.9); }
         .flirty-line { font-size: 0.85rem; color: #4a1c1c; background: #fff; padding: 8px; border-radius: 10px; font-weight: bold; border: 2px dashed #ff8fab; z-index: 2; width: 95%; margin-top: 0; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
@@ -231,7 +239,7 @@
         .scratch-secret { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: #fff; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 15px; box-sizing: border-box; font-size: 1.1rem; color: #d81159; text-align: center; }
         #scratchCanvas { position: absolute; top: 0; left: 0; z-index: 5; cursor: pointer; }
 
-        /* --- PAGE 12: PREMIUM TWO-TIER CAKE --- */
+        /* --- RESTORED PAGE 12: PREMIUM TWO-TIER CAKE --- */
         .cake-container { position: relative; width: 180px; height: 180px; margin: 10px 0; cursor: pointer; z-index: 2;}
         .cake-aura { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 220px; height: 220px; background: radial-gradient(circle, rgba(255, 179, 198, 0.6) 0%, rgba(255,255,255,0) 70%); z-index: -1; animation: coverGlow 3s infinite alternate; pointer-events: none;}
         .cake-stand { position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); z-index: 0; display: flex; flex-direction: column; align-items: center; }
@@ -317,9 +325,13 @@
         /* --- PAGE 15 - RED STRING OF FATE 🧶 --- */
         .string-interaction { position: relative; width: 100%; height: 100px; display: flex; align-items: center; justify-content: space-between; margin: 10px 0; }
         .string-line { position: absolute; top: 50%; left: 10%; width: 80%; height: 4px; background: #d81159; transform: translateY(-50%); z-index: 1; border-radius: 2px; box-shadow: 0 0 8px rgba(216,17,89,0.6); transition: width 0.1s; }
-        .avatar-left, .avatar-right { position: absolute; top: 50%; transform: translateY(-50%); width: 70px; height: 70px; border-radius: 50%; border: 4px solid white; box-shadow: 0 5px 10px rgba(0,0,0,0.2); overflow: hidden; z-index: 3; transition: left 0.1s, right 0.1s; }
+        .avatar-left, .avatar-right { 
+            position: absolute; top: 50%; transform: translateY(-50%); width: 70px; height: 70px; border-radius: 50%; border: 4px solid white; box-shadow: 0 5px 10px rgba(0,0,0,0.2); overflow: hidden; z-index: 3; transition: left 0.1s, right 0.1s; 
+            /* IOS Bug Fix */
+            -webkit-mask-image: -webkit-radial-gradient(white, black);
+        }
         .avatar-left { left: 5%; } .avatar-right { right: 5%; }
-        .avatar-left img, .avatar-right img { width: 100%; height: 100%; object-fit: cover; }
+        .avatar-left img, .avatar-right img { width: 100%; height: 100%; object-fit: cover; display: block;}
         #stringSlider { -webkit-appearance: none; width: 80%; height: 4px; background: transparent; z-index: 10; outline: none; margin: 0 auto; display: block; position: absolute; left: 10%; }
         #stringSlider::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 45px; height: 45px; background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><text y="20" font-size="20">❤️</text></svg>') center/contain no-repeat; cursor: pointer; filter: drop-shadow(0 4px 5px rgba(0,0,0,0.2)); }
         .knot { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0); font-size: 3rem; z-index: 5; transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1); }
@@ -796,24 +808,36 @@
     const lockKeyword = ""; // Set to "Ayu" to lock, empty "" to unlock!
     // --------------------------------
 
-    // --- BULLETPROOF AUDIO LOGIC ---
+    // --- BULLETPROOF AUDIO LOGIC FOR MOBILE ---
     const bgMusic = document.getElementById('bgMusic');
     const musicToggle = document.getElementById('musicToggle');
     let isMusicPlaying = false;
 
-    function initAudio() {
-        if(!isMusicPlaying) {
-            bgMusic.play().then(() => {
-                isMusicPlaying = true;
-                musicToggle.classList.add('playing');
-            }).catch(e => console.log("Audio waiting for user tap..."));
+    // Mobile browsers require a direct, unfiltered user interaction to play audio.
+    const unlockAudio = (e) => {
+        if (!isMusicPlaying) {
+            bgMusic.volume = 1; 
+            let playPromise = bgMusic.play();
+            
+            if (playPromise !== undefined) {
+                playPromise.then(() => {
+                    isMusicPlaying = true;
+                    musicToggle.classList.add('playing');
+                    // Remove listeners once successfully playing
+                    document.removeEventListener('click', unlockAudio);
+                    document.removeEventListener('touchstart', unlockAudio);
+                    document.removeEventListener('touchend', unlockAudio);
+                }).catch(err => {
+                    console.log("Audio still waiting for stronger user tap...");
+                });
+            }
         }
-        document.body.removeEventListener('click', initAudio);
-        document.body.removeEventListener('touchstart', initAudio);
-    }
-    
-    document.body.addEventListener('click', initAudio, {once: true});
-    document.body.addEventListener('touchstart', initAudio, {once: true});
+    };
+
+    // Attach to every possible interaction until it unlocks
+    document.addEventListener('click', unlockAudio);
+    document.addEventListener('touchstart', unlockAudio, { passive: true });
+    document.addEventListener('touchend', unlockAudio, { passive: true });
 
     musicToggle.onclick = function(e) {
         e.stopPropagation(); 
