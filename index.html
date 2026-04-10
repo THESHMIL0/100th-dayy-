@@ -103,13 +103,11 @@
             background-position: 0 0, 0 2.2rem !important;
             padding: 0 !important;
         }
-        .notebook-content {
-            padding-left: 55px; padding-right: 15px; padding-top: 3.8rem; text-align: left; width: 100%; height: 100%;
-        }
+        .notebook-content { padding-left: 55px; padding-right: 15px; padding-top: 3.8rem; text-align: left; width: 100%; height: 100%; }
         .notebook-content h2 { font-family: 'Caveat', cursive; font-size: 1.8rem; line-height: 2.2rem; margin: 0; color: #d62828; text-shadow: none; }
         .notebook-content p { font-family: 'Caveat', cursive; font-size: 1.25rem; line-height: 2.2rem; margin: 0; color: #5a3a40; font-weight: bold; }
 
-        #p1, #p3, #p4, #p5, #p8, #p9, #p10, #p11, #p12, #p13, #p14, #p15, #p16, #p17 { justify-content: center; }
+        #p1, #p3, #p4, #p5, #p8, #p9, #p10, #p11, #p12, #p13, #p14, #p15, #p16, #p17, #p18, #p19 { justify-content: center; }
         
         .page::after {
             content: ''; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
@@ -117,12 +115,12 @@
             pointer-events: none;
         }
 
-        /* --- STACKING ORDER (17 Pages) --- */
-        #p1 { z-index: 17; } #p2 { z-index: 16; } #p3 { z-index: 15; } #p4 { z-index: 14; }
-        #p5 { z-index: 13; } #p6 { z-index: 12; } #p7 { z-index: 11; } #p8 { z-index: 10; } 
-        #p9 { z-index: 9; } #p10 { z-index: 8; } #p11 { z-index: 7; } #p12 { z-index: 6; }
-        #p13 { z-index: 5; } #p14 { z-index: 4; } #p15 { z-index: 3; } #p16 { z-index: 2; }
-        #p17 { z-index: 1; }
+        /* --- STACKING ORDER (19 Pages) --- */
+        #p1 { z-index: 19; } #p2 { z-index: 18; } #p3 { z-index: 17; } #p4 { z-index: 16; }
+        #p5 { z-index: 15; } #p6 { z-index: 14; } #p7 { z-index: 13; } #p8 { z-index: 12; } 
+        #p9 { z-index: 11; } #p10 { z-index: 10; } #p11 { z-index: 9; } #p12 { z-index: 8; }
+        #p13 { z-index: 7; } #p14 { z-index: 6; } #p15 { z-index: 5; } #p16 { z-index: 4; }
+        #p17 { z-index: 3; } #p18 { z-index: 2; } #p19 { z-index: 1; }
 
         /* --- FONTS --- */
         .letter-font { font-family: 'Caveat', cursive; color: #d81159; line-height: 1.2; font-size: 1.3rem; z-index: 2; }
@@ -144,10 +142,7 @@
         @keyframes floatDecor { from { transform: translate(0, 0) rotate(-5deg); } to { transform: translate(0, -6px) rotate(5deg); } }
 
         /* --- PAGE 1: COVER --- */
-        .page-cover {
-            background: linear-gradient(135deg, #ff9aae, #ff7ea5); border-radius: 5px 20px 20px 5px; 
-            border-left: 6px solid #d81159; box-shadow: inset 4px 0 8px rgba(0,0,0,0.1), 5px 5px 15px rgba(0,0,0,0.15); padding: 10px !important;
-        }
+        .page-cover { background: linear-gradient(135deg, #ff9aae, #ff7ea5); border-radius: 5px 20px 20px 5px; border-left: 6px solid #d81159; box-shadow: inset 4px 0 8px rgba(0,0,0,0.1), 5px 5px 15px rgba(0,0,0,0.15); padding: 10px !important; }
         .cover-inner-border { width: 100%; height: 100%; border: 2px dashed rgba(255,255,255,0.5); border-radius: 10px; display: flex; flex-direction: column; align-items: center; justify-content: space-around; position: relative; }
         .cover-label { background: #fff; padding: 10px 15px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); border: 2px dashed #ffb3c6; position: relative; width: 90%; z-index: 2; }
         .cover-label::before { content: ''; position: absolute; top: -10px; left: 50%; transform: translateX(-50%) rotate(-3deg); width: 70px; height: 20px; background-color: rgba(255, 179, 198, 0.9); box-shadow: 0 2px 4px rgba(0,0,0,0.1); z-index: 3; }
@@ -169,8 +164,7 @@
         .photo-frame { position: relative; width: 170px; height: 170px; border-radius: 50%; border: 8px solid white; box-shadow: 0 8px 15px rgba(0,0,0,0.2); overflow: hidden; animation: floatPhoto 4s infinite ease-in-out alternate; }
         .photo-img { width: 100%; height: 100%; object-fit: cover; }
         .washi-tape { position: absolute; top: -5px; width: 80px; height: 22px; background-color: rgba(255, 179, 198, 0.9); box-shadow: 0 2px 4px rgba(0,0,0,0.1); z-index: 10; animation: floatPhoto 4s infinite ease-in-out alternate; }
-        #p3 .washi-tape { transform: rotate(-5deg); left: 30%; }
-        #p4 .washi-tape { transform: rotate(6deg); left: 35%; background-color: rgba(255, 143, 171, 0.9); }
+        #p3 .washi-tape { transform: rotate(-5deg); left: 30%; } #p4 .washi-tape { transform: rotate(6deg); left: 35%; background-color: rgba(255, 143, 171, 0.9); }
         .flirty-line { font-size: 0.85rem; color: #4a1c1c; background: #ffd6e0; padding: 8px; border-radius: 10px; font-weight: bold; border: 2px dashed #ff8fab; z-index: 2; width: 95%; margin-top: 0; }
         .photo-tag { margin-top: 6px; font-size: 0.8rem; color: #888; background: white; padding: 4px 12px; border-radius: 12px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); z-index: 2; }
         #p4 .photo-frame, #p4 .washi-tape { animation-delay: 2s; }
@@ -179,14 +173,7 @@
         /* --- LOVE METER --- */
         .meter-container { width: 85%; height: 25px; background: #fff; border-radius: 15px; border: 3px dashed #ffb3c6; margin: 10px 0; overflow: hidden; position: relative; }
         .meter-fill { height: 100%; width: 0%; background: linear-gradient(90deg, #ff8fab, #d81159); transition: width 0.3s ease-out; }
-        
-        @keyframes gentleShake {
-            0%, 100% { transform: translateX(0); }
-            25% { transform: translateX(-3px); }
-            50% { transform: translateX(3px); }
-            75% { transform: translateX(-3px); }
-        }
-
+        @keyframes gentleShake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-3px); } 50% { transform: translateX(3px); } 75% { transform: translateX(-3px); } }
         .cute-btn { background: #d81159; color: white; border: none; padding: 8px 16px; font-size: 0.9rem; border-radius: 20px; font-family: inherit; font-weight: bold; cursor: pointer; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: transform 0.1s; margin: 5px 0; }
         .cute-btn:active { transform: scale(0.95); }
         .meter-msg { font-size: 0.9rem; font-weight: bold; color: #d62828; min-height: 20px; margin: 5px 0;}
@@ -196,7 +183,6 @@
         /* --- LISTS & PERFECT MOBILE FIT FOR PAGE 6 --- */
         .cute-list { list-style: none; padding: 0; text-align: left; margin: 0 0 5px 0; width: 100%; z-index: 2; }
         .cute-list li { margin: 2px 0; font-size: 1.05rem; opacity: 0; background: rgba(255, 255, 255, 0.7); padding: 3px 10px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.03);}
-        
         #p6 h3 { margin: 0 0 3px 0; font-size: 1.25rem; }
         #p6 .cute-list li { font-size: 0.95rem; padding: 3px 8px; margin: 2px 0; }
         .routine-box { background: white; border: 2px dashed #ff8fab; border-radius: 10px; width: 95%; padding: 6px 10px; text-align: left; box-shadow: 0 4px 10px rgba(0,0,0,0.05); margin-top: auto; margin-bottom: 5px; }
@@ -285,7 +271,7 @@
         .confetti-piece { position: absolute; width: 8px; height: 8px; animation: popConfetti 1s ease-out forwards; z-index: 10; opacity: 0;}
         @keyframes popConfetti { 0% { transform: translate(0, 0) scale(1) rotate(0deg); opacity: 1; } 100% { transform: translate(var(--tx), var(--ty)) scale(0.2) rotate(var(--tr)); opacity: 0; } }
 
-        /* --- RESTORED PAGE 13 - SIMPLE TULIP GARDEN --- */
+        /* --- PAGE 13 - TULIP GARDEN --- */
         .tulip-garden { position: relative; width: 100%; height: 110px; display: flex; justify-content: center; align-items: flex-end; margin-top: 5px; z-index: 2; border-bottom: 4px solid #81c784; }
         .tulip { display: inline-block; margin: 0 2px; transform-origin: bottom center; animation: swayTulip 3s ease-in-out infinite alternate; filter: drop-shadow(0 2px 2px rgba(0,0,0,0.05)); }
         .t1 { animation-delay: 0s; font-size: 2.3rem; } .t2 { animation-delay: 0.5s; font-size: 2.8rem; }
@@ -293,7 +279,7 @@
         .t5 { animation-delay: 0.8s; font-size: 2.1rem; }
         @keyframes swayTulip { 0% { transform: rotate(-15deg); } 100% { transform: rotate(15deg); } }
 
-        /* --- PAGE 14 - SCANNER (FITTED FOR MOBILE) --- */
+        /* --- PAGE 14 - SCANNER --- */
         #p14 h3 { margin-bottom: 0; }
         #p14 .letter-font { font-size: 1rem; margin-bottom: 5px; }
         .scanner-container {
@@ -312,7 +298,6 @@
         .scanning .finger-icon { opacity: 0.8; }
         @keyframes scanAnim { from { top: 5%; } to { top: 95%; } }
         
-        /* HIDDEN PROMISE BOX */
         .secret-promise {
             visibility: hidden; opacity: 0; max-height: 0; padding: 0 8px; margin-top: 0; overflow: hidden;
             transition: all 0.5s ease; font-size: 1rem; color: #d62828; font-weight: bold; 
@@ -324,7 +309,7 @@
         .scanned-success .scanner-container { border-color: #81c784; box-shadow: inset 0 0 15px rgba(129,199,132,0.3); }
         .scanned-success #scanText { display: none !important; } 
 
-        /* --- NEW: PAGE 15 - RED STRING OF FATE 🧶 --- */
+        /* --- PAGE 15 - RED STRING OF FATE 🧶 --- */
         .string-interaction {
             position: relative; width: 100%; height: 100px; display: flex; align-items: center; justify-content: space-between; margin: 10px 0;
         }
@@ -353,7 +338,6 @@
         .string-tied .string-line { background: #ffb3c6; box-shadow: none; }
         .string-tied #stringSlider { pointer-events: none; opacity: 0; }
 
-        /* NEW: Animated Pull Hint */
         .pull-hint-container {
             position: absolute; top: 75%; left: 35%; display: flex; align-items: center; gap: 5px; font-size: 1.2rem; z-index: 8; pointer-events: none; animation: slideHint 1.5s infinite; opacity: 0.8; color: #d81159;
         }
@@ -363,7 +347,29 @@
         }
         .string-tied .pull-hint-container { display: none; }
 
-        /* --- PAGE 16 - TIME CAPSULE --- */
+        /* --- NEW PAGE 16: FOGGY WINDOW 🪟 --- */
+        .fog-wrapper {
+            position: relative; width: 220px; height: 280px; margin: 15px auto; border-radius: 15px; 
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15); overflow: hidden; border: 6px solid white; z-index: 2;
+            background: url('6.jpg') center/cover no-repeat; /* IMAGE UNDERNEATH */
+        }
+        #fogCanvas {
+            position: absolute; top: 0; left: 0; z-index: 5; cursor: pointer; opacity: 0.95;
+        }
+
+        /* --- NEW PAGE 17: GACHA MACHINE 🕹️ --- */
+        .gacha-machine { position: relative; width: 160px; height: 220px; margin: 10px auto; z-index: 2; }
+        .gacha-dome { width: 160px; height: 140px; background: rgba(255,255,255,0.6); border: 4px solid #ff8fab; border-radius: 80px 80px 0 0; position: relative; overflow: hidden; }
+        .gacha-base { width: 180px; height: 80px; background: #ff4081; margin-left: -10px; border-radius: 10px 10px 15px 15px; position: relative; box-shadow: inset 0 -10px 0 rgba(0,0,0,0.1); display: flex; flex-direction: column; align-items: center; }
+        .gacha-ball { position: absolute; width: 35px; height: 35px; border-radius: 50%; box-shadow: inset -5px -5px 10px rgba(0,0,0,0.1); }
+        .gb1 { background: #ffcc00; bottom: 5px; left: 20px; } .gb2 { background: #00bcd4; bottom: 10px; left: 60px; } .gb3 { background: #d81159; bottom: 5px; right: 20px; } .gb4 { background: #81c784; bottom: 35px; left: 40px; } .gb5 { background: #ab47bc; bottom: 30px; right: 35px; }
+        .gacha-knob { width: 30px; height: 30px; background: #fff; border-radius: 50%; margin-top: 15px; border: 3px solid #d81159; cursor: pointer; transition: transform 0.2s; }
+        .gacha-knob:active { transform: rotate(90deg); }
+        .gacha-prize-box { background: white; border: 2px dashed #ffb3c6; padding: 10px; border-radius: 10px; font-size: 0.9rem; color: #d81159; font-weight: bold; opacity: 0; transform: translateY(-10px); transition: all 0.5s ease; min-height: 50px; display: flex; align-items: center; justify-content: center; margin-top: 10px;}
+        .gacha-prize-box.show { opacity: 1; transform: translateY(0); }
+        .shake-anim { animation: gentleShake 0.4s 2; }
+
+        /* --- PAGE 18 - TIME CAPSULE --- */
         .capsule-wrapper {
             background: rgba(255,255,255,0.9); border: 3px solid #d81159; padding: 20px 10px;
             border-radius: 15px; width: 95%; z-index: 2; position: relative; margin-top: 15px;
@@ -373,6 +379,7 @@
         .capsule-timer { font-size: 1.3rem; font-weight: bold; color: #d81159; background: #ffe6ea; padding: 10px; border-radius: 10px; border: 1px dashed #ffb3c6;}
         .capsule-content { display: none; font-size: 1.2rem; color: #d62828; font-weight: bold;}
 
+        /* --- PAGE 19 - FINAL --- */
         .nav-hint { margin-top: 10px; font-size: 0.8rem; color: #888; background: white; padding: 5px 10px; border-radius: 15px; font-family: 'Quicksand', sans-serif; z-index: 10;}
     </style>
 </head>
@@ -401,7 +408,7 @@
                         <p style="margin-bottom: 3px; font-size: 0.85rem; color:#d62828;">Spilling the tea... ☕</p>
                         <div class="hint-item"><span>📸</span> Core Memories inside</div>
                         <div class="hint-item"><span>❤️</span> The Love Meter</div>
-                        <div class="hint-item"><span>👆</span> Thumbprint Scanner</div>
+                        <div class="hint-item"><span>🕹️</span> Mini Games!</div>
                         <div class="hint-item"><span class="pulse-text">🔒</span> The Time Capsule</div>
                     </div>
                 </div>
@@ -710,7 +717,43 @@
             </div>
         </div>
 
-        <div class="page page-inner-bg page-capsule" id="p16" style="justify-content: center;">
+        <div class="page page-inner-bg page-fog" id="p16" style="justify-content: center;">
+            <span class="decor decor-tl">❄️</span>
+            <span class="decor decor-br">🤍</span>
+            <h3 class="pop-item delay-1">A Foggy Memory...</h3>
+            <p class="letter-font pop-item delay-2" style="font-size: 1.1rem; margin-bottom: 5px;">Wipe away the fog to reveal my sunshine! ☀️</p>
+            
+            <div class="fog-wrapper pop-item delay-3">
+                <canvas id="fogCanvas" width="220" height="280"></canvas>
+            </div>
+            <div class="status-badge pop-item delay-4" style="margin-top: 10px;">Rub the glass! 👆</div>
+        </div>
+
+        <div class="page page-inner-bg page-gacha" id="p17" style="justify-content: center;">
+            <span class="decor decor-tl">🕹️</span>
+            <span class="decor decor-br">🧸</span>
+            <h3 class="pop-item delay-1">LDR Prize Machine!</h3>
+            <p class="letter-font pop-item delay-2" style="font-size: 1.1rem;">Tap the knob to get your daily prize! 🎟️</p>
+            
+            <div class="gacha-machine pop-item delay-3" id="gachaMachine">
+                <div class="gacha-dome">
+                    <div class="gacha-ball gb1"></div>
+                    <div class="gacha-ball gb2"></div>
+                    <div class="gacha-ball gb3"></div>
+                    <div class="gacha-ball gb4"></div>
+                    <div class="gacha-ball gb5"></div>
+                </div>
+                <div class="gacha-base">
+                    <div class="gacha-knob" id="gachaKnob"></div>
+                </div>
+            </div>
+            
+            <div class="gacha-prize-box pop-item delay-4" id="gachaPrize">
+                Waiting to spin... 🎁
+            </div>
+        </div>
+
+        <div class="page page-inner-bg page-capsule" id="p18" style="justify-content: center;">
             <span class="decor decor-tr">⏳</span>
             <span class="decor decor-bl">📦</span>
             <h3 class="pop-item delay-1">Our Time Capsule 🔒</h3>
@@ -730,7 +773,7 @@
             <div class="status-badge pop-item delay-4" style="margin-top: 15px;">No cheating allowed! 😤</div>
         </div>
 
-        <div class="page page-inner-bg page-final" id="p17">
+        <div class="page page-inner-bg page-final" id="p19">
             <span class="decor decor-tl">🦋</span>
             <span class="decor decor-br">✨</span>
             <div class="letter-font pop-item delay-1">
@@ -787,7 +830,7 @@
         }
     };
 
-    // --- SCRATCH OFF TICKET LOGIC ---
+    // --- SCRATCH OFF TICKET LOGIC (Page 11) ---
     const canvas = document.getElementById('scratchCanvas');
     const ctx = canvas.getContext('2d');
     let isDrawing = false;
@@ -799,8 +842,8 @@
     ctx.textAlign = 'center';
     ctx.fillText('Scratch Here! 🪙', canvas.width/2, canvas.height/2 + 5);
 
-    function getMousePos(e) {
-        const rect = canvas.getBoundingClientRect();
+    function getMousePos(e, canElement) {
+        const rect = canElement.getBoundingClientRect();
         const clientX = e.touches ? e.touches[0].clientX : e.clientX;
         const clientY = e.touches ? e.touches[0].clientY : e.clientY;
         return { x: clientX - rect.left, y: clientY - rect.top };
@@ -812,7 +855,7 @@
     function scratch(e) {
         if (!isDrawing) return;
         if(e.touches) { e.preventDefault(); } 
-        const pos = getMousePos(e);
+        const pos = getMousePos(e, canvas);
         ctx.globalCompositeOperation = 'destination-out';
         ctx.beginPath();
         ctx.arc(pos.x, pos.y, 18, 0, Math.PI * 2);
@@ -825,6 +868,70 @@
     canvas.addEventListener('touchstart', startScratch, {passive: false});
     canvas.addEventListener('touchmove', scratch, {passive: false});
     window.addEventListener('touchend', endScratch);
+
+    // --- NEW: FOGGY WINDOW LOGIC (Page 16) ---
+    const fogCanvas = document.getElementById('fogCanvas');
+    const fogCtx = fogCanvas.getContext('2d');
+    let isFogDrawing = false;
+
+    fogCtx.fillStyle = '#e0f7fa'; // Frosty glass color
+    fogCtx.fillRect(0, 0, fogCanvas.width, fogCanvas.height);
+    fogCtx.font = 'bold 20px Quicksand';
+    fogCtx.fillStyle = '#95a5a6';
+    fogCtx.textAlign = 'center';
+    fogCtx.fillText('Wipe me! ❄️', fogCanvas.width/2, fogCanvas.height/2);
+
+    function startFogWipe(e) { isFogDrawing = true; wipeFog(e); }
+    function endFogWipe() { isFogDrawing = false; }
+    
+    function wipeFog(e) {
+        if (!isFogDrawing) return;
+        if(e.touches) { e.preventDefault(); } 
+        const pos = getMousePos(e, fogCanvas);
+        fogCtx.globalCompositeOperation = 'destination-out';
+        fogCtx.beginPath();
+        fogCtx.arc(pos.x, pos.y, 25, 0, Math.PI * 2); // Larger wipe brush
+        fogCtx.fill();
+    }
+
+    fogCanvas.addEventListener('mousedown', startFogWipe);
+    fogCanvas.addEventListener('mousemove', wipeFog);
+    window.addEventListener('mouseup', endFogWipe);
+    fogCanvas.addEventListener('touchstart', startFogWipe, {passive: false});
+    fogCanvas.addEventListener('touchmove', wipeFog, {passive: false});
+    window.addEventListener('touchend', endFogWipe);
+
+    // --- NEW: GACHA MACHINE LOGIC (Page 17) ---
+    const prizes = [
+        "🎟️ Good for 1 Virtual Movie Date",
+        "🧸 Good for 10 Virtual Hugs",
+        "💤 1 Late-night call (Even if sleepy)",
+        "🍕 1 Surprise Food Delivery",
+        "🎮 1 Gaming Session Together",
+        "🥺 Unli-Compliments for 1 Hour",
+        "📸 Send a cute selfie right now!"
+    ];
+    const gachaKnob = document.getElementById('gachaKnob');
+    const gachaMachine = document.getElementById('gachaMachine');
+    const gachaPrize = document.getElementById('gachaPrize');
+
+    gachaKnob.onclick = (e) => {
+        e.stopPropagation();
+        
+        // Remove animation to restart it
+        gachaMachine.classList.remove('shake-anim');
+        void gachaMachine.offsetWidth; // Trigger reflow
+        gachaMachine.classList.add('shake-anim');
+        
+        gachaPrize.classList.remove('show');
+        
+        setTimeout(() => {
+            const rand = prizes[Math.floor(Math.random() * prizes.length)];
+            gachaPrize.innerHTML = rand;
+            gachaPrize.classList.add('show');
+            if(navigator.vibrate) navigator.vibrate([50, 50, 50]);
+        }, 800);
+    }
 
     // --- THUMBPRINT SCANNER LOGIC ---
     const scannerBox = document.getElementById('scannerBox');
@@ -869,7 +976,6 @@
     const stringInteraction = document.querySelector('.string-interaction');
     let stringTied = false;
 
-    // Stop propagation so swiping the slider doesn't turn the page!
     stringSlider.addEventListener('mousedown', (e) => e.stopPropagation());
     stringSlider.addEventListener('touchstart', (e) => e.stopPropagation(), {passive: false});
 
@@ -961,7 +1067,7 @@
 
     // --- SMART RENDERING NAVIGATION LOGIC ---
     let currentPage = 1;
-    const totalPages = 17; 
+    const totalPages = 19; // Upgraded to 19 Pages!!
     const bookContainer = document.getElementById('bookContainer');
 
     function updateActivePage() {
@@ -1025,6 +1131,8 @@
             if (currentPage === 12 && (e.target.closest('#cakeContainer'))) return; 
             if (currentPage === 14 && (e.target.closest('#scannerBox'))) return; 
             if (currentPage === 15 && (e.target.id === 'stringSlider')) return;
+            if (currentPage === 16 && (e.target.id === 'fogCanvas')) return; 
+            if (currentPage === 17 && (e.target.closest('#gachaMachine') || e.target.id === 'gachaKnob')) return; 
 
             document.getElementById('p' + (currentPage + 1)).style.display = 'flex';
             setTimeout(() => {
@@ -1037,7 +1145,7 @@
         }
     };
 
-    // --- LOVE METER LOGIC (FIXED 1-TAP) ---
+    // --- LOVE METER LOGIC ---
     const loveBtn = document.getElementById('loveBtn');
     const meterFill = document.getElementById('meterFill');
     const meterMsg = document.getElementById('meterMsg');
@@ -1066,7 +1174,13 @@
         }, 2500);
     };
 
-    // --- REUSABLE CONFETTI FUNCTION ---
+    // --- CAKE CUTTING LOGIC ---
+    const cakeContainer = document.getElementById('cakeContainer');
+    const knife = document.getElementById('knife');
+    const cake = document.getElementById('cake');
+    const cakeText = document.getElementById('cakeText');
+    let cakeIsCut = false;
+
     function shootConfetti(targetContainer, yOffset = -30) {
         const colors = ['#ff8fab', '#d81159', '#ffcc00', '#00bcd4', '#ffffff'];
         const shapes = ['❤️', '⭐', '🍬'];
@@ -1094,21 +1208,12 @@
         }
     }
 
-    // --- CAKE CUTTING LOGIC ---
-    const cakeContainer = document.getElementById('cakeContainer');
-    const knife = document.getElementById('knife');
-    const cake = document.getElementById('cake');
-    const cakeText = document.getElementById('cakeText');
-    let cakeIsCut = false;
-
     cakeContainer.onclick = function(e) {
         e.stopPropagation(); 
         if (!cakeIsCut) {
             cakeText.style.display = 'none'; 
             knife.classList.add('knife-anim'); 
             
-            if(navigator.vibrate) navigator.vibrate(100);
-
             setTimeout(() => {
                 cake.classList.add('cake-slice-anim'); 
                 shootConfetti(cakeContainer); 
