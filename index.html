@@ -109,13 +109,20 @@
         .notebook-content h2 { font-family: 'Caveat', cursive; font-size: 1.8rem; line-height: 2.2rem; margin: 0; color: #d62828; text-shadow: none; }
         .notebook-content p { font-family: 'Caveat', cursive; font-size: 1.25rem; line-height: 2.2rem; margin: 0; color: #5a3a40; font-weight: bold; }
 
-        #p1, #p3, #p4, #p5, #p8, #p9, #p10, #p11, #p12, #p13, #p14, #p15, #p16 { justify-content: center; }
+        #p1, #p3, #p4, #p5, #p8, #p9, #p10, #p11, #p12, #p13, #p14, #p15, #p16, #p17 { justify-content: center; }
         
         .page::after {
             content: ''; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: linear-gradient(90deg, rgba(0,0,0,0.06) 0%, rgba(255,255,255,0) 8%, rgba(255,255,255,0) 92%, rgba(0,0,0,0.06) 100%);
             pointer-events: none;
         }
+
+        /* --- STACKING ORDER (17 Pages) --- */
+        #p1 { z-index: 17; } #p2 { z-index: 16; } #p3 { z-index: 15; } #p4 { z-index: 14; }
+        #p5 { z-index: 13; } #p6 { z-index: 12; } #p7 { z-index: 11; } #p8 { z-index: 10; } 
+        #p9 { z-index: 9; } #p10 { z-index: 8; } #p11 { z-index: 7; } #p12 { z-index: 6; }
+        #p13 { z-index: 5; } #p14 { z-index: 4; } #p15 { z-index: 3; } #p16 { z-index: 2; }
+        #p17 { z-index: 1; }
 
         /* --- FONTS --- */
         .letter-font { font-family: 'Caveat', cursive; color: #d81159; line-height: 1.2; font-size: 1.3rem; z-index: 2; }
@@ -186,7 +193,7 @@
         .stats-box { background: rgba(255,255,255,0.8); border: 2px dashed #ffb3c6; padding: 10px; border-radius: 15px; width: 95%; margin-top: 5px; z-index: 2; text-align: left;}
         .stats-box p { margin: 4px 0; font-size: 0.85rem; color: #5a3a40; font-weight: bold;}
 
-        /* --- LISTS & PERFECT MOBILE FIT FOR PAGE 6 --- */
+        /* --- LISTS --- */
         .cute-list { list-style: none; padding: 0; text-align: left; margin: 0 0 5px 0; width: 100%; z-index: 2; }
         .cute-list li { margin: 2px 0; font-size: 1.05rem; opacity: 0; background: rgba(255, 255, 255, 0.7); padding: 3px 10px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.03);}
         
@@ -209,7 +216,7 @@
         .timeline-box { background: rgba(255,255,255,0.8); border: 2px dashed #ffb3c6; padding: 10px; border-radius: 15px; width: 95%; z-index: 2; margin-top: 5px;}
         .timeline-box p { margin: 6px 0; font-size: 0.95rem; color: #5a3a40; line-height: 1.3; }
         .timeline-box strong { color: #d81159; }
-        .status-badge { background: #ffe6ea; border: 2px dashed #ff8fab; padding: 5px 10px; border-radius: 20px; font-weight: bold; color: #d81159; font-size: 0.85rem; margin-top: 10px;}
+        .status-badge { background: #ffe6ea; border: 2px dashed #ff8fab; padding: 5px 10px; border-radius: 20px; font-weight: bold; color: #d81159; font-size: 0.85rem; margin-top: 10px; width: 95%;}
 
         .bday-card { background: rgba(255,255,255,0.9); border: 2px dashed #ffb3c6; padding: 10px; border-radius: 12px; width: 90%; margin: 8px 0; z-index: 2; }
         .bday-card h4 { margin: 0 0 8px 0; color: #d62828; font-size: 1.2rem; }
@@ -234,7 +241,7 @@
         .scratch-secret { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: #fff; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 15px; box-sizing: border-box; font-size: 1.1rem; color: #d81159; text-align: center; }
         #scratchCanvas { position: absolute; top: 0; left: 0; z-index: 5; cursor: pointer; }
 
-        /* --- RESTORED PAGE 12: PREMIUM TWO-TIER CAKE --- */
+        /* --- PAGE 12: PREMIUM TWO-TIER CAKE --- */
         .cake-container { position: relative; width: 180px; height: 180px; margin: 10px 0; cursor: pointer; z-index: 2;}
         .cake-aura { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 220px; height: 220px; background: radial-gradient(circle, rgba(255, 179, 198, 0.6) 0%, rgba(255,255,255,0) 70%); z-index: -1; animation: coverGlow 3s infinite alternate; pointer-events: none;}
         .cake-stand { position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); z-index: 0; display: flex; flex-direction: column; align-items: center; }
@@ -279,12 +286,21 @@
         @keyframes popConfetti { 0% { transform: translate(0, 0) scale(1) rotate(0deg); opacity: 1; } 100% { transform: translate(var(--tx), var(--ty)) scale(0.2) rotate(var(--tr)); opacity: 0; } }
 
         /* --- PAGE 13 - TULIP GARDEN --- */
-        .tulip-garden { position: relative; width: 100%; height: 110px; display: flex; justify-content: center; align-items: flex-end; margin-top: 5px; z-index: 2; border-bottom: 4px solid #81c784; }
-        .tulip { display: inline-block; margin: 0 2px; transform-origin: bottom center; animation: swayTulip 3s ease-in-out infinite alternate; filter: drop-shadow(0 2px 2px rgba(0,0,0,0.05)); }
-        .t1 { animation-delay: 0s; font-size: 2.3rem; } .t2 { animation-delay: 0.5s; font-size: 2.8rem; }
-        .t3 { animation-delay: 1.2s; font-size: 3.3rem; z-index: 5;} .t4 { animation-delay: 0.3s; font-size: 2.6rem; }
-        .t5 { animation-delay: 0.8s; font-size: 2.1rem; }
-        @keyframes swayTulip { 0% { transform: rotate(-15deg); } 100% { transform: rotate(15deg); } }
+        .tulip-planter-container { position: relative; width: 100%; display: flex; flex-direction: column; align-items: center; margin-top: 10px; }
+        .tulip-garden-new { position: relative; width: 220px; height: 100px; display: flex; justify-content: space-around; align-items: flex-end; z-index: 1; margin-bottom: -15px; }
+        .tulip { font-size: 2.2rem; transform-origin: bottom center; animation: swayTulip 3s ease-in-out infinite alternate; display: inline-block; filter: drop-shadow(0 4px 4px rgba(0,0,0,0.1)); }
+        .t1 { animation-delay: 0.1s; font-size: 2rem; }
+        .t2 { animation-delay: 0.6s; font-size: 2.5rem; z-index: 2; }
+        .t3 { animation-delay: 1.3s; font-size: 3rem; z-index: 3; }
+        .t4 { animation-delay: 0.4s; font-size: 3.5rem; z-index: 4; } 
+        .t5 { animation-delay: 0.9s; font-size: 3rem; z-index: 3; }
+        .t6 { animation-delay: 0.2s; font-size: 2.5rem; z-index: 2; }
+        .t7 { animation-delay: 0.7s; font-size: 2rem; }
+        @keyframes swayTulip { 0% { transform: rotate(-12deg); } 100% { transform: rotate(12deg); } }
+
+        .planter-box { position: relative; z-index: 5; display: flex; flex-direction: column; align-items: center; filter: drop-shadow(0 8px 15px rgba(0,0,0,0.15)); }
+        .planter-lip { width: 240px; height: 15px; background: linear-gradient(90deg, #d81159, #ff4081, #d81159); border-radius: 8px; border: 2px solid #b00d49; border-bottom: none; }
+        .planter-body { width: 210px; height: 45px; background: linear-gradient(135deg, #ff8fab, #ffb3c6); border-radius: 0 0 15px 15px; border: 2px solid #b00d49; border-top: none; display: flex; justify-content: center; align-items: center; color: white; font-family: 'Caveat', cursive; font-size: 1.4rem; font-weight: bold; text-shadow: 1px 1px 2px rgba(0,0,0,0.2); }
 
         /* --- PAGE 14 - SCANNER (FITTED FOR MOBILE) --- */
         #p14 h3 { margin-bottom: 0; }
@@ -317,7 +333,36 @@
         .scanned-success .scanner-container { border-color: #81c784; box-shadow: inset 0 0 15px rgba(129,199,132,0.3); }
         .scanned-success #scanText { display: none !important; } 
 
-        /* --- PAGE 15 - TIME CAPSULE --- */
+        /* --- NEW: PAGE 15 - RED STRING OF FATE 🧶 --- */
+        .string-interaction {
+            position: relative; width: 100%; height: 100px; display: flex; align-items: center; justify-content: space-between; margin: 10px 0;
+        }
+        .string-line {
+            position: absolute; top: 50%; left: 10%; width: 80%; height: 4px; background: #d81159; transform: translateY(-50%); z-index: 1; border-radius: 2px;
+            box-shadow: 0 0 8px rgba(216,17,89,0.6); transition: width 0.1s;
+        }
+        .avatar-left, .avatar-right {
+            position: absolute; top: 50%; transform: translateY(-50%); width: 70px; height: 70px; border-radius: 50%; border: 4px solid white; box-shadow: 0 5px 10px rgba(0,0,0,0.2); overflow: hidden; z-index: 3; transition: left 0.1s, right 0.1s;
+        }
+        .avatar-left { left: 5%; }
+        .avatar-right { right: 5%; }
+        .avatar-left img, .avatar-right img { width: 100%; height: 100%; object-fit: cover; }
+        
+        #stringSlider {
+            -webkit-appearance: none; width: 80%; height: 4px; background: transparent; z-index: 10; outline: none; margin: 0 auto; display: block; position: absolute; left: 10%;
+        }
+        #stringSlider::-webkit-slider-thumb {
+            -webkit-appearance: none; appearance: none; width: 40px; height: 40px; background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><text y="20" font-size="20">❤️</text></svg>') center/contain no-repeat; cursor: pointer; filter: drop-shadow(0 4px 5px rgba(0,0,0,0.2));
+        }
+        
+        .knot {
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0); font-size: 3rem; z-index: 5; transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .string-tied .knot { transform: translate(-50%, -50%) scale(1); }
+        .string-tied .string-line { background: #ffb3c6; box-shadow: none; }
+        .string-tied #stringSlider { pointer-events: none; opacity: 0; }
+
+        /* --- PAGE 16 - TIME CAPSULE --- */
         .capsule-wrapper {
             background: rgba(255,255,255,0.9); border: 3px solid #d81159; padding: 20px 10px;
             border-radius: 15px; width: 95%; z-index: 2; position: relative; margin-top: 15px;
@@ -355,7 +400,7 @@
                         <p style="margin-bottom: 3px; font-size: 0.85rem; color:#d62828;">Spilling the tea... ☕</p>
                         <div class="hint-item"><span>📸</span> Core Memories inside</div>
                         <div class="hint-item"><span>❤️</span> The Love Meter</div>
-                        <div class="hint-item"><span>👆</span> Thumbprint Scanner</div>
+                        <div class="hint-item"><span>🧶</span> Red String of Fate</div>
                         <div class="hint-item"><span class="pulse-text">🔒</span> The Time Capsule</div>
                     </div>
                 </div>
@@ -603,14 +648,20 @@
                 I couldn't bring you a real bouquet today, so I built you a garden that will never, ever wilt! ✨
             </p>
             
-            <h4 class="letter-font pop-item delay-4" style="color: #d81159; font-size: 1.6rem; margin: 15px 0 0 0;">Ayuuu's Garden</h4>
-            
-            <div class="tulip-garden pop-item delay-4">
-                <span class="tulip t1">🌷</span>
-                <span class="tulip t2">🌷</span>
-                <span class="tulip t3">🌷</span>
-                <span class="tulip t4">🌷</span>
-                <span class="tulip t5">🌷</span>
+            <div class="tulip-planter-container pop-item delay-4">
+                <div class="tulip-garden-new">
+                    <span class="tulip t1">🌷</span>
+                    <span class="tulip t2">🌷</span>
+                    <span class="tulip t3">🌷</span>
+                    <span class="tulip t4">🌷</span>
+                    <span class="tulip t5">🌷</span>
+                    <span class="tulip t6">🌷</span>
+                    <span class="tulip t7">🌷</span>
+                </div>
+                <div class="planter-box">
+                    <div class="planter-lip"></div>
+                    <div class="planter-body">Ayuuu's Garden</div>
+                </div>
             </div>
             
             <div class="status-badge pop-item delay-4" style="margin-top: 10px; font-family: 'Caveat', cursive; font-size: 1.3rem;">
@@ -637,7 +688,30 @@
             <div id="scanText" class="flirty-line pop-item delay-4" style="margin-top: 10px;">Scanning for Ayuuu... ⏳</div>
         </div>
 
-        <div class="page page-inner-bg page-capsule" id="p15" style="justify-content: center;">
+        <div class="page page-inner-bg page-string" id="p15" style="justify-content: center;">
+            <span class="decor decor-tl">🧶</span>
+            <span class="decor decor-br">❤️</span>
+            <h3 class="pop-item delay-1">The Red String of Fate</h3>
+            <p class="letter-font pop-item delay-2" style="font-size: 1.15rem; margin-bottom: 20px;">Distance means nothing when we are tied together. 🥺</p>
+
+            <div class="string-interaction pop-item delay-3">
+                <div class="string-line" id="stringLine"></div>
+                <div class="avatar-left" id="avatarLeft"><img src="4.jpg" alt="Theshu"></div>
+                <div class="avatar-right" id="avatarRight"><img src="5.jpg" alt="Ayuuu"></div>
+                <input type="range" id="stringSlider" min="0" max="100" value="0">
+                <div class="knot" id="knotIcon">🎀</div>
+            </div>
+            
+            <div id="stringMessage" class="secret-promise">
+                <span style="font-size:1.5rem;">🥺💍</span><br>
+                <strong>Tied together forever!</strong><br>
+                No matter the distance, my heart will always find its way back to yours. 💖
+            </div>
+            
+            <div id="stringGuide" class="flirty-line pop-item delay-4" style="margin-top: 20px;">Drag the heart to pull us together! ❤️➔</div>
+        </div>
+
+        <div class="page page-inner-bg page-capsule" id="p16" style="justify-content: center;">
             <span class="decor decor-tr">⏳</span>
             <span class="decor decor-bl">📦</span>
             <h3 class="pop-item delay-1">Our Time Capsule 🔒</h3>
@@ -657,7 +731,7 @@
             <div class="status-badge pop-item delay-4" style="margin-top: 15px;">No cheating allowed! 😤</div>
         </div>
 
-        <div class="page page-inner-bg page-final" id="p16">
+        <div class="page page-inner-bg page-final" id="p17">
             <span class="decor decor-tl">🦋</span>
             <span class="decor decor-br">✨</span>
             <div class="letter-font pop-item delay-1">
@@ -687,7 +761,6 @@
     const musicToggle = document.getElementById('musicToggle');
     let isMusicPlaying = false;
 
-    // Extremely aggressive listener to force music play on first screen touch/click
     const startAudio = () => {
         if (!isMusicPlaying) {
             bgMusic.play().then(() => {
@@ -790,6 +863,41 @@
     scannerBox.addEventListener('mouseleave', stopScan);
     scannerBox.addEventListener('touchend', stopScan);
 
+    // --- NEW: RED STRING OF FATE LOGIC 🧶 ---
+    const stringSlider = document.getElementById('stringSlider');
+    const avatarLeft = document.getElementById('avatarLeft');
+    const avatarRight = document.getElementById('avatarRight');
+    const stringInteraction = document.querySelector('.string-interaction');
+    const stringGuide = document.getElementById('stringGuide');
+    let stringTied = false;
+
+    // Stop propagation so swiping the slider doesn't turn the page!
+    stringSlider.addEventListener('mousedown', (e) => e.stopPropagation());
+    stringSlider.addEventListener('touchstart', (e) => e.stopPropagation(), {passive: false});
+
+    stringSlider.addEventListener('input', (e) => {
+        if(stringTied) return;
+        const val = e.target.value;
+        
+        // Move avatars toward center (start at 5%, stop at 35%)
+        avatarLeft.style.left = `calc(5% + ${val * 0.3}%)`;
+        avatarRight.style.right = `calc(5% + ${val * 0.3}%)`;
+        
+        if (val >= 95) {
+            stringTied = true;
+            stringSlider.value = 100;
+            avatarLeft.style.left = '35%';
+            avatarRight.style.right = '35%';
+            stringInteraction.classList.add('string-tied');
+            document.getElementById('p15').classList.add('scanned-success'); // Reuses promise box animation
+            stringGuide.style.display = 'none';
+            
+            // Pop confetti from the center knot
+            if(navigator.vibrate) navigator.vibrate(100);
+            shootConfetti(document.getElementById('p15'), -20);
+        }
+    });
+
     // --- DATE SETTINGS & TIMERS ---
     const meetingDate = new Date('2026-01-18T00:00:00'); 
     const targetDate = new Date(meetingDate.getTime() + (100 * 24 * 60 * 60 * 1000));
@@ -858,7 +966,7 @@
 
     // --- THE NEW "SMART RENDERING" NAVIGATION LOGIC (GLITCH FREE) ---
     let currentPage = 1;
-    const totalPages = 16; 
+    const totalPages = 17; // Updated to 17 Pages!
     const bookContainer = document.getElementById('bookContainer');
 
     function updateActivePage() {
@@ -917,10 +1025,12 @@
         }
 
         if (currentPage < totalPages && clickX >= (rect.width * 0.3)) {
+            // Interactive block protections
             if (currentPage === 5 && (e.target.id === 'loveBtn')) return; 
             if (currentPage === 11 && (e.target.id === 'scratchCanvas')) return; 
             if (currentPage === 12 && (e.target.closest('#cakeContainer'))) return; 
             if (currentPage === 14 && (e.target.closest('#scannerBox'))) return; 
+            if (currentPage === 15 && (e.target.id === 'stringSlider')) return; 
 
             document.getElementById('p' + (currentPage + 1)).style.display = 'flex';
             setTimeout(() => {
@@ -933,7 +1043,7 @@
         }
     };
 
-    // --- LOVE METER LOGIC (FIXED 1-TAP) ---
+    // --- LOVE METER LOGIC ---
     const loveBtn = document.getElementById('loveBtn');
     const meterFill = document.getElementById('meterFill');
     const meterMsg = document.getElementById('meterMsg');
@@ -962,14 +1072,8 @@
         }, 2500);
     };
 
-    // --- CAKE CUTTING LOGIC ---
-    const cakeContainer = document.getElementById('cakeContainer');
-    const knife = document.getElementById('knife');
-    const cake = document.getElementById('cake');
-    const cakeText = document.getElementById('cakeText');
-    let cakeIsCut = false;
-
-    function shootConfetti() {
+    // --- REUSABLE CONFETTI FUNCTION ---
+    function shootConfetti(targetContainer, yOffset = -30) {
         const colors = ['#ff8fab', '#d81159', '#ffcc00', '#00bcd4', '#ffffff'];
         const shapes = ['❤️', '⭐', '🍬'];
         for(let i=0; i<30; i++) {
@@ -984,17 +1088,24 @@
             let angle = Math.random() * Math.PI * 2;
             let velocity = 50 + Math.random() * 100;
             let tx = Math.cos(angle) * velocity;
-            let ty = Math.sin(angle) * velocity - 30; 
+            let ty = Math.sin(angle) * velocity + yOffset; 
             let tr = 180 + Math.random() * 360; 
             
             conf.style.setProperty('--tx', `${tx}px`);
             conf.style.setProperty('--ty', `${ty}px`);
             conf.style.setProperty('--tr', `${tr}deg`);
             
-            cakeContainer.appendChild(conf);
+            targetContainer.appendChild(conf);
             setTimeout(() => conf.remove(), 1000);
         }
     }
+
+    // --- CAKE CUTTING LOGIC ---
+    const cakeContainer = document.getElementById('cakeContainer');
+    const knife = document.getElementById('knife');
+    const cake = document.getElementById('cake');
+    const cakeText = document.getElementById('cakeText');
+    let cakeIsCut = false;
 
     cakeContainer.onclick = function(e) {
         e.stopPropagation(); 
@@ -1002,9 +1113,11 @@
             cakeText.style.display = 'none'; 
             knife.classList.add('knife-anim'); 
             
+            if(navigator.vibrate) navigator.vibrate(100);
+
             setTimeout(() => {
                 cake.classList.add('cake-slice-anim'); 
-                shootConfetti(); 
+                shootConfetti(cakeContainer); 
                 cakeIsCut = true;
             }, 500); 
         }
