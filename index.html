@@ -69,16 +69,14 @@
             align-items: center; text-align: center; padding: 25px 15px; 
             overflow: hidden !important; 
             
-            /* Anti-Glitch rendering properties */
             backface-visibility: hidden; -webkit-backface-visibility: hidden; 
-            outline: 1px solid transparent; /* Fixes jagged bleeding edges on mobile */
             transform-origin: left center; -webkit-transform-origin: left center;
             
             transform: rotateY(0deg); -webkit-transform: rotateY(0deg);
             transition: transform 0.7s cubic-bezier(0.4, 0.0, 0.2, 1);
             -webkit-transition: -webkit-transform 0.7s cubic-bezier(0.4, 0.0, 0.2, 1);
             
-            display: none; /* Hide all by default to save phone memory */
+            visibility: hidden;
         }
 
         .page.flipped { 
@@ -180,8 +178,8 @@
         .stats-box p { margin: 4px 0; font-size: 0.85rem; color: #5a3a40; font-weight: bold;}
 
         /* --- LISTS --- */
-        .cute-list { list-style: none; padding: 0; text-align: left; margin: 0 0 10px 0; width: 100%; z-index: 2; }
-        .cute-list li { margin: 2px 0; font-size: 1.15rem; opacity: 0; background: rgba(255, 255, 255, 0.6); padding: 3px 10px; border-radius: 8px; }
+        .cute-list { list-style: none; padding: 0; text-align: left; margin: 0 0 5px 0; width: 100%; z-index: 2; }
+        .cute-list li { margin: 2px 0; font-size: 1.05rem; opacity: 0; background: rgba(255, 255, 255, 0.7); padding: 3px 10px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.03);}
         .reasons-list li { transform: translate(-20px, 0); }
         .future-list li { transform: translate(0, 20px); background: white; border: 2px dashed #ffb3c6; text-align: center; font-weight: bold; margin: 6px 0; font-size: 1.15rem; }
         .page.active .reasons-list li { animation: slideInText 0.6s forwards; }
@@ -189,16 +187,16 @@
         @keyframes slideInText { to { opacity: 1; transform: translate(0, 0); } }
         @keyframes slideUpFade { to { opacity: 1; transform: translate(0, 0); } }
 
-        /* --- NEW SPACE-FILLER & ALIGNMENT FOR PAGE 6 --- */
-        .routine-box { background: white; border: 2px dashed #ff8fab; border-radius: 12px; width: 95%; padding: 10px; text-align: left; box-shadow: 0 4px 10px rgba(0,0,0,0.05); margin-top: auto; margin-bottom: 10px; }
-        .routine-box h4 { margin: 0 0 5px 0; color: #d81159; font-family: 'Caveat', cursive; font-size: 1.35rem; }
-        .routine-box p { margin: 3px 0; font-size: 0.9rem; font-weight: bold; color: #5a3a40; }
+        /* --- NEW: ROUTINE CHECKLIST (For Page 6) --- */
+        .routine-box { background: white; border: 2px dashed #ff8fab; border-radius: 12px; width: 95%; padding: 10px; margin-top: 10px; text-align: left; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
+        .routine-box h4 { margin: 0 0 5px 0; color: #d81159; font-family: 'Caveat', cursive; font-size: 1.3rem; }
+        .routine-box p { margin: 2px 0; font-size: 0.85rem; font-weight: bold; color: #5a3a40; }
 
         /* --- TIMELINE & BIRTHDAYS --- */
         .timeline-box { background: rgba(255,255,255,0.8); border: 2px dashed #ffb3c6; padding: 10px; border-radius: 15px; width: 95%; z-index: 2; margin-top: 5px;}
         .timeline-box p { margin: 6px 0; font-size: 0.95rem; color: #5a3a40; line-height: 1.3; }
         .timeline-box strong { color: #d81159; }
-        .status-badge { background: #ffe6ea; border: 2px dashed #ff8fab; padding: 5px 10px; border-radius: 20px; font-weight: bold; color: #d81159; font-size: 0.85rem; margin-top: 10px; width: 95%;}
+        .status-badge { background: #ffe6ea; border: 2px dashed #ff8fab; padding: 5px 10px; border-radius: 20px; font-weight: bold; color: #d81159; font-size: 0.85rem; margin-top: 10px;}
 
         .bday-card { background: rgba(255,255,255,0.9); border: 2px dashed #ffb3c6; padding: 10px; border-radius: 12px; width: 90%; margin: 8px 0; z-index: 2; }
         .bday-card h4 { margin: 0 0 8px 0; color: #d62828; font-size: 1.2rem; }
@@ -267,14 +265,14 @@
         .confetti-piece { position: absolute; width: 8px; height: 8px; animation: popConfetti 1s ease-out forwards; z-index: 10; opacity: 0;}
         @keyframes popConfetti { 0% { transform: translate(0, 0) scale(1) rotate(0deg); opacity: 1; } 100% { transform: translate(var(--tx), var(--ty)) scale(0.2) rotate(var(--tr)); opacity: 0; } }
 
-        /* --- PAGE 13 - TULIP GARDEN --- */
+        /* --- UPGRADED PAGE 13 - TULIP GARDEN --- */
         .tulip-planter-container { position: relative; width: 100%; display: flex; flex-direction: column; align-items: center; margin-top: 10px; }
         .tulip-garden-new { position: relative; width: 220px; height: 100px; display: flex; justify-content: space-around; align-items: flex-end; z-index: 1; margin-bottom: -15px; }
         .tulip { font-size: 2.2rem; transform-origin: bottom center; animation: swayTulip 3s ease-in-out infinite alternate; display: inline-block; filter: drop-shadow(0 4px 4px rgba(0,0,0,0.1)); }
         .t1 { animation-delay: 0.1s; font-size: 2rem; }
         .t2 { animation-delay: 0.6s; font-size: 2.5rem; z-index: 2; }
         .t3 { animation-delay: 1.3s; font-size: 3rem; z-index: 3; }
-        .t4 { animation-delay: 0.4s; font-size: 3.5rem; z-index: 4; } 
+        .t4 { animation-delay: 0.4s; font-size: 3.5rem; z-index: 4; } /* Center */
         .t5 { animation-delay: 0.9s; font-size: 3rem; z-index: 3; }
         .t6 { animation-delay: 0.2s; font-size: 2.5rem; z-index: 2; }
         .t7 { animation-delay: 0.7s; font-size: 2rem; }
@@ -283,6 +281,7 @@
         .planter-box { position: relative; z-index: 5; display: flex; flex-direction: column; align-items: center; filter: drop-shadow(0 8px 15px rgba(0,0,0,0.15)); }
         .planter-lip { width: 240px; height: 15px; background: linear-gradient(90deg, #d81159, #ff4081, #d81159); border-radius: 8px; border: 2px solid #b00d49; border-bottom: none; }
         .planter-body { width: 210px; height: 45px; background: linear-gradient(135deg, #ff8fab, #ffb3c6); border-radius: 0 0 15px 15px; border: 2px solid #b00d49; border-top: none; display: flex; justify-content: center; align-items: center; color: white; font-family: 'Caveat', cursive; font-size: 1.4rem; font-weight: bold; text-shadow: 1px 1px 2px rgba(0,0,0,0.2); }
+
 
         /* --- PAGE 14 - SCANNER --- */
         .scanner-container {
@@ -302,15 +301,12 @@
         @keyframes scanAnim { from { top: 5%; } to { top: 95%; } }
         
         .secret-promise {
-            opacity: 0; max-height: 0; overflow: hidden; margin-top: 0; padding-top: 0; padding-bottom: 0;
-            transition: all 0.8s ease; font-size: 1.15rem; color: #d62828; font-weight: bold; 
-            background: white; border-radius: 10px; border: 2px dashed transparent; pointer-events: none;
+            opacity: 0; transition: opacity 1s; font-size: 1.15rem; color: #d62828; 
+            font-weight: bold; background: white; padding: 10px; border-radius: 10px; 
+            border: 2px dashed #ffb3c6; margin-top: 10px; pointer-events: none;
         }
-        .scanned-success .secret-promise { 
-            opacity: 1; max-height: 200px; margin-top: 10px; padding: 10px; border-color: #ffb3c6; 
-        }
+        .scanned-success .secret-promise { opacity: 1; }
         .scanned-success .scanner-container { border-color: #81c784; box-shadow: inset 0 0 15px rgba(129,199,132,0.3); }
-        .scanned-success #scanText { display: none; } 
 
         /* --- PAGE 15 - TIME CAPSULE --- */
         .capsule-wrapper {
@@ -421,25 +417,22 @@
             <span class="decor decor-tl">✨</span>
             <span class="decor decor-br">🌷</span>
             <h3 class="pop-item delay-1">I Love... 💭💖</h3>
-            <ul class="cute-list reasons-list letter-font" style="margin-bottom: 5px;">
+            <ul class="cute-list reasons-list letter-font">
                 <li>✨ Your beautiful smile 😊</li>
                 <li>🥺 How you make me laugh 😂</li>
                 <li>💖 Your gorgeous eyes 👀</li>
                 <li>🐾 The way you look at me 🥰</li>
                 <li>🎶 Your cute voice notes 🥺</li>
-                <li>🧸 Your virtual cuddles 🫂</li>
-                <li>🌙 Our late-night talks 📞</li>
                 <li>✨ Everything about you 💍</li>
             </ul>
             
-            <div class="routine-box pop-item delay-4" style="margin-top: auto; margin-bottom: 10px;">
+            <div class="routine-box pop-item delay-4">
                 <h4>My Daily Routine:</h4>
                 <p>✅ Wake up missing you.</p>
                 <p>✅ Check my phone for your text.</p>
-                <p>✅ Stalk your pictures.</p>
                 <p>✅ Smile like an absolute idiot. 🥰</p>
             </div>
-            <div class="status-badge pop-item delay-4" style="width: 100%; padding: 8px;">Verdict: 100% Stuck with me forever 🤭🔒</div>
+            <div class="status-badge pop-item delay-4" style="margin-top: 5px;">Verdict: 100% Stuck with me 🤭🔒</div>
         </div>
 
         <div class="page page-inner-bg page-future" id="p7">
@@ -862,13 +855,13 @@
             let p = document.getElementById('p'+i);
             
             if (i === currentPage) {
-                p.style.display = 'flex';
+                p.style.visibility = 'visible';
                 p.classList.add('active');
                 p.classList.remove('flipped');
                 p.style.zIndex = 10;
             } 
             else if (i === currentPage + 1) {
-                p.style.display = 'flex';
+                p.style.visibility = 'visible';
                 p.classList.remove('active');
                 p.classList.remove('flipped');
                 p.style.zIndex = 9;
@@ -876,18 +869,15 @@
             else if (i < currentPage) {
                 p.classList.remove('active');
                 p.classList.add('flipped');
-                p.style.zIndex = 1; 
-                // Hard hide after flip completes
-                setTimeout(() => { if(currentPage !== i && i !== currentPage - 1) p.style.display = 'none'; }, 700);
+                p.style.zIndex = i; 
+                setTimeout(() => { if(currentPage !== i) p.style.visibility = 'hidden'; }, 700);
             } 
             else {
-                p.style.display = 'none';
+                p.classList.remove('active');
+                p.classList.remove('flipped');
+                p.style.visibility = 'hidden';
+                p.style.zIndex = 1;
             }
-        }
-
-        if(currentPage === 6) {
-            const items = document.getElementById('p6').querySelectorAll('.reasons-list li');
-            items.forEach((li, index) => { li.style.animationDelay = (0.15 + (index * 0.15)) + 's'; });
         }
     }
 
@@ -904,13 +894,10 @@
         const clickX = e.clientX - rect.left;
         
         if (currentPage > 1 && clickX < (rect.width * 0.3)) {
-            // Restore display before turning
-            document.getElementById('p' + (currentPage - 1)).style.display = 'flex';
-            setTimeout(() => {
-                currentPage--;
-                updateActivePage();
-                checkInteractiveStates(); 
-            }, 20);
+            document.getElementById('p' + (currentPage - 1)).style.visibility = 'visible';
+            currentPage--;
+            updateActivePage();
+            checkInteractiveStates(); 
             return;
         }
 
@@ -920,11 +907,9 @@
             if (currentPage === 12 && (e.target.closest('#cakeContainer'))) return; 
             if (currentPage === 14 && (e.target.closest('#scannerBox'))) return; 
 
-            document.getElementById('p' + (currentPage + 1)).style.display = 'flex';
-            setTimeout(() => {
-                currentPage++;
-                updateActivePage();
-            }, 20);
+            document.getElementById('p' + (currentPage + 1)).style.visibility = 'visible';
+            currentPage++;
+            updateActivePage();
             
             if (currentPage === 2) { navHint.style.display = 'block'; }
             if (currentPage === totalPages) { navHint.style.display = 'none'; }
@@ -943,12 +928,8 @@
             loveScore += 25; 
             meterFill.style.width = loveScore + '%';
             
-            meterFill.parentElement.style.animation = 'none';
-            meterFill.parentElement.offsetHeight; 
-            meterFill.parentElement.style.animation = 'gentleShake 0.3s';
-
             if (loveScore >= 100) {
-                meterMsg.innerHTML = "LOVE OVERLOAD!! 💖💥";
+                meterMsg.innerHTML = "Warning: Love Overload!! 💖💥";
                 loveBtn.style.display = 'none'; 
             } else {
                 meterMsg.innerHTML = "More! Keep tapping! 🐾🥰";
