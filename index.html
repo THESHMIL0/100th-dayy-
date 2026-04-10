@@ -70,13 +70,14 @@
             overflow: hidden !important; 
             
             backface-visibility: hidden; -webkit-backface-visibility: hidden; 
+            outline: 1px solid transparent; 
             transform-origin: left center; -webkit-transform-origin: left center;
             
             transform: rotateY(0deg); -webkit-transform: rotateY(0deg);
             transition: transform 0.7s cubic-bezier(0.4, 0.0, 0.2, 1);
             -webkit-transition: -webkit-transform 0.7s cubic-bezier(0.4, 0.0, 0.2, 1);
             
-            visibility: hidden;
+            display: none; 
         }
 
         .page.flipped { 
@@ -170,7 +171,7 @@
 
         /* --- LOVE METER --- */
         .meter-container { width: 85%; height: 25px; background: #fff; border-radius: 15px; border: 3px dashed #ffb3c6; margin: 10px 0; overflow: hidden; position: relative; }
-        .meter-fill { height: 100%; width: 0%; background: linear-gradient(90deg, #ff8fab, #d81159); }
+        .meter-fill { height: 100%; width: 0%; background: linear-gradient(90deg, #ff8fab, #d81159); transition: width 0.3s ease-out; }
         
         @keyframes gentleShake {
             0%, 100% { transform: translateX(0); }
@@ -195,7 +196,6 @@
         @keyframes slideInText { to { opacity: 1; transform: translate(0, 0); } }
         @keyframes slideUpFade { to { opacity: 1; transform: translate(0, 0); } }
 
-        /* --- NEW: ROUTINE CHECKLIST (For Page 6) --- */
         .routine-box { background: white; border: 2px dashed #ff8fab; border-radius: 12px; width: 95%; padding: 10px; text-align: left; box-shadow: 0 4px 10px rgba(0,0,0,0.05); margin-top: auto; margin-bottom: 10px; }
         .routine-box h4 { margin: 0 0 5px 0; color: #d81159; font-family: 'Caveat', cursive; font-size: 1.35rem; }
         .routine-box p { margin: 3px 0; font-size: 0.9rem; font-weight: bold; color: #5a3a40; }
@@ -262,7 +262,8 @@
         .left-half .berry { left: 5px; } .right-half .berry { right: 5px; transform: scaleX(-1); }
         .candle { position: absolute; top: -35px; width: 8px; height: 35px; background: repeating-linear-gradient(45deg, #fff, #fff 4px, #ff4d6d 4px, #ff4d6d 8px); border-radius: 4px; z-index: 4; box-shadow: 2px 2px 4px rgba(0,0,0,0.1);}
         .left-half .candle { right: -4px; } 
-        .flame { position: absolute; top: -14px; left: 50%; transform: translateX(-50%); width: 10px; height: 16px; background: #ffcc00; border-radius: 50% 50% 20% 20%; box-shadow: 0 0 10px #ffcc00, 0 0 25px #ff9900; animation: flicker 0.1s infinite alternate; }
+        .flame { position: absolute; top: -14px; left: 50%; transform: translateX(-50%); width: 10px; height: 16px; background: #ffcc00; border-radius: 50% 50% 20% 20%; box-shadow: 0 0 10px #ffcc00, 0 0 25px #ff9900; animation: flicker 0.1s infinite alternate; transition: opacity 0.2s; }
+        @keyframes flicker { from { transform: translate(-50%, 0) scale(1); opacity: 0.8; } to { transform: translate(-50%, 0) scale(1.1); opacity: 1; } }
         .knife { position: absolute; top: -45px; left: 50%; width: 4px; height: 150px; background: linear-gradient(90deg, #bdc3c7, #ecf0f1, #bdc3c7); border-radius: 2px; transform: translateX(-50%) translateY(-200px); transition: transform 0.5s cubic-bezier(0.5, 0, 0.5, 1); z-index: 5; }
         .knife::after { content: ''; position: absolute; top: -15px; left: -4px; width: 12px; height: 35px; background: #c0392b; border-radius: 4px; box-shadow: inset -2px 0 5px rgba(0,0,0,0.2); }
         .knife-anim { transform: translate(-50%, 35px); } 
@@ -273,22 +274,13 @@
         .confetti-piece { position: absolute; width: 8px; height: 8px; animation: popConfetti 1s ease-out forwards; z-index: 10; opacity: 0;}
         @keyframes popConfetti { 0% { transform: translate(0, 0) scale(1) rotate(0deg); opacity: 1; } 100% { transform: translate(var(--tx), var(--ty)) scale(0.2) rotate(var(--tr)); opacity: 0; } }
 
-        /* --- PAGE 13 - TULIP GARDEN --- */
-        .tulip-planter-container { position: relative; width: 100%; display: flex; flex-direction: column; align-items: center; margin-top: 10px; }
-        .tulip-garden-new { position: relative; width: 220px; height: 100px; display: flex; justify-content: space-around; align-items: flex-end; z-index: 1; margin-bottom: -15px; }
-        .tulip { font-size: 2.2rem; transform-origin: bottom center; animation: swayTulip 3s ease-in-out infinite alternate; display: inline-block; filter: drop-shadow(0 4px 4px rgba(0,0,0,0.1)); }
-        .t1 { animation-delay: 0.1s; font-size: 2rem; }
-        .t2 { animation-delay: 0.6s; font-size: 2.5rem; z-index: 2; }
-        .t3 { animation-delay: 1.3s; font-size: 3rem; z-index: 3; }
-        .t4 { animation-delay: 0.4s; font-size: 3.5rem; z-index: 4; } 
-        .t5 { animation-delay: 0.9s; font-size: 3rem; z-index: 3; }
-        .t6 { animation-delay: 0.2s; font-size: 2.5rem; z-index: 2; }
-        .t7 { animation-delay: 0.7s; font-size: 2rem; }
-        @keyframes swayTulip { 0% { transform: rotate(-12deg); } 100% { transform: rotate(12deg); } }
-
-        .planter-box { position: relative; z-index: 5; display: flex; flex-direction: column; align-items: center; filter: drop-shadow(0 8px 15px rgba(0,0,0,0.15)); }
-        .planter-lip { width: 240px; height: 15px; background: linear-gradient(90deg, #d81159, #ff4081, #d81159); border-radius: 8px; border: 2px solid #b00d49; border-bottom: none; }
-        .planter-body { width: 210px; height: 45px; background: linear-gradient(135deg, #ff8fab, #ffb3c6); border-radius: 0 0 15px 15px; border: 2px solid #b00d49; border-top: none; display: flex; justify-content: center; align-items: center; color: white; font-family: 'Caveat', cursive; font-size: 1.4rem; font-weight: bold; text-shadow: 1px 1px 2px rgba(0,0,0,0.2); }
+        /* --- RESTORED SIMPLE TULIP GARDEN --- */
+        .tulip-garden { position: relative; width: 100%; height: 110px; display: flex; justify-content: center; align-items: flex-end; margin-top: 5px; z-index: 2; border-bottom: 4px solid #81c784; }
+        .tulip { display: inline-block; margin: 0 2px; transform-origin: bottom center; animation: swayTulip 3s ease-in-out infinite alternate; filter: drop-shadow(0 2px 2px rgba(0,0,0,0.05)); }
+        .t1 { animation-delay: 0s; font-size: 2.3rem; } .t2 { animation-delay: 0.5s; font-size: 2.8rem; }
+        .t3 { animation-delay: 1.2s; font-size: 3.3rem; z-index: 5;} .t4 { animation-delay: 0.3s; font-size: 2.6rem; }
+        .t5 { animation-delay: 0.8s; font-size: 2.1rem; }
+        @keyframes swayTulip { 0% { transform: rotate(-15deg); } 100% { transform: rotate(15deg); } }
 
         /* --- PAGE 14 - SCANNER --- */
         .scanner-container {
@@ -308,15 +300,12 @@
         @keyframes scanAnim { from { top: 5%; } to { top: 95%; } }
         
         .secret-promise {
-            opacity: 0; max-height: 0; overflow: hidden; margin-top: 0; padding-top: 0; padding-bottom: 0;
-            transition: all 0.8s ease; font-size: 1.15rem; color: #d62828; font-weight: bold; 
-            background: white; border-radius: 10px; border: 2px dashed transparent; pointer-events: none;
+            opacity: 0; transition: opacity 1s; font-size: 1.15rem; color: #d62828; 
+            font-weight: bold; background: white; padding: 10px; border-radius: 10px; 
+            border: 2px dashed #ffb3c6; margin-top: 10px; pointer-events: none;
         }
-        .scanned-success .secret-promise { 
-            opacity: 1; max-height: 200px; margin-top: 10px; padding: 10px; border-color: #ffb3c6; 
-        }
+        .scanned-success .secret-promise { opacity: 1; }
         .scanned-success .scanner-container { border-color: #81c784; box-shadow: inset 0 0 15px rgba(129,199,132,0.3); }
-        .scanned-success #scanText { display: none; } 
 
         /* --- PAGE 15 - TIME CAPSULE --- */
         .capsule-wrapper {
@@ -427,25 +416,22 @@
             <span class="decor decor-tl">✨</span>
             <span class="decor decor-br">🌷</span>
             <h3 class="pop-item delay-1">I Love... 💭💖</h3>
-            <ul class="cute-list reasons-list letter-font" style="margin-bottom: 5px;">
+            <ul class="cute-list reasons-list letter-font">
                 <li>✨ Your beautiful smile 😊</li>
                 <li>🥺 How you make me laugh 😂</li>
                 <li>💖 Your gorgeous eyes 👀</li>
                 <li>🐾 The way you look at me 🥰</li>
                 <li>🎶 Your cute voice notes 🥺</li>
-                <li>🧸 Your virtual cuddles 🫂</li>
-                <li>🌙 Our late-night talks 📞</li>
                 <li>✨ Everything about you 💍</li>
             </ul>
             
-            <div class="routine-box pop-item delay-4" style="margin-top: auto; margin-bottom: 10px;">
+            <div class="routine-box pop-item delay-4">
                 <h4>My Daily Routine:</h4>
                 <p>✅ Wake up missing you.</p>
                 <p>✅ Check my phone for your text.</p>
-                <p>✅ Stalk your pictures.</p>
                 <p>✅ Smile like an absolute idiot. 🥰</p>
             </div>
-            <div class="status-badge pop-item delay-4" style="width: 100%; padding: 8px;">Verdict: 100% Stuck with me forever 🤭🔒</div>
+            <div class="status-badge pop-item delay-4" style="margin-top: 5px;">Verdict: 100% Stuck with me 🤭🔒</div>
         </div>
 
         <div class="page page-inner-bg page-future" id="p7">
@@ -601,20 +587,14 @@
                 I couldn't bring you a real bouquet today, so I built you a garden that will never, ever wilt! ✨
             </p>
             
-            <div class="tulip-planter-container pop-item delay-4">
-                <div class="tulip-garden-new">
-                    <span class="tulip t1">🌷</span>
-                    <span class="tulip t2">🌷</span>
-                    <span class="tulip t3">🌷</span>
-                    <span class="tulip t4">🌷</span>
-                    <span class="tulip t5">🌷</span>
-                    <span class="tulip t6">🌷</span>
-                    <span class="tulip t7">🌷</span>
-                </div>
-                <div class="planter-box">
-                    <div class="planter-lip"></div>
-                    <div class="planter-body">Ayuuu's Garden</div>
-                </div>
+            <h4 class="letter-font pop-item delay-4" style="color: #d81159; font-size: 1.6rem; margin: 15px 0 0 0;">Ayuuu's Garden</h4>
+            
+            <div class="tulip-garden pop-item delay-4">
+                <span class="tulip t1">🌷</span>
+                <span class="tulip t2">🌷</span>
+                <span class="tulip t3">🌷</span>
+                <span class="tulip t4">🌷</span>
+                <span class="tulip t5">🌷</span>
             </div>
             
             <div class="status-badge pop-item delay-4" style="margin-top: 10px; font-family: 'Caveat', cursive; font-size: 1.3rem;">
@@ -678,7 +658,7 @@
 
     </div>
     
-    <div class="nav-hint pop-item delay-4" id="navHint" style="display: none; font-size: 0.75rem;">Tap edges 🠔 🠖 back/next</div>
+    <div class="nav-hint pop-item delay-4" id="navHint" style="display: none;">Tap right edge ➔ next<br>Tap left edge 🠔 back</div>
 </div>
 
 <script>
@@ -686,24 +666,20 @@
     const lockKeyword = ""; // Set to "Ayu" to lock, empty "" to unlock!
     // --------------------------------
 
-    // --- BULLETPROOF AUDIO LOGIC ---
+    // --- AUDIO LOGIC ---
     const bgMusic = document.getElementById('bgMusic');
     const musicToggle = document.getElementById('musicToggle');
     let isMusicPlaying = false;
 
-    const unlockAudio = () => {
+    document.body.addEventListener('click', function playAudioOnFirstClick() {
         if (!isMusicPlaying) {
             bgMusic.play().then(() => {
                 isMusicPlaying = true;
                 musicToggle.classList.add('playing');
-            }).catch(err => console.log("Audio waiting for stronger interaction"));
+            }).catch(err => console.log("Audio play failed:", err));
+            document.body.removeEventListener('click', playAudioOnFirstClick);
         }
-        document.removeEventListener('click', unlockAudio);
-        document.removeEventListener('touchstart', unlockAudio);
-    };
-
-    document.addEventListener('click', unlockAudio);
-    document.addEventListener('touchstart', unlockAudio, { passive: true });
+    }, { once: true });
 
     musicToggle.onclick = function(e) {
         e.stopPropagation(); 
@@ -724,10 +700,10 @@
 
     ctx.fillStyle = '#c0c0c0';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
-    ctx.font = 'bold 18px Quicksand';
+    ctx.font = 'bold 20px Quicksand';
     ctx.fillStyle = '#95a5a6';
     ctx.textAlign = 'center';
-    ctx.fillText('Scratch Here! 🪙', canvas.width/2, canvas.height/2 + 5);
+    ctx.fillText('Scratch Here! 🪙', canvas.width/2, canvas.height/2 + 6);
 
     function getMousePos(e) {
         const rect = canvas.getBoundingClientRect();
@@ -745,7 +721,7 @@
         const pos = getMousePos(e);
         ctx.globalCompositeOperation = 'destination-out';
         ctx.beginPath();
-        ctx.arc(pos.x, pos.y, 18, 0, Math.PI * 2);
+        ctx.arc(pos.x, pos.y, 20, 0, Math.PI * 2);
         ctx.fill();
     }
 
@@ -791,6 +767,24 @@
     scannerBox.addEventListener('mouseup', stopScan);
     scannerBox.addEventListener('mouseleave', stopScan);
     scannerBox.addEventListener('touchend', stopScan);
+
+
+    // --- BACKGROUND FALLING HEARTS ---
+    function createHeart() {
+        const heart = document.createElement('div');
+        heart.classList.add('falling-heart');
+        heart.innerHTML = '❤';
+        heart.style.left = Math.random() * 100 + 'vw';
+        
+        const drift = (Math.random() - 0.5) * 30; 
+        heart.style.setProperty('--x-end', drift + 'vw');
+        
+        heart.style.animationDuration = (Math.random() * 3 + 4) + 's'; 
+        heart.style.fontSize = (Math.random() * 1 + 1) + 'rem'; 
+        document.body.appendChild(heart);
+        setTimeout(() => { heart.remove(); }, 7000); 
+    }
+    setInterval(createHeart, 800);
 
     // --- DATE SETTINGS & TIMERS ---
     const meetingDate = new Date('2026-01-18T00:00:00'); 
@@ -935,31 +929,29 @@
         }
     };
 
-    // --- ONE TAP LOVE METER LOGIC ---
+    // --- LOVE METER LOGIC ---
     const loveBtn = document.getElementById('loveBtn');
     const meterFill = document.getElementById('meterFill');
     const meterMsg = document.getElementById('meterMsg');
-    let isMeasuring = false;
+    let loveScore = 0;
 
     loveBtn.onclick = function(e) {
         e.stopPropagation(); 
-        if (isMeasuring) return; 
-        isMeasuring = true;
-        
-        meterMsg.innerHTML = "Measuring heart rate... 💓";
-        loveBtn.style.transform = 'scale(0.95)'; 
-        setTimeout(() => loveBtn.style.transform = 'scale(1)', 150);
-
-        meterFill.style.transition = 'width 2.5s ease-in-out';
-        meterFill.style.width = '100%';
-        
-        meterFill.parentElement.style.animation = 'gentleShake 2.5s linear';
-
-        setTimeout(() => {
-            meterMsg.innerHTML = "LOVE OVERLOAD!! 💖💥";
-            loveBtn.style.display = 'none'; 
+        if (loveScore < 100) {
+            loveScore += 25; 
+            meterFill.style.width = loveScore + '%';
+            
             meterFill.parentElement.style.animation = 'none';
-        }, 2500);
+            meterFill.parentElement.offsetHeight; 
+            meterFill.parentElement.style.animation = 'gentleShake 0.3s';
+
+            if (loveScore >= 100) {
+                meterMsg.innerHTML = "LOVE OVERLOAD!! 💖💥";
+                loveBtn.style.display = 'none'; 
+            } else {
+                meterMsg.innerHTML = "More! Keep tapping! 🐾🥰";
+            }
+        }
     };
 
     // --- CAKE CUTTING LOGIC ---
@@ -1018,8 +1010,7 @@
             cakeIsCut = false;
         }
         if (currentPage === 5) {
-            isMeasuring = false;
-            meterFill.style.transition = 'none'; 
+            loveScore = 0;
             meterFill.style.width = '0%';
             meterMsg.innerHTML = '';
             loveBtn.style.display = 'inline-block';
