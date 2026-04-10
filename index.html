@@ -170,7 +170,15 @@
 
         /* --- LOVE METER --- */
         .meter-container { width: 85%; height: 25px; background: #fff; border-radius: 15px; border: 3px dashed #ffb3c6; margin: 10px 0; overflow: hidden; position: relative; }
-        .meter-fill { height: 100%; width: 0%; background: linear-gradient(90deg, #ff8fab, #d81159); transition: width 0.3s ease-out; }
+        .meter-fill { height: 100%; width: 0%; background: linear-gradient(90deg, #ff8fab, #d81159); }
+        
+        @keyframes gentleShake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-3px); }
+            50% { transform: translateX(3px); }
+            75% { transform: translateX(-3px); }
+        }
+
         .cute-btn { background: #d81159; color: white; border: none; padding: 8px 16px; font-size: 0.9rem; border-radius: 20px; font-family: inherit; font-weight: bold; cursor: pointer; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: transform 0.1s; margin: 5px 0; }
         .cute-btn:active { transform: scale(0.95); }
         .meter-msg { font-size: 0.9rem; font-weight: bold; color: #d62828; min-height: 20px; margin: 5px 0;}
@@ -188,15 +196,15 @@
         @keyframes slideUpFade { to { opacity: 1; transform: translate(0, 0); } }
 
         /* --- NEW: ROUTINE CHECKLIST (For Page 6) --- */
-        .routine-box { background: white; border: 2px dashed #ff8fab; border-radius: 12px; width: 95%; padding: 10px; margin-top: 10px; text-align: left; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
-        .routine-box h4 { margin: 0 0 5px 0; color: #d81159; font-family: 'Caveat', cursive; font-size: 1.3rem; }
-        .routine-box p { margin: 2px 0; font-size: 0.85rem; font-weight: bold; color: #5a3a40; }
+        .routine-box { background: white; border: 2px dashed #ff8fab; border-radius: 12px; width: 95%; padding: 10px; text-align: left; box-shadow: 0 4px 10px rgba(0,0,0,0.05); margin-top: auto; margin-bottom: 10px; }
+        .routine-box h4 { margin: 0 0 5px 0; color: #d81159; font-family: 'Caveat', cursive; font-size: 1.35rem; }
+        .routine-box p { margin: 3px 0; font-size: 0.9rem; font-weight: bold; color: #5a3a40; }
 
         /* --- TIMELINE & BIRTHDAYS --- */
         .timeline-box { background: rgba(255,255,255,0.8); border: 2px dashed #ffb3c6; padding: 10px; border-radius: 15px; width: 95%; z-index: 2; margin-top: 5px;}
         .timeline-box p { margin: 6px 0; font-size: 0.95rem; color: #5a3a40; line-height: 1.3; }
         .timeline-box strong { color: #d81159; }
-        .status-badge { background: #ffe6ea; border: 2px dashed #ff8fab; padding: 5px 10px; border-radius: 20px; font-weight: bold; color: #d81159; font-size: 0.85rem; margin-top: 10px;}
+        .status-badge { background: #ffe6ea; border: 2px dashed #ff8fab; padding: 5px 10px; border-radius: 20px; font-weight: bold; color: #d81159; font-size: 0.85rem; margin-top: 10px; width: 95%;}
 
         .bday-card { background: rgba(255,255,255,0.9); border: 2px dashed #ffb3c6; padding: 10px; border-radius: 12px; width: 90%; margin: 8px 0; z-index: 2; }
         .bday-card h4 { margin: 0 0 8px 0; color: #d62828; font-size: 1.2rem; }
@@ -265,14 +273,14 @@
         .confetti-piece { position: absolute; width: 8px; height: 8px; animation: popConfetti 1s ease-out forwards; z-index: 10; opacity: 0;}
         @keyframes popConfetti { 0% { transform: translate(0, 0) scale(1) rotate(0deg); opacity: 1; } 100% { transform: translate(var(--tx), var(--ty)) scale(0.2) rotate(var(--tr)); opacity: 0; } }
 
-        /* --- UPGRADED PAGE 13 - TULIP GARDEN --- */
+        /* --- PAGE 13 - TULIP GARDEN --- */
         .tulip-planter-container { position: relative; width: 100%; display: flex; flex-direction: column; align-items: center; margin-top: 10px; }
         .tulip-garden-new { position: relative; width: 220px; height: 100px; display: flex; justify-content: space-around; align-items: flex-end; z-index: 1; margin-bottom: -15px; }
         .tulip { font-size: 2.2rem; transform-origin: bottom center; animation: swayTulip 3s ease-in-out infinite alternate; display: inline-block; filter: drop-shadow(0 4px 4px rgba(0,0,0,0.1)); }
         .t1 { animation-delay: 0.1s; font-size: 2rem; }
         .t2 { animation-delay: 0.6s; font-size: 2.5rem; z-index: 2; }
         .t3 { animation-delay: 1.3s; font-size: 3rem; z-index: 3; }
-        .t4 { animation-delay: 0.4s; font-size: 3.5rem; z-index: 4; } /* Center */
+        .t4 { animation-delay: 0.4s; font-size: 3.5rem; z-index: 4; } 
         .t5 { animation-delay: 0.9s; font-size: 3rem; z-index: 3; }
         .t6 { animation-delay: 0.2s; font-size: 2.5rem; z-index: 2; }
         .t7 { animation-delay: 0.7s; font-size: 2rem; }
@@ -281,7 +289,6 @@
         .planter-box { position: relative; z-index: 5; display: flex; flex-direction: column; align-items: center; filter: drop-shadow(0 8px 15px rgba(0,0,0,0.15)); }
         .planter-lip { width: 240px; height: 15px; background: linear-gradient(90deg, #d81159, #ff4081, #d81159); border-radius: 8px; border: 2px solid #b00d49; border-bottom: none; }
         .planter-body { width: 210px; height: 45px; background: linear-gradient(135deg, #ff8fab, #ffb3c6); border-radius: 0 0 15px 15px; border: 2px solid #b00d49; border-top: none; display: flex; justify-content: center; align-items: center; color: white; font-family: 'Caveat', cursive; font-size: 1.4rem; font-weight: bold; text-shadow: 1px 1px 2px rgba(0,0,0,0.2); }
-
 
         /* --- PAGE 14 - SCANNER --- */
         .scanner-container {
@@ -301,12 +308,15 @@
         @keyframes scanAnim { from { top: 5%; } to { top: 95%; } }
         
         .secret-promise {
-            opacity: 0; transition: opacity 1s; font-size: 1.15rem; color: #d62828; 
-            font-weight: bold; background: white; padding: 10px; border-radius: 10px; 
-            border: 2px dashed #ffb3c6; margin-top: 10px; pointer-events: none;
+            opacity: 0; max-height: 0; overflow: hidden; margin-top: 0; padding-top: 0; padding-bottom: 0;
+            transition: all 0.8s ease; font-size: 1.15rem; color: #d62828; font-weight: bold; 
+            background: white; border-radius: 10px; border: 2px dashed transparent; pointer-events: none;
         }
-        .scanned-success .secret-promise { opacity: 1; }
+        .scanned-success .secret-promise { 
+            opacity: 1; max-height: 200px; margin-top: 10px; padding: 10px; border-color: #ffb3c6; 
+        }
         .scanned-success .scanner-container { border-color: #81c784; box-shadow: inset 0 0 15px rgba(129,199,132,0.3); }
+        .scanned-success #scanText { display: none; } 
 
         /* --- PAGE 15 - TIME CAPSULE --- */
         .capsule-wrapper {
@@ -417,22 +427,25 @@
             <span class="decor decor-tl">✨</span>
             <span class="decor decor-br">🌷</span>
             <h3 class="pop-item delay-1">I Love... 💭💖</h3>
-            <ul class="cute-list reasons-list letter-font">
+            <ul class="cute-list reasons-list letter-font" style="margin-bottom: 5px;">
                 <li>✨ Your beautiful smile 😊</li>
                 <li>🥺 How you make me laugh 😂</li>
                 <li>💖 Your gorgeous eyes 👀</li>
                 <li>🐾 The way you look at me 🥰</li>
                 <li>🎶 Your cute voice notes 🥺</li>
+                <li>🧸 Your virtual cuddles 🫂</li>
+                <li>🌙 Our late-night talks 📞</li>
                 <li>✨ Everything about you 💍</li>
             </ul>
             
-            <div class="routine-box pop-item delay-4">
+            <div class="routine-box pop-item delay-4" style="margin-top: auto; margin-bottom: 10px;">
                 <h4>My Daily Routine:</h4>
                 <p>✅ Wake up missing you.</p>
                 <p>✅ Check my phone for your text.</p>
+                <p>✅ Stalk your pictures.</p>
                 <p>✅ Smile like an absolute idiot. 🥰</p>
             </div>
-            <div class="status-badge pop-item delay-4" style="margin-top: 5px;">Verdict: 100% Stuck with me 🤭🔒</div>
+            <div class="status-badge pop-item delay-4" style="width: 100%; padding: 8px;">Verdict: 100% Stuck with me forever 🤭🔒</div>
         </div>
 
         <div class="page page-inner-bg page-future" id="p7">
@@ -855,13 +868,13 @@
             let p = document.getElementById('p'+i);
             
             if (i === currentPage) {
-                p.style.visibility = 'visible';
+                p.style.display = 'flex';
                 p.classList.add('active');
                 p.classList.remove('flipped');
                 p.style.zIndex = 10;
             } 
             else if (i === currentPage + 1) {
-                p.style.visibility = 'visible';
+                p.style.display = 'flex';
                 p.classList.remove('active');
                 p.classList.remove('flipped');
                 p.style.zIndex = 9;
@@ -869,15 +882,17 @@
             else if (i < currentPage) {
                 p.classList.remove('active');
                 p.classList.add('flipped');
-                p.style.zIndex = i; 
-                setTimeout(() => { if(currentPage !== i) p.style.visibility = 'hidden'; }, 700);
+                p.style.zIndex = 1; 
+                setTimeout(() => { if(currentPage !== i && i !== currentPage - 1) p.style.display = 'none'; }, 700);
             } 
             else {
-                p.classList.remove('active');
-                p.classList.remove('flipped');
-                p.style.visibility = 'hidden';
-                p.style.zIndex = 1;
+                p.style.display = 'none';
             }
+        }
+
+        if(currentPage === 6) {
+            const items = document.getElementById('p6').querySelectorAll('.reasons-list li');
+            items.forEach((li, index) => { li.style.animationDelay = (0.15 + (index * 0.15)) + 's'; });
         }
     }
 
@@ -894,10 +909,12 @@
         const clickX = e.clientX - rect.left;
         
         if (currentPage > 1 && clickX < (rect.width * 0.3)) {
-            document.getElementById('p' + (currentPage - 1)).style.visibility = 'visible';
-            currentPage--;
-            updateActivePage();
-            checkInteractiveStates(); 
+            document.getElementById('p' + (currentPage - 1)).style.display = 'flex';
+            setTimeout(() => {
+                currentPage--;
+                updateActivePage();
+                checkInteractiveStates(); 
+            }, 20);
             return;
         }
 
@@ -907,34 +924,42 @@
             if (currentPage === 12 && (e.target.closest('#cakeContainer'))) return; 
             if (currentPage === 14 && (e.target.closest('#scannerBox'))) return; 
 
-            document.getElementById('p' + (currentPage + 1)).style.visibility = 'visible';
-            currentPage++;
-            updateActivePage();
+            document.getElementById('p' + (currentPage + 1)).style.display = 'flex';
+            setTimeout(() => {
+                currentPage++;
+                updateActivePage();
+            }, 20);
             
             if (currentPage === 2) { navHint.style.display = 'block'; }
             if (currentPage === totalPages) { navHint.style.display = 'none'; }
         }
     };
 
-    // --- LOVE METER LOGIC ---
+    // --- ONE TAP LOVE METER LOGIC ---
     const loveBtn = document.getElementById('loveBtn');
     const meterFill = document.getElementById('meterFill');
     const meterMsg = document.getElementById('meterMsg');
-    let loveScore = 0;
+    let isMeasuring = false;
 
     loveBtn.onclick = function(e) {
         e.stopPropagation(); 
-        if (loveScore < 100) {
-            loveScore += 25; 
-            meterFill.style.width = loveScore + '%';
-            
-            if (loveScore >= 100) {
-                meterMsg.innerHTML = "Warning: Love Overload!! 💖💥";
-                loveBtn.style.display = 'none'; 
-            } else {
-                meterMsg.innerHTML = "More! Keep tapping! 🐾🥰";
-            }
-        }
+        if (isMeasuring) return; 
+        isMeasuring = true;
+        
+        meterMsg.innerHTML = "Measuring heart rate... 💓";
+        loveBtn.style.transform = 'scale(0.95)'; 
+        setTimeout(() => loveBtn.style.transform = 'scale(1)', 150);
+
+        meterFill.style.transition = 'width 2.5s ease-in-out';
+        meterFill.style.width = '100%';
+        
+        meterFill.parentElement.style.animation = 'gentleShake 2.5s linear';
+
+        setTimeout(() => {
+            meterMsg.innerHTML = "LOVE OVERLOAD!! 💖💥";
+            loveBtn.style.display = 'none'; 
+            meterFill.parentElement.style.animation = 'none';
+        }, 2500);
     };
 
     // --- CAKE CUTTING LOGIC ---
@@ -993,7 +1018,8 @@
             cakeIsCut = false;
         }
         if (currentPage === 5) {
-            loveScore = 0;
+            isMeasuring = false;
+            meterFill.style.transition = 'none'; 
             meterFill.style.width = '0%';
             meterMsg.innerHTML = '';
             loveBtn.style.display = 'inline-block';
