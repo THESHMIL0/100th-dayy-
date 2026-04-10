@@ -193,11 +193,10 @@
         .stats-box { background: rgba(255,255,255,0.8); border: 2px dashed #ffb3c6; padding: 10px; border-radius: 15px; width: 95%; margin-top: 5px; z-index: 2; text-align: left;}
         .stats-box p { margin: 4px 0; font-size: 0.85rem; color: #5a3a40; font-weight: bold;}
 
-        /* --- LISTS --- */
+        /* --- LISTS & PERFECT MOBILE FIT FOR PAGE 6 --- */
         .cute-list { list-style: none; padding: 0; text-align: left; margin: 0 0 5px 0; width: 100%; z-index: 2; }
         .cute-list li { margin: 2px 0; font-size: 1.05rem; opacity: 0; background: rgba(255, 255, 255, 0.7); padding: 3px 10px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.03);}
         
-        /* Adjusted for Page 6 fit */
         #p6 h3 { margin: 0 0 3px 0; font-size: 1.25rem; }
         #p6 .cute-list li { font-size: 0.95rem; padding: 3px 8px; margin: 2px 0; }
         .routine-box { background: white; border: 2px dashed #ff8fab; border-radius: 10px; width: 95%; padding: 6px 10px; text-align: left; box-shadow: 0 4px 10px rgba(0,0,0,0.05); margin-top: auto; margin-bottom: 5px; }
@@ -274,7 +273,8 @@
         .left-half .berry { left: 5px; } .right-half .berry { right: 5px; transform: scaleX(-1); }
         .candle { position: absolute; top: -35px; width: 8px; height: 35px; background: repeating-linear-gradient(45deg, #fff, #fff 4px, #ff4d6d 4px, #ff4d6d 8px); border-radius: 4px; z-index: 4; box-shadow: 2px 2px 4px rgba(0,0,0,0.1);}
         .left-half .candle { right: -4px; } 
-        .flame { position: absolute; top: -14px; left: 50%; transform: translateX(-50%); width: 10px; height: 16px; background: #ffcc00; border-radius: 50% 50% 20% 20%; box-shadow: 0 0 10px #ffcc00, 0 0 25px #ff9900; animation: flicker 0.1s infinite alternate; }
+        .flame { position: absolute; top: -14px; left: 50%; transform: translateX(-50%); width: 10px; height: 16px; background: #ffcc00; border-radius: 50% 50% 20% 20%; box-shadow: 0 0 10px #ffcc00, 0 0 25px #ff9900; animation: flicker 0.1s infinite alternate; transition: opacity 0.2s; }
+        @keyframes flicker { from { transform: translate(-50%, 0) scale(1); opacity: 0.8; } to { transform: translate(-50%, 0) scale(1.1); opacity: 1; } }
         .knife { position: absolute; top: -45px; left: 50%; width: 4px; height: 150px; background: linear-gradient(90deg, #bdc3c7, #ecf0f1, #bdc3c7); border-radius: 2px; transform: translateX(-50%) translateY(-200px); transition: transform 0.5s cubic-bezier(0.5, 0, 0.5, 1); z-index: 5; }
         .knife::after { content: ''; position: absolute; top: -15px; left: -4px; width: 12px; height: 35px; background: #c0392b; border-radius: 4px; box-shadow: inset -2px 0 5px rgba(0,0,0,0.2); }
         .knife-anim { transform: translate(-50%, 35px); } 
@@ -285,22 +285,13 @@
         .confetti-piece { position: absolute; width: 8px; height: 8px; animation: popConfetti 1s ease-out forwards; z-index: 10; opacity: 0;}
         @keyframes popConfetti { 0% { transform: translate(0, 0) scale(1) rotate(0deg); opacity: 1; } 100% { transform: translate(var(--tx), var(--ty)) scale(0.2) rotate(var(--tr)); opacity: 0; } }
 
-        /* --- PAGE 13 - TULIP GARDEN --- */
-        .tulip-planter-container { position: relative; width: 100%; display: flex; flex-direction: column; align-items: center; margin-top: 10px; }
-        .tulip-garden-new { position: relative; width: 220px; height: 100px; display: flex; justify-content: space-around; align-items: flex-end; z-index: 1; margin-bottom: -15px; }
-        .tulip { font-size: 2.2rem; transform-origin: bottom center; animation: swayTulip 3s ease-in-out infinite alternate; display: inline-block; filter: drop-shadow(0 4px 4px rgba(0,0,0,0.1)); }
-        .t1 { animation-delay: 0.1s; font-size: 2rem; }
-        .t2 { animation-delay: 0.6s; font-size: 2.5rem; z-index: 2; }
-        .t3 { animation-delay: 1.3s; font-size: 3rem; z-index: 3; }
-        .t4 { animation-delay: 0.4s; font-size: 3.5rem; z-index: 4; } 
-        .t5 { animation-delay: 0.9s; font-size: 3rem; z-index: 3; }
-        .t6 { animation-delay: 0.2s; font-size: 2.5rem; z-index: 2; }
-        .t7 { animation-delay: 0.7s; font-size: 2rem; }
-        @keyframes swayTulip { 0% { transform: rotate(-12deg); } 100% { transform: rotate(12deg); } }
-
-        .planter-box { position: relative; z-index: 5; display: flex; flex-direction: column; align-items: center; filter: drop-shadow(0 8px 15px rgba(0,0,0,0.15)); }
-        .planter-lip { width: 240px; height: 15px; background: linear-gradient(90deg, #d81159, #ff4081, #d81159); border-radius: 8px; border: 2px solid #b00d49; border-bottom: none; }
-        .planter-body { width: 210px; height: 45px; background: linear-gradient(135deg, #ff8fab, #ffb3c6); border-radius: 0 0 15px 15px; border: 2px solid #b00d49; border-top: none; display: flex; justify-content: center; align-items: center; color: white; font-family: 'Caveat', cursive; font-size: 1.4rem; font-weight: bold; text-shadow: 1px 1px 2px rgba(0,0,0,0.2); }
+        /* --- RESTORED PAGE 13 - SIMPLE TULIP GARDEN --- */
+        .tulip-garden { position: relative; width: 100%; height: 110px; display: flex; justify-content: center; align-items: flex-end; margin-top: 5px; z-index: 2; border-bottom: 4px solid #81c784; }
+        .tulip { display: inline-block; margin: 0 2px; transform-origin: bottom center; animation: swayTulip 3s ease-in-out infinite alternate; filter: drop-shadow(0 2px 2px rgba(0,0,0,0.05)); }
+        .t1 { animation-delay: 0s; font-size: 2.3rem; } .t2 { animation-delay: 0.5s; font-size: 2.8rem; }
+        .t3 { animation-delay: 1.2s; font-size: 3.3rem; z-index: 5;} .t4 { animation-delay: 0.3s; font-size: 2.6rem; }
+        .t5 { animation-delay: 0.8s; font-size: 2.1rem; }
+        @keyframes swayTulip { 0% { transform: rotate(-15deg); } 100% { transform: rotate(15deg); } }
 
         /* --- PAGE 14 - SCANNER (FITTED FOR MOBILE) --- */
         #p14 h3 { margin-bottom: 0; }
@@ -352,7 +343,7 @@
             -webkit-appearance: none; width: 80%; height: 4px; background: transparent; z-index: 10; outline: none; margin: 0 auto; display: block; position: absolute; left: 10%;
         }
         #stringSlider::-webkit-slider-thumb {
-            -webkit-appearance: none; appearance: none; width: 40px; height: 40px; background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><text y="20" font-size="20">❤️</text></svg>') center/contain no-repeat; cursor: pointer; filter: drop-shadow(0 4px 5px rgba(0,0,0,0.2));
+            -webkit-appearance: none; appearance: none; width: 45px; height: 45px; background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><text y="20" font-size="20">❤️</text></svg>') center/contain no-repeat; cursor: pointer; filter: drop-shadow(0 4px 5px rgba(0,0,0,0.2));
         }
         
         .knot {
@@ -361,6 +352,16 @@
         .string-tied .knot { transform: translate(-50%, -50%) scale(1); }
         .string-tied .string-line { background: #ffb3c6; box-shadow: none; }
         .string-tied #stringSlider { pointer-events: none; opacity: 0; }
+
+        /* NEW: Animated Pull Hint */
+        .pull-hint-container {
+            position: absolute; top: 75%; left: 35%; display: flex; align-items: center; gap: 5px; font-size: 1.2rem; z-index: 8; pointer-events: none; animation: slideHint 1.5s infinite; opacity: 0.8; color: #d81159;
+        }
+        @keyframes slideHint {
+            0% { transform: translateX(0); opacity: 0.8; }
+            100% { transform: translateX(30px); opacity: 0; }
+        }
+        .string-tied .pull-hint-container { display: none; }
 
         /* --- PAGE 16 - TIME CAPSULE --- */
         .capsule-wrapper {
@@ -400,7 +401,7 @@
                         <p style="margin-bottom: 3px; font-size: 0.85rem; color:#d62828;">Spilling the tea... ☕</p>
                         <div class="hint-item"><span>📸</span> Core Memories inside</div>
                         <div class="hint-item"><span>❤️</span> The Love Meter</div>
-                        <div class="hint-item"><span>🧶</span> Red String of Fate</div>
+                        <div class="hint-item"><span>👆</span> Thumbprint Scanner</div>
                         <div class="hint-item"><span class="pulse-text">🔒</span> The Time Capsule</div>
                     </div>
                 </div>
@@ -648,20 +649,14 @@
                 I couldn't bring you a real bouquet today, so I built you a garden that will never, ever wilt! ✨
             </p>
             
-            <div class="tulip-planter-container pop-item delay-4">
-                <div class="tulip-garden-new">
-                    <span class="tulip t1">🌷</span>
-                    <span class="tulip t2">🌷</span>
-                    <span class="tulip t3">🌷</span>
-                    <span class="tulip t4">🌷</span>
-                    <span class="tulip t5">🌷</span>
-                    <span class="tulip t6">🌷</span>
-                    <span class="tulip t7">🌷</span>
-                </div>
-                <div class="planter-box">
-                    <div class="planter-lip"></div>
-                    <div class="planter-body">Ayuuu's Garden</div>
-                </div>
+            <h4 class="letter-font pop-item delay-4" style="color: #d81159; font-size: 1.6rem; margin: 15px 0 0 0;">Ayuuu's Garden</h4>
+            
+            <div class="tulip-garden pop-item delay-4">
+                <span class="tulip t1">🌷</span>
+                <span class="tulip t2">🌷</span>
+                <span class="tulip t3">🌷</span>
+                <span class="tulip t4">🌷</span>
+                <span class="tulip t5">🌷</span>
             </div>
             
             <div class="status-badge pop-item delay-4" style="margin-top: 10px; font-family: 'Caveat', cursive; font-size: 1.3rem;">
@@ -698,8 +693,14 @@
                 <div class="string-line" id="stringLine"></div>
                 <div class="avatar-left" id="avatarLeft"><img src="4.jpg" alt="Theshu"></div>
                 <div class="avatar-right" id="avatarRight"><img src="5.jpg" alt="Ayuuu"></div>
+                
                 <input type="range" id="stringSlider" min="0" max="100" value="0">
                 <div class="knot" id="knotIcon">🎀</div>
+                
+                <div class="pull-hint-container" id="pullHint">
+                    <span class="letter-font" style="font-weight: bold; margin-right: 5px;">Pull</span>
+                    <span style="font-size: 1.5rem;">➔</span>
+                </div>
             </div>
             
             <div id="stringMessage" class="secret-promise">
@@ -707,8 +708,6 @@
                 <strong>Tied together forever!</strong><br>
                 No matter the distance, my heart will always find its way back to yours. 💖
             </div>
-            
-            <div id="stringGuide" class="flirty-line pop-item delay-4" style="margin-top: 20px;">Drag the heart to pull us together! ❤️➔</div>
         </div>
 
         <div class="page page-inner-bg page-capsule" id="p16" style="justify-content: center;">
@@ -863,12 +862,11 @@
     scannerBox.addEventListener('mouseleave', stopScan);
     scannerBox.addEventListener('touchend', stopScan);
 
-    // --- NEW: RED STRING OF FATE LOGIC 🧶 ---
+    // --- RED STRING OF FATE LOGIC 🧶 ---
     const stringSlider = document.getElementById('stringSlider');
     const avatarLeft = document.getElementById('avatarLeft');
     const avatarRight = document.getElementById('avatarRight');
     const stringInteraction = document.querySelector('.string-interaction');
-    const stringGuide = document.getElementById('stringGuide');
     let stringTied = false;
 
     // Stop propagation so swiping the slider doesn't turn the page!
@@ -879,7 +877,6 @@
         if(stringTied) return;
         const val = e.target.value;
         
-        // Move avatars toward center (start at 5%, stop at 35%)
         avatarLeft.style.left = `calc(5% + ${val * 0.3}%)`;
         avatarRight.style.right = `calc(5% + ${val * 0.3}%)`;
         
@@ -889,10 +886,8 @@
             avatarLeft.style.left = '35%';
             avatarRight.style.right = '35%';
             stringInteraction.classList.add('string-tied');
-            document.getElementById('p15').classList.add('scanned-success'); // Reuses promise box animation
-            stringGuide.style.display = 'none';
+            document.getElementById('p15').classList.add('scanned-success'); 
             
-            // Pop confetti from the center knot
             if(navigator.vibrate) navigator.vibrate(100);
             shootConfetti(document.getElementById('p15'), -20);
         }
@@ -964,9 +959,9 @@
     updateTimer();
     setInterval(updateTimer, 1000);
 
-    // --- THE NEW "SMART RENDERING" NAVIGATION LOGIC (GLITCH FREE) ---
+    // --- SMART RENDERING NAVIGATION LOGIC ---
     let currentPage = 1;
-    const totalPages = 17; // Updated to 17 Pages!
+    const totalPages = 17; 
     const bookContainer = document.getElementById('bookContainer');
 
     function updateActivePage() {
@@ -1025,12 +1020,11 @@
         }
 
         if (currentPage < totalPages && clickX >= (rect.width * 0.3)) {
-            // Interactive block protections
             if (currentPage === 5 && (e.target.id === 'loveBtn')) return; 
             if (currentPage === 11 && (e.target.id === 'scratchCanvas')) return; 
             if (currentPage === 12 && (e.target.closest('#cakeContainer'))) return; 
             if (currentPage === 14 && (e.target.closest('#scannerBox'))) return; 
-            if (currentPage === 15 && (e.target.id === 'stringSlider')) return; 
+            if (currentPage === 15 && (e.target.id === 'stringSlider')) return;
 
             document.getElementById('p' + (currentPage + 1)).style.display = 'flex';
             setTimeout(() => {
@@ -1043,7 +1037,7 @@
         }
     };
 
-    // --- LOVE METER LOGIC ---
+    // --- LOVE METER LOGIC (FIXED 1-TAP) ---
     const loveBtn = document.getElementById('loveBtn');
     const meterFill = document.getElementById('meterFill');
     const meterMsg = document.getElementById('meterMsg');
