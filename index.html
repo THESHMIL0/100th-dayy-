@@ -240,20 +240,20 @@
         #scratchCanvas { position: absolute; top: 0; left: 0; z-index: 5; cursor: pointer; }
 
         /* --- ✨ LUXURY PREMIUM CAKE (Page 12) ✨ --- */
-        .cake-container { position: relative; width: 180px; height: 190px; margin: 10px 0; cursor: pointer; z-index: 2;}
+        .cake-container { position: relative; width: 180px; height: 190px; margin: 10px 0; cursor: pointer; z-index: 10;}
         .cake-aura { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 240px; height: 240px; background: radial-gradient(circle, rgba(255, 179, 198, 0.8) 0%, rgba(255,255,255,0) 70%); z-index: -1; animation: coverGlow 3s infinite alternate; pointer-events: none;}
         
         .sparkle { position: absolute; font-size: 1rem; color: #ffd700; z-index: 5; pointer-events: none; animation: twinkle 2s infinite alternate; opacity: 0;}
         .s1 { top: 20px; left: 10px; animation-delay: 0s; } .s2 { top: 40px; right: 15px; animation-delay: 0.5s; font-size: 1.2rem;} .s3 { bottom: 50px; left: -10px; animation-delay: 1s; } .s4 { bottom: 30px; right: 0; animation-delay: 0.7s; }
         @keyframes twinkle { 0% { opacity: 0; transform: scale(0.5); } 50% { opacity: 1; transform: scale(1.2); } 100% { opacity: 0; transform: scale(0.5); } }
 
-        .cake-stand { position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); z-index: 0; display: flex; flex-direction: column; align-items: center; filter: drop-shadow(0 10px 10px rgba(0,0,0,0.1)); }
+        .cake-stand { position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); z-index: 0; display: flex; flex-direction: column; align-items: center; filter: drop-shadow(0 10px 10px rgba(0,0,0,0.1)); pointer-events: none;}
         .stand-top { width: 160px; height: 20px; border-radius: 50%; background: radial-gradient(ellipse at top, #fde4ce 0%, #d4af37 60%, #aa7c11 100%); border: 1px solid #e6c27a; position: relative;}
         .stand-top::after { content: ''; position: absolute; top: 2px; left: 50%; transform: translateX(-50%); width: 135px; height: 10px; border: 1px solid rgba(255,255,255,0.6); border-radius: 50%; }
         .stand-base { width: 60px; height: 20px; background: linear-gradient(90deg, #aa7c11, #fde4ce, #aa7c11); margin-top: -8px; border-radius: 2px; box-shadow: inset 0 -5px 10px rgba(0,0,0,0.3);}
         .stand-foot { width: 80px; height: 8px; background: linear-gradient(90deg, #8a6309, #d4af37, #8a6309); border-radius: 50%; margin-top: -4px;}
 
-        .cake-halves { position: absolute; bottom: 22px; left: 50%; transform: translateX(-50%); display: flex; width: 140px; height: 110px; z-index: 1;}
+        .cake-halves { position: absolute; bottom: 22px; left: 50%; transform: translateX(-50%); display: flex; width: 140px; height: 110px; z-index: 1; pointer-events: none;}
         .cake-half { width: 50%; height: 100%; position: relative; transition: transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1); }
         .tier { position: absolute; background: linear-gradient(to right, #ffe6cc, #fde0c5); box-shadow: inset -5px -5px 15px rgba(0,0,0,0.05);}
         .tier::after { content:''; position: absolute; top: 50%; left: 0; width: 100%; height: 3px; background: rgba(141, 110, 99, 0.6); } 
@@ -286,14 +286,14 @@
         .flame { position: absolute; top: -14px; left: 50%; transform: translateX(-50%); width: 10px; height: 16px; background: #ffcc00; border-radius: 50% 50% 20% 20%; box-shadow: 0 0 10px #ffcc00, 0 0 25px #ff9900; animation: flicker 0.1s infinite alternate; transition: opacity 0.2s; }
         @keyframes flicker { from { transform: translate(-50%, 0) scale(1); opacity: 0.8; } to { transform: translate(-50%, 0) scale(1.1); opacity: 1; } }
         
-        .knife { position: absolute; top: -55px; left: 50%; width: 5px; height: 150px; background: linear-gradient(90deg, #bdc3c7, #ecf0f1, #95a5a6); border-radius: 2px; transform: translateX(-50%) translateY(-200px); transition: transform 0.4s cubic-bezier(0.5, 0, 0.5, 1); z-index: 5; box-shadow: 2px 0 5px rgba(0,0,0,0.2);}
+        .knife { position: absolute; top: -55px; left: 50%; width: 5px; height: 150px; background: linear-gradient(90deg, #bdc3c7, #ecf0f1, #95a5a6); border-radius: 2px; transform: translateX(-50%) translateY(-200px); transition: transform 0.4s cubic-bezier(0.5, 0, 0.5, 1); z-index: 5; box-shadow: 2px 0 5px rgba(0,0,0,0.2); pointer-events: none;}
         .knife::after { content: ''; position: absolute; top: -15px; left: -4px; width: 13px; height: 40px; background: linear-gradient(90deg, #c0392b, #e74c3c); border-radius: 4px; box-shadow: inset -2px 0 5px rgba(0,0,0,0.3); }
         .knife-anim { transform: translate(-50%, 45px); } 
         
         .cake-slice-anim .right-half { transform: translate(25px, 0) rotate(8deg); transform-origin: bottom right; }
         .cake-slice-anim .left-half { transform: translate(-15px, 0) rotate(-5deg); transform-origin: bottom left; }
         .cake-slice-anim .flame { opacity: 0; } 
-        .cake-instruction { font-size: 0.85rem; color: #d81159; font-weight: bold; position: absolute; top: -10px; width: 100%; background: rgba(255,255,255,0.9); padding: 4px 0; z-index: 10; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);}
+        .cake-instruction { font-size: 0.85rem; color: #d81159; font-weight: bold; position: absolute; top: -10px; width: 100%; background: rgba(255,255,255,0.9); padding: 4px 0; z-index: 10; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); pointer-events: none;}
         .confetti-piece { position: absolute; width: 8px; height: 8px; animation: popConfetti 1s ease-out forwards; z-index: 10; opacity: 0;}
         @keyframes popConfetti { 0% { transform: translate(0, 0) scale(1) rotate(0deg); opacity: 1; } 100% { transform: translate(var(--tx), var(--ty)) scale(0.2) rotate(var(--tr)); opacity: 0; } }
 
@@ -305,7 +305,7 @@
         .t5 { animation-delay: 0.8s; font-size: 2.1rem; }
         @keyframes swayTulip { 0% { transform: rotate(-15deg); } 100% { transform: rotate(15deg); } }
 
-        /* --- PAGE 14 - SCANNER (FITTED FOR MOBILE) --- */
+        /* --- PAGE 14 - SCANNER --- */
         #p14 h3 { margin-bottom: 0; }
         #p14 .letter-font { font-size: 1rem; margin-bottom: 5px; }
         .scanner-container {
@@ -336,21 +336,21 @@
         .scanned-success #scanText { display: none !important; } 
 
         /* --- PAGE 15 - RED STRING OF FATE 🧶 --- */
-        .string-interaction { position: relative; width: 100%; height: 100px; display: flex; align-items: center; justify-content: space-between; margin: 10px 0; }
-        .string-line { position: absolute; top: 50%; left: 10%; width: 80%; height: 4px; background: #d81159; transform: translateY(-50%); z-index: 1; border-radius: 2px; box-shadow: 0 0 8px rgba(216,17,89,0.6); transition: width 0.1s; }
+        .string-interaction { position: relative; width: 100%; height: 100px; display: flex; align-items: center; justify-content: space-between; margin: 10px 0; z-index: 10;}
+        .string-line { position: absolute; top: 50%; left: 10%; width: 80%; height: 4px; background: #d81159; transform: translateY(-50%); z-index: 1; border-radius: 2px; box-shadow: 0 0 8px rgba(216,17,89,0.6); transition: width 0.1s; pointer-events: none;}
         .avatar-left, .avatar-right { 
             position: absolute; top: 50%; transform: translateY(-50%); width: 70px; height: 70px; border-radius: 50%; border: 4px solid white; box-shadow: 0 5px 10px rgba(0,0,0,0.2); overflow: hidden; z-index: 3; transition: left 0.1s, right 0.1s; 
-            -webkit-mask-image: -webkit-radial-gradient(white, black);
+            -webkit-mask-image: -webkit-radial-gradient(white, black); pointer-events: none;
         }
         .avatar-left { left: 5%; } .avatar-right { right: 5%; }
         .avatar-left img, .avatar-right img { width: 100%; height: 100%; object-fit: cover; display: block;}
-        #stringSlider { -webkit-appearance: none; width: 80%; height: 4px; background: transparent; z-index: 10; outline: none; margin: 0 auto; display: block; position: absolute; left: 10%; }
+        #stringSlider { -webkit-appearance: none; width: 80%; height: 40px; background: transparent; z-index: 10; outline: none; margin: 0 auto; display: block; position: absolute; left: 10%; top: 50%; transform: translateY(-50%);}
         #stringSlider::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 45px; height: 45px; background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><text y="20" font-size="20">❤️</text></svg>') center/contain no-repeat; cursor: pointer; filter: drop-shadow(0 4px 5px rgba(0,0,0,0.2)); }
-        .knot { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0); font-size: 3rem; z-index: 5; transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1); }
+        .knot { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0); font-size: 3rem; z-index: 5; transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1); pointer-events: none;}
         .string-tied .knot { transform: translate(-50%, -50%) scale(1); }
         .string-tied .string-line { background: #ffb3c6; box-shadow: none; }
         .string-tied #stringSlider { pointer-events: none; opacity: 0; }
-        .pull-hint-container { position: absolute; top: 75%; left: 35%; display: flex; align-items: center; gap: 5px; font-size: 1.2rem; z-index: 8; pointer-events: none; animation: slideHint 1.5s infinite; opacity: 0.8; color: #d81159; }
+        .pull-hint-container { position: absolute; top: 85%; left: 35%; display: flex; align-items: center; gap: 5px; font-size: 1.2rem; z-index: 8; pointer-events: none; animation: slideHint 1.5s infinite; opacity: 0.8; color: #d81159; }
         @keyframes slideHint { 0% { transform: translateX(0); opacity: 0.8; } 100% { transform: translateX(30px); opacity: 0; } }
         .string-tied .pull-hint-container { display: none; }
 
@@ -380,11 +380,11 @@
         .gacha-slot { width: 50px; height: 25px; background: #333; position: absolute; bottom: 10px; border-radius: 12px 12px 5px 5px; box-shadow: inset 0 5px 10px rgba(0,0,0,0.5); }
         .gacha-tray { position: absolute; bottom: 5px; width: 70px; height: 15px; background: #ffb3c6; border-radius: 10px; }
         
-        .gacha-knob-container { position: absolute; top: 15px; width: 45px; height: 45px; background: #ffd6e0; border-radius: 50%; display: flex; justify-content: center; align-items: center; border: 2px solid #d81159;}
-        .gacha-knob { width: 35px; height: 12px; background: #fff; border-radius: 5px; border: 2px solid #d81159; cursor: pointer; transition: transform 0.3s; box-shadow: 0 2px 4px rgba(0,0,0,0.2);}
+        .gacha-knob-container { position: absolute; top: 15px; width: 45px; height: 45px; background: #ffd6e0; border-radius: 50%; display: flex; justify-content: center; align-items: center; border: 2px solid #d81159; cursor: pointer; z-index: 10;}
+        .gacha-knob { width: 35px; height: 12px; background: #fff; border-radius: 5px; border: 2px solid #d81159; transition: transform 0.3s; box-shadow: 0 2px 4px rgba(0,0,0,0.2); pointer-events: none;}
         .gacha-knob.turning { transform: rotate(180deg); }
 
-        .gacha-ball { position: absolute; width: 40px; height: 40px; border-radius: 50%; box-shadow: inset -5px -5px 10px rgba(0,0,0,0.15), 0 2px 4px rgba(0,0,0,0.2); }
+        .gacha-ball { position: absolute; width: 40px; height: 40px; border-radius: 50%; box-shadow: inset -5px -5px 10px rgba(0,0,0,0.15), 0 2px 4px rgba(0,0,0,0.2); pointer-events: none;}
         .gacha-ball::after { content: ''; position: absolute; top: 50%; left: 0; width: 100%; height: 2px; background: rgba(0,0,0,0.1); transform: translateY(-50%); } 
         .gb1 { background: #ffcc00; bottom: 5px; left: 20px; } .gb2 { background: #00bcd4; bottom: 10px; left: 65px; } 
         .gb3 { background: #d81159; bottom: 5px; right: 20px; } .gb4 { background: #81c784; bottom: 35px; left: 40px; } 
@@ -429,7 +429,7 @@
         .liquid-milk { position: absolute; bottom: 0; width: 100%; height: 0%; background: linear-gradient(180deg, #ffffff, #ffe0b2); transition: height 1s ease-in-out, bottom 1s ease-in-out; z-index: 2; opacity: 0.95;}
         
         /* Pouring Animations */
-        .pour-stream { position: absolute; top: -60px; left: 50%; transform: translateX(-50%); width: 12px; height: 0; border-radius: 6px; z-index: 4; transition: height 0.3s ease-in, opacity 0.3s; opacity: 0;}
+        .pour-stream { position: absolute; top: -60px; left: 50%; transform: translateX(-50%); width: 12px; height: 0; border-radius: 6px; z-index: 4; transition: height 0.3s ease-in, opacity 0.3s; opacity: 0; pointer-events: none;}
         .pour-stream.pour-coffee { background: linear-gradient(#5c3a21, #3e2723); opacity: 1; height: 220px; }
         .pour-stream.pour-milk { background: linear-gradient(#ffffff, #fff3e0); opacity: 1; height: 220px; }
         
@@ -832,7 +832,7 @@
                     <div class="gacha-ball gb6"></div>
                 </div>
                 <div class="gacha-base">
-                    <div class="gacha-knob-container">
+                    <div class="gacha-knob-container" id="gachaKnobContainer">
                         <div class="gacha-knob" id="gachaKnob"></div>
                     </div>
                     <div class="gacha-tray"></div>
@@ -940,16 +940,14 @@
         if (!isMusicPlaying) {
             bgMusic.volume = 1; 
             let playPromise = bgMusic.play();
-            
             if (playPromise !== undefined) {
                 playPromise.then(() => {
                     isMusicPlaying = true;
                     musicToggle.classList.add('playing');
                     document.removeEventListener('click', unlockAudio);
                     document.removeEventListener('touchstart', unlockAudio);
-                    document.removeEventListener('touchend', unlockAudio);
                 }).catch(err => {
-                    console.log("Audio still waiting for stronger user tap...");
+                    console.log("Audio still waiting for user tap...");
                 });
             }
         }
@@ -957,7 +955,6 @@
 
     document.addEventListener('click', unlockAudio);
     document.addEventListener('touchstart', unlockAudio, { passive: true });
-    document.addEventListener('touchend', unlockAudio, { passive: true });
 
     musicToggle.onclick = function(e) {
         e.stopPropagation(); 
@@ -971,6 +968,34 @@
             isMusicPlaying = true;
         }
     };
+
+    // --- REUSABLE CONFETTI FUNCTION ---
+    function shootConfetti(targetContainer, yOffset = -30) {
+        const colors = ['#ff8fab', '#d81159', '#ffcc00', '#00bcd4', '#ffffff'];
+        const shapes = ['❤️', '⭐', '🍬'];
+        for(let i=0; i<30; i++) {
+            let conf = document.createElement('div');
+            conf.classList.add('confetti-piece');
+            conf.innerHTML = shapes[Math.floor(Math.random() * shapes.length)];
+            conf.style.color = colors[Math.floor(Math.random() * colors.length)];
+            conf.style.fontSize = (0.5 + Math.random() * 0.5) + 'rem';
+            conf.style.left = '50%';
+            conf.style.top = '50%';
+            
+            let angle = Math.random() * Math.PI * 2;
+            let velocity = 50 + Math.random() * 100;
+            let tx = Math.cos(angle) * velocity;
+            let ty = Math.sin(angle) * velocity + yOffset; 
+            let tr = 180 + Math.random() * 360; 
+            
+            conf.style.setProperty('--tx', `${tx}px`);
+            conf.style.setProperty('--ty', `${ty}px`);
+            conf.style.setProperty('--tr', `${tr}deg`);
+            
+            targetContainer.appendChild(conf);
+            setTimeout(() => conf.remove(), 1000);
+        }
+    }
 
     // --- SCRATCH OFF TICKET LOGIC (Page 11) ---
     const canvas = document.getElementById('scratchCanvas');
@@ -1043,145 +1068,6 @@
     fogCanvas.addEventListener('touchmove', wipeFog, {passive: false});
     window.addEventListener('touchend', endFogWipe);
 
-    // --- GACHA MACHINE LOGIC (Page 17) ---
-    const prizes = [
-        "🎟️ Good for 1 Virtual Movie Date",
-        "🧸 Good for 10 Virtual Hugs",
-        "💤 1 Late-night call (Even if sleepy)",
-        "🍕 1 Surprise Food Delivery",
-        "🎮 1 Gaming Session Together",
-        "🥺 Unli-Compliments for 1 Hour",
-        "📸 Send a cute selfie right now!"
-    ];
-    const gachaKnob = document.getElementById('gachaKnob');
-    const gachaMachine = document.getElementById('gachaMachine');
-    const gachaPrize = document.getElementById('gachaPrize');
-    const dropBall = document.getElementById('dropBall');
-    let isSpinning = false;
-
-    function triggerGacha(e) {
-        e.stopPropagation();
-        e.preventDefault(); 
-        if (isSpinning) return; 
-        isSpinning = true;
-        
-        gachaMachine.classList.remove('shake-anim');
-        gachaKnob.classList.toggle('turning'); 
-        void gachaMachine.offsetWidth; 
-        gachaMachine.classList.add('shake-anim');
-        document.getElementById('gachaDome').classList.add('jumble'); 
-        
-        gachaPrize.classList.remove('show');
-        
-        setTimeout(() => {
-            document.getElementById('gachaDome').classList.remove('jumble'); 
-            dropBall.style.animation = 'dropBallAnim 1.2s forwards'; 
-            
-            setTimeout(() => {
-                const rand = prizes[Math.floor(Math.random() * prizes.length)];
-                gachaPrize.innerHTML = rand;
-                gachaPrize.classList.add('show');
-                shootConfetti(document.getElementById('p17'), 40); 
-                dropBall.style.animation = 'none'; 
-                isSpinning = false;
-                if(navigator.vibrate) navigator.vibrate([50, 50, 50]);
-            }, 1200);
-        }, 800);
-    }
-    
-    if (gachaKnob) {
-        gachaKnob.addEventListener('mousedown', triggerGacha);
-        gachaKnob.addEventListener('touchstart', triggerGacha, { passive: false });
-    }
-
-    // --- VIRTUAL COFFEE DATE LOGIC (Page 18) ---
-    const btnIce = document.getElementById('btnIce');
-    const btnCoffee = document.getElementById('btnCoffee');
-    const btnMilk = document.getElementById('btnMilk');
-    const iceCubes = document.getElementById('iceCubes');
-    const liquidCoffee = document.getElementById('liquidCoffee');
-    const liquidMilk = document.getElementById('liquidMilk');
-    const straw = document.getElementById('straw');
-    const whippedCream = document.getElementById('whippedCream');
-    const coffeeSuccess = document.getElementById('coffeeSuccess');
-    const coffeeButtons = document.getElementById('coffeeButtons');
-    const pourStream = document.getElementById('pourStream');
-
-    let stateIce = false, stateCoffee = false, stateMilk = false;
-
-    function checkCoffeeDone() {
-        if(stateIce && stateCoffee && stateMilk) {
-            setTimeout(() => {
-                whippedCream.classList.add('in'); // Drop cream
-                setTimeout(() => {
-                    straw.classList.add('in'); // Drop straw
-                    setTimeout(() => {
-                        coffeeButtons.style.display = 'none';
-                        coffeeSuccess.style.visibility = 'visible';
-                        coffeeSuccess.style.opacity = '1';
-                        coffeeSuccess.style.maxHeight = '200px';
-                        coffeeSuccess.style.padding = '10px';
-                        coffeeSuccess.style.borderColor = '#ffb3c6';
-                        if(navigator.vibrate) navigator.vibrate([50, 50, 100]);
-                        shootConfetti(document.getElementById('p18'), 0);
-                    }, 600);
-                }, 400);
-            }, 1000);
-        }
-    }
-
-    if(btnIce) {
-        const handleIce = (e) => {
-            e.stopPropagation(); e.preventDefault();
-            if(stateIce) return; stateIce = true;
-            btnIce.classList.add('done');
-            iceCubes.style.opacity = '1';
-            document.querySelectorAll('.ice').forEach(ice => ice.classList.add('drop'));
-            checkCoffeeDone();
-        };
-        const handleCoffee = (e) => {
-            e.stopPropagation(); e.preventDefault();
-            if(stateCoffee) return; stateCoffee = true;
-            btnCoffee.classList.add('done');
-            
-            pourStream.classList.add('pour-coffee'); // Start pouring animation
-            
-            setTimeout(() => {
-                liquidCoffee.style.height = stateMilk ? '100%' : '50%'; 
-                if(stateMilk) liquidMilk.style.bottom = '50%'; 
-            }, 200); // delay fluid rise slightly
-
-            setTimeout(() => {
-                pourStream.classList.remove('pour-coffee'); // End pouring
-                checkCoffeeDone();
-            }, 1000);
-        };
-        const handleMilk = (e) => {
-            e.stopPropagation(); e.preventDefault();
-            if(stateMilk) return; stateMilk = true;
-            btnMilk.classList.add('done');
-            
-            pourStream.classList.add('pour-milk'); // Start pouring animation
-            
-            setTimeout(() => {
-                liquidMilk.style.height = stateCoffee ? '50%' : '50%';
-                if(stateCoffee) liquidMilk.style.bottom = '50%';
-            }, 200); // delay fluid rise slightly
-
-            setTimeout(() => {
-                pourStream.classList.remove('pour-milk'); // End pouring
-                checkCoffeeDone();
-            }, 1000);
-        };
-
-        btnIce.addEventListener('mousedown', handleIce);
-        btnIce.addEventListener('touchstart', handleIce, {passive: false});
-        btnCoffee.addEventListener('mousedown', handleCoffee);
-        btnCoffee.addEventListener('touchstart', handleCoffee, {passive: false});
-        btnMilk.addEventListener('mousedown', handleMilk);
-        btnMilk.addEventListener('touchstart', handleMilk, {passive: false});
-    }
-
     // --- THUMBPRINT SCANNER LOGIC (Page 14) ---
     const scannerBox = document.getElementById('scannerBox');
     const fingerIcon = document.getElementById('fingerIcon');
@@ -1193,10 +1079,8 @@
     function startScan(e) {
         if (isScanned) return;
         if (e.touches) e.preventDefault(); 
-        
         scannerBox.classList.add('scanning');
         scanText.innerText = "Scanning... Hold still! 🔍";
-        
         scanTimer = setTimeout(() => {
             isScanned = true;
             scannerBox.classList.remove('scanning');
@@ -1223,7 +1107,6 @@
     const avatarLeft = document.getElementById('avatarLeft');
     const avatarRight = document.getElementById('avatarRight');
     const stringInteraction = document.querySelector('.string-interaction');
-    const stringGuide = document.getElementById('stringGuide');
     let stringTied = false;
 
     stringSlider.addEventListener('mousedown', (e) => e.stopPropagation());
@@ -1232,10 +1115,8 @@
     stringSlider.addEventListener('input', (e) => {
         if(stringTied) return;
         const val = e.target.value;
-        
         avatarLeft.style.left = `calc(5% + ${val * 0.3}%)`;
         avatarRight.style.right = `calc(5% + ${val * 0.3}%)`;
-        
         if (val >= 95) {
             stringTied = true;
             stringSlider.value = 100;
@@ -1243,11 +1124,174 @@
             avatarRight.style.right = '35%';
             stringInteraction.classList.add('string-tied');
             document.getElementById('p15').classList.add('scanned-success'); 
-            
             if(navigator.vibrate) navigator.vibrate(100);
             shootConfetti(document.getElementById('p15'), -20);
         }
     });
+
+    // --- NATIVE CLICK LOGIC FOR ALL BUTTONS & WIDGETS ---
+    
+    // Love Meter (Page 5)
+    const loveBtn = document.getElementById('loveBtn');
+    const meterFill = document.getElementById('meterFill');
+    const meterMsg = document.getElementById('meterMsg');
+    let isMeasuring = false;
+    loveBtn.onclick = function(e) {
+        e.stopPropagation(); 
+        if (isMeasuring) return; 
+        isMeasuring = true;
+        meterMsg.innerHTML = "Measuring heart rate... 💓";
+        loveBtn.innerHTML = "Analyzing... ⏳";
+        loveBtn.style.transform = 'scale(0.95)'; 
+        setTimeout(() => loveBtn.style.transform = 'scale(1)', 150);
+        meterFill.style.transition = 'width 2.5s ease-in-out';
+        meterFill.style.width = '100%';
+        meterFill.parentElement.style.animation = 'gentleShake 2.5s linear';
+        setTimeout(() => {
+            meterMsg.innerHTML = "LOVE OVERLOAD!! 💖💥";
+            loveBtn.innerHTML = "100% Soulmate! 🥰";
+            loveBtn.style.pointerEvents = 'none'; 
+            meterFill.parentElement.style.animation = 'none';
+        }, 2500);
+    };
+
+    // Cake Cutting (Page 12)
+    const cakeContainer = document.getElementById('cakeContainer');
+    const knife = document.getElementById('knife');
+    const cake = document.getElementById('cake');
+    const cakeText = document.getElementById('cakeText');
+    let cakeIsCut = false;
+    cakeContainer.onclick = function(e) {
+        e.stopPropagation(); 
+        if (cakeIsCut) return;
+        cakeIsCut = true; // Set IMMEDIATELY to prevent double firing
+        cakeText.style.display = 'none'; 
+        knife.classList.add('knife-anim'); 
+        if(navigator.vibrate) navigator.vibrate(100);
+        setTimeout(() => {
+            cake.classList.add('cake-slice-anim'); 
+            shootConfetti(cakeContainer, -20); 
+        }, 500); 
+    };
+
+    // Gacha Machine (Page 17)
+    const gachaKnobContainer = document.getElementById('gachaKnobContainer');
+    const gachaKnob = document.getElementById('gachaKnob');
+    const gachaMachine = document.getElementById('gachaMachine');
+    const gachaPrize = document.getElementById('gachaPrize');
+    const dropBall = document.getElementById('dropBall');
+    let isSpinning = false;
+    const prizes = [
+        "🎟️ Good for 1 Virtual Movie Date", "🧸 Good for 10 Virtual Hugs",
+        "💤 1 Late-night call (Even if sleepy)", "🍕 1 Surprise Food Delivery",
+        "🎮 1 Gaming Session Together", "🥺 Unli-Compliments for 1 Hour",
+        "📸 Send a cute selfie right now!"
+    ];
+    gachaKnobContainer.onclick = function(e) {
+        e.stopPropagation();
+        if (isSpinning) return; 
+        isSpinning = true; // Set IMMEDIATELY 
+        
+        gachaMachine.classList.remove('shake-anim');
+        gachaKnob.classList.toggle('turning'); 
+        void gachaMachine.offsetWidth; 
+        gachaMachine.classList.add('shake-anim');
+        document.getElementById('gachaDome').classList.add('jumble'); 
+        
+        gachaPrize.classList.remove('show');
+        
+        setTimeout(() => {
+            document.getElementById('gachaDome').classList.remove('jumble'); 
+            dropBall.style.animation = 'dropBallAnim 1.2s forwards'; 
+            
+            setTimeout(() => {
+                const rand = prizes[Math.floor(Math.random() * prizes.length)];
+                gachaPrize.innerHTML = rand;
+                gachaPrize.classList.add('show');
+                shootConfetti(document.getElementById('p17'), 40); 
+                dropBall.style.animation = 'none'; 
+                isSpinning = false;
+                if(navigator.vibrate) navigator.vibrate([50, 50, 50]);
+            }, 1200);
+        }, 800);
+    };
+
+    // Virtual Coffee Date (Page 18)
+    const btnIce = document.getElementById('btnIce');
+    const btnCoffee = document.getElementById('btnCoffee');
+    const btnMilk = document.getElementById('btnMilk');
+    const iceCubes = document.getElementById('iceCubes');
+    const liquidCoffee = document.getElementById('liquidCoffee');
+    const liquidMilk = document.getElementById('liquidMilk');
+    const straw = document.getElementById('straw');
+    const whippedCream = document.getElementById('whippedCream');
+    const coffeeSuccess = document.getElementById('coffeeSuccess');
+    const coffeeButtons = document.getElementById('coffeeButtons');
+    const pourStream = document.getElementById('pourStream');
+    let stateIce = false, stateCoffee = false, stateMilk = false;
+
+    function checkCoffeeDone() {
+        if(stateIce && stateCoffee && stateMilk) {
+            setTimeout(() => {
+                whippedCream.classList.add('in'); 
+                setTimeout(() => {
+                    straw.classList.add('in'); 
+                    setTimeout(() => {
+                        coffeeButtons.style.display = 'none';
+                        coffeeSuccess.style.visibility = 'visible';
+                        coffeeSuccess.style.opacity = '1';
+                        coffeeSuccess.style.maxHeight = '200px';
+                        coffeeSuccess.style.padding = '10px';
+                        coffeeSuccess.style.borderColor = '#ffb3c6';
+                        if(navigator.vibrate) navigator.vibrate([50, 50, 100]);
+                        shootConfetti(document.getElementById('p18'), 0);
+                    }, 600);
+                }, 400);
+            }, 1000);
+        }
+    }
+
+    btnIce.onclick = function(e) {
+        e.stopPropagation(); 
+        if(stateIce) return; 
+        stateIce = true;
+        btnIce.classList.add('done');
+        iceCubes.style.opacity = '1';
+        document.querySelectorAll('.ice').forEach(ice => ice.classList.add('drop'));
+        checkCoffeeDone();
+    };
+
+    btnCoffee.onclick = function(e) {
+        e.stopPropagation(); 
+        if(stateCoffee) return; 
+        stateCoffee = true;
+        btnCoffee.classList.add('done');
+        pourStream.classList.add('pour-coffee'); 
+        setTimeout(() => {
+            liquidCoffee.style.height = stateMilk ? '100%' : '50%'; 
+            if(stateMilk) liquidMilk.style.bottom = '50%'; 
+        }, 200); 
+        setTimeout(() => {
+            pourStream.classList.remove('pour-coffee'); 
+            checkCoffeeDone();
+        }, 1000);
+    };
+
+    btnMilk.onclick = function(e) {
+        e.stopPropagation(); 
+        if(stateMilk) return; 
+        stateMilk = true;
+        btnMilk.classList.add('done');
+        pourStream.classList.add('pour-milk'); 
+        setTimeout(() => {
+            liquidMilk.style.height = stateCoffee ? '50%' : '50%';
+            if(stateCoffee) liquidMilk.style.bottom = '50%';
+        }, 200); 
+        setTimeout(() => {
+            pourStream.classList.remove('pour-milk'); 
+            checkCoffeeDone();
+        }, 1000);
+    };
 
     // --- DATE SETTINGS & TIMERS ---
     const meetingDate = new Date('2026-01-18T00:00:00'); 
@@ -1279,7 +1323,6 @@
 
     function updateTimer() {
         const now = new Date().getTime();
-        
         const distance = targetDate.getTime() - now;
         if (distance <= 0 || lockKeyword !== "Ayu") {
             isUnlocked = true;
@@ -1377,14 +1420,14 @@
         }
 
         if (currentPage < totalPages && clickX >= (rect.width * 0.3)) {
-            // Block navigation for ALL interactive elements
-            if (currentPage === 5 && (e.target.id === 'loveBtn')) return; 
+            // Block navigation so interactives can be tapped without turning the page
+            if (currentPage === 5 && (e.target.closest('#loveBtn') || e.target.closest('.meter-container'))) return; 
             if (currentPage === 11 && (e.target.id === 'scratchCanvas')) return; 
             if (currentPage === 12 && (e.target.closest('#cakeContainer'))) return; 
             if (currentPage === 14 && (e.target.closest('#scannerBox'))) return; 
             if (currentPage === 15 && (e.target.id === 'stringSlider')) return;
             if (currentPage === 16 && (e.target.id === 'fogCanvas')) return; 
-            if (currentPage === 17 && (e.target.closest('#gachaMachine') || e.target.id === 'gachaKnob')) return; 
+            if (currentPage === 17 && (e.target.closest('#gachaMachine') || e.target.closest('#gachaKnobContainer'))) return; 
             if (currentPage === 18 && (e.target.closest('.ingredient-btn'))) return;
 
             document.getElementById('p' + (currentPage + 1)).style.display = 'flex';
@@ -1396,35 +1439,6 @@
             if (currentPage === 2) { navHint.style.display = 'block'; }
             if (currentPage === totalPages) { navHint.style.display = 'none'; }
         }
-    };
-
-    // --- LOVE METER LOGIC (Page 5) ---
-    const loveBtn = document.getElementById('loveBtn');
-    const meterFill = document.getElementById('meterFill');
-    const meterMsg = document.getElementById('meterMsg');
-    let isMeasuring = false;
-
-    loveBtn.onclick = function(e) {
-        e.stopPropagation(); 
-        if (isMeasuring) return; 
-        isMeasuring = true;
-        
-        meterMsg.innerHTML = "Measuring heart rate... 💓";
-        loveBtn.innerHTML = "Analyzing... ⏳";
-        loveBtn.style.transform = 'scale(0.95)'; 
-        setTimeout(() => loveBtn.style.transform = 'scale(1)', 150);
-
-        meterFill.style.transition = 'width 2.5s ease-in-out';
-        meterFill.style.width = '100%';
-        
-        meterFill.parentElement.style.animation = 'gentleShake 2.5s linear';
-
-        setTimeout(() => {
-            meterMsg.innerHTML = "LOVE OVERLOAD!! 💖💥";
-            loveBtn.innerHTML = "100% Soulmate! 🥰";
-            loveBtn.style.pointerEvents = 'none'; 
-            meterFill.parentElement.style.animation = 'none';
-        }, 2500);
     };
 
     function checkInteractiveStates() {
