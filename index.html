@@ -96,6 +96,7 @@
         .bg-stars { background-color: #1a237e; background-image: radial-gradient(rgba(255,255,255,0.5) 1px, transparent 2px); background-size: 30px 30px; }
         .bg-tech { background-color: #ffdae0; background-image: linear-gradient(rgba(216, 17, 89, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(216, 17, 89, 0.1) 1px, transparent 1px); background-size: 15px 15px; }
         .bg-arcade { background-image: repeating-linear-gradient(45deg, #ffd6e0 0, #ffd6e0 15px, #fff0f3 15px, #fff0f3 30px); }
+        .bg-cafe { background: linear-gradient(180deg, #fff0f3 0%, #f3e5f5 100%); }
         .bg-glow { background: radial-gradient(circle at center, #ffffff 0%, #ffe6ea 100%); }
 
         /* --- RULED NOTEBOOK PAPER (For Page 2) --- */
@@ -112,7 +113,7 @@
         .notebook-content h2 { font-family: 'Caveat', cursive; font-size: 1.8rem; line-height: 2.2rem; margin: 0; color: #d62828; text-shadow: none; }
         .notebook-content p { font-family: 'Caveat', cursive; font-size: 1.25rem; line-height: 2.2rem; margin: 0; color: #5a3a40; font-weight: bold; }
 
-        #p1, #p3, #p4, #p5, #p8, #p9, #p10, #p11, #p12, #p13, #p14, #p15, #p16, #p17, #p18, #p19 { justify-content: center; }
+        #p1, #p3, #p4, #p5, #p8, #p9, #p10, #p11, #p12, #p13, #p14, #p15, #p16, #p17, #p18, #p19, #p20 { justify-content: center; }
         
         .page::after {
             content: ''; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
@@ -120,12 +121,12 @@
             pointer-events: none;
         }
 
-        /* --- STACKING ORDER (19 Pages) --- */
-        #p1 { z-index: 19; } #p2 { z-index: 18; } #p3 { z-index: 17; } #p4 { z-index: 16; }
-        #p5 { z-index: 15; } #p6 { z-index: 14; } #p7 { z-index: 13; } #p8 { z-index: 12; } 
-        #p9 { z-index: 11; } #p10 { z-index: 10; } #p11 { z-index: 9; } #p12 { z-index: 8; }
-        #p13 { z-index: 7; } #p14 { z-index: 6; } #p15 { z-index: 5; } #p16 { z-index: 4; }
-        #p17 { z-index: 3; } #p18 { z-index: 2; } #p19 { z-index: 1; }
+        /* --- STACKING ORDER (20 Pages) --- */
+        #p1 { z-index: 20; } #p2 { z-index: 19; } #p3 { z-index: 18; } #p4 { z-index: 17; }
+        #p5 { z-index: 16; } #p6 { z-index: 15; } #p7 { z-index: 14; } #p8 { z-index: 13; } 
+        #p9 { z-index: 12; } #p10 { z-index: 11; } #p11 { z-index: 10; } #p12 { z-index: 9; }
+        #p13 { z-index: 8; } #p14 { z-index: 7; } #p15 { z-index: 6; } #p16 { z-index: 5; }
+        #p17 { z-index: 4; } #p18 { z-index: 3; } #p19 { z-index: 2; } #p20 { z-index: 1; }
 
         /* --- FONTS --- */
         .letter-font { font-family: 'Caveat', cursive; color: #d81159; line-height: 1.2; font-size: 1.3rem; z-index: 2; }
@@ -361,23 +362,22 @@
         }
         #fogCanvas { position: absolute; top: 0; left: 0; z-index: 5; cursor: pointer; opacity: 0.95; }
 
-        /* --- ✨ PAGE 17: PREMIUM GACHA MACHINE 🕹️ ✨ --- */
-        .gacha-machine { position: relative; width: 180px; height: 260px; margin: 0 auto; z-index: 2; display: flex; flex-direction: column; align-items: center; }
+        /* --- PAGE 17: PREMIUM GACHA MACHINE 🕹️ --- */
+        .gacha-machine { position: relative; width: 160px; height: 220px; margin: 10px auto; z-index: 2; display: flex; flex-direction: column; align-items: center; }
         .gacha-cap { width: 100px; height: 20px; background: #d81159; border-radius: 20px 20px 0 0; border: 3px solid #b00d49; border-bottom: none; z-index: 4; position: relative;}
         .gacha-dome { 
             width: 170px; height: 160px; border: 4px solid #ff8fab; border-radius: 50%; position: relative; overflow: hidden; 
             background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.4) 20%, rgba(255,179,198,0.2) 100%);
             box-shadow: inset -10px -10px 20px rgba(0,0,0,0.05), inset 10px 10px 20px rgba(255,255,255,0.8);
             z-index: 3; margin-top: -5px;
-            -webkit-mask-image: -webkit-radial-gradient(white, black);
+            -webkit-mask-image: -webkit-radial-gradient(white, black); /* iOS Fix */
         }
         .gacha-glare { position: absolute; top: 10px; left: 15px; width: 40px; height: 70px; background: rgba(255,255,255,0.6); border-radius: 50%; transform: rotate(30deg); pointer-events: none; z-index: 10;}
         .gacha-base { 
-            width: 180px; height: 90px; background: #ff4081; border-radius: 0 0 20px 20px; border: 4px solid #d81159; 
-            position: relative; box-shadow: inset 0 -10px 0 rgba(0,0,0,0.1); display: flex; justify-content: center; align-items: center; 
+            width: 180px; height: 80px; background: #ff4081; margin-left: -10px; border-radius: 10px 10px 15px 15px; position: relative; box-shadow: inset 0 -10px 0 rgba(0,0,0,0.1); display: flex; flex-direction: column; align-items: center; 
             z-index: 4; margin-top: -15px;
         }
-        .gacha-slot { width: 60px; height: 35px; background: #222; position: absolute; bottom: 10px; border-radius: 8px; box-shadow: inset 0 5px 10px rgba(0,0,0,0.7); }
+        .gacha-slot { width: 50px; height: 25px; background: #333; position: absolute; bottom: 10px; border-radius: 12px 12px 5px 5px; box-shadow: inset 0 5px 10px rgba(0,0,0,0.5); }
         .gacha-tray { position: absolute; bottom: 5px; width: 70px; height: 15px; background: #ffb3c6; border-radius: 10px; }
         
         .gacha-knob-container { position: absolute; top: 15px; width: 45px; height: 45px; background: #ffd6e0; border-radius: 50%; display: flex; justify-content: center; align-items: center; border: 2px solid #d81159;}
@@ -417,16 +417,31 @@
 
         .gacha-prize-box { background: white; border: 2px dashed #ffb3c6; padding: 10px; border-radius: 10px; font-size: 0.95rem; color: #d81159; font-weight: bold; opacity: 0; transition: all 0.5s ease; min-height: 50px; display: flex; align-items: center; justify-content: center; margin-top: 5px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); transform: scale(0.8);}
         .gacha-prize-box.show { opacity: 1; transform: scale(1); }
-        .shake-anim { animation: gentleShake 0.4s 2; }
 
-        /* --- PAGE 18 - TIME CAPSULE --- */
-        #p18 h3, #p18 .letter-font { color: #fff; text-shadow: 1px 1px 4px rgba(0,0,0,0.8); }
+        /* --- ✨ NEW PAGE 19: VIRTUAL COFFEE DATE ☕ ✨ --- */
+        .coffee-cup-container { position: relative; width: 130px; height: 180px; margin: 10px auto; }
+        .coffee-cup { position: absolute; bottom: 0; width: 100%; height: 100%; border: 4px solid rgba(255,255,255,0.9); border-top: none; border-radius: 5px 5px 25px 25px; background: rgba(255,255,255,0.2); overflow: hidden; box-shadow: inset 0 -10px 20px rgba(0,0,0,0.05), 0 10px 15px rgba(0,0,0,0.1); z-index: 2;}
+        .liquid-coffee { position: absolute; bottom: 0; width: 100%; height: 0%; background: linear-gradient(180deg, #5c3a21, #3e2723); transition: height 1.2s ease-in-out; z-index: 1;}
+        .liquid-milk { position: absolute; bottom: 0; width: 100%; height: 0%; background: linear-gradient(180deg, #fff3e0, #ffe0b2); transition: height 1.2s ease-in-out, bottom 1.2s ease-in-out; z-index: 2; opacity: 0.9;}
+        .ice-cubes { position: absolute; bottom: 10px; width: 100%; display: flex; justify-content: space-around; z-index: 3; opacity: 0; transition: opacity 0.3s; }
+        .ice { font-size: 2rem; transform: translateY(-150px); filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2)); }
+        .ice.drop { animation: dropIce 0.6s forwards cubic-bezier(0.25, 0.46, 0.45, 0.94); }
+        .i1 { animation-delay: 0s; } .i2 { animation-delay: 0.15s; } .i3 { animation-delay: 0.3s; }
+        @keyframes dropIce { to { transform: translateY(0); } }
+        .straw { position: absolute; top: -200px; left: 65%; width: 10px; height: 220px; background: repeating-linear-gradient(45deg, #ff4081, #ff4081 10px, #fff 10px, #fff 20px); border-radius: 5px; transform: rotate(15deg); z-index: 4; transition: top 0.8s cubic-bezier(0.34, 1.56, 0.64, 1); box-shadow: 2px 2px 5px rgba(0,0,0,0.2); }
+        .straw.in { top: -20px; }
+        .coffee-buttons { display: flex; flex-direction: column; gap: 8px; margin-top: 15px; width: 90%; z-index: 10;}
+        .ingredient-btn { width: 100%; padding: 10px; font-size: 1rem; border-radius: 12px; background: white; color: #d81159; border: 2px dashed #ffb3c6; font-family: 'Quicksand', sans-serif; font-weight: bold; box-shadow: 0 4px 6px rgba(0,0,0,0.05); transition: all 0.2s;}
+        .ingredient-btn.done { opacity: 0.6; pointer-events: none; background: #e0e0e0; border-color: #bdbdbd; color: #757575; transform: scale(0.95);}
+
+        /* --- PAGE 20 - TIME CAPSULE --- */
+        #p20 h3, #p20 .letter-font { color: #fff; text-shadow: 1px 1px 4px rgba(0,0,0,0.8); }
         .capsule-wrapper { background: rgba(255,255,255,0.9); border: 3px solid #d81159; padding: 20px 10px; border-radius: 15px; width: 95%; z-index: 2; position: relative; margin-top: 15px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
         .capsule-lock { font-size: 3.5rem; margin-bottom: 10px; }
         .capsule-timer { font-size: 1.3rem; font-weight: bold; color: #d81159; background: #ffe6ea; padding: 10px; border-radius: 10px; border: 1px dashed #ffb3c6;}
         .capsule-content { display: none; font-size: 1.2rem; color: #d62828; font-weight: bold;}
 
-        /* --- PAGE 19 - FINAL --- */
+        /* --- PAGE 21 - FINAL --- */
         .nav-hint { margin-top: 10px; font-size: 0.8rem; color: #888; background: white; padding: 5px 10px; border-radius: 15px; font-family: 'Quicksand', sans-serif; z-index: 10;}
     </style>
 </head>
@@ -811,7 +826,39 @@
             </div>
         </div>
 
-        <div class="page bg-stars page-capsule" id="p18" style="justify-content: center;">
+        <div class="page bg-cafe page-coffee" id="p19" style="justify-content: center;">
+            <span class="decor decor-tl">☕</span>
+            <span class="decor decor-br">✨</span>
+            <h3 class="pop-item delay-1">Our Virtual Cafe Date!</h3>
+            <p class="letter-font pop-item delay-2" style="font-size: 1.1rem; margin-bottom: 15px;">Let's make your favorite drink! 🧋</p>
+
+            <div class="coffee-cup-container pop-item delay-3">
+                <div class="coffee-cup" id="coffeeCup">
+                    <div class="liquid-coffee" id="liquidCoffee"></div>
+                    <div class="liquid-milk" id="liquidMilk"></div>
+                    <div class="ice-cubes" id="iceCubes">
+                        <div class="ice i1">🧊</div>
+                        <div class="ice i2">🧊</div>
+                        <div class="ice i3">🧊</div>
+                    </div>
+                    <div class="straw" id="straw"></div>
+                </div>
+            </div>
+
+            <div class="coffee-buttons pop-item delay-4" id="coffeeButtons">
+                <button class="ingredient-btn" id="btnIce">Add Ice 🧊</button>
+                <button class="ingredient-btn" id="btnCoffee">Add Coffee ☕</button>
+                <button class="ingredient-btn" id="btnMilk">Add Milk 🥛</button>
+            </div>
+
+            <div id="coffeeSuccess" class="secret-promise">
+                <span style="font-size:1.5rem;">🥂</span><br>
+                <strong>Cheers to us!</strong><br>
+                I can't wait to have real cafe dates with you soon. 🥺💖
+            </div>
+        </div>
+
+        <div class="page bg-stars page-capsule" id="p20" style="justify-content: center;">
             <span class="decor decor-tr" style="color: gold;">⏳</span>
             <span class="decor decor-bl" style="color: gold;">📦</span>
             <h3 class="pop-item delay-1">Our Time Capsule 🔒</h3>
@@ -831,7 +878,7 @@
             <div class="status-badge pop-item delay-4" style="margin-top: 15px;">No cheating allowed! 😤</div>
         </div>
 
-        <div class="page bg-glow page-final" id="p19">
+        <div class="page bg-glow page-final" id="p21">
             <span class="decor decor-tl">🦋</span>
             <span class="decor decor-br">✨</span>
             <div class="letter-font pop-item delay-1">
@@ -984,7 +1031,6 @@
     const dropBall = document.getElementById('dropBall');
     let isSpinning = false;
 
-    // Mobile-friendly trigger for the Gacha Machine
     function triggerGacha(e) {
         e.stopPropagation();
         if (isSpinning) return; 
@@ -1017,6 +1063,71 @@
     if (gachaKnob) {
         gachaKnob.addEventListener('mousedown', triggerGacha);
         gachaKnob.addEventListener('touchstart', triggerGacha, { passive: true });
+    }
+
+    // --- VIRTUAL COFFEE DATE LOGIC (Page 19) ---
+    const btnIce = document.getElementById('btnIce');
+    const btnCoffee = document.getElementById('btnCoffee');
+    const btnMilk = document.getElementById('btnMilk');
+    const iceCubes = document.getElementById('iceCubes');
+    const liquidCoffee = document.getElementById('liquidCoffee');
+    const liquidMilk = document.getElementById('liquidMilk');
+    const straw = document.getElementById('straw');
+    const coffeeSuccess = document.getElementById('coffeeSuccess');
+    const coffeeButtons = document.getElementById('coffeeButtons');
+
+    let stateIce = false, stateCoffee = false, stateMilk = false;
+
+    function checkCoffeeDone() {
+        if(stateIce && stateCoffee && stateMilk) {
+            setTimeout(() => {
+                straw.classList.add('in');
+                setTimeout(() => {
+                    coffeeButtons.style.display = 'none';
+                    coffeeSuccess.style.visibility = 'visible';
+                    coffeeSuccess.style.opacity = '1';
+                    coffeeSuccess.style.maxHeight = '200px';
+                    coffeeSuccess.style.padding = '10px';
+                    coffeeSuccess.style.borderColor = '#ffb3c6';
+                    if(navigator.vibrate) navigator.vibrate([50, 50, 100]);
+                    shootConfetti(document.getElementById('p19'), 0);
+                }, 600);
+            }, 1000);
+        }
+    }
+
+    if(btnIce) {
+        const handleIce = (e) => {
+            e.stopPropagation(); e.preventDefault();
+            if(stateIce) return; stateIce = true;
+            btnIce.classList.add('done');
+            iceCubes.style.opacity = '1';
+            document.querySelectorAll('.ice').forEach(ice => ice.classList.add('drop'));
+            checkCoffeeDone();
+        };
+        const handleCoffee = (e) => {
+            e.stopPropagation(); e.preventDefault();
+            if(stateCoffee) return; stateCoffee = true;
+            btnCoffee.classList.add('done');
+            liquidCoffee.style.height = stateMilk ? '100%' : '60%'; 
+            if(stateMilk) liquidMilk.style.bottom = '60%'; 
+            checkCoffeeDone();
+        };
+        const handleMilk = (e) => {
+            e.stopPropagation(); e.preventDefault();
+            if(stateMilk) return; stateMilk = true;
+            btnMilk.classList.add('done');
+            liquidMilk.style.height = stateCoffee ? '40%' : '60%';
+            if(stateCoffee) liquidMilk.style.bottom = '60%';
+            checkCoffeeDone();
+        };
+
+        btnIce.addEventListener('mousedown', handleIce);
+        btnIce.addEventListener('touchstart', handleIce, {passive: false});
+        btnCoffee.addEventListener('mousedown', handleCoffee);
+        btnCoffee.addEventListener('touchstart', handleCoffee, {passive: false});
+        btnMilk.addEventListener('mousedown', handleMilk);
+        btnMilk.addEventListener('touchstart', handleMilk, {passive: false});
     }
 
     // --- THUMBPRINT SCANNER LOGIC (Page 14) ---
@@ -1154,13 +1265,14 @@
 
     // --- SMART RENDERING NAVIGATION LOGIC ---
     let currentPage = 1;
-    const totalPages = 19; 
+    const totalPages = 21; // Upgraded to 21 total active pages
     const bookContainer = document.getElementById('bookContainer');
 
     function updateActivePage() {
         for(let i=1; i<=totalPages; i++) {
             let p = document.getElementById('p'+i);
-            
+            if(!p) continue;
+
             if (i === currentPage) {
                 p.style.display = 'flex';
                 p.classList.add('active');
@@ -1213,7 +1325,7 @@
         }
 
         if (currentPage < totalPages && clickX >= (rect.width * 0.3)) {
-            // Block navigation for interactive elements
+            // Block navigation for ALL interactive elements
             if (currentPage === 5 && (e.target.id === 'loveBtn')) return; 
             if (currentPage === 11 && (e.target.id === 'scratchCanvas')) return; 
             if (currentPage === 12 && (e.target.closest('#cakeContainer'))) return; 
@@ -1221,6 +1333,7 @@
             if (currentPage === 15 && (e.target.id === 'stringSlider')) return;
             if (currentPage === 16 && (e.target.id === 'fogCanvas')) return; 
             if (currentPage === 17 && (e.target.closest('#gachaMachine') || e.target.id === 'gachaKnob')) return; 
+            if (currentPage === 19 && (e.target.closest('.ingredient-btn'))) return;
 
             document.getElementById('p' + (currentPage + 1)).style.display = 'flex';
             setTimeout(() => {
@@ -1262,61 +1375,6 @@
         }, 2500);
     };
 
-    // --- REUSABLE CONFETTI FUNCTION ---
-    function shootConfetti(targetContainer, yOffset = -30) {
-        const colors = ['#ff8fab', '#d81159', '#ffcc00', '#00bcd4', '#ffffff'];
-        const shapes = ['❤️', '⭐', '🍬'];
-        for(let i=0; i<30; i++) {
-            let conf = document.createElement('div');
-            conf.classList.add('confetti-piece');
-            conf.innerHTML = shapes[Math.floor(Math.random() * shapes.length)];
-            conf.style.color = colors[Math.floor(Math.random() * colors.length)];
-            conf.style.fontSize = (0.5 + Math.random() * 0.5) + 'rem';
-            conf.style.left = '50%';
-            conf.style.top = '50%';
-            
-            let angle = Math.random() * Math.PI * 2;
-            let velocity = 50 + Math.random() * 100;
-            let tx = Math.cos(angle) * velocity;
-            let ty = Math.sin(angle) * velocity + yOffset; 
-            let tr = 180 + Math.random() * 360; 
-            
-            conf.style.setProperty('--tx', `${tx}px`);
-            conf.style.setProperty('--ty', `${ty}px`);
-            conf.style.setProperty('--tr', `${tr}deg`);
-            
-            targetContainer.appendChild(conf);
-            setTimeout(() => conf.remove(), 1000);
-        }
-    }
-
-    // --- CAKE CUTTING LOGIC (Page 12) ---
-    const cakeContainer = document.getElementById('cakeContainer');
-    const knife = document.getElementById('knife');
-    const cake = document.getElementById('cake');
-    const cakeText = document.getElementById('cakeText');
-    let cakeIsCut = false;
-
-    function triggerCakeCut(e) {
-        e.stopPropagation(); 
-        if (!cakeIsCut) {
-            cakeText.style.display = 'none'; 
-            knife.classList.add('knife-anim'); 
-            
-            if(navigator.vibrate) navigator.vibrate(100);
-
-            setTimeout(() => {
-                cake.classList.add('cake-slice-anim'); 
-                shootConfetti(cakeContainer); 
-                cakeIsCut = true;
-            }, 500); 
-        }
-    }
-    
-    // Bind cake cutting to both mouse and touch for mobile!
-    cakeContainer.addEventListener('mousedown', triggerCakeCut);
-    cakeContainer.addEventListener('touchstart', triggerCakeCut, { passive: true });
-
     function checkInteractiveStates() {
         if (currentPage === 12 && cakeIsCut) {
             cake.classList.remove('cake-slice-anim');
@@ -1331,6 +1389,18 @@
             meterMsg.innerHTML = '';
             loveBtn.innerHTML = "Tap to measure! 👆";
             loveBtn.style.pointerEvents = 'auto';
+        }
+        if (currentPage === 19) {
+            stateIce = false; stateCoffee = false; stateMilk = false;
+            iceCubes.style.opacity = '0';
+            document.querySelectorAll('.ice').forEach(ice => ice.classList.remove('drop'));
+            liquidCoffee.style.height = '0%';
+            liquidMilk.style.height = '0%';
+            liquidMilk.style.bottom = '0%';
+            straw.classList.remove('in');
+            btnIce.classList.remove('done'); btnCoffee.classList.remove('done'); btnMilk.classList.remove('done');
+            coffeeButtons.style.display = 'flex';
+            coffeeSuccess.style.visibility = 'hidden'; coffeeSuccess.style.opacity = '0'; coffeeSuccess.style.maxHeight = '0';
         }
     }
 </script>
