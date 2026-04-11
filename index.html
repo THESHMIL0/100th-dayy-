@@ -238,17 +238,25 @@
         .scratch-secret { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: #fff; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 15px; box-sizing: border-box; font-size: 1.1rem; color: #d81159; text-align: center; }
         #scratchCanvas { position: absolute; top: 0; left: 0; z-index: 5; cursor: pointer; }
 
-        /* --- PAGE 12: PREMIUM TWO-TIER CAKE --- */
-        .cake-container { position: relative; width: 180px; height: 180px; margin: 10px 0; cursor: pointer; z-index: 2;}
-        .cake-aura { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 220px; height: 220px; background: radial-gradient(circle, rgba(255, 179, 198, 0.6) 0%, rgba(255,255,255,0) 70%); z-index: -1; animation: coverGlow 3s infinite alternate; pointer-events: none;}
-        .cake-stand { position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); z-index: 0; display: flex; flex-direction: column; align-items: center; }
-        .stand-top { width: 160px; height: 18px; border-radius: 50%; background: radial-gradient(ellipse at top, #ffffff 0%, #e0e0e0 60%, #9e9e9e 100%); border: 1px solid #ccc; box-shadow: 0 10px 15px rgba(0,0,0,0.15); position: relative;}
-        .stand-top::after { content: ''; position: absolute; top: 2px; left: 50%; transform: translateX(-50%); width: 130px; height: 10px; border: 1px solid rgba(255,255,255,0.8); border-radius: 50%; }
-        .stand-base { width: 60px; height: 15px; background: linear-gradient(90deg, #ccc, #fff, #ccc); margin-top: -5px; border-radius: 2px; box-shadow: 0 5px 5px rgba(0,0,0,0.1);}
+        /* --- ✨ LUXURY PREMIUM CAKE (Page 12) ✨ --- */
+        .cake-container { position: relative; width: 180px; height: 190px; margin: 10px 0; cursor: pointer; z-index: 2;}
+        .cake-aura { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 240px; height: 240px; background: radial-gradient(circle, rgba(255, 179, 198, 0.8) 0%, rgba(255,255,255,0) 70%); z-index: -1; animation: coverGlow 3s infinite alternate; pointer-events: none;}
+        
+        /* Floating Sparkles */
+        .sparkle { position: absolute; font-size: 1rem; color: #ffd700; z-index: 5; pointer-events: none; animation: twinkle 2s infinite alternate; opacity: 0;}
+        .s1 { top: 20px; left: 10px; animation-delay: 0s; } .s2 { top: 40px; right: 15px; animation-delay: 0.5s; font-size: 1.2rem;} .s3 { bottom: 50px; left: -10px; animation-delay: 1s; } .s4 { bottom: 30px; right: 0; animation-delay: 0.7s; }
+        @keyframes twinkle { 0% { opacity: 0; transform: scale(0.5); } 50% { opacity: 1; transform: scale(1.2); } 100% { opacity: 0; transform: scale(0.5); } }
 
-        .cake-halves { position: absolute; bottom: 15px; left: 50%; transform: translateX(-50%); display: flex; width: 140px; height: 110px; z-index: 1;}
+        /* Rose Gold Stand */
+        .cake-stand { position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); z-index: 0; display: flex; flex-direction: column; align-items: center; filter: drop-shadow(0 10px 10px rgba(0,0,0,0.1)); }
+        .stand-top { width: 160px; height: 20px; border-radius: 50%; background: radial-gradient(ellipse at top, #fde4ce 0%, #d4af37 60%, #aa7c11 100%); border: 1px solid #e6c27a; position: relative;}
+        .stand-top::after { content: ''; position: absolute; top: 2px; left: 50%; transform: translateX(-50%); width: 135px; height: 10px; border: 1px solid rgba(255,255,255,0.6); border-radius: 50%; }
+        .stand-base { width: 60px; height: 20px; background: linear-gradient(90deg, #aa7c11, #fde4ce, #aa7c11); margin-top: -8px; border-radius: 2px; box-shadow: inset 0 -5px 10px rgba(0,0,0,0.3);}
+        .stand-foot { width: 80px; height: 8px; background: linear-gradient(90deg, #8a6309, #d4af37, #8a6309); border-radius: 50%; margin-top: -4px;}
+
+        .cake-halves { position: absolute; bottom: 22px; left: 50%; transform: translateX(-50%); display: flex; width: 140px; height: 110px; z-index: 1;}
         .cake-half { width: 50%; height: 100%; position: relative; transition: transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1); }
-        .tier { position: absolute; background: linear-gradient(to right, #ffe6cc, #fde0c5); }
+        .tier { position: absolute; background: linear-gradient(to right, #ffe6cc, #fde0c5); box-shadow: inset -5px -5px 15px rgba(0,0,0,0.05);}
         .tier::after { content:''; position: absolute; top: 50%; left: 0; width: 100%; height: 3px; background: rgba(141, 110, 99, 0.6); } 
         .tier-bottom { bottom: 0; width: 100%; height: 60px; border-bottom: 5px solid #d35400; }
         .left-half .tier-bottom { border-radius: 12px 0 0 4px; left: 0; border-right: 2px solid #e6c2a5; }
@@ -256,30 +264,39 @@
         .tier-top { bottom: 60px; width: 75%; height: 45px; }
         .left-half .tier-top { right: 0; border-radius: 10px 0 0 0; border-right: 2px solid #e6c2a5; }
         .right-half .tier-top { left: 0; border-radius: 0 10px 0 0; border-left: 1px solid #fff; }
-        .frosting { position: absolute; top: 0; left: 0; width: 100%; height: 20px; background: #ff4081; background-image: radial-gradient(circle, #fff 1px, transparent 1.5px), radial-gradient(circle, #ffeb3b 1px, transparent 1.5px), radial-gradient(circle, #00bcd4 1px, transparent 1.5px); background-size: 10px 10px, 15px 12px, 12px 15px; background-position: 0 0, 5px 5px, 8px 2px; z-index: 2; }
+        
+        .frosting { position: absolute; top: 0; left: 0; width: 100%; height: 20px; background: #ff4081; background-image: radial-gradient(circle, #fff 1px, transparent 1.5px), radial-gradient(circle, #ffeb3b 1px, transparent 1.5px), radial-gradient(circle, #00bcd4 1px, transparent 1.5px); background-size: 10px 10px, 15px 12px, 12px 15px; background-position: 0 0, 5px 5px, 8px 2px; z-index: 2; box-shadow: inset -2px -2px 5px rgba(0,0,0,0.1);}
         .left-half .tier-bottom .frosting { border-radius: 12px 0 0 0; } .right-half .tier-bottom .frosting { border-radius: 0 12px 0 0; }
         .left-half .tier-top .frosting { border-radius: 10px 0 0 0; } .right-half .tier-top .frosting { border-radius: 0 10px 0 0; }
-        .drip { position: absolute; top: 18px; background: #ff4081; border-radius: 0 0 10px 10px; z-index: 2;}
+        
+        .drip { position: absolute; top: 18px; background: #ff4081; border-radius: 0 0 10px 10px; z-index: 2; box-shadow: 2px 2px 3px rgba(0,0,0,0.05);}
         .d1 { left: 8px; width: 8px; height: 18px; } .d2 { left: 25px; width: 10px; height: 10px; } .d3 { left: 45px; width: 8px; height: 22px; }
         .d4 { left: 5px; width: 9px; height: 15px; } .d5 { left: 20px; width: 7px; height: 24px; } .d6 { left: 40px; width: 10px; height: 12px; }
         .d7 { left: 8px; width: 8px; height: 15px; } .d8 { left: 30px; width: 9px; height: 20px; }
         .d9 { left: 10px; width: 8px; height: 18px; } .d10 { left: 35px; width: 8px; height: 10px; }
-        .cake-number { position: absolute; bottom: 8px; font-family: 'Caveat', cursive; font-size: 2.2rem; color: #d81159; font-weight: bold; text-shadow: 2px 2px 0px rgba(255,255,255,0.8); z-index: 5; }
+        
+        /* Gold Foil Cake Topper */
+        .cake-number { position: absolute; bottom: 8px; font-family: 'Caveat', cursive; font-size: 2.2rem; color: #ffd700; font-weight: bold; text-shadow: 1px 1px 0px #c2a800, 2px 2px 4px rgba(0,0,0,0.3); z-index: 5; }
         .left-half .cake-number { right: 5px; } .right-half .cake-number { left: 5px; }
-        .piped-base { position: absolute; bottom: -3px; left: 0; width: 100%; height: 10px; background-image: radial-gradient(circle, #ff8fab 4px, transparent 5px); background-size: 10px 10px; background-position: center; z-index: 5; }
-        .berry { position: absolute; top: -12px; font-size: 0.9rem; z-index: 4; }
+        
+        .piped-base { position: absolute; bottom: -3px; left: 0; width: 100%; height: 10px; background-image: radial-gradient(circle, #ff8fab 4px, transparent 5px); background-size: 10px 10px; background-position: center; z-index: 5; filter: drop-shadow(0 2px 2px rgba(0,0,0,0.1));}
+        .berry { position: absolute; top: -12px; font-size: 0.9rem; z-index: 4; filter: drop-shadow(2px 2px 2px rgba(0,0,0,0.2)); }
         .left-half .berry { left: 5px; } .right-half .berry { right: 5px; transform: scaleX(-1); }
+        
         .candle { position: absolute; top: -35px; width: 8px; height: 35px; background: repeating-linear-gradient(45deg, #fff, #fff 4px, #ff4d6d 4px, #ff4d6d 8px); border-radius: 4px; z-index: 4; box-shadow: 2px 2px 4px rgba(0,0,0,0.1);}
         .left-half .candle { right: -4px; } 
         .flame { position: absolute; top: -14px; left: 50%; transform: translateX(-50%); width: 10px; height: 16px; background: #ffcc00; border-radius: 50% 50% 20% 20%; box-shadow: 0 0 10px #ffcc00, 0 0 25px #ff9900; animation: flicker 0.1s infinite alternate; transition: opacity 0.2s; }
         @keyframes flicker { from { transform: translate(-50%, 0) scale(1); opacity: 0.8; } to { transform: translate(-50%, 0) scale(1.1); opacity: 1; } }
-        .knife { position: absolute; top: -45px; left: 50%; width: 4px; height: 150px; background: linear-gradient(90deg, #bdc3c7, #ecf0f1, #bdc3c7); border-radius: 2px; transform: translateX(-50%) translateY(-200px); transition: transform 0.5s cubic-bezier(0.5, 0, 0.5, 1); z-index: 5; }
-        .knife::after { content: ''; position: absolute; top: -15px; left: -4px; width: 12px; height: 35px; background: #c0392b; border-radius: 4px; box-shadow: inset -2px 0 5px rgba(0,0,0,0.2); }
-        .knife-anim { transform: translate(-50%, 35px); } 
-        .cake-slice-anim .right-half { transform: translate(20px, 0) rotate(5deg); transform-origin: bottom right; }
-        .cake-slice-anim .left-half { transform: translate(-10px, 0) rotate(-3deg); transform-origin: bottom left; }
+        
+        /* Sharper Knife Animation */
+        .knife { position: absolute; top: -55px; left: 50%; width: 5px; height: 150px; background: linear-gradient(90deg, #bdc3c7, #ecf0f1, #95a5a6); border-radius: 2px; transform: translateX(-50%) translateY(-200px); transition: transform 0.4s cubic-bezier(0.5, 0, 0.5, 1); z-index: 5; box-shadow: 2px 0 5px rgba(0,0,0,0.2);}
+        .knife::after { content: ''; position: absolute; top: -15px; left: -4px; width: 13px; height: 40px; background: linear-gradient(90deg, #c0392b, #e74c3c); border-radius: 4px; box-shadow: inset -2px 0 5px rgba(0,0,0,0.3); }
+        .knife-anim { transform: translate(-50%, 45px); } 
+        
+        .cake-slice-anim .right-half { transform: translate(25px, 0) rotate(8deg); transform-origin: bottom right; }
+        .cake-slice-anim .left-half { transform: translate(-15px, 0) rotate(-5deg); transform-origin: bottom left; }
         .cake-slice-anim .flame { opacity: 0; } 
-        .cake-instruction { font-size: 0.85rem; color: #d81159; font-weight: bold; position: absolute; top: -5px; width: 100%; background: rgba(255,255,255,0.9); padding: 4px 0; z-index: 10; border-radius: 8px;}
+        .cake-instruction { font-size: 0.85rem; color: #d81159; font-weight: bold; position: absolute; top: -10px; width: 100%; background: rgba(255,255,255,0.9); padding: 4px 0; z-index: 10; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);}
         .confetti-piece { position: absolute; width: 8px; height: 8px; animation: popConfetti 1s ease-out forwards; z-index: 10; opacity: 0;}
         @keyframes popConfetti { 0% { transform: translate(0, 0) scale(1) rotate(0deg); opacity: 1; } 100% { transform: translate(var(--tx), var(--ty)) scale(0.2) rotate(var(--tr)); opacity: 0; } }
 
@@ -348,64 +365,37 @@
         }
         #fogCanvas { position: absolute; top: 0; left: 0; z-index: 5; cursor: pointer; opacity: 0.95; }
 
-        /* --- NEW PAGE 17: UPGRADED GACHA MACHINE 🕹️ --- */
-        .gacha-machine { position: relative; width: 180px; height: 260px; margin: 0 auto; z-index: 2; display: flex; flex-direction: column; align-items: center; }
-        .gacha-cap { width: 100px; height: 20px; background: #d81159; border-radius: 20px 20px 0 0; border: 3px solid #b00d49; border-bottom: none; z-index: 4; position: relative;}
+        /* --- PAGE 17: GACHA MACHINE 🕹️ --- */
+        .gacha-machine { position: relative; width: 160px; height: 220px; margin: 10px auto; z-index: 2; }
         .gacha-dome { 
-            width: 170px; height: 160px; border: 4px solid #ff8fab; border-radius: 50%; position: relative; overflow: hidden; 
+            width: 160px; height: 140px; border: 4px solid #ff8fab; border-radius: 80px 80px 0 0; position: relative; overflow: hidden; 
             background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.4) 20%, rgba(255,179,198,0.2) 100%);
             box-shadow: inset -10px -10px 20px rgba(0,0,0,0.05), inset 10px 10px 20px rgba(255,255,255,0.8);
-            z-index: 3; margin-top: -5px;
-            /* iOS mask fix for dome bounds */
             -webkit-mask-image: -webkit-radial-gradient(white, black);
         }
-        .gacha-glare { position: absolute; top: 10px; left: 15px; width: 40px; height: 70px; background: rgba(255,255,255,0.6); border-radius: 50%; transform: rotate(30deg); pointer-events: none; z-index: 10;}
-        .gacha-base { 
-            width: 180px; height: 90px; background: #ff4081; border-radius: 0 0 20px 20px; border: 4px solid #d81159; 
-            position: relative; box-shadow: inset 0 -10px 0 rgba(0,0,0,0.1); display: flex; justify-content: center; align-items: center; 
-            z-index: 4; margin-top: -15px;
-        }
-        .gacha-slot { width: 60px; height: 35px; background: #222; position: absolute; bottom: 10px; border-radius: 8px; box-shadow: inset 0 5px 10px rgba(0,0,0,0.7); }
-        .gacha-tray { position: absolute; bottom: 5px; width: 70px; height: 15px; background: #ffb3c6; border-radius: 10px; }
+        .gacha-base { width: 180px; height: 80px; background: #ff4081; margin-left: -10px; border-radius: 10px 10px 15px 15px; position: relative; box-shadow: inset 0 -10px 0 rgba(0,0,0,0.1); display: flex; flex-direction: column; align-items: center; }
+        .gacha-slot { width: 50px; height: 25px; background: #333; position: absolute; bottom: 10px; border-radius: 12px 12px 5px 5px; box-shadow: inset 0 5px 10px rgba(0,0,0,0.5); }
         
-        .gacha-knob-container { position: absolute; top: 15px; width: 45px; height: 45px; background: #ffd6e0; border-radius: 50%; display: flex; justify-content: center; align-items: center; border: 2px solid #d81159;}
-        .gacha-knob { width: 35px; height: 12px; background: #fff; border-radius: 5px; border: 2px solid #d81159; cursor: pointer; transition: transform 0.3s; box-shadow: 0 2px 4px rgba(0,0,0,0.2);}
-        .gacha-knob.turning { transform: rotate(180deg); }
-
-        .gacha-ball { position: absolute; width: 40px; height: 40px; border-radius: 50%; box-shadow: inset -5px -5px 10px rgba(0,0,0,0.15), 0 2px 4px rgba(0,0,0,0.2); }
-        .gacha-ball::after { content: ''; position: absolute; top: 50%; left: 0; width: 100%; height: 2px; background: rgba(0,0,0,0.1); transform: translateY(-50%); } 
-        .gb1 { background: #ffcc00; bottom: 5px; left: 20px; } .gb2 { background: #00bcd4; bottom: 10px; left: 65px; } 
-        .gb3 { background: #d81159; bottom: 5px; right: 20px; } .gb4 { background: #81c784; bottom: 35px; left: 40px; } 
-        .gb5 { background: #ab47bc; bottom: 30px; right: 35px; } .gb6 { background: #ff7043; bottom: 45px; left: 70px; }
-
-        @keyframes bounceBall1 { 0%, 100% { transform: translate(0, 0); } 50% { transform: translate(-10px, -30px) rotate(45deg); } }
-        @keyframes bounceBall2 { 0%, 100% { transform: translate(0, 0); } 50% { transform: translate(15px, -40px) rotate(-45deg); } }
-        @keyframes bounceBall3 { 0%, 100% { transform: translate(0, 0); } 50% { transform: translate(-15px, -20px) rotate(90deg); } }
-        .jumble .gb1 { animation: bounceBall1 0.3s infinite; }
-        .jumble .gb2 { animation: bounceBall2 0.3s infinite 0.1s; }
-        .jumble .gb3 { animation: bounceBall3 0.3s infinite 0.2s; }
-        .jumble .gb4 { animation: bounceBall2 0.3s infinite 0.15s; }
-        .jumble .gb5 { animation: bounceBall1 0.3s infinite 0.05s; }
-        .jumble .gb6 { animation: bounceBall3 0.3s infinite 0.1s; }
+        .gacha-ball { position: absolute; width: 35px; height: 35px; border-radius: 50%; box-shadow: inset -5px -5px 10px rgba(0,0,0,0.1); }
+        .gb1 { background: #ffcc00; bottom: 5px; left: 20px; } .gb2 { background: #00bcd4; bottom: 10px; left: 60px; } .gb3 { background: #d81159; bottom: 5px; right: 20px; } .gb4 { background: #81c784; bottom: 35px; left: 40px; } .gb5 { background: #ab47bc; bottom: 30px; right: 35px; }
+        
+        .gacha-knob { width: 30px; height: 30px; background: #fff; border-radius: 50%; margin-top: 10px; border: 3px solid #d81159; cursor: pointer; transition: transform 0.2s; box-shadow: 0 4px 6px rgba(0,0,0,0.2);}
+        .gacha-knob::before { content: ''; position: absolute; width: 34px; height: 6px; background: #d81159; top: 9px; left: -5px; border-radius: 3px;}
+        
+        .gacha-prize-box { background: white; border: 2px dashed #ffb3c6; padding: 10px; border-radius: 10px; font-size: 0.9rem; color: #d81159; font-weight: bold; opacity: 0; transition: all 0.5s ease; min-height: 50px; display: flex; align-items: center; justify-content: center; margin-top: 10px;}
+        .gacha-prize-box.show { opacity: 1; }
+        .shake-anim { animation: gentleShake 0.4s 2; }
 
         .gacha-drop-ball {
-            position: absolute; width: 35px; height: 35px; background: linear-gradient(135deg, #ffcc00, #ffa000); border-radius: 50%;
-            top: 150px; left: 72px; z-index: 5; opacity: 0; box-shadow: inset -5px -5px 10px rgba(0,0,0,0.1), 0 4px 8px rgba(0,0,0,0.3); pointer-events: none;
+            position: absolute; width: 30px; height: 30px; background: #ffcc00; border-radius: 50%;
+            top: 155px; left: 65px; z-index: 10; opacity: 0; box-shadow: inset -5px -5px 10px rgba(0,0,0,0.1);
+            pointer-events: none;
         }
-        .gacha-drop-ball::after { content: ''; position: absolute; top: 50%; left: 0; width: 100%; height: 2px; background: rgba(0,0,0,0.1); transform: translateY(-50%); }
-        
         @keyframes dropBallAnim {
-            0% { transform: translateY(0) scale(0.5); opacity: 0; }
-            20% { transform: translateY(30px) scale(0.8); opacity: 1; }
-            50% { transform: translateY(80px) scale(1); opacity: 1; } 
-            60% { transform: translateY(80px) scale(1); opacity: 1; }
-            90% { transform: translateY(-30px) scale(3.5); opacity: 1; } 
-            100% { transform: translateY(-30px) scale(3.5); opacity: 0; } 
+            0% { transform: translateY(0) scale(0.5); opacity: 1; }
+            40% { transform: translateY(40px) scale(1.2); opacity: 1; }
+            100% { transform: translateY(50px) scale(2.5); opacity: 0; }
         }
-
-        .gacha-prize-box { background: white; border: 2px dashed #ffb3c6; padding: 10px; border-radius: 10px; font-size: 0.95rem; color: #d81159; font-weight: bold; opacity: 0; transition: all 0.5s ease; min-height: 50px; display: flex; align-items: center; justify-content: center; margin-top: 5px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); transform: scale(0.8);}
-        .gacha-prize-box.show { opacity: 1; transform: scale(1); }
-        .shake-anim { animation: gentleShake 0.4s 2; }
 
         /* --- PAGE 18 - TIME CAPSULE --- */
         #p18 h3, #p18 .letter-font { color: #fff; text-shadow: 1px 1px 4px rgba(0,0,0,0.8); }
@@ -628,16 +618,19 @@
             <span class="decor decor-bl">🎈</span>
             <h3 class="pop-item delay-1">Let's Celebrate! 🎂🎉</h3>
             
-            <p class="letter-font pop-item delay-2" style="font-size: 1.2rem; margin: 0 0 5px 0;">Close your eyes & make a wish... 🌠</p>
+            <p class="letter-font pop-item delay-2" style="font-size: 1.2rem; margin: 0 0 5px 0;">Make a wish and cut the cake! 🌠</p>
             
             <div class="cake-container pop-item delay-3" id="cakeContainer">
                 <div class="cake-aura"></div>
-                <p class="cake-instruction pulse-text" id="cakeText">Tap to cut! 🔪</p>
+                <div class="sparkle s1">✨</div><div class="sparkle s2">✨</div><div class="sparkle s3">✨</div><div class="sparkle s4">✨</div>
+                
+                <p class="cake-instruction pulse-text" id="cakeText">Tap to cut! 🔪🍰</p>
                 <div class="knife" id="knife"></div>
                 
                 <div class="cake-stand">
                     <div class="stand-top"></div>
                     <div class="stand-base"></div>
+                    <div class="stand-foot"></div>
                 </div>
                 
                 <div class="cake-halves" id="cake">
@@ -771,21 +764,15 @@
             <p class="letter-font pop-item delay-2" style="font-size: 1.1rem;">Tap the knob to get your daily prize! 🎟️</p>
             
             <div class="gacha-machine pop-item delay-3" id="gachaMachine">
-                <div class="gacha-cap"></div>
-                <div class="gacha-dome" id="gachaDome">
-                    <div class="gacha-glare"></div>
+                <div class="gacha-dome">
                     <div class="gacha-ball gb1"></div>
                     <div class="gacha-ball gb2"></div>
                     <div class="gacha-ball gb3"></div>
                     <div class="gacha-ball gb4"></div>
                     <div class="gacha-ball gb5"></div>
-                    <div class="gacha-ball gb6"></div>
                 </div>
                 <div class="gacha-base">
-                    <div class="gacha-knob-container">
-                        <div class="gacha-knob" id="gachaKnob"></div>
-                    </div>
-                    <div class="gacha-tray"></div>
+                    <div class="gacha-knob" id="gachaKnob"></div>
                     <div class="gacha-slot"></div>
                 </div>
                 <div class="gacha-drop-ball" id="dropBall"></div>
@@ -952,6 +939,46 @@
     fogCanvas.addEventListener('touchstart', startFogWipe, {passive: false});
     fogCanvas.addEventListener('touchmove', wipeFog, {passive: false});
     window.addEventListener('touchend', endFogWipe);
+
+    // --- GACHA MACHINE LOGIC (Page 17) ---
+    const prizes = [
+        "🎟️ Good for 1 Virtual Movie Date",
+        "🧸 Good for 10 Virtual Hugs",
+        "💤 1 Late-night call (Even if sleepy)",
+        "🍕 1 Surprise Food Delivery",
+        "🎮 1 Gaming Session Together",
+        "🥺 Unli-Compliments for 1 Hour",
+        "📸 Send a cute selfie right now!"
+    ];
+    const gachaKnob = document.getElementById('gachaKnob');
+    const gachaMachine = document.getElementById('gachaMachine');
+    const gachaPrize = document.getElementById('gachaPrize');
+    const dropBall = document.getElementById('dropBall');
+    let isSpinning = false;
+
+    if (gachaKnob) {
+        gachaKnob.onclick = (e) => {
+            e.stopPropagation();
+            if (isSpinning) return; 
+            isSpinning = true;
+            
+            gachaMachine.classList.remove('shake-anim');
+            void gachaMachine.offsetWidth; 
+            gachaMachine.classList.add('shake-anim');
+            
+            gachaPrize.classList.remove('show');
+            dropBall.style.animation = 'dropBallAnim 1s forwards';
+            
+            setTimeout(() => {
+                const rand = prizes[Math.floor(Math.random() * prizes.length)];
+                gachaPrize.innerHTML = rand;
+                gachaPrize.classList.add('show');
+                dropBall.style.animation = 'none'; 
+                isSpinning = false;
+                if(navigator.vibrate) navigator.vibrate([50, 50, 50]);
+            }, 1000);
+        };
+    }
 
     // --- THUMBPRINT SCANNER LOGIC (Page 14) ---
     const scannerBox = document.getElementById('scannerBox');
@@ -1246,53 +1273,6 @@
             }, 500); 
         }
     };
-
-    // --- GACHA MACHINE JS FIX (Page 17) ---
-    const prizes = [
-        "🎟️ Good for 1 Virtual Movie Date",
-        "🧸 Good for 10 Virtual Hugs",
-        "💤 1 Late-night call (Even if sleepy)",
-        "🍕 1 Surprise Food Delivery",
-        "🎮 1 Gaming Session Together",
-        "🥺 Unli-Compliments for 1 Hour",
-        "📸 Send a cute selfie right now!"
-    ];
-    const gachaKnob = document.getElementById('gachaKnob');
-    const gachaMachine = document.getElementById('gachaMachine');
-    const gachaPrize = document.getElementById('gachaPrize');
-    const dropBall = document.getElementById('dropBall');
-    let isSpinning = false;
-
-    if (gachaKnob) {
-        gachaKnob.onclick = (e) => {
-            e.stopPropagation();
-            if (isSpinning) return; 
-            isSpinning = true;
-            
-            gachaMachine.classList.remove('shake-anim');
-            gachaKnob.classList.toggle('turning'); // Rotate knob
-            void gachaMachine.offsetWidth; // trigger reflow
-            gachaMachine.classList.add('shake-anim');
-            document.getElementById('gachaDome').classList.add('jumble'); // bounce balls
-            
-            gachaPrize.classList.remove('show');
-            
-            setTimeout(() => {
-                document.getElementById('gachaDome').classList.remove('jumble'); // stop bounce
-                dropBall.style.animation = 'dropBallAnim 1.2s forwards'; // drop golden ball
-                
-                setTimeout(() => {
-                    const rand = prizes[Math.floor(Math.random() * prizes.length)];
-                    gachaPrize.innerHTML = rand;
-                    gachaPrize.classList.add('show');
-                    shootConfetti(document.getElementById('p17'), 40); // confetti!
-                    dropBall.style.animation = 'none'; 
-                    isSpinning = false;
-                    if(navigator.vibrate) navigator.vibrate([50, 50, 50]);
-                }, 1200);
-            }, 800);
-        };
-    }
 
     function checkInteractiveStates() {
         if (currentPage === 12 && cakeIsCut) {
