@@ -417,8 +417,9 @@
 
         .gacha-prize-box { background: white; border: 2px dashed #ffb3c6; padding: 10px; border-radius: 10px; font-size: 0.95rem; color: #d81159; font-weight: bold; opacity: 0; transition: all 0.5s ease; min-height: 50px; display: flex; align-items: center; justify-content: center; margin-top: 5px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); transform: scale(0.8);}
         .gacha-prize-box.show { opacity: 1; transform: scale(1); }
+        .shake-anim { animation: gentleShake 0.4s 2; }
 
-        /* --- ✨ NEW PAGE 19: VIRTUAL COFFEE DATE ☕ ✨ --- */
+        /* --- ✨ PAGE 18: VIRTUAL COFFEE DATE ☕ ✨ --- */
         .coffee-cup-container { position: relative; width: 130px; height: 180px; margin: 10px auto; }
         .coffee-cup { position: absolute; bottom: 0; width: 100%; height: 100%; border: 4px solid rgba(255,255,255,0.9); border-top: none; border-radius: 5px 5px 25px 25px; background: rgba(255,255,255,0.2); overflow: hidden; box-shadow: inset 0 -10px 20px rgba(0,0,0,0.05), 0 10px 15px rgba(0,0,0,0.1); z-index: 2;}
         .liquid-coffee { position: absolute; bottom: 0; width: 100%; height: 0%; background: linear-gradient(180deg, #5c3a21, #3e2723); transition: height 1.2s ease-in-out; z-index: 1;}
@@ -431,17 +432,17 @@
         .straw { position: absolute; top: -200px; left: 65%; width: 10px; height: 220px; background: repeating-linear-gradient(45deg, #ff4081, #ff4081 10px, #fff 10px, #fff 20px); border-radius: 5px; transform: rotate(15deg); z-index: 4; transition: top 0.8s cubic-bezier(0.34, 1.56, 0.64, 1); box-shadow: 2px 2px 5px rgba(0,0,0,0.2); }
         .straw.in { top: -20px; }
         .coffee-buttons { display: flex; flex-direction: column; gap: 8px; margin-top: 15px; width: 90%; z-index: 10;}
-        .ingredient-btn { width: 100%; padding: 10px; font-size: 1rem; border-radius: 12px; background: white; color: #d81159; border: 2px dashed #ffb3c6; font-family: 'Quicksand', sans-serif; font-weight: bold; box-shadow: 0 4px 6px rgba(0,0,0,0.05); transition: all 0.2s;}
+        .ingredient-btn { width: 100%; padding: 10px; font-size: 1rem; border-radius: 12px; background: white; color: #d81159; border: 2px dashed #ffb3c6; font-family: 'Quicksand', sans-serif; font-weight: bold; box-shadow: 0 4px 6px rgba(0,0,0,0.05); transition: all 0.2s; cursor: pointer;}
         .ingredient-btn.done { opacity: 0.6; pointer-events: none; background: #e0e0e0; border-color: #bdbdbd; color: #757575; transform: scale(0.95);}
 
-        /* --- PAGE 20 - TIME CAPSULE --- */
-        #p20 h3, #p20 .letter-font { color: #fff; text-shadow: 1px 1px 4px rgba(0,0,0,0.8); }
+        /* --- PAGE 19 - TIME CAPSULE --- */
+        #p19 h3, #p19 .letter-font { color: #fff; text-shadow: 1px 1px 4px rgba(0,0,0,0.8); }
         .capsule-wrapper { background: rgba(255,255,255,0.9); border: 3px solid #d81159; padding: 20px 10px; border-radius: 15px; width: 95%; z-index: 2; position: relative; margin-top: 15px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
         .capsule-lock { font-size: 3.5rem; margin-bottom: 10px; }
         .capsule-timer { font-size: 1.3rem; font-weight: bold; color: #d81159; background: #ffe6ea; padding: 10px; border-radius: 10px; border: 1px dashed #ffb3c6;}
         .capsule-content { display: none; font-size: 1.2rem; color: #d62828; font-weight: bold;}
 
-        /* --- PAGE 21 - FINAL --- */
+        /* --- PAGE 20 - FINAL --- */
         .nav-hint { margin-top: 10px; font-size: 0.8rem; color: #888; background: white; padding: 5px 10px; border-radius: 15px; font-family: 'Quicksand', sans-serif; z-index: 10;}
     </style>
 </head>
@@ -826,7 +827,7 @@
             </div>
         </div>
 
-        <div class="page bg-cafe page-coffee" id="p19" style="justify-content: center;">
+        <div class="page bg-cafe page-coffee" id="p18" style="justify-content: center;">
             <span class="decor decor-tl">☕</span>
             <span class="decor decor-br">✨</span>
             <h3 class="pop-item delay-1">Our Virtual Cafe Date!</h3>
@@ -858,7 +859,7 @@
             </div>
         </div>
 
-        <div class="page bg-stars page-capsule" id="p20" style="justify-content: center;">
+        <div class="page bg-stars page-capsule" id="p19" style="justify-content: center;">
             <span class="decor decor-tr" style="color: gold;">⏳</span>
             <span class="decor decor-bl" style="color: gold;">📦</span>
             <h3 class="pop-item delay-1">Our Time Capsule 🔒</h3>
@@ -878,7 +879,7 @@
             <div class="status-badge pop-item delay-4" style="margin-top: 15px;">No cheating allowed! 😤</div>
         </div>
 
-        <div class="page bg-glow page-final" id="p21">
+        <div class="page bg-glow page-final" id="p20">
             <span class="decor decor-tl">🦋</span>
             <span class="decor decor-br">✨</span>
             <div class="letter-font pop-item delay-1">
@@ -908,28 +909,17 @@
     const musicToggle = document.getElementById('musicToggle');
     let isMusicPlaying = false;
 
-    const unlockAudio = (e) => {
+    function ensureAudio() {
         if (!isMusicPlaying) {
-            bgMusic.volume = 1; 
-            let playPromise = bgMusic.play();
-            
-            if (playPromise !== undefined) {
-                playPromise.then(() => {
-                    isMusicPlaying = true;
-                    musicToggle.classList.add('playing');
-                    document.removeEventListener('click', unlockAudio);
-                    document.removeEventListener('touchstart', unlockAudio);
-                    document.removeEventListener('touchend', unlockAudio);
-                }).catch(err => {
-                    console.log("Audio still waiting for stronger user tap...");
-                });
-            }
+            bgMusic.play().then(() => {
+                isMusicPlaying = true;
+                musicToggle.classList.add('playing');
+            }).catch(e => console.log("Waiting for user interaction for audio..."));
         }
-    };
-
-    document.addEventListener('click', unlockAudio);
-    document.addEventListener('touchstart', unlockAudio, { passive: true });
-    document.addEventListener('touchend', unlockAudio, { passive: true });
+    }
+    
+    document.addEventListener('click', ensureAudio, { once: false });
+    document.addEventListener('touchstart', ensureAudio, { passive: true });
 
     musicToggle.onclick = function(e) {
         e.stopPropagation(); 
@@ -1033,6 +1023,7 @@
 
     function triggerGacha(e) {
         e.stopPropagation();
+        e.preventDefault(); 
         if (isSpinning) return; 
         isSpinning = true;
         
@@ -1062,10 +1053,10 @@
     
     if (gachaKnob) {
         gachaKnob.addEventListener('mousedown', triggerGacha);
-        gachaKnob.addEventListener('touchstart', triggerGacha, { passive: true });
+        gachaKnob.addEventListener('touchstart', triggerGacha, { passive: false });
     }
 
-    // --- VIRTUAL COFFEE DATE LOGIC (Page 19) ---
+    // --- VIRTUAL COFFEE DATE LOGIC (Page 18) ---
     const btnIce = document.getElementById('btnIce');
     const btnCoffee = document.getElementById('btnCoffee');
     const btnMilk = document.getElementById('btnMilk');
@@ -1090,7 +1081,7 @@
                     coffeeSuccess.style.padding = '10px';
                     coffeeSuccess.style.borderColor = '#ffb3c6';
                     if(navigator.vibrate) navigator.vibrate([50, 50, 100]);
-                    shootConfetti(document.getElementById('p19'), 0);
+                    shootConfetti(document.getElementById('p18'), 0);
                 }, 600);
             }, 1000);
         }
@@ -1265,7 +1256,7 @@
 
     // --- SMART RENDERING NAVIGATION LOGIC ---
     let currentPage = 1;
-    const totalPages = 21; // Upgraded to 21 total active pages
+    const totalPages = 20; 
     const bookContainer = document.getElementById('bookContainer');
 
     function updateActivePage() {
@@ -1333,7 +1324,7 @@
             if (currentPage === 15 && (e.target.id === 'stringSlider')) return;
             if (currentPage === 16 && (e.target.id === 'fogCanvas')) return; 
             if (currentPage === 17 && (e.target.closest('#gachaMachine') || e.target.id === 'gachaKnob')) return; 
-            if (currentPage === 19 && (e.target.closest('.ingredient-btn'))) return;
+            if (currentPage === 18 && (e.target.closest('.ingredient-btn'))) return;
 
             document.getElementById('p' + (currentPage + 1)).style.display = 'flex';
             setTimeout(() => {
@@ -1375,6 +1366,63 @@
         }, 2500);
     };
 
+    // --- REUSABLE CONFETTI FUNCTION ---
+    function shootConfetti(targetContainer, yOffset = -30) {
+        const colors = ['#ff8fab', '#d81159', '#ffcc00', '#00bcd4', '#ffffff'];
+        const shapes = ['❤️', '⭐', '🍬'];
+        for(let i=0; i<30; i++) {
+            let conf = document.createElement('div');
+            conf.classList.add('confetti-piece');
+            conf.innerHTML = shapes[Math.floor(Math.random() * shapes.length)];
+            conf.style.color = colors[Math.floor(Math.random() * colors.length)];
+            conf.style.fontSize = (0.5 + Math.random() * 0.5) + 'rem';
+            conf.style.left = '50%';
+            conf.style.top = '50%';
+            
+            let angle = Math.random() * Math.PI * 2;
+            let velocity = 50 + Math.random() * 100;
+            let tx = Math.cos(angle) * velocity;
+            let ty = Math.sin(angle) * velocity + yOffset; 
+            let tr = 180 + Math.random() * 360; 
+            
+            conf.style.setProperty('--tx', `${tx}px`);
+            conf.style.setProperty('--ty', `${ty}px`);
+            conf.style.setProperty('--tr', `${tr}deg`);
+            
+            targetContainer.appendChild(conf);
+            setTimeout(() => conf.remove(), 1000);
+        }
+    }
+
+    // --- CAKE CUTTING LOGIC (Page 12) ---
+    const cakeContainer = document.getElementById('cakeContainer');
+    const knife = document.getElementById('knife');
+    const cake = document.getElementById('cake');
+    const cakeText = document.getElementById('cakeText');
+    let cakeIsCut = false;
+
+    function triggerCakeCut(e) {
+        e.stopPropagation(); 
+        e.preventDefault();
+        if (!cakeIsCut) {
+            cakeText.style.display = 'none'; 
+            knife.classList.add('knife-anim'); 
+            
+            if(navigator.vibrate) navigator.vibrate(100);
+
+            setTimeout(() => {
+                cake.classList.add('cake-slice-anim'); 
+                shootConfetti(cakeContainer, -20); 
+                cakeIsCut = true;
+            }, 500); 
+        }
+    }
+    
+    if (cakeContainer) {
+        cakeContainer.addEventListener('mousedown', triggerCakeCut);
+        cakeContainer.addEventListener('touchstart', triggerCakeCut, { passive: false });
+    }
+
     function checkInteractiveStates() {
         if (currentPage === 12 && cakeIsCut) {
             cake.classList.remove('cake-slice-anim');
@@ -1390,7 +1438,7 @@
             loveBtn.innerHTML = "Tap to measure! 👆";
             loveBtn.style.pointerEvents = 'auto';
         }
-        if (currentPage === 19) {
+        if (currentPage === 18) {
             stateIce = false; stateCoffee = false; stateMilk = false;
             iceCubes.style.opacity = '0';
             document.querySelectorAll('.ice').forEach(ice => ice.classList.remove('drop'));
