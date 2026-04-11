@@ -242,12 +242,10 @@
         .cake-container { position: relative; width: 180px; height: 190px; margin: 10px 0; cursor: pointer; z-index: 2;}
         .cake-aura { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 240px; height: 240px; background: radial-gradient(circle, rgba(255, 179, 198, 0.8) 0%, rgba(255,255,255,0) 70%); z-index: -1; animation: coverGlow 3s infinite alternate; pointer-events: none;}
         
-        /* Floating Sparkles */
         .sparkle { position: absolute; font-size: 1rem; color: #ffd700; z-index: 5; pointer-events: none; animation: twinkle 2s infinite alternate; opacity: 0;}
         .s1 { top: 20px; left: 10px; animation-delay: 0s; } .s2 { top: 40px; right: 15px; animation-delay: 0.5s; font-size: 1.2rem;} .s3 { bottom: 50px; left: -10px; animation-delay: 1s; } .s4 { bottom: 30px; right: 0; animation-delay: 0.7s; }
         @keyframes twinkle { 0% { opacity: 0; transform: scale(0.5); } 50% { opacity: 1; transform: scale(1.2); } 100% { opacity: 0; transform: scale(0.5); } }
 
-        /* Rose Gold Stand */
         .cake-stand { position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); z-index: 0; display: flex; flex-direction: column; align-items: center; filter: drop-shadow(0 10px 10px rgba(0,0,0,0.1)); }
         .stand-top { width: 160px; height: 20px; border-radius: 50%; background: radial-gradient(ellipse at top, #fde4ce 0%, #d4af37 60%, #aa7c11 100%); border: 1px solid #e6c27a; position: relative;}
         .stand-top::after { content: ''; position: absolute; top: 2px; left: 50%; transform: translateX(-50%); width: 135px; height: 10px; border: 1px solid rgba(255,255,255,0.6); border-radius: 50%; }
@@ -275,7 +273,6 @@
         .d7 { left: 8px; width: 8px; height: 15px; } .d8 { left: 30px; width: 9px; height: 20px; }
         .d9 { left: 10px; width: 8px; height: 18px; } .d10 { left: 35px; width: 8px; height: 10px; }
         
-        /* Gold Foil Cake Topper */
         .cake-number { position: absolute; bottom: 8px; font-family: 'Caveat', cursive; font-size: 2.2rem; color: #ffd700; font-weight: bold; text-shadow: 1px 1px 0px #c2a800, 2px 2px 4px rgba(0,0,0,0.3); z-index: 5; }
         .left-half .cake-number { right: 5px; } .right-half .cake-number { left: 5px; }
         
@@ -288,7 +285,6 @@
         .flame { position: absolute; top: -14px; left: 50%; transform: translateX(-50%); width: 10px; height: 16px; background: #ffcc00; border-radius: 50% 50% 20% 20%; box-shadow: 0 0 10px #ffcc00, 0 0 25px #ff9900; animation: flicker 0.1s infinite alternate; transition: opacity 0.2s; }
         @keyframes flicker { from { transform: translate(-50%, 0) scale(1); opacity: 0.8; } to { transform: translate(-50%, 0) scale(1.1); opacity: 1; } }
         
-        /* Sharper Knife Animation */
         .knife { position: absolute; top: -55px; left: 50%; width: 5px; height: 150px; background: linear-gradient(90deg, #bdc3c7, #ecf0f1, #95a5a6); border-radius: 2px; transform: translateX(-50%) translateY(-200px); transition: transform 0.4s cubic-bezier(0.5, 0, 0.5, 1); z-index: 5; box-shadow: 2px 0 5px rgba(0,0,0,0.2);}
         .knife::after { content: ''; position: absolute; top: -15px; left: -4px; width: 13px; height: 40px; background: linear-gradient(90deg, #c0392b, #e74c3c); border-radius: 4px; box-shadow: inset -2px 0 5px rgba(0,0,0,0.3); }
         .knife-anim { transform: translate(-50%, 45px); } 
@@ -365,37 +361,63 @@
         }
         #fogCanvas { position: absolute; top: 0; left: 0; z-index: 5; cursor: pointer; opacity: 0.95; }
 
-        /* --- PAGE 17: GACHA MACHINE 🕹️ --- */
-        .gacha-machine { position: relative; width: 160px; height: 220px; margin: 10px auto; z-index: 2; }
+        /* --- ✨ PAGE 17: PREMIUM GACHA MACHINE 🕹️ ✨ --- */
+        .gacha-machine { position: relative; width: 180px; height: 260px; margin: 0 auto; z-index: 2; display: flex; flex-direction: column; align-items: center; }
+        .gacha-cap { width: 100px; height: 20px; background: #d81159; border-radius: 20px 20px 0 0; border: 3px solid #b00d49; border-bottom: none; z-index: 4; position: relative;}
         .gacha-dome { 
-            width: 160px; height: 140px; border: 4px solid #ff8fab; border-radius: 80px 80px 0 0; position: relative; overflow: hidden; 
+            width: 170px; height: 160px; border: 4px solid #ff8fab; border-radius: 50%; position: relative; overflow: hidden; 
             background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.4) 20%, rgba(255,179,198,0.2) 100%);
             box-shadow: inset -10px -10px 20px rgba(0,0,0,0.05), inset 10px 10px 20px rgba(255,255,255,0.8);
-            -webkit-mask-image: -webkit-radial-gradient(white, black);
+            z-index: 3; margin-top: -5px;
+            -webkit-mask-image: -webkit-radial-gradient(white, black); /* iOS Fix */
         }
-        .gacha-base { width: 180px; height: 80px; background: #ff4081; margin-left: -10px; border-radius: 10px 10px 15px 15px; position: relative; box-shadow: inset 0 -10px 0 rgba(0,0,0,0.1); display: flex; flex-direction: column; align-items: center; }
-        .gacha-slot { width: 50px; height: 25px; background: #333; position: absolute; bottom: 10px; border-radius: 12px 12px 5px 5px; box-shadow: inset 0 5px 10px rgba(0,0,0,0.5); }
+        .gacha-glare { position: absolute; top: 10px; left: 15px; width: 40px; height: 70px; background: rgba(255,255,255,0.6); border-radius: 50%; transform: rotate(30deg); pointer-events: none; z-index: 10;}
+        .gacha-base { 
+            width: 180px; height: 90px; background: #ff4081; border-radius: 0 0 20px 20px; border: 4px solid #d81159; 
+            position: relative; box-shadow: inset 0 -10px 0 rgba(0,0,0,0.1); display: flex; justify-content: center; align-items: center; 
+            z-index: 4; margin-top: -15px;
+        }
+        .gacha-slot { width: 60px; height: 35px; background: #222; position: absolute; bottom: 10px; border-radius: 8px; box-shadow: inset 0 5px 10px rgba(0,0,0,0.7); }
+        .gacha-tray { position: absolute; bottom: 5px; width: 70px; height: 15px; background: #ffb3c6; border-radius: 10px; }
         
-        .gacha-ball { position: absolute; width: 35px; height: 35px; border-radius: 50%; box-shadow: inset -5px -5px 10px rgba(0,0,0,0.1); }
-        .gb1 { background: #ffcc00; bottom: 5px; left: 20px; } .gb2 { background: #00bcd4; bottom: 10px; left: 60px; } .gb3 { background: #d81159; bottom: 5px; right: 20px; } .gb4 { background: #81c784; bottom: 35px; left: 40px; } .gb5 { background: #ab47bc; bottom: 30px; right: 35px; }
-        
-        .gacha-knob { width: 30px; height: 30px; background: #fff; border-radius: 50%; margin-top: 10px; border: 3px solid #d81159; cursor: pointer; transition: transform 0.2s; box-shadow: 0 4px 6px rgba(0,0,0,0.2);}
-        .gacha-knob::before { content: ''; position: absolute; width: 34px; height: 6px; background: #d81159; top: 9px; left: -5px; border-radius: 3px;}
-        
-        .gacha-prize-box { background: white; border: 2px dashed #ffb3c6; padding: 10px; border-radius: 10px; font-size: 0.9rem; color: #d81159; font-weight: bold; opacity: 0; transition: all 0.5s ease; min-height: 50px; display: flex; align-items: center; justify-content: center; margin-top: 10px;}
-        .gacha-prize-box.show { opacity: 1; }
-        .shake-anim { animation: gentleShake 0.4s 2; }
+        .gacha-knob-container { position: absolute; top: 15px; width: 45px; height: 45px; background: #ffd6e0; border-radius: 50%; display: flex; justify-content: center; align-items: center; border: 2px solid #d81159;}
+        .gacha-knob { width: 35px; height: 12px; background: #fff; border-radius: 5px; border: 2px solid #d81159; cursor: pointer; transition: transform 0.3s; box-shadow: 0 2px 4px rgba(0,0,0,0.2);}
+        .gacha-knob.turning { transform: rotate(180deg); }
+
+        .gacha-ball { position: absolute; width: 40px; height: 40px; border-radius: 50%; box-shadow: inset -5px -5px 10px rgba(0,0,0,0.15), 0 2px 4px rgba(0,0,0,0.2); }
+        .gacha-ball::after { content: ''; position: absolute; top: 50%; left: 0; width: 100%; height: 2px; background: rgba(0,0,0,0.1); transform: translateY(-50%); } 
+        .gb1 { background: #ffcc00; bottom: 5px; left: 20px; } .gb2 { background: #00bcd4; bottom: 10px; left: 65px; } 
+        .gb3 { background: #d81159; bottom: 5px; right: 20px; } .gb4 { background: #81c784; bottom: 35px; left: 40px; } 
+        .gb5 { background: #ab47bc; bottom: 30px; right: 35px; } .gb6 { background: #ff7043; bottom: 45px; left: 70px; }
+
+        @keyframes bounceBall1 { 0%, 100% { transform: translate(0, 0); } 50% { transform: translate(-10px, -30px) rotate(45deg); } }
+        @keyframes bounceBall2 { 0%, 100% { transform: translate(0, 0); } 50% { transform: translate(15px, -40px) rotate(-45deg); } }
+        @keyframes bounceBall3 { 0%, 100% { transform: translate(0, 0); } 50% { transform: translate(-15px, -20px) rotate(90deg); } }
+        .jumble .gb1 { animation: bounceBall1 0.3s infinite; }
+        .jumble .gb2 { animation: bounceBall2 0.3s infinite 0.1s; }
+        .jumble .gb3 { animation: bounceBall3 0.3s infinite 0.2s; }
+        .jumble .gb4 { animation: bounceBall2 0.3s infinite 0.15s; }
+        .jumble .gb5 { animation: bounceBall1 0.3s infinite 0.05s; }
+        .jumble .gb6 { animation: bounceBall3 0.3s infinite 0.1s; }
 
         .gacha-drop-ball {
-            position: absolute; width: 30px; height: 30px; background: #ffcc00; border-radius: 50%;
-            top: 155px; left: 65px; z-index: 10; opacity: 0; box-shadow: inset -5px -5px 10px rgba(0,0,0,0.1);
-            pointer-events: none;
+            position: absolute; width: 35px; height: 35px; background: linear-gradient(135deg, #ffcc00, #ffa000); border-radius: 50%;
+            top: 150px; left: 72px; z-index: 5; opacity: 0; box-shadow: inset -5px -5px 10px rgba(0,0,0,0.1), 0 4px 8px rgba(0,0,0,0.3); pointer-events: none;
         }
+        .gacha-drop-ball::after { content: ''; position: absolute; top: 50%; left: 0; width: 100%; height: 2px; background: rgba(0,0,0,0.1); transform: translateY(-50%); }
+        
         @keyframes dropBallAnim {
-            0% { transform: translateY(0) scale(0.5); opacity: 1; }
-            40% { transform: translateY(40px) scale(1.2); opacity: 1; }
-            100% { transform: translateY(50px) scale(2.5); opacity: 0; }
+            0% { transform: translateY(0) scale(0.5); opacity: 0; }
+            20% { transform: translateY(30px) scale(0.8); opacity: 1; }
+            50% { transform: translateY(80px) scale(1); opacity: 1; } 
+            60% { transform: translateY(80px) scale(1); opacity: 1; }
+            90% { transform: translateY(-30px) scale(3.5); opacity: 1; } 
+            100% { transform: translateY(-30px) scale(3.5); opacity: 0; } 
         }
+
+        .gacha-prize-box { background: white; border: 2px dashed #ffb3c6; padding: 10px; border-radius: 10px; font-size: 0.95rem; color: #d81159; font-weight: bold; opacity: 0; transition: all 0.5s ease; min-height: 50px; display: flex; align-items: center; justify-content: center; margin-top: 5px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); transform: scale(0.8);}
+        .gacha-prize-box.show { opacity: 1; transform: scale(1); }
+        .shake-anim { animation: gentleShake 0.4s 2; }
 
         /* --- PAGE 18 - TIME CAPSULE --- */
         #p18 h3, #p18 .letter-font { color: #fff; text-shadow: 1px 1px 4px rgba(0,0,0,0.8); }
@@ -764,15 +786,21 @@
             <p class="letter-font pop-item delay-2" style="font-size: 1.1rem;">Tap the knob to get your daily prize! 🎟️</p>
             
             <div class="gacha-machine pop-item delay-3" id="gachaMachine">
-                <div class="gacha-dome">
+                <div class="gacha-cap"></div>
+                <div class="gacha-dome" id="gachaDome">
+                    <div class="gacha-glare"></div>
                     <div class="gacha-ball gb1"></div>
                     <div class="gacha-ball gb2"></div>
                     <div class="gacha-ball gb3"></div>
                     <div class="gacha-ball gb4"></div>
                     <div class="gacha-ball gb5"></div>
+                    <div class="gacha-ball gb6"></div>
                 </div>
                 <div class="gacha-base">
-                    <div class="gacha-knob" id="gachaKnob"></div>
+                    <div class="gacha-knob-container">
+                        <div class="gacha-knob" id="gachaKnob"></div>
+                    </div>
+                    <div class="gacha-tray"></div>
                     <div class="gacha-slot"></div>
                 </div>
                 <div class="gacha-drop-ball" id="dropBall"></div>
@@ -963,20 +991,27 @@
             isSpinning = true;
             
             gachaMachine.classList.remove('shake-anim');
+            gachaKnob.classList.toggle('turning'); 
             void gachaMachine.offsetWidth; 
             gachaMachine.classList.add('shake-anim');
+            document.getElementById('gachaDome').classList.add('jumble'); 
             
             gachaPrize.classList.remove('show');
-            dropBall.style.animation = 'dropBallAnim 1s forwards';
             
             setTimeout(() => {
-                const rand = prizes[Math.floor(Math.random() * prizes.length)];
-                gachaPrize.innerHTML = rand;
-                gachaPrize.classList.add('show');
-                dropBall.style.animation = 'none'; 
-                isSpinning = false;
-                if(navigator.vibrate) navigator.vibrate([50, 50, 50]);
-            }, 1000);
+                document.getElementById('gachaDome').classList.remove('jumble'); 
+                dropBall.style.animation = 'dropBallAnim 1.2s forwards'; 
+                
+                setTimeout(() => {
+                    const rand = prizes[Math.floor(Math.random() * prizes.length)];
+                    gachaPrize.innerHTML = rand;
+                    gachaPrize.classList.add('show');
+                    shootConfetti(document.getElementById('p17'), 40); 
+                    dropBall.style.animation = 'none'; 
+                    isSpinning = false;
+                    if(navigator.vibrate) navigator.vibrate([50, 50, 50]);
+                }, 1200);
+            }, 800);
         };
     }
 
@@ -1221,57 +1256,6 @@
             loveBtn.style.pointerEvents = 'none'; 
             meterFill.parentElement.style.animation = 'none';
         }, 2500);
-    };
-
-    // --- REUSABLE CONFETTI FUNCTION ---
-    function shootConfetti(targetContainer, yOffset = -30) {
-        const colors = ['#ff8fab', '#d81159', '#ffcc00', '#00bcd4', '#ffffff'];
-        const shapes = ['❤️', '⭐', '🍬'];
-        for(let i=0; i<30; i++) {
-            let conf = document.createElement('div');
-            conf.classList.add('confetti-piece');
-            conf.innerHTML = shapes[Math.floor(Math.random() * shapes.length)];
-            conf.style.color = colors[Math.floor(Math.random() * colors.length)];
-            conf.style.fontSize = (0.5 + Math.random() * 0.5) + 'rem';
-            conf.style.left = '50%';
-            conf.style.top = '50%';
-            
-            let angle = Math.random() * Math.PI * 2;
-            let velocity = 50 + Math.random() * 100;
-            let tx = Math.cos(angle) * velocity;
-            let ty = Math.sin(angle) * velocity + yOffset; 
-            let tr = 180 + Math.random() * 360; 
-            
-            conf.style.setProperty('--tx', `${tx}px`);
-            conf.style.setProperty('--ty', `${ty}px`);
-            conf.style.setProperty('--tr', `${tr}deg`);
-            
-            targetContainer.appendChild(conf);
-            setTimeout(() => conf.remove(), 1000);
-        }
-    }
-
-    // --- CAKE CUTTING LOGIC (Page 12) ---
-    const cakeContainer = document.getElementById('cakeContainer');
-    const knife = document.getElementById('knife');
-    const cake = document.getElementById('cake');
-    const cakeText = document.getElementById('cakeText');
-    let cakeIsCut = false;
-
-    cakeContainer.onclick = function(e) {
-        e.stopPropagation(); 
-        if (!cakeIsCut) {
-            cakeText.style.display = 'none'; 
-            knife.classList.add('knife-anim'); 
-            
-            if(navigator.vibrate) navigator.vibrate(100);
-
-            setTimeout(() => {
-                cake.classList.add('cake-slice-anim'); 
-                shootConfetti(cakeContainer); 
-                cakeIsCut = true;
-            }, 500); 
-        }
     };
 
     function checkInteractiveStates() {
